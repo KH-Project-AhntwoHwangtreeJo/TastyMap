@@ -2,10 +2,11 @@ package com.kh.tastyMap.post.model.dao;
 
 import java.util.List;
 
+import com.kh.tastyMap.post.model.vo.Picture;
 import com.kh.tastyMap.post.model.vo.Post;
 import com.kh.tastyMap.postComment.model.vo.PostComment;
 
-public interface postDAO {
+public interface PostDAO {
 	/**
 	 * 게시글 작성 메소드
 	 * @param post
@@ -13,12 +14,16 @@ public interface postDAO {
 	 */
 	int insertPost(Post post);
 	
+	int insertPicture(Picture p);
+	
 	/**
 	 * 게시글 수정 메소드
 	 * @param post
 	 * @return
 	 */
 	int updatePost(Post post);
+	
+	int updatePicture(Picture p);
 	
 	/**
 	 * 게시글 삭제 메소드
