@@ -1,6 +1,7 @@
 package com.kh.tastyMap.restaurant.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kh.tastyMap.restaurant.model.vo.Restaurant;
 
@@ -46,6 +47,10 @@ public interface RestaurantService {
 	 * @return
 	 */
 	int deleteRestaurant(Restaurant restaurant);
+
+	List<Map<String, String>> selectRestaurantList(int cPage, int numPerPage);
+
+	int selectRestaurantTotalContents();
 	
 	
 
