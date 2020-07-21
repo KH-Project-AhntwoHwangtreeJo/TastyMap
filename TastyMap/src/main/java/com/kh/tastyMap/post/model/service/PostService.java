@@ -41,4 +41,5 @@ public interface PostService  {
 	 */
 	Post PostDetail(int pno);
 
+
 }
