@@ -5,7 +5,7 @@ import java.util.List;
 import com.kh.tastyMap.post.model.vo.Picture;
 import com.kh.tastyMap.post.model.vo.Post;
 
-public interface PostService {
+public interface PostService  {
 	
 	/**
 	 * 게시글 작성 메소드

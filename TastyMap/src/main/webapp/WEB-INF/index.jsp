@@ -8,7 +8,7 @@
  	
 <head>
 	<meta charset="UTF-8">
-	<c:import url="views/common/header.jsp"/>
+	<c:import url="/views/common/header.jsp"/>
 </head>
     
     <div class="hero-wrap" style="background-image: url('/tastyMap/resources/images/main/main.jpg');" data-stellar-background-ratio="0.5">
@@ -804,6 +804,6 @@
         </div>
       </div>
     </section>		
-    <c:import url="views/common/footer.jsp"/>
+    <c:import url="/views/common/footer.jsp"/>
 	</body>
 </html>
