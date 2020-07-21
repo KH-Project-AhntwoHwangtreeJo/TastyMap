@@ -3,8 +3,14 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="postMapper">
-	
-	
+	<select id="selectPostOne" parameterType="_int" resultType="Post">
+		SELECT *, (SELECT PICTURENAME FROM PICTURE), MPHOTO, NICKNAME
+		FROM POST 
+		JOIN PICTURE USING(PNO) 
+		JOIN MEMBER USING(MEMBER_ID)
+		WHERE PNO = #{pno} AND PSTATUS = 'Y'
+	</select>
+		
 </mapper>
 
 
