@@ -38,5 +38,21 @@ public interface MemberService {
 	 * @return
 	 */
 	int deleteMember(Member m);
+	
+	/**
+	 * 마이 갤러리 조회용 메소드
+	 * @param memberId
+	 * @return
+	 */
+	Member myGallery(String memberId);
+
+	/**
+	 * 팔로우 와 포스트 개수
+	 * @param memberId
+	 * @return
+	 */
+	int[] followAndPostCnt(String memberId);
+
+
 
 }
