@@ -11,12 +11,12 @@
         <div class="row mb-5">
           <div class="col-md">
             <div class="ftco-footer-widget mb-4">
-			  <!-- <h2 class="ftco-heading-2">Findstate</h2> -->
-			  <a href="#">
-				<img src="/tastyMap/resources/images/logo.png" alt="">
-			  </a>
-			  <br>
-			  <br>
+           <!-- <h2 class="ftco-heading-2">Findstate</h2> -->
+           <a href="#">
+            <img src="${pageContext.request.contextPath}/resources/images/logo.png" alt="">
+           </a>
+           <br>
+           <br>
               <p>본 프로젝트는 KH정보교육원 [NCS]웹 개발 응용 SW엔지니어 <br>양성과정 352반 2조 안에 <br>
 				안이황삼조가 만든 Semi <br>프로젝트 입니다.</p>
               <ul class="ftco-footer-social list-unstyled mt-5">
@@ -155,51 +155,51 @@
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/aos.js"></script>
-  <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="js/bootstrap-datepicker.js"></script>
-  <script src="js/jquery.timepicker.min.js"></script>
-  <script src="js/scrollax.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/jquery.easing.1.3.js"></script>
+  <script src="${pageContext.request.contextPath}/js/jquery.waypoints.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/jquery.stellar.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/jquery.magnific-popup.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/aos.js"></script>
+  <script src="${pageContext.request.contextPath}/js/jquery.animateNumber.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/bootstrap-datepicker.js"></script>
+  <script src="${pageContext.request.contextPath}/js/jquery.timepicker.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/scrollax.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="js/google-map.js"></script>
-  <script src="js/main.js"></script>
-	
+  <script src="${pageContext.request.contextPath}/js/google-map.js"></script>
+  <script src="${pageContext.request.contextPath}/js/main.js"></script>
+   
   <script>
-	$("#pop").popover({
-		html: true,
-		animation:true,
-		container : 'body',
-		placement : 'bottom',
-		content: function () {
-			return $('#popover-content').html();
-		}
-	});
+   $("#pop").popover({
+      html: true,
+      animation:true,
+      container : 'body',
+      placement : 'bottom',
+      content: function () {
+         return $('#popover-content').html();
+      }
+   });
 
-	// $('.select2').select2({
-	// 	placeholder: 'Select',
-	// 	width: '100%',
-	// });
+   // $('.select2').select2({
+   //    placeholder: 'Select',
+   //    width: '100%',
+   // });
 
-	function btnTitle(obj) {
-	  //$('#keyword').val($(obj).text()).on('click', function() {
-	  //    $('.boxed-btn2').click();
-	  //    
-	  //});
-	   
-	   $('#keyword').val($(obj).text());
-	   $('#searchForm').submit();
-		 //<%-- location.href="<%=request.getContextPath()%>/goalList.go; --%>
-	  // $('#nav-profile-tab').click();
-	}   
+   function btnTitle(obj) {
+     //$('#keyword').val($(obj).text()).on('click', function() {
+     //    $('.boxed-btn2').click();
+     //    
+     //});
+      
+      $('#keyword').val($(obj).text());
+      $('#searchForm').submit();
+       //<%-- location.href="<%=request.getContextPath()%>/goalList.go; --%>
+     // $('#nav-profile-tab').click();
+   }   
  </script>
 
 

@@ -43,5 +43,11 @@ public class RestaurantController {
 		return "restaurant/restaurantList";
 	}
 	
-	
+	@RequestMapping("/restaurant/restaurantAllList.do")
+	public String memberEnroll() {
+		
+		
+		
+	return "/restaurant/restaurantAllList";
+	}
 }
