@@ -38,5 +38,23 @@ public interface MemberDAO {
 	 * @return
 	 */
 	int deleteMember(Member m);
+	
+	/**
+	 * 마이갤러리 조회용
+	 * @param memberId
+	 * @return
+	 */
+	Member myGallery(String memberId);
+
+	/**
+	 * 팔로우 와 포스트 개수
+	 * @param memberId
+	 * @return
+	 */
+	int[] followAndPostCnt(String memberId);
+
+
+
+
 
 }
