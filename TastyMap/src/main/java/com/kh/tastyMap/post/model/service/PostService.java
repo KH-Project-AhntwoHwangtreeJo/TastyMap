@@ -2,6 +2,7 @@ package com.kh.tastyMap.post.model.service;
 
 import java.util.List;
 
+import com.kh.tastyMap.post.model.vo.Picture;
 import com.kh.tastyMap.post.model.vo.Post;
 
 public interface PostService {
@@ -11,14 +12,14 @@ public interface PostService {
 	 * @param post
 	 * @return
 	 */
-	int insertPost(Post post);
+	int insertPost(Post post, List<Picture> pictureList);
 	
 	/**
 	 * 게시글 수정 메소드
 	 * @param post
 	 * @return
 	 */
-	int updatePost(Post post);
+	int updatePost(Post post, List<Picture> pictureList);
 	
 	/**
 	 * 게시글 삭제 메소드
