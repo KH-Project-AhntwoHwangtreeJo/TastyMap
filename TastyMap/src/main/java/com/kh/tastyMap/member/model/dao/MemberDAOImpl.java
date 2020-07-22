@@ -27,9 +27,8 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public Member loginMember(Member m) {
-		// TODO Auto-generated method stub
-		return null;
+	public Member selectOne(String memberId) {
+		return sqlSession.selectOne("memberMapper.loginMember", memberId);
 	}
 
 	@Override
@@ -54,5 +53,7 @@ public class MemberDAOImpl implements MemberDAO {
 		return null;
 //		return sqlSession.selectOne("memberMapper.followAndPostCnt", memberId);
 	}
+
+	
 
 }

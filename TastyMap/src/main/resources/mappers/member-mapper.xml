@@ -19,6 +19,11 @@
        }
 	</select>
 	
+	<select id="loginMember" parameterType="string" resultMap="memberMap">
+		SELECT * FROM MEMBER
+		WHERE MEMBER_ID = #{memberId}
+	</select>
+	
 	<!-- ●마이 갤러리페이지 조회용  -->
 	<select id="myGallery" parameterType="string" resultMap="memberMap">
 		SELECT NICKNAME, MCONTENT, MPHOTO, 

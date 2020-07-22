@@ -28,9 +28,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Member loginMember(Member m) {
-		// TODO Auto-generated method stub
-		return null;
+	public Member selectOne(String memberId) {
+		return memberDAO.selectOne(memberId);
 	}
 
 	@Override
@@ -58,6 +57,8 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 
 

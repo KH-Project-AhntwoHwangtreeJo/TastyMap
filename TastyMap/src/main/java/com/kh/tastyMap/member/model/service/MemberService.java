@@ -16,7 +16,7 @@ public interface MemberService {
 	 * @param m
 	 * @return
 	 */
-	 Member loginMember(Member m);
+	Member selectOne(String memberId);
 	 
 	 /**
 	  * 회원 정보 수정용 메소드
@@ -54,5 +54,7 @@ public interface MemberService {
 	 * @return
 	 */
 	int checkIdDuplicate(String memberId);
+
+	
 
 }

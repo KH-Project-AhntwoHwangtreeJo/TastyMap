@@ -54,8 +54,19 @@
              <!-- <li class="nav-item"><a href="agent.html" class="nav-link">Agent</a></li>
              <li class="nav-item"><a href="properties.html" class="nav-link">Listing</a></li> -->
              <li class="nav-item" id="pop"><span class="nav-link" data-toggle="popover"><img src="${pageContext.request.contextPath}/resources/images/bell.png" data-toggle="popover"></span></li>
-           <li class="nav-item"><a href="${pageContext.request.contextPath}/member/goInsertMember.do" class="nav-link"><img src="${pageContext.request.contextPath}/resources/images/user1.png" alt=""></a></li>
-           <li class="nav-item"><a href="Mypage.html" class="nav-link"><img src="${pageContext.request.contextPath}/resources/images/user1.png" alt=""></a></li>
+            
+           
+            <!-- 로그인 처리 --> 
+         <c:if test="${empty member}">
+           <li class="nav-item"><a href="#loginModal" class="nav-link"><img src="${pageContext.request.contextPath}/resources/images/user1.png" data-toggle="modal" data-target="#loginModal" alt=""></a></li>
+		   <li class="nav-item"><a href="${pageContext.request.contextPath}/member/goInsertMember.do" class="nav-link"><img src="${pageContext.request.contextPath}/resources/images/user1.png" alt=""></a></li>
+         </c:if>
+         <c:if test="${!empty member}">
+         	<li class="nav-item"><a href="${pageContext.request.contextPath}/member/goInsertMember.do" class="nav-link">
+         	<img src="${pageContext.request.contextPath}/resources/images/profileImage/${member.mphoto}"
+		   						class="rounded-circle" style="width:31px; height: 31px"alt=""></a></li>
+           <li class="nav-item"><a href="${pageContext.request.contextPath}/member/memberLogout.do" class="nav-link"><img src="${pageContext.request.contextPath}/resources/images/user1.png"  alt=""></a></li>
+         </c:if>
            </ul>
          </div>
        </div>
@@ -149,4 +160,45 @@
       </div>
    </div>
    <!-- modal end -->
+   
+   <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="loginModalLabel">로그인</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+          <!--로그인폼 -->
+          <!-- https://getbootstrap.com/docs/4.1/components/forms/#overview -->
+          <form action="${pageContext.request.contextPath}/member/memberLogin.do" method="post">
+                  <div class="form-group">
+                    <label for="inputId">아이디</label>
+                    <input type="text" class="form-control" id="inputId" name="inputId" placeholder="아이디를 입력해주세요">
+                  </div>
+                  <div class="form-group">
+                    <label for="inputPassword">비밀번호</label>
+                    <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="비밀번호를 입력해주세요">
+                  </div>
+                  <br>
+
+                    <div class="form-group text-center">
+                        <button type="submit" id="join-submit" class="btn btn-primary" style="width: 100%; height: 50px;">
+                            로그인<i class="fa fa-check spaceLeft"></i>
+                        </button>
+                    </div>
+                    <div class="form-group text-center">
+                      <button type="button" id="join-submit" class="btn btn-primary" style="width: 40%; height: 50px;">
+                          회원가입
+                      </button>
+                      <button type="button" id="join-submit" class="btn btn-primary" style="width: 40%; height: 50px;">
+                          아이디 / 비밀번호 찾기
+                        </button>
+                  </div>
+                </form>
+	    </div>
+	  </div>
+	</div>
+	<!-- Modal 끝-->
 </html>

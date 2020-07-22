@@ -56,7 +56,7 @@
                   </div>
                   <div class="form-group">
                     <label for="inputPassword">비밀번호</label>
-                    <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="비밀번호를 입력해주세요">
+                    <input type="password" class="form-control" id="inputPassword0" name="inputPassword" placeholder="비밀번호를 입력해주세요">
                   </div>
                   <div class="form-group">
                     <label for="inputPasswordCheck">비밀번호 확인</label>
@@ -203,10 +203,15 @@
         $(function(){
 			
 			$("#inputPasswordCheck").blur(function(){
-				var p1=$("#inputPassword").val(), p2=$("#inputPasswordCheck").val();
+				var p1=$("#inputPassword0").val();
+				var p2=$("#inputPasswordCheck").val();
 				if(p1!=p2){
+					console.log("p1: " + p1)
+					console.log("p2: " + p2)
 					alert("패스워드가 일치하지 않습니다.");
-					$("#inputPassword").focus();
+					$("#inputPassword0").focus();
+				
+					
 				}
 			});
 			
