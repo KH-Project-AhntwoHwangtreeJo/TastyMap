@@ -18,7 +18,7 @@ public interface MemberDAO {
 	 * @param m
 	 * @return
 	 */
-	 Member loginMember(Member m);
+	Member selectOne(String memberId);
 	 
 	 /**
 	  * 회원 정보 수정용 메소드
@@ -55,5 +55,7 @@ public interface MemberDAO {
 	 * @return
 	 */
 	int checkIdDuplicate(HashMap<String, Object> hmap);
+
+	
 
 }

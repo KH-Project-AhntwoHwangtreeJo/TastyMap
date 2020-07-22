@@ -14,13 +14,19 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.tastyMap.member.model.exception.MemberException;
 import com.kh.tastyMap.member.model.service.MemberService;
 import com.kh.tastyMap.member.model.vo.Member;
 
+@SessionAttributes(value= {"member"})
 @Controller
 public class MemberController {
 
@@ -57,7 +63,7 @@ public class MemberController {
 	
 	@RequestMapping("/member/insertMember.do")
 	public String InsertMember(@RequestParam("inputId") String memberId,
-							   @RequestParam("inputPassword") String password,
+							   @RequestParam("inputPassword0") String password,
 							   @RequestParam("inputName") String userName,
 							   @RequestParam("inputNicName") String nickname,
 							   @RequestParam("inputIntro") String mcontent,
@@ -183,5 +189,69 @@ public class MemberController {
 		map.put("isUsable", isUsable);
 
 		return map;
+	}
+	
+	@RequestMapping(value="/member/memberLogin.do",method=RequestMethod.POST)
+	public ModelAndView memberLogin(
+			@RequestParam("inputId") String memberId,
+			@RequestParam("inputPassword") String password) {
+		ModelAndView mav = new ModelAndView();
+		
+		try { // 로그인 에러시 에러 페이지 이동용 try-catch
+		
+		Member m = memberService.selectOne(memberId);
+		
+		// 직접 만든 예외 발생 구문
+		// if(true) throw new RuntimeException("내가 던진 에러 구문!");
+		
+		
+		
+		// 2. view 처리
+		String msg = "";
+		String loc = "/";
+		
+		if(m == null) {
+			msg = "존재 하지 않는 아이디입니다.";
+		} else {
+			
+			// ** 비밀번호 암호화 검증 예정
+			// 똑같은 비밀번호라도 암호화된 결과가 다르기때문에 bcrypt객체를 사용하여 matches함수로 
+			// 둘 간의 값이 동일한지 검증하는 수학적 계산을 수행한다 
+			if(bcryptPasswordEncoder.matches(password, m.getPassword())) {
+				msg = "로그인 성공";
+				
+				mav.addObject("member", m); // setAttribute()
+				
+			} else {
+				msg = "비밀번호가 틀렸습니다.";
+			}
+			
+			
+		}
+		// Model 객체에 담기는 값은 기본 request 영역에 저장된다
+
+		
+		
+		mav.addObject("loc", loc);
+		mav.addObject("msg", msg);
+		
+		mav.setViewName("common/msg");
+		} catch (Exception e) {
+			
+			throw new MemberException(e.getMessage());
+		}
+		
+		return mav;
+	}
+	
+	@RequestMapping("/member/memberLogout.do")
+	public String memberLogout(SessionStatus status) {
+		// SessionStatus 는 현재 사용자가 접속한 웹 브라우저와 서버 사이의 세션의 설정을 가지는 객체
+		
+		// 세션이 아직 완료되지 않았다면 세션을 종료 시키라
+		if(! status.isComplete())
+			status.setComplete();
+		
+		return "redirect:/";
 	}
 }
