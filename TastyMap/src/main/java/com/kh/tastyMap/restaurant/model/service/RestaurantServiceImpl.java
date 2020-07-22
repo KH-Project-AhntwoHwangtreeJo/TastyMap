@@ -63,4 +63,16 @@ public class RestaurantServiceImpl implements RestaurantService {
 		return restaurantDAO.selectRestaurantTotalContents();
 	}
 
+	@Override
+	public List<Map<String, String>> top8() {
+		// TODO Auto-generated method stub
+		return restaurantDAO.top8();
+	}
+
+	@Override
+	public List<Map<String, String>> influencerTop8() {
+		// TODO Auto-generated method stub
+		return restaurantDAO.influencerTop8();
+	}
+
 }

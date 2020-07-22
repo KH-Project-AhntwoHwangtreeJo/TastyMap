@@ -464,72 +464,6 @@
           </div>
         </div>
         <div class="row">
-        	<div class="col-md-4">
-        		<div class="listing-wrap img rounded d-flex align-items-end" style="background-image: url(/tastyMap/resources/images/res/res2.jpg);">
-        			<div class="location">
-        				<span class="rounded">강남역, 서울</span>
-        			</div>
-        			<div class="text">
-        				<h3><a href="#">Rolling Pasta</a></h3>
-        				<a href="#" class="btn-link">자세히 <span class="ion-ios-arrow-round-forward"></span></a>
-        			</div>
-        		</div>
-        	</div>
-        	<div class="col-md-4">
-        		<div class="listing-wrap img rounded d-flex align-items-end" style="background-image: url(/tastyMap/resources/images/listing-2.jpg);">
-        			<div class="location">
-        				<span class="rounded">New York, USA</span>
-        			</div>
-        			<div class="text">
-        				<h3><a href="#">100 Property Listing</a></h3>
-        				<a href="#" class="btn-link">See All Listing <span class="ion-ios-arrow-round-forward"></span></a>
-        			</div>
-        		</div>
-        	</div>
-        	<div class="col-md-4">
-        		<div class="listing-wrap img rounded d-flex align-items-end" style="background-image: url(/tastyMap/resources/images/listing-3.jpg);">
-        			<div class="location">
-        				<span class="rounded">New York, USA</span>
-        			</div>
-        			<div class="text">
-        				<h3><a href="#">100 Property Listing</a></h3>
-        				<a href="#" class="btn-link">See All Listing <span class="ion-ios-arrow-round-forward"></span></a>
-        			</div>
-        		</div>
-        	</div>
-        	<div class="col-md-4">
-        		<div class="listing-wrap img rounded d-flex align-items-end" style="background-image: url(/tastyMap/resources/images/listing-4.jpg);">
-        			<div class="location">
-        				<span class="rounded">New York, USA</span>
-        			</div>
-        			<div class="text">
-        				<h3><a href="#">100 Property Listing</a></h3>
-        				<a href="#" class="btn-link">See All Listing <span class="ion-ios-arrow-round-forward"></span></a>
-        			</div>
-        		</div>
-        	</div>
-        	<div class="col-md-4">
-        		<div class="listing-wrap img rounded d-flex align-items-end" style="background-image: url(/tastyMap/resources/images/listing-5.jpg);">
-        			<div class="location">
-        				<span class="rounded">New York, USA</span>
-        			</div>
-        			<div class="text">
-        				<h3><a href="#">100 Property Listing</a></h3>
-        				<a href="#" class="btn-link">See All Listing <span class="ion-ios-arrow-round-forward"></span></a>
-        			</div>
-        		</div>
-        	</div>
-        	<div class="col-md-4">
-        		<div class="listing-wrap img rounded d-flex align-items-end" style="background-image: url(/tastyMap/resources/images/listing-6.jpg);">
-        			<div class="location">
-        				<span class="rounded">New York, USA</span>
-        			</div>
-        			<div class="text">
-        				<h3><a href="#">100 Property Listing</a></h3>
-        				<a href="#" class="btn-link">See All Listing <span class="ion-ios-arrow-round-forward"></span></a>
-        			</div>
-        		</div>
-        	</div>
         </div>
     	</div>
     </section>
@@ -703,7 +637,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-3 d-flex ftco-animate">
+          <!-- <div class="col-md-3 d-flex ftco-animate">
           	<div class="blog-entry justify-content-end">
               <div class="text">
               	<a href="blog-single.html" class="block-20 img" style="background-image: url('/tastyMap/resources/images/image_2.jpg');">
@@ -800,7 +734,7 @@
 			  </div>
 			</div>
 		  </div>
-		</div>
+		</div> -->
         </div>
       </div>
     </section>		

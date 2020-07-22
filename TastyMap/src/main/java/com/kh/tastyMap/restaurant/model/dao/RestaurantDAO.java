@@ -29,4 +29,8 @@ public interface RestaurantDAO {
     int deleteAttachment(int restaurantNo);
 
     int deleteFile(int attNo);
+
+	List<Map<String, String>> top8();
+
+	List<Map<String, String>> influencerTop8();
 }

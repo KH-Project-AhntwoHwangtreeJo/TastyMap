@@ -84,4 +84,16 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 		return 0;
 	}
 
+	@Override
+	public List<Map<String, String>> top8() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("restaurantMapper.selectTop8", null);
+	}
+
+	@Override
+	public List<Map<String, String>> influencerTop8() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("restaurantMapper.influencerTop8", null);
+	}
+
 }
