@@ -31,12 +31,12 @@
 	</select>
 	
  	<!-- ●팔로잉 팔로워 게시글 개수 출력 -->
-	<select id="followAndPostCnt" parameterType="hashmap" resultMap="followAndPostCnt">
-	       SELECT (SELECT COUNT(*) FROM FOLLOWER WHERE MEMBER_ID = #{memberId}) FOLLOWER_CNT, <!--팔로워 :나를 팔로우 클릭한 사람(member_id가 내 아이디일때)-->
-	             (SELECT COUNT(*) FROM FOLLOWER WHERE FOLLOWER_ID = #{memberId}) FOLLOWING_CNT,<!--팔로잉 :내가 팔로우 클릭한 사람(follower_id가 내 아이디일때)-->
+<!-- 	<select id="followAndPostCnt" parameterType="hashmap" resultMap="followAndPostCnt">
+	       SELECT (SELECT COUNT(*) FROM FOLLOWER WHERE MEMBER_ID = #{memberId}) FOLLOWER_CNT, 팔로워 :나를 팔로우 클릭한 사람(member_id가 내 아이디일때)
+	             (SELECT COUNT(*) FROM FOLLOWER WHERE FOLLOWER_ID = #{memberId}) FOLLOWING_CNT,팔로잉 :내가 팔로우 클릭한 사람(follower_id가 내 아이디일때)
 	             (SELECT COUNT(*) FROM POST WHERE MEMEBER_ID = #{memberId} AND PSTATUS = 'Y') MY_POST_CNT 
 	      FROM DUAL
-	</select>
+	</select> -->
 </mapper>
 
 

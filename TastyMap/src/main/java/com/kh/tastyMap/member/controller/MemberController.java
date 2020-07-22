@@ -168,7 +168,7 @@ public class MemberController {
 		model.addAttribute("msg", msg);
 		
 		
-		return "index";
+		return "common/msg";
 	}
 	
 	@RequestMapping("/member/checkIdDuplicate.do")
