@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.tastyMap.post.model.vo.Picture;
 import com.kh.tastyMap.restaurant.model.dao.RestaurantDAO;
 import com.kh.tastyMap.restaurant.model.vo.Restaurant;
 
@@ -63,4 +64,18 @@ public class RestaurantServiceImpl implements RestaurantService {
 		return restaurantDAO.selectRestaurantTotalContents();
 	}
 
-}
+	@Override
+	public List<Picture> pictureList(int rno) {
+		return restaurantDAO.pictureList(rno);
+	}
+
+//	 사진입니다
+/*	@Override
+	public List<Picture> PictureList(int rno) {
+
+		return restaurantDAO.PictureList(rno);*/
+	}
+
+
+	
+

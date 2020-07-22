@@ -3,7 +3,7 @@ package com.kh.tastyMap.restaurant.model.dao;
 import java.util.List;
 import java.util.Map;
 
-import com.kh.tastyMap.restaurant.model.vo.Attachment;
+import com.kh.tastyMap.post.model.vo.Picture;
 import com.kh.tastyMap.restaurant.model.vo.Restaurant;
 
 public interface RestaurantDAO {
@@ -14,19 +14,23 @@ public interface RestaurantDAO {
 
     int insertRestaurant(Restaurant restaurant);
 
-    int insertAttachment(Attachment a);
 
     Restaurant selectOneRestaurant(int restaurantNo);
  
-    List<Attachment> selectAttachmentList(int restaurantNo);
 
     int updateRestaurant(Restaurant restaurant);
 
-    int updateAttachment(Attachment a);
 
     int deleteRestaurant(int restaurantNo);
 
     int deleteAttachment(int restaurantNo);
 
     int deleteFile(int attNo);
+
+	List<Picture> pictureList(int rno);
+
+	
+
+	/* List<Picture> PictureList(int rno); */
+
 }

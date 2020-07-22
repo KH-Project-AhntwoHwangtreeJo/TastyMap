@@ -3,6 +3,7 @@ package com.kh.tastyMap.restaurant.model.service;
 import java.util.List;
 import java.util.Map;
 
+import com.kh.tastyMap.post.model.vo.Picture;
 import com.kh.tastyMap.restaurant.model.vo.Restaurant;
 
 public interface RestaurantService {
@@ -51,7 +52,17 @@ public interface RestaurantService {
 	List<Map<String, String>> selectRestaurantList(int cPage, int numPerPage);
 
 	int selectRestaurantTotalContents();
+
+	List<Picture> pictureList(int rno);
+
 	
+	
+	
+//	식당 상세 페이지 사진
+//	List<Picture> PictureList(int rno);
+	
+	
+
 	
 
 }

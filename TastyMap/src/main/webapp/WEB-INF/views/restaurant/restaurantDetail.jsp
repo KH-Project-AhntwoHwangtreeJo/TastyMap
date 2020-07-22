@@ -8,7 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <c:import url="/views/common/header.jsp"/> 
-
+	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/jquery-migrate-3.0.1.min.js"></script>
       <!--차트2-->
       <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
       <script type="text/javascript">
@@ -38,33 +39,31 @@
       
     <!--//차트2-->
 
-    <link rel="stylesheet" href="./images/owl.carousel.min.css"><!--이미지 슬라이드-->
-
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="stylesheet" href="${pagecontext.request.contextPath }/images/owl.carousel.min.css"><!--이미지 슬라이드-->
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="${pagecontext.request.contextPath }/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="${pagecontext.request.contextPath }/css/animate.css">
     
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="${pagecontext.request.contextPath }/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="${pagecontext.request.contextPath }/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="${pagecontext.request.contextPath }/css/magnific-popup.css">
 
-    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="${pagecontext.request.contextPath }/css/aos.css">
 
-    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="${pagecontext.request.contextPath }/css/ionicons.min.css">
 
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">
+    <link rel="stylesheet" href="${pagecontext.request.contextPath }/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="${pagecontext.request.contextPath }/css/jquery.timepicker.css">
 
     
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="${pagecontext.request.contextPath }/css/flaticon.css">
+    <link rel="stylesheet" href="${pagecontext.request.contextPath }/css/icomoon.css">
+    <link rel="stylesheet" href="${pagecontext.request.contextPath }/css/style.css">
   </head>
   <body>
     
@@ -77,72 +76,75 @@
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
           <div class="col-md-9 ftco-animate pb-5 mb-5 text-center">
-            <h1 class="mb-3 bread">Blog Single</h1>
-            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Blog Single<i class="ion-ios-arrow-forward"></i></span></p>
           </div>
         </div>
       </div>
     </section>
     <hr>
 
+  
+  
+	<c:if test="${ empty list}">
+     <div id="header">    <!-- 가져오는 값이 없을때 이미지 출력 -->
+  <img src="${pageContext.request.contextPath}/resources/images/sajin.jpg" style="width: 100% ;height: 70%;" > 
+   		  </div>
+   </c:if>
    
-
-
-
-      <!--이미지 -->
-
-
-      
+   
+	<c:if test="${ !empty list }">
      <div id="header">
         <div class="owl-carousel">
-          <div class="col-md-4">
-            <img src="images/person_1.jpg" title="커피 한잔 할까요? ^.^" style="width: 370% ;height: auto;" >
-          </div>
-          <div class="col-md-4">
-            <img src="images/person_1.jpg" title="커피 한잔 할까요? ^.^" style="width: 370% ;height: auto;" >
-          </div>
-          <div class="col-md-4">
-            <img src="images/person_1.jpg" title="커피 한잔 할까요? ^.^" style="width: 370% ;height: auto;" >
-          </div>
+          <c:forEach items="${list}" var="name">   <!-- 가져오는 값이 있을때 이미지 출력 -->
+    	      <div class="col-md-4">
+          	
+            	<img src="${pageContext.request.contextPath}/resources/images/${name.prenamedname}" style="width: 560px ;height: 370px;" >
+	          </div>
+            </c:forEach>
         </div>
         </div> 
+	</c:if>  
+	
+	
+      
 
      
     <!-- <section class="ftco-section ftco-degree-bg"> -->
       <div class="container">
         <div class="row">
           <div class="col-md-8 ftco-animate">
-            <h2 class="mb-3"> ${restaurant.rname} </h2>
+       	   <br>
+       	   <hr>     	 
+            <h1 class="mb-3 bread"> ${restaurant.rname} </h1>
             <hr>
-            <img id="image" onclick="changeImage()" border="0" src="images/front.png" style="width: 20px; height: 20px; float: right;"/>
+            <img id="image" onclick="changeImage()" border="0" src="${pageContext.request.contextPath}/resources/images/front.png" style="width: 30px; height: 30px; float: right;"/>
       
 
+ 			
  			<tr>
-           <th>주소</th>
+           <th>주소 : </th> 
+           
            <td>${restaurant.address}</td><br>
-			<th>영업시간</th> 			
+			<th>영업시간 : </th> 			
             <td>${restaurant.time}</td><br>
- 			<th>가격대</th>
+ 			<th>가격대 : </th>
             <td>${restaurant.price}</td><br>
-            <th>전화 번호</th>
+            <th>전화 번호 : </th>
             <td>${restaurant.tel}</td><br>
-            <th>주차가능여부</th>
-            <td></td>
- 			</tr>
-            
+         	<td>주차가능 여부 : ${restaurant.paking}</td>	<br>     		
+         	<td style="float: right">가게정보 수정일 : ${restaurant.updatedate}</td>	    
+            <tr>
+ 		
             <!--해당 페이지 출력 기능-->
-            <form>
-              <p class="test">
-                <input type="button" value="프린트 하기" onclick="window.print()" />
-              </p>
-            </form>
+                <input class="btn btn-outline-info" type="button" value="프린트하기" onclick="window.print()" style="float: right";/>
             <!--//해당 페이지 출력 기능-->
             
-            
-            <p class="test">${Restaurant.UpdateDate}</p>
+            <form>
+              <p class="test">
+              </p>
+            </form>                  
             <hr/>
-            
-            <p>설명란</p>
+              <td>${restaurant.rcontent}</td>
+         
           
             <div class="pt-5 mt-5">
               <hr>
@@ -364,7 +366,7 @@
 
 
   <!--이미지 슬라이드-->  
-<script src="./images/owl.carousel.min.js"></script> 
+<script src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script> 
 <script>  
 var owl = $('.owl-carousel');
 owl.owlCarousel({
@@ -389,11 +391,11 @@ $('.stop').on('click',function(){
   function changeImage(){
     if(state ==0){
       state = 1;
-      document.getElementById('image').src="images/front.png";
+      document.getElementById('image').src="${pageContext.request.contextPath}/resources/images/back.png";
     }
     else{
       state = 0;
-      document.getElementById('image').src="images/back.png";
+      document.getElementById('image').src="${pageContext.request.contextPath}/resources/images/front.png";
     }
   }
   </script> 
