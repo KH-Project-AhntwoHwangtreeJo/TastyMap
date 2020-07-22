@@ -51,6 +51,10 @@ public interface RestaurantService {
 	List<Map<String, String>> selectRestaurantList(int cPage, int numPerPage);
 
 	int selectRestaurantTotalContents();
+
+	List<Map<String, String>> top8();
+
+	List<Map<String, String>> influencerTop8();
 	
 	
 

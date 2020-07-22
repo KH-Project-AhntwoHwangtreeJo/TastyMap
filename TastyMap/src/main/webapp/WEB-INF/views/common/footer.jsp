@@ -200,7 +200,72 @@
        //<%-- location.href="<%=request.getContextPath()%>/goalList.go; --%>
      // $('#nav-profile-tab').click();
    }   
- </script>
+   
+    	$(function() {
+    		$.ajax({
+    			url : '${pageContext.request.contextPath}/restaurant/top8.do',
+    			type : 'get',
+    			// data : { g}
+    			success : function(list) {
+    				console.log(list);
+    				
+    				var $tab_content = $('.ftco-section>.container>.row')[0];
+    				
+    				for(var i in list) {
+    					var html = '<div class="col-md-4">' + 
+				    	        		'<div class="listing-wrap img rounded d-flex align-items-end"' + 
+				    	        		'style="background-image: url(/tastyMap/resources/images/res/res2.jpg);">' + 
+				            			'<div class="location">' + 
+				            				'<span class="rounded">' + list[i].address + '</span>' + 
+				            			'</div>' + 
+				            			'<div class="text">' + 
+				            				'<h3><a href="#"> '+ list[i].rname +' </a></h3>' + 
+				            				'<a href="#" class="btn-link">자세히 <span class="ion-ios-arrow-round-forward"></span></a>' + 
+				            			'</div>' +
+				            		'</div>' + 
+				            	'</div>';
+				    	$tab_content.append($(html)[0]);
+				    	console.log(i.address);
+    				}
+    			}, error : function() {
+    				alert("음식점 top 8 조회 실패");
+    			}
+    		});
+    	});
+    	
+    	$(function() {
+    		$.ajax({
+    			url : '${pageContext.request.contextPath}/restaurant/influencer.do',
+    			type : 'get',
+    			// data : { g}
+    			success : function(list) {
+    				console.log(list);
+    				
+    				var $tab_content = $('.ftco-section ftco-no-pt>.container>.row d-flex')[0];
+    				
+    				for(var i in list) {
+    					var html = '<div class="col-md-3 d-flex ftco-animate">' +  
+			    		          	'<div class="blog-entry justify-content-end">' + 
+			    		              '<div class="text">' +  
+			    		              	'<a href="blog-single.html" class="block-20 img" style="background-image: url(/tastyMap/resources/images/res/res1.jpg);">' + 
+			    			              '</a>' + 
+			    		                '<h3 class="heading"><a href="#">강남 브런치 맛집!!</a></h3>' + 
+			    		                '<div class="meta mb-3">' + 
+			    		                  '<div><a href="#">2019년 10월 17일 </a></div>' + 
+			    		                  '<div><a href="#">유정훈</a></div>' + 
+			    		                  '<div><a href="#" class="meta-chat"><span class="icon-chat"></span> 5</a></div>' + 
+			    		                '</div>' + 
+			    		              '</div>' + 
+			    		            '</div>' + 
+			    		          '</div>';
+				    	$tab_content.append($(html)[0]);
+    				}
+    			}, error : function() {
+    				alert("Influencer 8 조회 실패");
+    			}
+    		});
+    	});
+    </script>
 
 
 </html>
