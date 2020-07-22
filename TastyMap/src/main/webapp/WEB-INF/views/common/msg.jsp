@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script>
-alert("${msg}+${pageContext.request.contextPath}");
+alert("${msg}");
 location.href="${pageContext.request.contextPath}${loc}";
 
 </script>

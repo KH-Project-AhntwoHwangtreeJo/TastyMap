@@ -1,22 +1,17 @@
 package com.kh.tastyMap.member.model.dao;
 
+import java.util.HashMap;
+
 import com.kh.tastyMap.member.model.vo.Member;
 
 public interface MemberDAO {
-	
-	/**
-	 * 아이디 중복 체크
-	 * @param memberId
-	 * @return
-	 */
-	int idDupCheck(String memberId);
 	
 	/**
 	 * 회원 가입용 메소드
 	 * @param m
 	 * @return
 	 */
-	int memberJoin(Member m);
+	int insertMember(Member m);
 	
 	/**
 	 * 로그인용 메소드
@@ -54,7 +49,11 @@ public interface MemberDAO {
 	int[] followAndPostCnt(String memberId);
 
 
-
-
+	/**
+	 * 아이디 중복 체크
+	 * @param memberId
+	 * @return
+	 */
+	int checkIdDuplicate(HashMap<String, Object> hmap);
 
 }

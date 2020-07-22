@@ -12,6 +12,7 @@
 		<property name="password" value="TASTYMAP"/>
 	</bean>
 	
+	
 	<!--  Mybatis 연동 설정  -->
 	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<!--  dataSource : 마이바티스 빈 객체에 사용할 DB 설정 객체 참조  -->

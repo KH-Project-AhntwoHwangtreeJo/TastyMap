@@ -1,5 +1,7 @@
 package com.kh.tastyMap.member.model.service;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,15 +15,16 @@ public class MemberServiceImpl implements MemberService {
 	MemberDAO memberDAO;
 	
 	@Override
-	public int idDupCheck(String memberId) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int checkIdDuplicate(String memberId) {
+		HashMap<String, Object> hmap = new HashMap<>();
+		hmap.put("userId", memberId);
+		return memberDAO.checkIdDuplicate(hmap);
 	}
 
+
 	@Override
-	public int memberJoin(Member m) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int insertMember(Member m) {
+		return memberDAO.insertMember(m);
 	}
 
 	@Override
@@ -42,14 +45,20 @@ public class MemberServiceImpl implements MemberService {
 		return 0;
 	}
 
+
 	@Override
 	public Member myGallery(String memberId) {
-		return memberDAO.myGallery(memberId);
+		// TODO Auto-generated method stub
+		return null;
 	}
+
 
 	@Override
 	public int[] followAndPostCnt(String memberId) {
-		return memberDAO.followAndPostCnt(memberId);
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+
 
 }

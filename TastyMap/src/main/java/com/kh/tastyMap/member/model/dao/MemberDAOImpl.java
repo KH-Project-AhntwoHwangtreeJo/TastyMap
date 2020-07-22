@@ -1,5 +1,7 @@
 package com.kh.tastyMap.member.model.dao;
 
+import java.util.HashMap;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,15 +15,15 @@ public class MemberDAOImpl implements MemberDAO {
 	SqlSessionTemplate sqlSession;
 	
 	@Override
-	public int idDupCheck(String memberId) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int checkIdDuplicate(HashMap<String, Object> hmap) {
+		sqlSession.selectOne("memberMapper.checkIdDuplicate", hmap);
+		
+		return (int)hmap.get("result");
 	}
 
 	@Override
-	public int memberJoin(Member m) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int insertMember(Member m) {
+		return sqlSession.insert("memberMapper.insertMember", m);
 	}
 
 	@Override
@@ -49,7 +51,8 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public int[] followAndPostCnt(String memberId) {
-		return sqlSession.selectOne("memberMapper.followAndPostCnt", memberId);
+		return null;
+//		return sqlSession.selectOne("memberMapper.followAndPostCnt", memberId);
 	}
 
 }
