@@ -29,8 +29,8 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 	@Override
 	public Restaurant restaurantDetail(int rno) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return restaurantDAO.selectOneRestaurant(rno);
 	}
 
 	@Override

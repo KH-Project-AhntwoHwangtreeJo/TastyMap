@@ -43,9 +43,11 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 	}
 
 	@Override
-	public Restaurant selectOneRestaurant(int restaurantNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public Restaurant selectOneRestaurant(int rno) {
+	
+		return sqlSession.selectOne("restaurantMapper.selectOneRestaurant", rno);
+		
+	
 	}
 
 	@Override

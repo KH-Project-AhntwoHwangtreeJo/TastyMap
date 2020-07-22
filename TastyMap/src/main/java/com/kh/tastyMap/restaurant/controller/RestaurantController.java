@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.tastyMap.common.util.Utils;
 import com.kh.tastyMap.restaurant.model.service.RestaurantService;
+import com.kh.tastyMap.restaurant.model.vo.Restaurant;
 
 @Controller
 public class RestaurantController {
@@ -44,10 +45,29 @@ public class RestaurantController {
 	}
 	
 	@RequestMapping("/restaurant/restaurantAllList.do")
-	public String memberEnroll() {
-		
-		
-		
+	public String Restaurant() {	
 	return "/restaurant/restaurantAllList";
 	}
+	
+	
+	
+	
+	@RequestMapping("/restaurant/restaurantDatail.do")
+	public String RestaurantDetail(@RequestParam int rno, Model model) {	
+		System.out.println(rno);
+		Restaurant R = restaurantService.restaurantDetail(rno);	
+		model.addAttribute("restaurant", R);		
+		return "/restaurant/restaurantDetail";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

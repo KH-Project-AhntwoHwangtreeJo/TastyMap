@@ -2,9 +2,15 @@
 <!DOCTYPE mapper PUBLIC
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="commentMapper">
-	
-	
+<mapper namespace="restaurantMapper">
+
+
+
+	<!-- 식당 상세 페이지 -->
+	<select id="selectOneRestaurant" parameterType="_int" resultType="Restaurant">
+		SELECT * FROM RESTAURANT
+		WHERE  RNO = #{rno}
+	</select>
 </mapper>
 
 
