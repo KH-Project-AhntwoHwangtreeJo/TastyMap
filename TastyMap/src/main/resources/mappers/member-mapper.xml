@@ -7,37 +7,10 @@
 		<result property="hobby" column="hobby" typeHandler="Str2ArrayHandler"/>
 	</resultMap>
 	
-	<select id="loginMember" parameterType="Member" resultMap="memberMap">
-		SELECT * FROM MEMBER
-		WHERE USERID=#{ userId }
-	</select>
-	
 	<insert id="insertMember" parameterType="Member">
-		INSERT INTO MEMBER
-		VALUES( #{ userId }, #{ password }, #{ userName }, #{ gender },
-				 #{ age }, #{ email } , #{ phone }, #{ address } ,
-				 #{ hobby, typeHandler=Str2ArrayHandler} ,DEFAULT)
+		INSERT INTO MEMBER VALUES (#{memberId}, #{password} , #{userName}, #{nickname}, #{mcontent}, #{birth}, 
+		#{gender}, #{phone}, #{email}, #{address}, DEFAULT , #{mphoto})
 	</insert>
-	
-	<update id="updateMember" parameterType="Member">
-		UPDATE MEMBER
-		<set>
-		USERNAME=#{ userName },
-		AGE=#{ age },
-		EMAIL=#{ email },
-		PHONE=#{ phone },
-		ADDRESS=#{ address },
-		GENDER=#{ gender },
-		HOBBY=#{ hobby , typeHandler=Str2ArrayHandler }
-		</set>
-		WHERE USERID=#{ userId }
-	</update>
-	
-	
-	<delete id="deleteMember" parameterType="string"> 
-	 	DELETE MEMBER
-	 	WHERE USERID=#{ userId }
-	</delete>
 	
 	<select id="checkIdDuplicate" parameterType="HashMap" statementType="CALLABLE">
 		{ CALL ID_DUP_CHECK(
