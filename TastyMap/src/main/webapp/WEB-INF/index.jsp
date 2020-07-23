@@ -454,7 +454,7 @@
     	</div>
     </section> -->
 
-    <section class="ftco-section">
+    <section class="ftco-section-top8">
     	<div class="container">
     		<div class="row justify-content-center">
           <div class="col-md-12 heading-section text-center ftco-animate mb-5">

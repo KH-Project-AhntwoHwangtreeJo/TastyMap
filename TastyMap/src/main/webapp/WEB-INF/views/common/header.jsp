@@ -49,7 +49,7 @@
              <li class="nav-item"><a href="${pageContext.request.contextPath}/restaurant/restaurantAllList.do" class="nav-link">Restaurant</a></li>
            <li class="nav-item"><a href="PostList.html" class="nav-link">Post</a></li>
            <li class="nav-item"><a href="insertPost.html" class="nav-link">Write</a></li>
-           <li class="nav-item"><a href="MyGallery.html" class="nav-link">My Gallery</a></li>
+           <li class="nav-item"><a href="${pageContext.request.contextPath}/member/myGallery.do?memberId=${member.memberId}" class="nav-link">my Gallery</a></li>
            <li class="nav-item"><a href="follower.html" class="nav-link">Follower</a></li>
              <!-- <li class="nav-item"><a href="agent.html" class="nav-link">Agent</a></li>
              <li class="nav-item"><a href="properties.html" class="nav-link">Listing</a></li> -->

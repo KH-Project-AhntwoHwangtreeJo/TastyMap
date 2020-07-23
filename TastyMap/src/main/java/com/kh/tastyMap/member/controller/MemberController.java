@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,18 +41,29 @@ public class MemberController {
 	public String selectOne(@RequestParam String memberId, Model model) {
 		
 		Member m = memberService.myGallery(memberId);
-		int[]cnt = memberService.followAndPostCnt(memberId);  
+		List photo = memberService.myGalleryPhoto(memberId);
+		Map<String, Object> cntMap = memberService.followAndPostCnt(memberId); 
 		
+//		System.out.println(cntMap.get("followerCnt")); 팔로워 카운트
+//		System.out.println(cntMap.get("followingCnt")); 팔로잉 카운트
+//		System.out.println(cntMap.get("myPostCnt")); 포스트 카운트
 		
-		model.addAttribute("member", m)
-			 .addAttribute("cnt", cnt);
+		model.addAttribute("user", m)
+			 .addAttribute("myGPhoto", photo)
+			 .addAttribute("followerCnt", cntMap.get("followerCnt"))
+			 .addAttribute("followingCnt", cntMap.get("followingCnt"))
+			 .addAttribute("myPostCnt", cntMap.get("myPostCnt"));
+		  //                 jsp,              맵으로 가져온 카운트
 		
-		return "member/myGallery";
+//		System.out.println("controller cnt : " + cntMap); cntMap 에 들어간 거 확인
+		System.out.println("controller photo : " + photo);
+		
+		return "post/myGallery";
 	}
 	
 	@RequestMapping("/member/jusoPopup.do")
 	public String jusoPopup() {
-		System.out.println("5475745");
+		
 		return "member/jusoPopup";
 	}
 	
