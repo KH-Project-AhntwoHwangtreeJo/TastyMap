@@ -38,7 +38,7 @@
 		FROM POST 
 		JOIN PICTURE USING(PNO) 
 		JOIN MEMBER USING(MEMBER_ID)
-		WHERE PNO = #{pno} AND PSTATUS = 'Y'
+		WHERE PNO = #{pNo} AND PSTATUS = 'Y'
 	</select>
 </mapper>
 

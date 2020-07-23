@@ -84,6 +84,7 @@ public class PostDAOImpl implements PostDAO {
 		return null;
 	}
 
+	// post 상세페이지
 	@Override
 	public Post PostDetail(int pno) {
 		return sqlSession.selectOne("postMapper.PostDetail", pno);

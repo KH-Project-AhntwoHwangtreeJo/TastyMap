@@ -160,6 +160,7 @@ public class PostController {
 		return "post/resAddress";
 	}
 	
+	// post 상세페이지
 	@RequestMapping("/post/postDetail.do")
 	public String selectOne(@RequestParam int pno, Model model) {
 		Post p = postService.PostDetail(pno);

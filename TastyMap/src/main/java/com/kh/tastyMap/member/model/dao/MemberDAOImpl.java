@@ -2,6 +2,9 @@ package com.kh.tastyMap.member.model.dao;
 
 import java.util.HashMap;
 
+import java.util.List;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -49,9 +52,14 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public int[] followAndPostCnt(String memberId) {
-		return null;
-//		return sqlSession.selectOne("memberMapper.followAndPostCnt", memberId);
+	public Map<String, Object> followAndPostCnt(String memberId) {
+		System.out.println("memberId DAO : " + memberId);
+		return sqlSession.selectOne("memberMapper.followAndPostCnt", memberId);
+	}
+	
+	@Override
+	public List myGalleryPhoto(String memberId) {
+		return sqlSession.selectList("memberMapper.myGalleryPhoto", memberId);
 	}
 
 	

@@ -209,7 +209,7 @@
     			success : function(list) {
     				console.log(list);
     				
-    				var $tab_content = $('.ftco-section>.container>.row')[0];
+    				var $tab_content = $('.ftco-section-top8>.container>.row')[0];
     				
     				for(var i in list) {
     					var html = '<div class="col-md-4">' + 

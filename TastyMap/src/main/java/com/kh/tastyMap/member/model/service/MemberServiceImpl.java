@@ -2,6 +2,9 @@ package com.kh.tastyMap.member.model.service;
 
 import java.util.HashMap;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,15 +50,20 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public Member myGallery(String memberId) {
-		// TODO Auto-generated method stub
-		return null;
+		return memberDAO.myGallery(memberId);
+		
 	}
 
 
 	@Override
-	public int[] followAndPostCnt(String memberId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Map<String, Object> followAndPostCnt(String memberId) {
+		System.out.println("memberId service : " + memberId);
+		return memberDAO.followAndPostCnt(memberId);
+	}
+	
+	@Override
+	public List myGalleryPhoto(String memberId) {
+		return memberDAO.myGalleryPhoto(memberId);
 	}
 
 

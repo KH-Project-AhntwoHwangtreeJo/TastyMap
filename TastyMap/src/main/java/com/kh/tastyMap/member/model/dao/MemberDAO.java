@@ -2,6 +2,9 @@ package com.kh.tastyMap.member.model.dao;
 
 import java.util.HashMap;
 
+import java.util.List;
+import java.util.Map;
+
 import com.kh.tastyMap.member.model.vo.Member;
 
 public interface MemberDAO {
@@ -46,7 +49,14 @@ public interface MemberDAO {
 	 * @param memberId
 	 * @return
 	 */
-	int[] followAndPostCnt(String memberId);
+	Map<String, Object> followAndPostCnt(String memberId);
+
+	/**
+	 * 마이갤러리 포스트 사진 조회용
+	 * @param memberId
+	 * @return
+	 */
+	List myGalleryPhoto(String memberId);
 
 
 	/**
