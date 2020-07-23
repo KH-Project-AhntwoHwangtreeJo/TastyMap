@@ -12,7 +12,7 @@
   width: 30px;height: 60px;
   cursor: pointer;
 }
-.star_left{
+.star_left{   
   background: url(http://gahyun.wooga.kr/main/img/testImg/star.png) no-repeat 0 0; 
   background-size: 60px; 
   margin-right: -3px;
