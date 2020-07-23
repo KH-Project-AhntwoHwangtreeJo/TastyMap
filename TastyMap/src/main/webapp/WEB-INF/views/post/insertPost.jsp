@@ -203,7 +203,7 @@
 
              
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="작성자 닉네임" name="member_Id" value="${member.member_Id}" readonly required>
+                <input type="text" class="form-control" placeholder="작성자 닉네임" name="member_Id" value="${member.memberId}" readonly required>
               </div>
               <div class="form-group">
                 <textarea class="form-control" name="pContent" cols="30" rows="7" placeholder="글 작성" required></textarea>

@@ -52,6 +52,23 @@
 		ORDER BY PDATE DESC
 	</select>
 	
+	<update id="memberMapper.updateMember" parameterType="Member">
+		UPDATE MEMBER
+            SET
+            MEMBER_ID = #{memberId},
+			PASSWORD = #{password},
+			USERNAME = #{userName},
+			NICKNAME = #{nickname},
+			MCONTENT = #{mcontent},
+			BIRTH = #{birth},
+			GENDER = #{gender},
+			PHONE = #{phone},
+			EMAIL = #{email},
+			ADDRESS = #{address},
+			MSTATUS = DEFAULT,
+			MPHOTO = #{mphoto}
+	</update>
+	
  	<!-- ●팔로잉 팔로워 게시글 개수 출력 -->
 	<select id="followAndPostCnt" parameterType="string" resultMap="followerPostCnt">
 	       SELECT (SELECT COUNT(*) FROM FOLLOWER WHERE MEMBER_ID = #{memberId}) FOLLOWER_CNT,  <!-- 팔로워 :나를 팔로우 클릭한 사람(member_id가 내 아이디일때) -->
@@ -59,6 +76,8 @@
 	             (SELECT COUNT(*) FROM POST WHERE MEMBER_ID = #{memberId} AND PSTATUS = 'Y') MY_POST_CNT 
 	      FROM DUAL
 	</select>
+	
+	
 </mapper>
 
 

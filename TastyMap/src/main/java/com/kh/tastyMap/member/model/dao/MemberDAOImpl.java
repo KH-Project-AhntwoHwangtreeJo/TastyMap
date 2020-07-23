@@ -36,8 +36,7 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public int updateMember(Member m) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update("memberMapper.updateMember", m);
 	}
 
 	@Override
