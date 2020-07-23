@@ -1,20 +1,26 @@
 package com.kh.tastyMap.post.model.vo;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Picture extends Post implements Serializable{
+public class Picture implements Serializable{
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1004L;
 	
 	private int picture_No;
 	private int pNo;
-	private String pictureName;
+	private String pOriginName;
+	private String pRenamedName;
+	private int pLevel;
+	private Date uploadDate;
+	private String pStatus;
 
 }

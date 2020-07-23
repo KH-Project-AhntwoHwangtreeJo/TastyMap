@@ -3,6 +3,36 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="postMapper">
+	
+	<select id="selectRestaurantName" parameterType="String" resultType="Restaurant">
+		SELECT * FROM RESTAURANT WHERE RNAME = #{rName}
+	</select>
+	
+	<insert id="insertFirstRestaurant" parameterType="Map"> 
+       INSERT INTO RESTAURANT(RNO, RNAME, ADDRESS) 
+       VALUES(SEQ_RES.NEXTVAL, #{rNameParam}, #{addressParam})
+	</insert>
+	
+	<insert id="insertPost" parameterType="Post"> 
+       INSERT INTO POST(PNO, RNO, MEMBER_ID, PCONTENT, STAR) 
+       VALUES(SEQ_POST.NEXTVAL, #{rNo}, #{member_Id}, #{pContent}, #{star})
+	</insert>
+ 
+ 
+ 	<select id="selectCurrval" resultType="_int">
+ 		SELECT SEQ_POST.CURRVAL FROM DUAL
+ 	</select>
+ 
+	<insert id="insertPicture">
+<!-- 		<selectKey keyProperty="pNo_CURRVAL" resultType="_int" order="BEFORE">
+			SELECT SEQ_PNO.CURRVAL FROM DUAL
+		</selectKey> 
+-->
+			INSERT INTO PICTURE(PICTURE_NO, PNO, PORIGINNAME, PRENAMEDNAME, PLEVEL, UPLOADDATE)
+			VALUES(SEQ_PICTURE.NEXTVAL, #{pNo}, #{pOriginName}, #{pRenamedName}, #{pLevel}, SYSDATE)
+	</insert>
+	
+	
 	<select id="selectPostOne" parameterType="_int" resultType="Post">
 		SELECT *, (SELECT PICTURENAME FROM PICTURE), MPHOTO, NICKNAME
 		FROM POST 
@@ -10,7 +40,6 @@
 		JOIN MEMBER USING(MEMBER_ID)
 		WHERE PNO = #{pno} AND PSTATUS = 'Y'
 	</select>
-		
 </mapper>
 
 
