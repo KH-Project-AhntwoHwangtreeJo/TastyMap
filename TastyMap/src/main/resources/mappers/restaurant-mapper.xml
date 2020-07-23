@@ -14,6 +14,34 @@
 		JOIN RESTAURANT R ON(R.RNO=S.RNO)
 		<![CDATA[WHERE ROWNUM<10]]>
 	</select>
+
+	<resultMap id="PICTURE_NO" type="map">
+      <result property="prenamedname" column="PRENAMEDNAME"/>
+   </resultMap>
+	
+
+
+	<!-- 식당 상세 페이지 -->
+	<select id="selectOneRestaurant" parameterType="_int" resultType="Restaurant">
+		SELECT * FROM RESTAURANT
+		WHERE  RNO = #{rno}
+	</select>
+
+	<!-- 식당 상세 페이지 (사진 슬라이드) -->
+	 <select  id="PictureList" parameterType="_int" resultMap="PICTURE_NO">
+	SELECT PRENAMEDNAME
+	FROM PICTURE A
+	JOIN POST P ON(A.PNO=P.PNO)
+	WHERE P.RNO=#{rno}
+	</select>
+	
+
+	<select id="selectrestaurantList" resultType="Restaurant" >	
+		SELECT *
+		FROM RESTAURANT
+	</select>
+	
+	
 	
 	<select id="influencerTop8" resultType="Restaurant">
 		SELECT ROUND(AVG_STAR, 1), R.*
@@ -26,14 +54,23 @@
 		<![CDATA[WHERE ROWNUM<10]]>
 	</select>
 	
+	<!-- 북마크 확인 -->
+<select id="selectBookmark"  parameterType="Bookmark" resultType="_int">
+ SELECT COUNT(*)
+ FROM BOOKMARK
+ WHERE MEMBER_ID = #{memberId} and RNO = #{rno}
+</select>
+
+
+	<!-- 북마크 추가-->
+<insert id="insertBookmark" parameterType="Bookmark">
+       INSERT INTO BOOKMARK VALUES(SEQ_BOOK.NEXTVAL,#{memberId}, #{rno})
+</insert>
+
+	<!-- 북마크 취소 -->
+<delete id="deleteBookmark" parameterType="Bookmark">
+DELETE FROM BOOKMARK 
+WHERE MEMBER_ID = #{memberId} AND RNO = #{rno}
+</delete>
+
 </mapper>
-
-
-
-
-
-
-
-
-
-

@@ -7,8 +7,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
+<c:import url="/views/common/header.jsp"/> 
+	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/jquery-migrate-3.0.1.min.js"></script>
       <!--차트2-->
       <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
       <script type="text/javascript">
@@ -37,127 +38,109 @@
       </script>
       
     <!--//차트2-->
+<%-- 
+    <link rel="stylesheet" href="${pagecontext.request.contextPath }/images/owl.carousel.min.css"><!--이미지 슬라이드-->
 
-    <link rel="stylesheet" href="./images/owl.carousel.min.css"><!--이미지 슬라이드-->
-
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-    <title>Findstate - Free Bootstrap 4 Template by Colorlib</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="${pagecontext.request.contextPath }/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="${pagecontext.request.contextPath }/css/animate.css">
     
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="${pagecontext.request.contextPath }/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="${pagecontext.request.contextPath }/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="${pagecontext.request.contextPath }/css/magnific-popup.css">
 
-    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="${pagecontext.request.contextPath }/css/aos.css">
 
-    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="${pagecontext.request.contextPath }/css/ionicons.min.css">
 
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">
+    <link rel="stylesheet" href="${pagecontext.request.contextPath }/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="${pagecontext.request.contextPath }/css/jquery.timepicker.css">
 
     
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="${pagecontext.request.contextPath }/css/flaticon.css">
+    <link rel="stylesheet" href="${pagecontext.request.contextPath }/css/icomoon.css">
+    <link rel="stylesheet" href="${pagecontext.request.contextPath }/css/style.css"> --%>
   </head>
   <body>
     
-	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	    <div class="container">
-	      <a class="navbar-brand" href="index.html">Findstate</a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
-	      </button>
-
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-	          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-	          <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-	          <li class="nav-item"><a href="agent.html" class="nav-link">Agent</a></li>
-	          <li class="nav-item"><a href="properties.html" class="nav-link">Listing</a></li>
-	          <li class="nav-item active"><a href="blog.html" class="nav-link">Blog</a></li>
-	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-	        </ul>
-	      </div>
-	    </div>
-	  </nav>
+	  
     <!-- END nav -->
     
-    <section class="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
-      <div class="overlay"></div>
-      <div class="overlay-2"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
-          <div class="col-md-9 ftco-animate pb-5 mb-5 text-center">
-            <h1 class="mb-3 bread">Blog Single</h1>
-            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Blog Single<i class="ion-ios-arrow-forward"></i></span></p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <hr>
 
+<br />
+<br />
+<br />
+<br />
+  
+  
+	<c:if test="${ empty list}">
+     <div id="header">    <!-- 가져오는 값이 없을때 이미지 출력 -->
+  <img src="${pageContext.request.contextPath}/resources/images/sajin.jpg" style="width: 100% ;height: 70%;" > 
+   		  </div>
+   </c:if>
    
-
-
-
-      <!--이미지 -->
-
-
-      
+   
+	<c:if test="${ !empty list }">
      <div id="header">
         <div class="owl-carousel">
-          <div class="col-md-4">
-            <img src="images/person_1.jpg" title="커피 한잔 할까요? ^.^" style="width: 370% ;height: auto;" >
-          </div>
-          <div class="col-md-4">
-            <img src="images/person_1.jpg" title="커피 한잔 할까요? ^.^" style="width: 370% ;height: auto;" >
-          </div>
-          <div class="col-md-4">
-            <img src="images/person_1.jpg" title="커피 한잔 할까요? ^.^" style="width: 370% ;height: auto;" >
-          </div>
+          <c:forEach items="${list}" var="name">   <!-- 가져오는 값이 있을때 이미지 출력 -->
+    	      <div class="col-md-4">       	
+            	<img src="${pageContext.request.contextPath}/resources/images/${name.prenamedname}" style="width: 560px ;height: 370px;" />
+	          </div>
+            </c:forEach>
         </div>
         </div> 
+	</c:if>  
+	
+	
+      
 
-        <hr>
+     
     <!-- <section class="ftco-section ftco-degree-bg"> -->
       <div class="container">
         <div class="row">
           <div class="col-md-8 ftco-animate">
-            <h2 class="mb-3"> 제목 </h2>
+       	   <br>
+       	   <hr>     	 
+            <h1 class="mb-3 bread"> ${restaurant.rname} </h1>
             <hr>
-            <img id="image" onclick="changeImage()" border="0" src="images/front.png" style="width: 20px; height: 20px; float: right;"/>
-      
-
- 
+            <c:if test="${ map.status eq 'N' }">
+            <img id="image" onclick="changeImage();" border="0" src="${pageContext.request.contextPath}/resources/images/front.png" style="width: 30px; height: 30px; float: right;">
+      		</c:if>
+            <c:if test="${ map.status eq 'Y' }">
+            <img id="image" onclick="changeImage();" border="0" src="${pageContext.request.contextPath}/resources/images/back.png" style="width: 30px; height: 30px; float: right;">
+      		</c:if>
+			
+ 			
+ 			<tr>
+           <th>주소 : </th> 
            
-            <p>주소</p>   
-            <p>레스토랑 설명</p>
-            <p>가격대</p>
-            <p>오픈시간</p>
-            <p>전화번호</p>
-            <p>주차가능여부</p>
+           <td>${restaurant.address}</td><br>
+			<th>영업시간 : </th> 			
+            <td>${restaurant.time}</td><br>
+ 			<th>가격대 : </th>
+            <td>${restaurant.price}</td><br>
+            <th>전화 번호 : </th>
+            <td>${restaurant.tel}</td><br>
+         	<td>주차가능 여부 : ${restaurant.paking}</td>	<br>     		
+         	<td style="float: right">가게정보 수정일 : ${restaurant.updatedate}</td>	    
+            <tr>
+ 		
             <!--해당 페이지 출력 기능-->
-            <form>
-              <p class="test">
-                <input type="button" value="프린트 하기" onclick="window.print()" />
-              </p>
-            </form>
+                <input class="btn btn-outline-info" type="button" value="프린트하기" onclick="window.print()" style="float: right"/>
             <!--//해당 페이지 출력 기능-->
             
-            
-            <p class="test">가게정보수정일</p>
+            <form>
+              <p class="test">
+              </p>
+            </form>                  
             <hr/>
-            
-            <p>설명란</p>
+              <td>${restaurant.rcontent}</td>
+         
           
             <div class="pt-5 mt-5">
               <hr>
@@ -194,66 +177,90 @@
 
           </div>
           
-          
-          
-          
-          
-          
-          
-          
+       
+			<!-- 지도  -->
            <!-- .col-md-8 -->
           <div class="col-md-4 pl-md-5 sidebar ftco-animate">
             <div class="sidebar-box">
               <form action="#" class="search-form">
                 <div class="form-group">
 
+		<p style="margin-top:-12px">
+    <em class="link">
+        <a href="javascript:void(0);" onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
+        
+        </a>
+    </em>
+</p>
+<div id="map" style="width:100%;height:350px;"></div>
 
-<!-- 지도  -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a082b5607624c5e0728c630bad039620&libraries=services"></script>
+<script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
+
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
+
+// 주소로 좌표를 검색합니다
+geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function(result, status) {
+
+    // 정상적으로 검색이 완료됐으면 
+     if (status === kakao.maps.services.Status.OK) {
+
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords
+        });
+
+        // 인포윈도우로 장소에 대한 설명을 표시합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+        });
+        infowindow.open(map, marker);
+
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(coords);
+    } 
+});    
+</script>
+			
+
+
+
+
+
+
+
+
          
-	<div id="map" style="width:500px;height:400px;"></div>
-	<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4945e6596ec6eb54d1d8456b29637f23"></script> -->
-	<script>
-		var container = document.getElementById('map');
-		var options = {
-			center: new kakao.maps.LatLng(33.450701, 126.570667),
-			level: 3
-		};
-
-		var map = new kakao.maps.Map(container, options);
-	</script>
-	</div>
-	</form>
-</div>
-<!-- 지도 끝-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
          
+         
+         
+	
+				</div>
+				</form>
+			</div>
+			<!-- 지도 끝-->
+			
+
+
+
+
+
+
+
+
             <!--//차트-->
-
-
-
-
-
-
-
-
-
-
-
             <div class="sidebar-box ftco-animate" style ="height: 2500px;">
               <h3>주변인기식당</h3>
               <div class="block-21 mb-4 d-flex">
@@ -373,106 +380,13 @@
     <!-- </section> .section -->
 		
 
-    <footer class="ftco-footer ftco-section">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Findstate</h2>
-              <p>Far far away, behind the word mountains, far from the countries.</p>
-              <ul class="ftco-footer-social list-unstyled mt-5">
-                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4 ml-md-4">
-              <h2 class="ftco-heading-2">Community</h2>
-              <ul class="list-unstyled">
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Search Properties</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>For Agents</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Reviews</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>FAQs</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4 ml-md-4">
-              <h2 class="ftco-heading-2">About Us</h2>
-              <ul class="list-unstyled">
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Our Story</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Meet the team</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Careers</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Company</h2>
-              <ul class="list-unstyled">
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>About Us</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Press</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Contact</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Careers</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">Have a Questions?</h2>
-            	<div class="block-23 mb-3">
-	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope pr-4"></span><span class="text">info@yourdomain.com</span></a></li>
-	              </ul>
-	            </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 text-center">
-	
-            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-          </div>
-        </div>
-      </div>
-    </footer>
-    
   
 
-  <!-- loader -->
- <%--  <div id="ftco-loader" class="show fullscreen">
-  <svg class="circular" width="48px" height="48px">
-  <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/>
-  <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg>
-  </div> --%>
 
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/aos.js"></script>
-  <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="js/bootstrap-datepicker.js"></script>
-  <script src="js/jquery.timepicker.min.js"></script>
-  <script src="js/scrollax.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="js/google-map.js"></script>
-  <script src="js/main.js"></script>
 
   <!--이미지 슬라이드-->  
-<script src="./images/owl.carousel.min.js"></script> 
+<script src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script> 
 <script>  
 var owl = $('.owl-carousel');
 owl.owlCarousel({
@@ -489,27 +403,63 @@ $('.play').on('click',function(){
 $('.stop').on('click',function(){
     owl.trigger('stop.owl.autoplay')
 })
-
-
 </script>  
+
+	<!-- ex> MEMBER_ID = user01 -->
+ <script type="text/javascript">
+ 
+
+
+ 
+ 
+  function changeImage() {
+	   console.log("레스토랑 번호 : "+rno);
+		console.log("아이디 : "+memberId); 
+		
+		var memberId = "${member.memberId}" ;
+		 var rno = "${restaurant.rno}";
+		  console.log("레스토랑 번호 : "+rno);
+			console.log("아이디 : "+memberId); 
+		  //var state =0;
+    		$.ajax({
+    			url :'${pageContext.request.contextPath}/restaurant/bookmark.do',
+    			data : { rno : rno, memberId : memberId }, 
+    			dataType : 'json',  
+    			success : function(data){
+    				if(data.status == "Y"){
+    					   document.getElementById('image').src="${pageContext.request.contextPath}/resources/images/back.png"; 
+    				}else{
+    					   document.getElementById('image').src="${pageContext.request.contextPath}/resources/images/front.png";
+    				}
+    				alert(data.msg);		
+    			},error : function(req, status, error) {
+    				console.log(req);
+    				console.log(status);
+    				console.log(error);
+   				alert('에러임');		
+    			}
+   		});
+   	}   
+ </script>  
+
+<!-- 
 <script type="text/javascript">
   state =0;
   function changeImage(){
     if(state ==0){
       state = 1;
-      document.getElementById('image').src="images/front.png";
+      document.getElementById('image').src="${pageContext.request.contextPath}/resources/images/back.png";   
     }
     else{
       state = 0;
-      document.getElementById('image').src="images/back.png";
+      document.getElementById('image').src="${pageContext.request.contextPath}/resources/images/front.png";
     }
   }
-  </script> 
+  </script>  
+    -->
+  
+ 
+  <c:import url="/views/common/footer.jsp"/>
 
   </body>
-</html>
-
-
-
-</body>
 </html>

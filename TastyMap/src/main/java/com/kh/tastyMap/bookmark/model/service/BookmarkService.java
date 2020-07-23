@@ -1,5 +1,7 @@
 package com.kh.tastyMap.bookmark.model.service;
 
+import java.util.Map;
+
 import com.kh.tastyMap.bookmark.model.vo.Bookmark;
 
 public interface BookmarkService {
@@ -12,7 +14,7 @@ public interface BookmarkService {
 	 * @param bookmark
 	 * @return
 	 */
-	int clickBookmark(Bookmark bookmark);
+	Map<String, Object> clickBookmark(Bookmark bookmark);
 	
 	
 	/**
@@ -21,5 +23,8 @@ public interface BookmarkService {
 	 * @return
 	 */
 	Bookmark selectMyBookList(String memberId);
+
+
+	int selectBookmark(Bookmark bookmark);
 
 }

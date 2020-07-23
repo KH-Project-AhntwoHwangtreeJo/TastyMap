@@ -2,7 +2,8 @@ package com.kh.tastyMap.post.model.vo;
 
 import java.io.Serializable;
 import java.sql.Date;
-
+import java.util.ArrayList;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,5 +23,7 @@ public class Picture implements Serializable{
 	private int pLevel;
 	private Date uploadDate;
 	private String pStatus;
-
+	   
+		private List<Picture> sajin = new ArrayList<Picture>();
+	   
 }

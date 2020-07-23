@@ -3,6 +3,7 @@ package com.kh.tastyMap.restaurant.model.service;
 import java.util.List;
 import java.util.Map;
 
+import com.kh.tastyMap.post.model.vo.Picture;
 import com.kh.tastyMap.restaurant.model.vo.Restaurant;
 
 public interface RestaurantService {
@@ -55,6 +56,9 @@ public interface RestaurantService {
 	List<Map<String, String>> top8();
 
 	List<Map<String, String>> influencerTop8();
+	
+	
+	List<Picture> pictureList(int rno);
 	
 	
 
