@@ -8,7 +8,17 @@
 <head>
 <meta charset="UTF-8">
 <c:import url="/views/common/header.jsp"/>
-
+<style>
+		div#enroll-container{width:400px; margin:0 auto; text-align:center;}
+		div#enroll-container input, div#enroll-container select {margin-bottom:10px;}
+		div#enroll-container table th{text-align: right; padding-right:10px;}
+		div#enroll-container table td{text-align: left;}
+		/*중복아이디체크관련*/
+		div#userId-container{position:relative; padding:0px;}
+		div#userId-container span.guide {display:none;font-size: 12px;position:absolute; top:12px; right:10px;}
+		div#userId-container span.ok{color:green;}
+		div#userId-container span.error, span.invalid{color:red;}
+	</style>
 
 </head>
 <body>
@@ -46,6 +56,7 @@
                     
                   </div>
                   <div class="form-group">
+                  <div id="userId-container">
                     <label for="inputId">아이디</label>
                     <input type="text" class="form-control" id="inputId" name="inputId" placeholder="아이디를 입력해주세요">
                     <!-- 아이디중복검사 코멘트추가 -->
@@ -53,6 +64,7 @@
 				    <span class="guide error">사용 불가</span>
 				    <span class="guide invalid">4글자 미만</span>
 				    <input type="hidden" name="idDuplicateCheck" id="idDuplicateCheck" value="0"/>
+				     </div>
                   </div>
                   <div class="form-group">
                     <label for="inputPassword">비밀번호</label>
@@ -140,7 +152,7 @@
                       <tr>
                         <td>
                       <input type="email" class="form-control" id="InputEmail" name="InputEmail" style="width : 87%; display: inline;" placeholder="이메일 주소를 입력해주세요">
-                      <input type="button" class="btn btn-primary" value="인증하기" style="height: 52px; margin-top: -3px; margin-left: 2px;"onclick="goPopup();">
+                      <input type="button" class="btn btn-primary" value="인증하기" style="height: 52px; margin-top: -3px; margin-left: 2px;"onclick="emailAuth();">
                         </td>
                     </tr>
                   </div>
@@ -217,9 +229,9 @@
 			
 			/* 아이디 중복검사 이벤트 추가 */
 			$("#inputId").on("keyup", function(){
-		        var userId = $(this).val().trim();
+		        var memberId = $(this).val().trim();
 		        
-		        if(userId.length<4) {
+		        if(memberId.length<4) {
 		        	$(".guide.error").hide();
 		        	$(".guide.ok").hide();
 		        	$(".guide.invalid").show();
@@ -229,7 +241,7 @@
 		        	
 			        $.ajax({
 			            url  : "${pageContext.request.contextPath}/member/checkIdDuplicate.do",
-			            data : {Member_Id:userId},
+			            data : {memberId:memberId},
 			            dataType: "json",
 			            success : function(data){
 			                console.log(data);
@@ -278,6 +290,15 @@
 //document.domain = "abc.go.kr";
 
 function goPopup(){
+	// 주소검색을 수행할 팝업 페이지를 호출합니다.
+	// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+	var pop = window.open("${pageContext.request.contextPath}/member/jusoPopup.do","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+	
+	// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
+  //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
+}
+
+function emailAuth(){
 	// 주소검색을 수행할 팝업 페이지를 호출합니다.
 	// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
 	var pop = window.open("${pageContext.request.contextPath}/member/jusoPopup.do","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 

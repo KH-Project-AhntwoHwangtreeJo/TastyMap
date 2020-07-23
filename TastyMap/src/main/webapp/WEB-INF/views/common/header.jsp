@@ -48,7 +48,7 @@
              <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
              <li class="nav-item"><a href="${pageContext.request.contextPath}/restaurant/restaurantAllList.do" class="nav-link">Restaurant</a></li>
            <li class="nav-item"><a href="PostList.html" class="nav-link">Post</a></li>
-           <li class="nav-item"><a href="insertPost.html" class="nav-link">Write</a></li>
+           <li class="nav-item"><a href="${pageContext.request.contextPath}/post/insertPost.do" class="nav-link">Write</a></li>
            <li class="nav-item"><a href="${pageContext.request.contextPath}/member/myGallery.do?memberId=${member.memberId}" class="nav-link">my Gallery</a></li>
            <li class="nav-item"><a href="follower.html" class="nav-link">Follower</a></li>
              <!-- <li class="nav-item"><a href="agent.html" class="nav-link">Agent</a></li>
@@ -161,6 +161,7 @@
    </div>
    <!-- modal end -->
    
+   <!-- 로그인 모달 시작 -->
    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
@@ -189,16 +190,21 @@
                         </button>
                     </div>
                     <div class="form-group text-center">
+                     <a href="${pageContext.request.contextPath}/member/goInsertMember.do">
                       <button type="button" id="join-submit" class="btn btn-primary" style="width: 40%; height: 50px;">
                           회원가입
                       </button>
+                      </a>
+                     
+                     <a href="${pageContext.request.contextPath}/member/goInsertMember.do">
                       <button type="button" id="join-submit" class="btn btn-primary" style="width: 40%; height: 50px;">
                           아이디 / 비밀번호 찾기
-                        </button>
+                        </button>   
+                     </a>
                   </div>
                 </form>
 	    </div>
 	  </div>
 	</div>
-	<!-- Modal 끝-->
+	<!-- 로그인 모달 끝-->
 </html>
