@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.kh.tastyMap.member.model.exception.MemberException;
 import com.kh.tastyMap.member.model.service.MemberService;
 import com.kh.tastyMap.member.model.vo.Member;

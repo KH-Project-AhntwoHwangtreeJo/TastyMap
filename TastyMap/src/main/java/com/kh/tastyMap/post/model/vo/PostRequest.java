@@ -13,18 +13,15 @@ import lombok.NoArgsConstructor;
 @Data // 롬복을 활용한 getter,setter 자동 추가 어노테이션
 @AllArgsConstructor 
 @NoArgsConstructor
-public class Post implements Serializable{
+public class PostRequest implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private int pNo; 			// 게시글 고유키
-	private int rNo; 			// 레스토랑 고유키
 	private String member_Id; 	// 회원 아이디
-	private Date date;			// 게시일자
+	private String rName;
+	private String address;
 	private String pContent;	// 게시글 내용
-	private int pCnt;			// 게시글 조회수
 	private int star;			// 게시글 별점
-	private String pStatus;		// 게시상태
 	
 	
 	// 첨부파일 갯수 확인용 가상 변수

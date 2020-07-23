@@ -5,8 +5,15 @@ import java.util.List;
 import com.kh.tastyMap.post.model.vo.Picture;
 import com.kh.tastyMap.post.model.vo.Post;
 import com.kh.tastyMap.postComment.model.vo.PostComment;
+import com.kh.tastyMap.restaurant.model.vo.Restaurant;
 
 public interface PostDAO {
+	
+	
+	Restaurant selectRestaurantName(String rName);	
+	
+	int insertFirstRestaurant(String rName, String address);
+	
 	/**
 	 * 게시글 작성 메소드
 	 * @param post
@@ -14,7 +21,11 @@ public interface PostDAO {
 	 */
 	int insertPost(Post post);
 	
+	int selectCurrval();
+	
 	int insertPicture(Picture p);
+	
+	
 	
 	/**
 	 * 게시글 수정 메소드

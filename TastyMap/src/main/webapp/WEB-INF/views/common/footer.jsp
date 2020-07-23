@@ -265,6 +265,25 @@
     			}
     		});
     	});
+    	
+    	 //별점 부분
+
+	$(".star").on('click', function() {
+		var idx = $(this).index();
+		$(".star").removeClass("on");
+		for (var i = 0; i <= idx; i++) {
+			$(".star").eq(i).addClass("on");
+		}
+	});
+	
+	/*  $(".upLoad").on('click', function() {
+		if($(".upLoad").length() > 0) {
+			for(var i = 0; i <= idx; i++) {
+				$("label[for=upFile]").eq(i).val();
+				
+			}
+		}
+	});  */
     </script>
 
 
