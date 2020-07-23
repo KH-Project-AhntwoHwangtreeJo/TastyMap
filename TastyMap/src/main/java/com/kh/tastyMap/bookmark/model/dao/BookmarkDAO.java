@@ -1,7 +1,9 @@
 package com.kh.tastyMap.bookmark.model.dao;
 
-import com.kh.tastyMap.bookmark.model.vo.Bookmark;
+import org.springframework.stereotype.Repository;
 
+import com.kh.tastyMap.bookmark.model.vo.Bookmark;
+@Repository
 public interface BookmarkDAO {
 	
 	/**
@@ -9,7 +11,7 @@ public interface BookmarkDAO {
 	 * @param bookmark
 	 * @return
 	 */
-	Bookmark selectBookmarkOne(Bookmark bookmark);
+	int selectBookmarkOne(Bookmark bookmark);
 	
 	/**
 	 * 식당을 북마크 하는 기능

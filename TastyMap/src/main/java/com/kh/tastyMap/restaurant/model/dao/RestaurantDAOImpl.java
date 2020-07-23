@@ -8,7 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kh.tastyMap.restaurant.model.vo.Attachment;
+import com.kh.tastyMap.post.model.vo.Picture;
 import com.kh.tastyMap.restaurant.model.vo.Restaurant;
 
 @Repository("restaurantDAO")
@@ -36,23 +36,16 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 		return 0;
 	}
 
-	@Override
-	public int insertAttachment(Attachment a) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 	@Override
-	public Restaurant selectOneRestaurant(int restaurantNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public Restaurant selectOneRestaurant(int rno) {
+	
+		return sqlSession.selectOne("restaurantMapper.selectOneRestaurant", rno);
+		
+	
 	}
 
-	@Override
-	public List<Attachment> selectAttachmentList(int restaurantNo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public int updateRestaurant(Restaurant restaurant) {
@@ -60,11 +53,6 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 		return 0;
 	}
 
-	@Override
-	public int updateAttachment(Attachment a) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public int deleteRestaurant(int restaurantNo) {
@@ -72,17 +60,9 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 		return 0;
 	}
 
-	@Override
-	public int deleteAttachment(int restaurantNo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
-	@Override
-	public int deleteFile(int attNo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
+
 
 	@Override
 	public List<Map<String, String>> top8() {
@@ -96,4 +76,15 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 		return sqlSession.selectList("restaurantMapper.influencerTop8", null);
 	}
 
+
+	@Override
+	public List<Picture> pictureList(int rno) {
+		return sqlSession.selectList("restaurantMapper.PictureList", rno);
+	}
+
 }
+	
+
+
+
+

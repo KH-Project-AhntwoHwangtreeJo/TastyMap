@@ -8,6 +8,8 @@
  	
 <head>
 	<meta charset="UTF-8">
+	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/jquery-migrate-3.0.1.min.js"></script>
 <c:import url="/views/common/header.jsp"/> 
 </head>
  
@@ -148,8 +150,20 @@ $(function() { // 즉석 실행 함수
       }
     }
   });
-  });
+  });           
 });
+
+
+
+$(function(){
+	$("trd").on("click",function(){
+		var rno = $(this).attr("trd");
+	
+		location.href = "${pageContext.request.contextPath}/restaurant/restaurantdatail.do?rno=${rno}";
+	});
+});
+
+
 </script>
 <!--//gggg-->
     <section class="ftco-section">
@@ -158,173 +172,21 @@ $(function() { // 즉석 실행 함수
           <div class="col-md-3 d-flex ftco-animate">
           	<div class="blog-entry justify-content-end">
               <div class="text">
-              	<a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_1.jpg');">
-	              </a>
-                <h3 class="heading"><a href="#">타이틀</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">October 17, 2019</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <div class="text">
-              	<a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_2.jpg');">
-	              </a>
-                <h3 class="heading"><a href="#">타이틀</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">October 17, 2019</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <div class="text">
-              	<a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_3.jpg');">
-	              </a>
-                <h3 class="heading"><a href="#">타이틀</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">October 17, 2019</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <div class="text">
-              	<a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_4.jpg');">
-	              </a>
-                <h3 class="heading"><a href="#">타이틀</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">October 17, 2019</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-3 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <div class="text">
-              	<a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_5.jpg');">
-	              </a>
-                <h3 class="heading"><a href="#">타이틀</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">October 17, 2019</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <div class="text">
-              	<a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_6.jpg');">
-	              </a>
-                <h3 class="heading"><a href="#">타이틀</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">October 17, 2019</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <div class="text">
-              	<a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_7.jpg');">
-	              </a>
-                <h3 class="heading"><a href="#">타이틀</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">October 17, 2019</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <div class="text">
-              	<a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_7.jpg');">
-	              </a>
-                <h3 class="heading"><a href="#">타이틀</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">October 17, 2019</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <div class="text">
-              	<a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_7.jpg');">
-	              </a>
-                <h3 class="heading"><a href="#">타이틀</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">October 17, 2019</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <div class="text">
-              	<a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_7.jpg');">
-	              </a>
-                <h3 class="heading"><a href="#">타이틀</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">October 17, 2019</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <div class="text">
-              	<a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_7.jpg');">
-	              </a>
-                <h3 class="heading"><a href="#">타이틀</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">October 17, 2019</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
           
-          <div class="col-md-3 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <div class="text">
-              	<a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_8.jpg');">
+              	<a href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=1&memberId=${member.memberId}" class="block-20 img"   id="trd" style="background-image: url('images/image_1.jpg');">
 	              </a>
-                <h3 class="heading"><a href="#">타이틀</a></h3>
+                <h3 class="heading"><a href="#">이름</a></h3>
                 <div class="meta mb-3">
-                  <div><a href="#">October 17, 2019</a></div>
-                  <div><a href="#">Admin</a></div>
+                  <div><a href="#">공백</a></div>
+                  <div><a href="#">공백</a></div>
                   <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
                 </div>
+              
               </div>
             </div>
           </div>
+         	
+     
         </div>
         <div class="row mt-5">
           <div class="col text-center">
@@ -342,7 +204,27 @@ $(function() { // 즉석 실행 함수
           </div>
         </div>
       </div>
+      
 </section>		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <c:import url="/views/common/footer.jsp"/>
 	</body>
 </html>
