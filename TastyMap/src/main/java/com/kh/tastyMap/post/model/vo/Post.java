@@ -35,5 +35,9 @@ public class Post implements Serializable{
 	
 	private List<Picture> files = new ArrayList<Picture>();
 
+	// post 디테일 조회용 변수
+	private String address;
+	private String nickname;
+	private String rname;
 	
 }

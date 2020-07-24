@@ -91,8 +91,16 @@ public class PostServiceImpl implements PostService {
 
 	// post 상세페이지
 	@Override
-	public Post PostDetail(int pno) {
-		return postDAO.PostDetail(pno);
+	public Post postDetail(int pNo) {
+		System.out.println("postservice detail pNo : " + pNo);
+		return postDAO.postDetail(pNo);
+	}
+	
+	// post 상세페이지 사진 출력
+	@Override
+	public List postDetailPhoto(int pNo) {
+		System.out.println("postservice photo pno : " + pNo);
+		return postDAO.postDetailPhoto(pNo);
 	}
 
 }

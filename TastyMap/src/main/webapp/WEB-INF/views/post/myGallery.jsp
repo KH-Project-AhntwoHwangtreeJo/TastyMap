@@ -104,7 +104,7 @@
         		
           		<div class="col-md-4 ftco-animate" style="padding-right : 5px; padding-left : 5px; width:300px; height: 350px; padding-top:5px; padding-bottom : 5px;">
             		<div class="agent" style="width: 100%; height: 100%;">
-              			<a href="${pageContext.request.contextPath}/post/postDetail.do?pno=${post0img.PNO}">
+              			<a href="${pageContext.request.contextPath}/post/postDetail.do?pNo=${post0img.PNO}">
     						<div class="img" style="width: 100%; height: 100%;">
 		    					<img src="${pageContext.request.contextPath}/resources/upload/post/${post0img.pRenamedName}" class="img-fluid" alt="Colorlib Template"style="width: 100%; height: 100%;" >
                 			</div>

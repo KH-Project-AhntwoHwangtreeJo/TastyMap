@@ -4,6 +4,11 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="postMapper">
 	
+	<!-- Post 상세페이지 모든 사진 조회용 -->
+   <resultMap id="postDetailPicture" type="map">
+      <result property="pRenamedName" column="PRENAMEDNAME"/>
+   </resultMap>
+   
 	<select id="selectRestaurantName" parameterType="String" resultType="Restaurant">
 		SELECT * FROM RESTAURANT WHERE RNAME = #{rName}
 	</select>
@@ -32,13 +37,20 @@
 			VALUES(SEQ_PICTURE.NEXTVAL, #{pNo}, #{pOriginName}, #{pRenamedName}, #{pLevel}, SYSDATE)
 	</insert>
 	
+	<!-- ●POST 디테일 조회용  -->
+	<select id="postDetail" parameterType="_int" resultType="Post">
+		SELECT P.*, M.NICKNAME, R.ADDRESS, R.RNAME
+		FROM POST P
+		JOIN MEMBER M ON(M.MEMBER_ID=P.MEMBER_ID)
+		JOIN RESTAURANT R ON(R.RNO = P.RNO)
+		WHERE P.PNO=#{pNo} AND P.PSTATUS = 'Y'
+	</select>
 	
-	<select id="selectPostOne" parameterType="_int" resultType="Post">
-		SELECT *, (SELECT PICTURENAME FROM PICTURE), MPHOTO, NICKNAME
-		FROM POST 
-		JOIN PICTURE USING(PNO) 
-		JOIN MEMBER USING(MEMBER_ID)
-		WHERE PNO = #{pNo} AND PSTATUS = 'Y'
+	<!-- ●POST 디테일 사진 조회용  -->
+	<select id="postDetailPicture" parameterType="_int" resultMap="postDetailPicture">
+		SELECT PRENAMEDNAME 
+		FROM PICTURE
+		WHERE PNO = #{pNo}
 	</select>
 </mapper>
 

@@ -12,19 +12,8 @@
 </head>
 <body>
 
-    <!-- 상위 집 이미지 -->
-    <section class="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
-      <div class="overlay"></div>
-      <div class="overlay-2"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
-          <div class="col-md-9 ftco-animate pb-5 mb-5 text-center">
-            <h2 class="mb-3 bread">${ member.nickname } 의 게시글 입니다</h2>
-            <p class="breadcrumbs"><span class="mr-2"><a href="index.jsp">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Blog Single<i class="ion-ios-arrow-forward"></i></span></p>
-          </div>
-        </div>
-      </div>
-    </section>
+<br />
+<br />
     
     <!-- 페이지 몸통 가운데 정렬 -->
     <section class="ftco-section contact-section" >
@@ -33,17 +22,25 @@
 
       <!--이미지 -->
       <div id="carouselExampleControls" class="carousel slide col-lg-8 col-lg-offset-4 col-md-10 col-md-offset-4 col-xs-2" data-ride="carousel">
-        <div class="carousel-inner " >
-          <div class="carousel-item active " >
-            <img src="https://mdbootstrap.com/img/Photos/Others/img (36).jpg"  class="d-block w-100" alt="..." >
-          </div>
-          <div class="carousel-item">
-            <img src="https://mdbootstrap.com/img/Photos/Others/img (36).jpg"  class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="https://mdbootstrap.com/img/Photos/Others/img (36).jpg" class="d-block w-100" alt="...">
-          </div>
-        </div>
+	     <div class="carousel-inner " style="width:100%; height:100%">
+       	 <c:forEach var="postDetailimg" items="${ postDetailPhotoList }" varStatus="status"> <!-- 이미지 반복문 -->
+       	 	<c:if test="${status.index eq 0}">
+	          <div class="carousel-item active " style="width:100%; height:100%">
+	            <img src="${pageContext.request.contextPath}/resources/upload/post/${postDetailimg.pRenamedName}" class="block-20 img" style="width:100%; height:600px">
+	          </div>
+	          </c:if>
+	          <c:if test="${status.index ne 0}">
+ 	          <div class="carousel-item" style="width:100%; height:100%">
+	            <img src="${pageContext.request.contextPath}/resources/upload/post/${postDetailimg.pRenamedName}" class="block-20 img" style="width:100%; height:600px">
+	          </div>
+	          </c:if>
+	          <%-- <div class="carousel-item">
+	            <img src="${pageContext.request.contextPath}/resources/upload/post/${postDetailimg.pRenamedName}" class="d-block w-100" alt="...">
+	          </div> --%>
+	          
+	        
+         </c:forEach>
+	        </div>
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
@@ -57,8 +54,9 @@
      
 <!-- 지도  -->
 
-<div id="map" class="carousel slide col-lg-8 col-lg-offset-4 col-md-10 col-md-offset-4 col-xs-2" style="width:87%;height:200px; "></div>
-<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4945e6596ec6eb54d1d8456b29637f23"></script> -->
+<!-- <div id="map" class="carousel slide col-lg-8 col-lg-offset-4 col-md-10 col-md-offset-4 col-xs-2" style="width:87%;height:200px; " ></div>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f71cfabf5739c195830217cd92296d03"></script>
 <script>
    var container = document.getElementById('map');
    var options = {
@@ -67,6 +65,49 @@
    };
 
    var map = new kakao.maps.Map(container, options);
+</script> -->
+
+<div id="mapapi" class="carousel slide col-lg-8 col-lg-offset-4 col-md-10 col-md-offset-4 col-xs-2" style="width:87%;height:200px; "></div> 
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f71cfabf5739c195830217cd92296d03&libraries=services"></script>
+
+<script>
+var mapContainer = document.getElementById('mapapi'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
+
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
+
+// 주소로 좌표를 검색합니다
+geocoder.addressSearch("${post.address}", function(result, status) {
+
+    // 정상적으로 검색이 완료됐으면 
+     if (status === kakao.maps.services.Status.OK) {
+
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords
+        });
+
+        // 인포윈도우로 장소에 대한 설명을 표시합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: '<div style="width:150px;text-align:center;padding:6px 0;">"${post.rname}"</div>'
+        });
+        infowindow.open(map, marker);
+
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(coords);
+    } 
+});    
 </script>
 
 <!-- 지도 끝-->
@@ -76,12 +117,12 @@
 
           <div class="col-md-8 ftco-animate">
             <br>
-            <h4 class="mb-3" style="float: left;"> 작성자 </h4> 
+            <h4 class="mb-3" style="float: left;"> ${ post.nickname } </h4> 
             <button type="button" class="btn btn-outline-danger" style="float: right;">신고</button>
             <button type="button" class="btn btn-outline-info" style="float: right; margin-right: 5px;">좋아요 </button> 
             <br>
             <hr/>
-            <p>여기는 작성자가 리뷰하는 곳입니다.</p>
+            <p>${post.PContent}</p>
             <hr/>
             
 

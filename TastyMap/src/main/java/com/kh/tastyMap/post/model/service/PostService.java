@@ -46,6 +46,13 @@ public interface PostService  {
 	 * @param pno
 	 * @return
 	 */
-	Post PostDetail(int pno);
+	Post postDetail(int pNo);
+
+	/**
+	 * 게시글 상세 페이지 사진 조회 메소드
+	 * @param pno
+	 * @return
+	 */
+	List postDetailPhoto(int pNo);
 
 }

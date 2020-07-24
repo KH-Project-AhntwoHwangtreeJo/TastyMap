@@ -162,10 +162,16 @@ public class PostController {
 	
 	// post 상세페이지
 	@RequestMapping("/post/postDetail.do")
-	public String selectOne(@RequestParam int pno, Model model) {
-		Post p = postService.PostDetail(pno);
+	public String selectOne(@RequestParam int pNo, Model model) {
 		
-		model.addAttribute("post", p);
+		Post p = postService.postDetail(pNo);
+		List postPhoto = postService.postDetailPhoto(pNo);
+		
+		System.out.println("controller postPhoto : " + postPhoto);
+		System.out.println("controller p : " + p);
+		
+		model.addAttribute("post", p)
+			 .addAttribute("postDetailPhotoList", postPhoto);
 		
 		return "post/postDetail";
 			

@@ -56,7 +56,7 @@ public class MemberController {
 		  //                 jsp,              맵으로 가져온 카운트
 		
 //		System.out.println("controller cnt : " + cntMap); cntMap 에 들어간 거 확인
-		System.out.println("controller photo : " + photo);
+//		System.out.println("controller photo : " + photo);
 		
 		return "post/myGallery";
 	}

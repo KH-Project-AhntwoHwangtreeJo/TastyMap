@@ -54,7 +54,15 @@ public interface PostDAO {
 	 * @param pno
 	 * @return
 	 */
-	Post PostDetail(int pno);
+	Post postDetail(int pNo);
+	
+	/**
+	 * 게시글 상세 페이지 사진 조회용
+	 * @param memberId
+	 * @return
+	 */
+	List postDetailPhoto(int pNo);
+
 	
 	/**
 	 * 게시글 상세 조회 페이지 - 댓글 리스트 출력
