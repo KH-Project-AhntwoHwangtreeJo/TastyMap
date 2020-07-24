@@ -59,6 +59,12 @@ public interface RestaurantService {
 	
 	
 	List<Picture> pictureList(int rno);
+
+	List<Map<String, String>> restaurantChart(int rno);
+
+	List<Map<String, String>> restaurantChartTwo(int rno);
+
+	
 	
 	
 

@@ -21,56 +21,100 @@
 	
 
 
-	<!-- 식당 상세 페이지 -->
-	<select id="selectOneRestaurant" parameterType="_int" resultType="Restaurant">
-		SELECT * FROM RESTAURANT
-		WHERE  RNO = #{rno}
-	</select>
+<!-- 식당 상세 페이지  조은성-->
+<select id="selectOneRestaurant" parameterType="_int" resultType="Restaurant">
+	SELECT * FROM RESTAURANT
+	WHERE  RNO = #{rno}
+</select>
 
-	<!-- 식당 상세 페이지 (사진 슬라이드) -->
-	 <select  id="PictureList" parameterType="_int" resultMap="PICTURE_NO">
-	SELECT PRENAMEDNAME
-	FROM PICTURE A
-	JOIN POST P ON(A.PNO=P.PNO)
-	WHERE P.RNO=#{rno}
-	</select>
-	
+<!-- 식당 상세 페이지 (사진 슬라이드) 조은성 -->
+ <select  id="PictureList" parameterType="_int" resultMap="PICTURE_NO">
+SELECT PRENAMEDNAME
+FROM PICTURE A
+JOIN POST P ON(A.PNO=P.PNO)
+WHERE P.RNO=#{rno}
+</select>
 
-	<select id="selectrestaurantList" resultType="Restaurant" >	
-		SELECT *
-		FROM RESTAURANT
-	</select>
-	
-	
-	
-	<select id="influencerTop8" resultType="Restaurant">
-		SELECT ROUND(AVG_STAR, 1), R.*
-		FROM (
-        	    SELECT AVG(STAR) "AVG_STAR",COUNT(RNO), RNO
-            	FROM POST
-            	GROUP BY RNO
-            	ORDER BY 1 DESC, 2 DESC) S
-		JOIN RESTAURANT R ON(R.RNO=S.RNO)
-		<![CDATA[WHERE ROWNUM<10]]>
-	</select>
-	
-	<!-- 북마크 확인 -->
+<!-- 북마크 확인  (조은성)-->
 <select id="selectBookmark"  parameterType="Bookmark" resultType="_int">
  SELECT COUNT(*)
  FROM BOOKMARK
  WHERE MEMBER_ID = #{memberId} and RNO = #{rno}
 </select>
 
-
-	<!-- 북마크 추가-->
+<!-- 북마크 추가 (조은성)-->
 <insert id="insertBookmark" parameterType="Bookmark">
        INSERT INTO BOOKMARK VALUES(SEQ_BOOK.NEXTVAL,#{memberId}, #{rno})
 </insert>
 
-	<!-- 북마크 취소 -->
+	<!-- 북마크 취소 (조은성)-->
 <delete id="deleteBookmark" parameterType="Bookmark">
 DELETE FROM BOOKMARK 
 WHERE MEMBER_ID = #{memberId} AND RNO = #{rno}
 </delete>
 
+
+
+<!-- 식당에 해당하는 리뷰  (조은성)-->
+ <select id="postList" resultType="post">
+       SELECT * FROM POST
+       WHERE RNO = #{rno} and STATUS = 'Y'	
+</select>
+
+<!-- 식당에 해당하는 게시글 작성자 성별 비율 (조은성) -->
+<select id="chartList" parameterType="_int" resultType="HashMap">
+SELECT SUM(DECODE(GENDER, 'M', 1, 0)) "남자",
+            
+               SUM(DECODE(GENDER, 'F', 1, 0)) "여자"
+FROM MEMBER
+JOIN POST USING(MEMBER_ID)
+WHERE RNO = ${rno}
+</select> 
+
+
+<!-- ●해당 식당에 대한 게시글 작성자의 연령대 비율 (조은성)-->
+<select id="chartListTwo"  parameterType="_int"  resultType="HashMap" >
+SELECT 
+(SELECT COUNT(*)
+FROM(SELECT *
+        FROM (SELECT TO_CHAR(SYSDATE,'YYYY')-TO_CHAR(BIRTH,'YYYY') "YEAR" , MEMBER_ID
+                 FROM MEMBER) 
+        WHERE MEMBER_ID IN (SELECT MEMBER_ID
+                                        FROM POST
+                                        WHERE RNO=${rno})) E
+        WHERE E."YEAR"LIKE '1%') "10대",
+(SELECT COUNT(*)
+FROM(SELECT *
+        FROM (SELECT TO_CHAR(SYSDATE,'YYYY')-TO_CHAR(BIRTH,'YYYY') "YEAR" , MEMBER_ID
+                 FROM MEMBER) 
+        WHERE MEMBER_ID IN (SELECT MEMBER_ID
+                                        FROM POST
+                                        WHERE RNO=${rno})) E
+        WHERE E."YEAR"LIKE '2%') "20대",
+(SELECT COUNT(*)
+FROM(SELECT *
+        FROM (SELECT TO_CHAR(SYSDATE,'YYYY')-TO_CHAR(BIRTH,'YYYY') "YEAR" , MEMBER_ID
+                 FROM MEMBER) 
+        WHERE MEMBER_ID IN (SELECT MEMBER_ID
+                                        FROM POST
+                                        WHERE RNO=${rno})) E
+        WHERE E."YEAR"LIKE '3%') "30대",
+(SELECT COUNT(*)
+FROM(SELECT *
+        FROM (SELECT TO_CHAR(SYSDATE,'YYYY')-TO_CHAR(BIRTH,'YYYY') "YEAR" , MEMBER_ID
+                 FROM MEMBER) 
+        WHERE MEMBER_ID IN (SELECT MEMBER_ID
+                                        FROM POST
+                                        WHERE RNO=${rno})) E
+        WHERE E."YEAR"LIKE '4%') "40대",
+(SELECT COUNT(*)
+FROM(SELECT *
+        FROM (SELECT TO_CHAR(SYSDATE,'YYYY')-TO_CHAR(BIRTH,'YYYY') "YEAR" , MEMBER_ID
+                 FROM MEMBER)
+        WHERE MEMBER_ID IN (SELECT MEMBER_ID
+                                        FROM POST
+                                        WHERE RNO=${rno})) WRITER
+        WHERE WRITER."YEAR" >=50) "50대 이상"
+FROM DUAL
+</select>
 </mapper>

@@ -81,6 +81,23 @@ public class RestaurantServiceImpl implements RestaurantService {
 		return restaurantDAO.pictureList(rno);
 	}
 
+	@Override /* 막대차트 */
+	public List<Map<String, String>> restaurantChart(int rno) {
+		
+		return restaurantDAO.restaurantChart(rno);
+	}
+
+	@Override  /*원형차트*/
+	public List<Map<String, String>> restaurantChartTwo(int rno) {
+		
+		return restaurantDAO.restaurantChartTwo(rno);
+	}
+
+	
+
+
+	
+
 //	 사진입니다
 /*	@Override
 	public List<Picture> PictureList(int rno) {

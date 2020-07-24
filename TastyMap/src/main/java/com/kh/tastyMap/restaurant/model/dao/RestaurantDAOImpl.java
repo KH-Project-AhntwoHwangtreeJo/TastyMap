@@ -81,6 +81,20 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 	public List<Picture> pictureList(int rno) {
 		return sqlSession.selectList("restaurantMapper.PictureList", rno);
 	}
+	
+	
+	
+	@Override  /* 막대 차트 */
+	public List restaurantChart(int rno) {
+		
+		return sqlSession.selectList("restaurantMapper.chartList", rno);
+	}
+
+	@Override /* 원형차트 */
+	public List restaurantChartTwo(int rno) {
+	
+		return sqlSession.selectList("restaurantMapper.chartListTwo", rno);
+	}
 
 }
 	
