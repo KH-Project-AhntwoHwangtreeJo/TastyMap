@@ -56,7 +56,6 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public Map<String, Object> followAndPostCnt(String memberId) {
-		System.out.println("memberId service : " + memberId);
 		return memberDAO.followAndPostCnt(memberId);
 	}
 	

@@ -86,9 +86,20 @@ public class PostDAOImpl implements PostDAO {
 
 	// post 상세페이지
 	@Override
-	public Post PostDetail(int pno) {
-		return sqlSession.selectOne("postMapper.PostDetail", pno);
+	public Post postDetail(int pNo) {
 		
+		System.out.println("postDAO detail pNo : " + pNo);
+		
+		return sqlSession.selectOne("postMapper.postDetail", pNo);
+	}
+	
+	// post 상세페이지 사진 
+	@Override
+	public List postDetailPhoto(int pNo) {
+		
+		System.out.println("postDAO photo pNo : " + pNo);
+		
+		return sqlSession.selectList("postMapper.postDetailPicture", pNo);
 	}
 
 	@Override

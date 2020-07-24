@@ -52,7 +52,6 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public Map<String, Object> followAndPostCnt(String memberId) {
-		System.out.println("memberId DAO : " + memberId);
 		return sqlSession.selectOne("memberMapper.followAndPostCnt", memberId);
 	}
 	
