@@ -32,12 +32,13 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/flaticon.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/icomoon.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    
   </head>
   <body>
 
      <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
        <div class="container">
-        <img src="${pageContext.request.contextPath}/resources/images/logo.png"/>
+        <a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/resources/images/logo.png"/></a>
          <!-- <a class="navbar-brand" href="index.html">Findstate</a> -->
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
            <span class="oi oi-menu"></span> Menu
@@ -50,21 +51,25 @@
            <li class="nav-item"><a href="PostList.html" class="nav-link">Post</a></li>
            <li class="nav-item"><a href="${pageContext.request.contextPath}/post/insertPost.do" class="nav-link">Write</a></li>
            <li class="nav-item"><a href="${pageContext.request.contextPath}/member/myGallery.do?memberId=${member.memberId}" class="nav-link">my Gallery</a></li>
-           <li class="nav-item"><a href="follower.html" class="nav-link">Follower</a></li>
              <!-- <li class="nav-item"><a href="agent.html" class="nav-link">Agent</a></li>
              <li class="nav-item"><a href="properties.html" class="nav-link">Listing</a></li> -->
              <li class="nav-item" id="pop"><span class="nav-link" data-toggle="popover"><img src="${pageContext.request.contextPath}/resources/images/bell.png" data-toggle="popover"></span></li>
             
            
             <!-- 로그인 처리 --> 
+            <!--  로그인이 안된 상태 -->
          <c:if test="${empty member}">
-           <li class="nav-item"><a href="#loginModal" class="nav-link"><img src="${pageContext.request.contextPath}/resources/images/user1.png" data-toggle="modal" data-target="#loginModal" alt=""></a></li>
-		   <li class="nav-item"><a href="${pageContext.request.contextPath}/member/goInsertMember.do" class="nav-link"><img src="${pageContext.request.contextPath}/resources/images/user1.png" alt=""></a></li>
+           <li class="nav-item"><a href="#loginModal" class="nav-link"><button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#loginModal">login</button></a></li>
+		   <li class="nav-item"><a href="${pageContext.request.contextPath}/member/goInsertMember.do" class="nav-link"><button type="button" class="btn btn-outline-success">sing up</button></a></li>
          </c:if>
+         <!--  로그인 후  -->
          <c:if test="${!empty member}">
-         	<li class="nav-item"><a href="${pageContext.request.contextPath}/member/goInsertMember.do" class="nav-link">
-         	<img src="${pageContext.request.contextPath}/resources/images/profileImage/${member.mphoto}"
-		   						class="rounded-circle" style="width:31px; height: 31px"alt=""></a></li>
+         	<li class="nav-item">
+         		<a href="${pageContext.request.contextPath}/member/myPage.do" class="nav-link">
+	         		<img src="${pageContext.request.contextPath}/resources/images/profileImage/${member.mphoto}"
+			   						class="rounded-circle" style="width:31px; height: 31px"alt="">
+			   	</a>
+			</li>
            <li class="nav-item"><a href="${pageContext.request.contextPath}/member/memberLogout.do" class="nav-link"><img src="${pageContext.request.contextPath}/resources/images/user1.png"  alt=""></a></li>
          </c:if>
            </ul>
@@ -185,7 +190,7 @@
                   <br>
 
                     <div class="form-group text-center">
-                        <button type="submit" id="join-submit" class="btn btn-primary" style="width: 100%; height: 50px;">
+                        <button type="submit" id="login-submit" class="btn btn-primary" style="width: 100%; height: 50px;">
                             로그인<i class="fa fa-check spaceLeft"></i>
                         </button>
                     </div>
@@ -197,7 +202,7 @@
                       </a>
                      
                      <a href="${pageContext.request.contextPath}/member/goInsertMember.do">
-                      <button type="button" id="join-submit" class="btn btn-primary" style="width: 40%; height: 50px;">
+                      <button type="button" id="find-submit" class="btn btn-primary" style="width: 40%; height: 50px;">
                           아이디 / 비밀번호 찾기
                         </button>   
                      </a>
