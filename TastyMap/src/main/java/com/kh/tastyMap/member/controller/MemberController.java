@@ -389,4 +389,12 @@ public class MemberController {
 				
 				return "common/msg";
 			}
+			
+			
+		@RequestMapping("/member/myPage.do")
+		public String myPage() {
+			
+			
+			return "myPage/myPage";
+		}
 }

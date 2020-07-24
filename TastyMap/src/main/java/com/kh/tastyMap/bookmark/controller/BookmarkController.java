@@ -38,27 +38,34 @@ public class BookmarkController {
 		return map;
 	}
 	
-@RequestMapping("/restaurant/bookmarkselect.do")
-@ResponseBody
-public Map<String, Object> selectBookmark(@RequestParam int rno, @RequestParam String memberId, Model model, HttpSession session) {
-	Map<String, Object> map =new HashMap<String, Object>();
-	
-	System.out.println(rno + memberId);
-	String status;
-	Bookmark bookmark = new Bookmark(memberId,rno);
-	 
-	int result =bookmarkService.selectBookmark(bookmark);
-	
-	if (result == 0) { // SELECT해서 COUNT한 결과가 없을 때 
-		status = "N";
-	}else if(result == 1) { // SELECT해서 COUNT한 결과가 있을 때
-		status ="Y";
-	}else {
-		status="null"; 
+	@RequestMapping("/restaurant/bookmarkselect.do")
+	@ResponseBody
+	public Map<String, Object> selectBookmark(@RequestParam int rno, @RequestParam String memberId, Model model, HttpSession session) {
+		Map<String, Object> map =new HashMap<String, Object>();
+		
+		System.out.println(rno + memberId);
+		String status;
+		Bookmark bookmark = new Bookmark(memberId,rno);
+		 
+		int result =bookmarkService.selectBookmark(bookmark);
+		
+		if (result == 0) { // SELECT해서 COUNT한 결과가 없을 때 
+			status = "N";
+		}else if(result == 1) { // SELECT해서 COUNT한 결과가 있을 때
+			status ="Y";
+		}else {
+			status="null"; 
+		}
+		System.out.println(result);
+		map.put("status",status);
+		
+		return map;
 	}
-	System.out.println(result);
-	map.put("status",status);
 	
-	return map;
-}
+	@RequestMapping("/bookmark/myBookmarkList.do")
+	public String myBookmark() {
+		
+		
+		return "myPage/myBookmark";
+	}
 }
