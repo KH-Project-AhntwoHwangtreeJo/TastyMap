@@ -53,9 +53,19 @@ public interface RestaurantService {
 
 	int selectRestaurantTotalContents();
 
+
+	List<Map<String, String>> top8();
+
+	List<Map<String, String>> influencerTop8();
+	
+	
 	List<Picture> pictureList(int rno);
 
-	
+	List<Map<String, String>> restaurantChart(int rno);
+
+	List<Map<String, String>> restaurantChartTwo(int rno);
+
+
 	
 	
 //	식당 상세 페이지 사진

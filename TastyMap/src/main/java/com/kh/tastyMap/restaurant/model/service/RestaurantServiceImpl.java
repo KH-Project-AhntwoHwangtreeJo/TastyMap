@@ -65,9 +65,37 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 
 	@Override
+
+	public List<Map<String, String>> top8() {
+		// TODO Auto-generated method stub
+		return restaurantDAO.top8();
+	}
+
+	@Override
+	public List<Map<String, String>> influencerTop8() {
+		// TODO Auto-generated method stub
+		return restaurantDAO.influencerTop8();
+	}
+
+	@Override
 	public List<Picture> pictureList(int rno) {
 		return restaurantDAO.pictureList(rno);
 	}
+
+
+	@Override /* 막대차트 */
+	public List<Map<String, String>> restaurantChart(int rno) {
+		
+		return restaurantDAO.restaurantChart(rno);
+	}
+
+	@Override  /*원형차트*/
+	public List<Map<String, String>> restaurantChartTwo(int rno) {
+		
+		return restaurantDAO.restaurantChartTwo(rno);
+	}
+
+	
 
 //	 사진입니다
 /*	@Override

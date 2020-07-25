@@ -23,14 +23,20 @@ public interface RestaurantDAO {
 
     int deleteRestaurant(int restaurantNo);
 
-    int deleteAttachment(int restaurantNo);
+
 
     int deleteFile(int attNo);
 
-	List<Picture> pictureList(int rno);
+    List<Map<String, String>> top8();
 
-	
+    List<Map<String, String>> influencerTop8();
 
-	/* List<Picture> PictureList(int rno); */
+
+    List<Picture> pictureList(int rno);
+
+    List<Map<String, String>> restaurantChart(int rno);
+
+    List<Map<String, String>> restaurantChartTwo(int rno);
+
 
 }

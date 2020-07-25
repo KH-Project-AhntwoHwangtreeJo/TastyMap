@@ -7,6 +7,13 @@ import com.kh.tastyMap.post.model.vo.Post;
 
 public interface PostService  {
 	
+	static int POST_SERVICE_ERROR = 0;
+	static int POST_SERVICE_COMPLETE = 1;
+	
+	int selectRestaurantName(String rName);
+	
+	int insertFirstRestaurant(String rName, String address);
+	
 	/**
 	 * 게시글 작성 메소드
 	 * @param post
@@ -39,6 +46,13 @@ public interface PostService  {
 	 * @param pno
 	 * @return
 	 */
-	Post PostDetail(int pno);
+	Post postDetail(int pNo);
+
+	/**
+	 * 게시글 상세 페이지 사진 조회 메소드
+	 * @param pno
+	 * @return
+	 */
+	List postDetailPhoto(int pNo);
 
 }

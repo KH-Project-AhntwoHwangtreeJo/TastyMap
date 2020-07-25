@@ -15,6 +15,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Post implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+	
 	private int pNo; 			// 게시글 고유키
 	private int rNo; 			// 레스토랑 고유키
 	private String member_Id; 	// 회원 아이디
@@ -28,5 +30,14 @@ public class Post implements Serializable{
 	// 첨부파일 갯수 확인용 가상 변수
 	private int fileCount;
 	
+	// 별점 평균 가상변수
+	private int percent;
+	
 	private List<Picture> files = new ArrayList<Picture>();
+
+	// post 디테일 조회용 변수
+	private String address;
+	private String nickname;
+	private String rname;
+	
 }

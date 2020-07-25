@@ -3,41 +3,26 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="memberMapper">
-	<resultMap type="Member" id="memberMap">
-		<result property="hobby" column="hobby" typeHandler="Str2ArrayHandler"/>
+
+	<resultMap id="memberMap" type="Member">
+		<id property="memberId" column="MEMBER_ID"/>
 	</resultMap>
 	
-	<select id="loginMember" parameterType="Member" resultMap="memberMap">
-		SELECT * FROM MEMBER
-		WHERE USERID=#{ userId }
-	</select>
+	<!-- 팔로우, 포스트 카운트용  -->
+	<resultMap id="followerPostCnt" type="hashmap"> 
+		<result property="followerCnt" column="FOLLOWER_CNT"/>
+		<result property="followingCnt" column="FOLLOWING_CNT"/>
+		<result property="myPostCnt" column="MY_POST_CNT"/> <!-- property를 vo에 변수 선언하지 않고 MemberController에 바로 보내준다. -->
+	</resultMap>
+	<!-- 마이 갤러리 사진 조회용 -->
+   <resultMap id="postPicure" type="map">
+      <result property="pRenamedName" column="PRENAMEDNAME"/>
+   </resultMap>
 	
 	<insert id="insertMember" parameterType="Member">
-		INSERT INTO MEMBER
-		VALUES( #{ userId }, #{ password }, #{ userName }, #{ gender },
-				 #{ age }, #{ email } , #{ phone }, #{ address } ,
-				 #{ hobby, typeHandler=Str2ArrayHandler} ,DEFAULT)
+		INSERT INTO MEMBER VALUES (#{memberId}, #{password} , #{userName}, #{nickname}, #{mcontent}, #{birth}, 
+		#{gender}, #{phone}, #{email}, #{address}, DEFAULT , #{mphoto})
 	</insert>
-	
-	<update id="updateMember" parameterType="Member">
-		UPDATE MEMBER
-		<set>
-		USERNAME=#{ userName },
-		AGE=#{ age },
-		EMAIL=#{ email },
-		PHONE=#{ phone },
-		ADDRESS=#{ address },
-		GENDER=#{ gender },
-		HOBBY=#{ hobby , typeHandler=Str2ArrayHandler }
-		</set>
-		WHERE USERID=#{ userId }
-	</update>
-	
-	
-	<delete id="deleteMember" parameterType="string"> 
-	 	DELETE MEMBER
-	 	WHERE USERID=#{ userId }
-	</delete>
 	
 	<select id="checkIdDuplicate" parameterType="HashMap" statementType="CALLABLE">
 		{ CALL ID_DUP_CHECK(
@@ -45,9 +30,55 @@
                      #{result, mode=OUT, jdbcType=NUMERIC, javaType=integer} ) 
        }
 	</select>
+	
+	<select id="loginMember" parameterType="string" resultMap="memberMap">
+		SELECT * FROM MEMBER
+		WHERE MEMBER_ID = #{memberId}
+	</select>
+	
+	<!-- ●마이 갤러리페이지 조회용  -->
+	<select id="myGallery" parameterType="string" resultMap="memberMap">
+		SELECT NICKNAME, MCONTENT, MPHOTO
+		FROM MEMBER 
+		WHERE MEMBER_ID = #{memberId} AND MSTATUS = 'Y'
+	</select>
+	
+	<!-- ●마이 갤러리페이지 사진 조회용  -->
+	<select id="myGalleryPhoto" parameterType="string" resultMap="postPicure">
+		SELECT PRENAMEDNAME, PNO 
+		FROM PICTURE  
+		JOIN POST USING(PNO)
+		WHERE MEMBER_ID = #{memberId} AND PSTATUS = 'Y' AND PLEVEL =0
+		ORDER BY PDATE DESC
+	</select>
+	
+	<update id="memberMapper.updateMember" parameterType="Member">
+		UPDATE MEMBER
+            SET
+            MEMBER_ID = #{memberId},
+			PASSWORD = #{password},
+			USERNAME = #{userName},
+			NICKNAME = #{nickname},
+			MCONTENT = #{mcontent},
+			BIRTH = #{birth},
+			GENDER = #{gender},
+			PHONE = #{phone},
+			EMAIL = #{email},
+			ADDRESS = #{address},
+			MSTATUS = DEFAULT,
+			MPHOTO = #{mphoto}
+	</update>
+	
+ 	<!-- ●팔로잉 팔로워 게시글 개수 출력 -->
+	<select id="followAndPostCnt" parameterType="string" resultMap="followerPostCnt">
+	       SELECT (SELECT COUNT(*) FROM FOLLOWER WHERE MEMBER_ID = #{memberId}) FOLLOWER_CNT,  <!-- 팔로워 :나를 팔로우 클릭한 사람(member_id가 내 아이디일때) -->
+	             (SELECT COUNT(*) FROM FOLLOWER WHERE FOLLOWER_ID = #{memberId}) FOLLOWING_CNT, <!-- 팔로잉 :내가 팔로우 클릭한 사람(follower_id가 내 아이디일때) -->
+	             (SELECT COUNT(*) FROM POST WHERE MEMBER_ID = #{memberId} AND PSTATUS = 'Y') MY_POST_CNT 
+	      FROM DUAL
+	</select>
+	
+	
 </mapper>
-
-
 
 
 

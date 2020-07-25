@@ -31,13 +31,14 @@
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/flaticon.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/icomoon.css">
-   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    
   </head>
   <body>
 
      <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
        <div class="container">
-        <img src="${pageContext.request.contextPath}/resources/images/logo.png"/>
+        <a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/resources/images/logo.png"/></a>
          <!-- <a class="navbar-brand" href="index.html">Findstate</a> -->
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
            <span class="oi oi-menu"></span> Menu
@@ -48,14 +49,29 @@
              <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
              <li class="nav-item"><a href="${pageContext.request.contextPath}/restaurant/restaurantAllList.do" class="nav-link">Restaurant</a></li>
            <li class="nav-item"><a href="PostList.html" class="nav-link">Post</a></li>
-           <li class="nav-item"><a href="insertPost.html" class="nav-link">Write</a></li>
-           <li class="nav-item"><a href="MyGallery.html" class="nav-link">My Gallery</a></li>
-           <li class="nav-item"><a href="follower.html" class="nav-link">Follower</a></li>
+           <li class="nav-item"><a href="${pageContext.request.contextPath}/post/insertPost.do" class="nav-link">Write</a></li>
+           <li class="nav-item"><a href="${pageContext.request.contextPath}/member/myGallery.do?memberId=${member.memberId}" class="nav-link">my Gallery</a></li>
              <!-- <li class="nav-item"><a href="agent.html" class="nav-link">Agent</a></li>
              <li class="nav-item"><a href="properties.html" class="nav-link">Listing</a></li> -->
              <li class="nav-item" id="pop"><span class="nav-link" data-toggle="popover"><img src="${pageContext.request.contextPath}/resources/images/bell.png" data-toggle="popover"></span></li>
-           <li class="nav-item"><a href="" class="nav-link"><img src="${pageContext.request.contextPath}/resources/images/user1.png" alt=""></a></li>
-           <li class="nav-item"><a href="Mypage.html" class="nav-link"><img src="${pageContext.request.contextPath}/resources/images/user1.png" alt=""></a></li>
+            
+           
+            <!-- 로그인 처리 --> 
+            <!--  로그인이 안된 상태 -->
+         <c:if test="${empty member}">
+           <li class="nav-item"><a href="#loginModal" class="nav-link"><button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#loginModal">login</button></a></li>
+		   <li class="nav-item"><a href="${pageContext.request.contextPath}/member/goInsertMember.do" class="nav-link"><button type="button" class="btn btn-outline-success">sing up</button></a></li>
+         </c:if>
+         <!--  로그인 후  -->
+         <c:if test="${!empty member}">
+         	<li class="nav-item">
+         		<a href="${pageContext.request.contextPath}/member/myPage.do" class="nav-link">
+	         		<img src="${pageContext.request.contextPath}/resources/images/profileImage/${member.mphoto}"
+			   						class="rounded-circle" style="width:31px; height: 31px"alt="">
+			   	</a>
+			</li>
+           <li class="nav-item"><a href="${pageContext.request.contextPath}/member/memberLogout.do" class="nav-link"><img src="${pageContext.request.contextPath}/resources/images/user1.png"  alt=""></a></li>
+         </c:if>
            </ul>
          </div>
        </div>
@@ -149,4 +165,51 @@
       </div>
    </div>
    <!-- modal end -->
+   
+   <!-- 로그인 모달 시작 -->
+   <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="loginModalLabel">로그인</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+          <!--로그인폼 -->
+          <!-- https://getbootstrap.com/docs/4.1/components/forms/#overview -->
+          <form action="${pageContext.request.contextPath}/member/memberLogin.do" method="post">
+                  <div class="form-group">
+                    <label for="inputId">아이디</label>
+                    <input type="text" class="form-control" id="inputId" name="inputId" placeholder="아이디를 입력해주세요">
+                  </div>
+                  <div class="form-group">
+                    <label for="inputPassword">비밀번호</label>
+                    <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="비밀번호를 입력해주세요">
+                  </div>
+                  <br>
+
+                    <div class="form-group text-center">
+                        <button type="submit" id="login-submit" class="btn btn-primary" style="width: 100%; height: 50px;">
+                            로그인<i class="fa fa-check spaceLeft"></i>
+                        </button>
+                    </div>
+                    <div class="form-group text-center">
+                     <a href="${pageContext.request.contextPath}/member/goInsertMember.do">
+                      <button type="button" id="join-submit" class="btn btn-primary" style="width: 40%; height: 50px;">
+                          회원가입
+                      </button>
+                      </a>
+                     
+                     <a href="${pageContext.request.contextPath}/member/goInsertMember.do">
+                      <button type="button" id="find-submit" class="btn btn-primary" style="width: 40%; height: 50px;">
+                          아이디 / 비밀번호 찾기
+                        </button>   
+                     </a>
+                  </div>
+                </form>
+	    </div>
+	  </div>
+	</div>
+	<!-- 로그인 모달 끝-->
 </html>

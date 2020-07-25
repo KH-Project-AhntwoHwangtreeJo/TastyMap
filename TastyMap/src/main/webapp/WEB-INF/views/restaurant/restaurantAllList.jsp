@@ -169,6 +169,7 @@ $(function(){
     <section class="ftco-section">
       <div class="container">
         <div class="row d-flex">
+
           <div class="col-md-3 d-flex ftco-animate">
           	<div class="blog-entry justify-content-end">
               <div class="text">
@@ -185,6 +186,114 @@ $(function(){
               </div>
             </div>
           </div>
+
+        
+         <div class="col-xl-6 col-md-8">
+                                <div class="explorer_tab">
+                                    <nav>
+                                        <div class="nav" id="nav-tab" role="tablist" style="width : 600px;">
+                                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
+                                                href="#nav-home" role="tab" aria-controls="nav-home"
+                                                aria-selected="true">전체 리스트</a>
+                                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
+                                                href="#nav-profile" role="tab" aria-controls="nav-profile"
+                                                aria-selected="false">한식</a>
+                                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                                href="#nav-contact" role="tab" aria-controls="nav-contact"
+                                                aria-selected="false">중식</a>
+                                            <a class="nav-item nav-link" id="nav-contact-tab2" data-toggle="tab"
+                                                href="#nav-contact2" role="tab" aria-controls="nav-contact"
+                                                aria-selected="false">일식</a>
+                                        </div>
+                                    </nav>
+        
+                                </div>
+                            </div>
+        
+        
+        
+        <!-- 전체 리스트 -->
+        <c:forEach var="b" items="${ list }">
+         <div class="col-md-3 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <div class="text">       
+              	<a href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=1&memberId=${member.memberId}" class="block-20 img"   id="trd" style="background-image: url('images/image_1.jpg');">
+	              </a>
+                <h3 class="heading"><a href="#">한식</a></h3>
+                <div class="meta mb-3">
+                  <div><a href="#">${A.rname}</a></div>    
+                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                </div>            
+              </div>
+            </div>
+          </div>
+        </c:forEach>
+        
+        
+        
+        
+        
+        
+        
+        		<!-- 한식 -->
+        	<c:forEach var="A" items="${ list }">
+        	<c:if test="${ A.category eq '한식' }">
+          <div class="col-md-3 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <div class="text">         
+              	<a href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=1&memberId=${member.memberId}" class="block-20 img"   id="trd" style="background-image: url('images/image_1.jpg');">
+	              </a>
+                <h3 class="heading"><a href="#">A.rname</a></h3>
+                <div class="meta mb-3">               
+                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                </div>            
+              </div>
+            </div>
+          </div>
+          </c:if>
+          </c:forEach>
+          
+          
+          
+          <c:forEach var="A" items="${ list }">
+          	<c:if test="${ A.category eq '일식' }">
+              <div class="col-md-3 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <div class="text">
+          
+              	<a href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=1&memberId=${member.memberId}" class="block-20 img"   id="trd" style="background-image: url('images/image_1.jpg');">
+	              </a>
+                <h3 class="heading"><a href="#">A.rname</a></h3>
+                <div class="meta mb-3">
+                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                </div>            
+              </div>
+            </div>
+          </div>
+          </c:if>
+         	</c:forEach>
+         	
+         	
+         	<c:forEach var="A" items="${ list }">
+         		<c:if test="${ A.category eq '중식' }">
+         	    <div class="col-md-3 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <div class="text">
+          
+              	<a href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=1&memberId=${member.memberId}" class="block-20 img"   id="trd" style="background-image: url('images/image_1.jpg');">
+	              </a>
+                <h3 class="heading"><a href="#">A.rname</a></h3>
+                <div class="meta mb-3">
+                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                </div>             
+              </div>
+            </div>
+          </div>
+       	</c:if>
+       	</c:forEach>
+         	
+        
+         
          	
      
         </div>
@@ -206,6 +315,8 @@ $(function(){
       </div>
       
 </section>		
+
+
   <c:import url="/views/common/footer.jsp"/>
 	</body>
 </html>

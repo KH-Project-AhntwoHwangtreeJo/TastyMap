@@ -36,7 +36,6 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
 	/*
 	 * @Override public int insertAttachment(Attachment a) { // TODO Auto-generated
 	 * method stub return 0;
@@ -52,7 +51,7 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 	}
 
 	
-	
+
 
 	@Override
 	public int updateRestaurant(Restaurant restaurant) {
@@ -60,34 +59,55 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 		return 0;
 	}
 
+
 	/*
 	 * @Override public int updateAttachment(Attachment a) { // TODO Auto-generated
 	 * method stub return 0;
-	}
-	 */
+  */
 
+  /*
 	@Override
 	public int deleteRestaurant(int restaurantNo) {
 		// TODO Auto-generated method stub
 		return 0;
+
+	}
+	 */
+
+
+
+
+
+	@Override
+	public List<Map<String, String>> top8() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("restaurantMapper.selectTop8", null);
 	}
 
 	@Override
-	public int deleteAttachment(int restaurantNo) {
+	public List<Map<String, String>> influencerTop8() {
 		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int deleteFile(int attNo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.selectList("restaurantMapper.influencerTop8", null);
 	}
 
 
 	@Override
 	public List<Picture> pictureList(int rno) {
 		return sqlSession.selectList("restaurantMapper.PictureList", rno);
+	}
+	
+	
+	
+	@Override  /* 막대 차트 */
+	public List restaurantChart(int rno) {
+		
+		return sqlSession.selectList("restaurantMapper.chartList", rno);
+	}
+
+	@Override /* 원형차트 */
+	public List restaurantChartTwo(int rno) {
+	
+		return sqlSession.selectList("restaurantMapper.chartListTwo", rno);
 	}
 
 
@@ -99,6 +119,11 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 		return sqlSession.selectOne("restaurantMapper.PictureList", rno);
 		*/
 	}
+
+}
+	
+
+
 
 
 
