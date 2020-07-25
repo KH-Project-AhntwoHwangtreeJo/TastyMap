@@ -8,8 +8,10 @@
 <head>
 <meta charset="UTF-8">
 <c:import url="/views/common/header.jsp"/> 
-<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/jquery-migrate-3.0.1.min.js"></script>
+  
+  <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/jquery-migrate-3.0.1.min.js"></script>
+  
 
   </head>
   <body>
@@ -46,10 +48,12 @@
 <br />
 <br />
 <br />
+
   
   
 	<c:if test="${ empty list}">
      <div id="header">    <!-- 가져오는 값이 없을때 이미지 출력 -->
+
   <img src="${pageContext.request.contextPath}/resources/upload/post/sajin.jpg" style="width: 100% ;height: 70%;" > 
    		  </div>
    </c:if>
@@ -58,6 +62,7 @@
      <div id="header">
         <div class="owl-carousel">
           <c:forEach items="${list}" var="name">   <!-- 가져오는 값이 있을때 이미지 출력 -->
+
     	      <div class="col-md-4">       	
             	<img src="${pageContext.request.contextPath}/resources/upload/post/${name.prenamedname}" style="width: 560px ;height: 370px;" />
 	          </div>
@@ -66,10 +71,7 @@
         </div> 
 	</c:if>  
 	
-	
-      
 
-     
     <!-- <section class="ftco-section ftco-degree-bg"> -->
       <div class="container">
         <div class="row">
@@ -78,6 +80,7 @@
        	   <hr>     	 
             <h1 class="mb-3 bread"> ${restaurant.rname} </h1>
             <hr>
+
             <c:if test="${ empty member.memberId }">
             <img id="image" onclick="changeImage();" border="0" src="${pageContext.request.contextPath}/resources/upload/post/front.png" style="width: 30px; height: 30px; float: right;">
       		</c:if>
@@ -123,7 +126,6 @@
                   <br>        
          
               ${restaurant.rcontent}
-     
           
             <div class="pt-5 mt-5">
               <hr>
@@ -352,10 +354,7 @@ $('.stop').on('click',function(){
 
 	<!-- ex> MEMBER_ID = user01 -->
  <script type="text/javascript">
- 
 
-
- 
  
   function changeImage() {
 	   console.log("레스토랑 번호 : "+rno);
@@ -388,9 +387,8 @@ $('.stop').on('click',function(){
  </script>  
 
 
-  
- 
   <c:import url="/views/common/footer.jsp"/>
+
 
   </body>
 </html>

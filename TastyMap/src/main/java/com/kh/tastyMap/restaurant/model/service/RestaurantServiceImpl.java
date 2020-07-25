@@ -65,6 +65,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 
 	@Override
+
 	public List<Map<String, String>> top8() {
 		// TODO Auto-generated method stub
 		return restaurantDAO.top8();
@@ -81,6 +82,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 		return restaurantDAO.pictureList(rno);
 	}
 
+
 	@Override /* 막대차트 */
 	public List<Map<String, String>> restaurantChart(int rno) {
 		
@@ -92,9 +94,6 @@ public class RestaurantServiceImpl implements RestaurantService {
 		
 		return restaurantDAO.restaurantChartTwo(rno);
 	}
-
-	
-
 
 	
 

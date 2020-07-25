@@ -23,6 +23,7 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 		
 		return sqlSession.selectList("restaurantMapper.selectrestaurantList", null, rows);
 	}
+	
 
 	@Override
 	public int selectRestaurantTotalContents() {
@@ -35,8 +36,11 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-
+	/*
+	 * @Override public int insertAttachment(Attachment a) { // TODO Auto-generated
+	 * method stub return 0;
+	}
+	 */
 
 	@Override
 	public Restaurant selectOneRestaurant(int rno) {
@@ -46,6 +50,8 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 	
 	}
 
+	
+
 
 	@Override
 	public int updateRestaurant(Restaurant restaurant) {
@@ -54,11 +60,19 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 	}
 
 
+	/*
+	 * @Override public int updateAttachment(Attachment a) { // TODO Auto-generated
+	 * method stub return 0;
+  */
+
+  /*
 	@Override
 	public int deleteRestaurant(int restaurantNo) {
 		// TODO Auto-generated method stub
 		return 0;
+
 	}
+	 */
 
 
 
@@ -96,8 +110,19 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 		return sqlSession.selectList("restaurantMapper.chartListTwo", rno);
 	}
 
+
+	
+			//사진입니다
+/*	@Override
+	public List<Picture> PictureList(int rno) {
+	
+		return sqlSession.selectOne("restaurantMapper.PictureList", rno);
+		*/
+	}
+
 }
 	
+
 
 
 

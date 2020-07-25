@@ -3,6 +3,27 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="restaurantMapper">
+
+	<resultMap id="PICTURE_NO" type="map">
+      <result property="prenamedname" column="PRENAMEDNAME"/>
+   </resultMap>
+	
+
+
+	<!-- 식당 상세 페이지 -->
+	<select id="selectOneRestaurant" parameterType="_int" resultType="Restaurant">
+		SELECT * FROM RESTAURANT
+		WHERE  RNO = #{rno}
+	</select>
+
+
+	 <select  id="PictureList" parameterType="_int" resultMap="PICTURE_NO">
+	SELECT PRENAMEDNAME
+	FROM PICTURE A
+	JOIN POST P ON(A.PNO=P.PNO)
+	WHERE P.RNO=#{rno}
+	</select>
+
 	
 	<select id="selectTop8" resultType="Restaurant">
 		SELECT ROUND(AVG_STAR, 1), R.*
@@ -18,8 +39,15 @@
 	<resultMap id="PICTURE_NO" type="map">
       <result property="prenamedname" column="PRENAMEDNAME"/>
    </resultMap>
+
 	
 
+	<select id="selectrestaurantList" resultType="Restaurant" >	
+		SELECT *
+		FROM RESTAURANT
+	</select>
+
+</mapper>
 
 <!-- 식당 상세 페이지  조은성-->
 <select id="selectOneRestaurant" parameterType="_int" resultType="Restaurant">

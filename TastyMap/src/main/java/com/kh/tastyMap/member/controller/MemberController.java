@@ -1,5 +1,6 @@
 package com.kh.tastyMap.member.controller;
 
+
 import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
@@ -27,8 +28,27 @@ import com.kh.tastyMap.member.model.service.MemberService;
 import com.kh.tastyMap.member.model.vo.Member;
 
 @SessionAttributes(value= {"member"})
+
 @Controller
 public class MemberController {
+/*
+	@Autowired
+	MemberService memberService;
+	
+	// 마이 갤러리 조회
+	@RequestMapping("/member/myGallery.do")
+	public String selectOne(@RequestParam String memberId, Model model) {
+		
+		Member m = memberService.myGallery(memberId);
+		int[]cnt = memberService.followAndPostCnt(memberId);  
+		
+		
+		mod	l.addAttribute("member", m)
+			 .addAttribute("cnt", cnt);
+		
+		return "member/myGallery";*/
+	}
+
 
 	@Autowired
 	BCryptPasswordEncoder bcryptPasswordEncoder;
@@ -398,3 +418,4 @@ public class MemberController {
 			return "myPage/myPage";
 		}
 }
+

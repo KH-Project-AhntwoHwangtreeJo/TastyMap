@@ -169,10 +169,24 @@ $(function(){
     <section class="ftco-section">
       <div class="container">
         <div class="row d-flex">
-        
-        
-        
-        
+
+          <div class="col-md-3 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <div class="text">
+          
+              	<a href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=1" class="block-20 img"   id="trd" style="background-image: url('images/image_1.jpg');">
+	              </a>
+                <h3 class="heading"><a href="#">이름</a></h3>
+                <div class="meta mb-3">
+                  <div><a href="#">공백</a></div>
+                  <div><a href="#">공백</a></div>
+                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                </div>
+              
+              </div>
+            </div>
+          </div>
+
         
          <div class="col-xl-6 col-md-8">
                                 <div class="explorer_tab">
@@ -279,7 +293,7 @@ $(function(){
        	</c:forEach>
          	
         
-         	
+         
          	
      
         </div>
