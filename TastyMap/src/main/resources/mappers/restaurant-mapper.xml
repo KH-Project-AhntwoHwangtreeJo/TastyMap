@@ -44,7 +44,7 @@
 		JOIN (SELECT MIN(PNO) "PNO", RNO
 		FROM POST
 		GROUP BY RNO) MINPOST ON(MINPOST.PNO=PC.PNO) )NAME ON(NAME.RNO=A.RNO)
-		ORDER BY STAR DESC;
+		ORDER BY STAR DESC
 	</select>
 	
 	<!-- 인플루언서 Top8 (조현민) -->
@@ -63,7 +63,7 @@
 	<select id="searchBar" resultType="Restaurant">
 		SELECT * FROM RESTAURANT WHERE RNAME LIKE '%'||?||'%' 
 								OR RCONTENT LIKE '%'||?||'%' 
-								OR CATEGORY LIKE '%'||?||'%';
+								OR CATEGORY LIKE '%'||?||'%'
 	</select>
 
 	
