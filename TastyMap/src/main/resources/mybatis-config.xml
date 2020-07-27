@@ -24,7 +24,7 @@
 		 <typeAlias type="com.kh.tastyMap.post.model.vo.Picture" alias="Picture"/>
 		 <typeAlias type="com.kh.tastyMap.bookmark.model.vo.Bookmark" alias="Bookmark"/>
 		 <typeAlias type="com.kh.tastyMap.postComment.model.vo.PostComment" alias="PostComment"/>
-		 
+		 <typeAlias type="com.kh.tastyMap.restaurant.model.vo.RestaurantList" alias="RestaurantList"/>
 		 
 		 <typeAlias type="com.kh.tastyMap.common.Str2ArrayHandler" alias="Str2ArrayHandler"/>
 	</typeAliases>

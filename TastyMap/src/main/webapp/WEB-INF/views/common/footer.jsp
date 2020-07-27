@@ -336,14 +336,25 @@
     	});
     	
     	 //별점 부분
+	 $(".star").on('click', function() {
 
-	$(".star").on('click', function() {
+		 var clickedValue = $(this).attr('data-rate'); 
+		 
+		 $('#starValue').val(clickedValue)
+		 // String starValue = 0.5
+		 // starValue.set(0.5)
+
+	/* 	 console.log(starValue);		 
+		 console.log($('#myStar').val()); */
+		 
+		 $('#myStar').text(starValue)
+		 
 		var idx = $(this).index();
 		$(".star").removeClass("on");
 		for (var i = 0; i <= idx; i++) {
 			$(".star").eq(i).addClass("on");
 		}
-	});
+	}); 
 	
 	/*  $(".upLoad").on('click', function() {
 		if($(".upLoad").length() > 0) {

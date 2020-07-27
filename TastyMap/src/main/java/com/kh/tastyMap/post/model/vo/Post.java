@@ -23,7 +23,7 @@ public class Post implements Serializable{
 	private Date date;			// 게시일자
 	private String pContent;	// 게시글 내용
 	private int pCnt;			// 게시글 조회수
-	private int star;			// 게시글 별점
+	private double star;			// 게시글 별점
 	private String pStatus;		// 게시상태
 	
 	

@@ -21,8 +21,7 @@ public class PostRequest implements Serializable{
 	private String rName;
 	private String address;
 	private String pContent;	// 게시글 내용
-	private int star;			// 게시글 별점
-	
+	private double starValue;			// 게시글 별점
 	
 	// 첨부파일 갯수 확인용 가상 변수
 	private int fileCount;

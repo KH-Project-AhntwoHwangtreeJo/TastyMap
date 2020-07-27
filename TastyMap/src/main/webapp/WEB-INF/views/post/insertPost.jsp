@@ -72,7 +72,12 @@
 		var add = window.open("${pageContext.request.contextPath}/post/resAddress.do","add","width=570,height=420, scrollbars=yes, resizable=yes");
 	}
 	
-
+	function jusoCallBack(roadFullAddr){
+		// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+		document.form.roadFullAddr.value = roadFullAddr;
+		/** 2017년 3월 추가제공 **/
+	}
+	
 	/* $.ajax({
 		url :"${pageContext.request.contextPath}/post/resAddress.do",
 		dataType : "json",
@@ -178,28 +183,50 @@
               <!-- <div class="form-group">
               <span class="location d-inline-block mb-3"><i class="ion-ios-pin mr-2"></i>서울 강남구 테헤란로 124 삼원타워</span>
               </div> -->
+<%-- <div>
+	<c:import url="/views/post/resAddress.jsp"/>
+</div> --%>
               <div class="callbackDiv">
-                <input type="text" class="form-control" id="roadFullAddr"name="roadFullAddr" style="width : 87%; display: inline;" placeholder="주소검색을 눌러주세요">
-                <button class="btn btn-primary py-3 px-4" id="address" onclick="goAddress();">검색</button>
+              
+                <input type="text" class="form-control" id="rName"name="rName" style="width : 50%; display: inline;" placeholder="주소검색을 눌러주세요" readonly>
+                <input type="text" 						id="address" name="address" readonly></input>
+                <button class="btn btn-primary py-3 px-4" id="address" onclick="goAddress();">주소검색</button>
               </div>
 
               <!-- 별점 (0.5까지 포함해서 5점 만점)-->
-              <div class="star-box" name="star">
-                <span class="star star_left"></span>
-                <span class="star star_right"></span>
+              <div class="star-box">
+                <span class="star star_left" data-rate=0.5></span>
+                <span class="star star_right" data-rate=1.0></span>
               
-                <span class="star star_left"></span>
-                <span class="star star_right"></span>
+                <span class="star star_left" data-rate=1.5></span>
+                <span class="star star_right" data-rate=2.0></span>
               
-                <span class="star star_left"></span>
-                <span class="star star_right"></span>
+                <span class="star star_left" data-rate=2.5></span>
+                <span class="star star_right" data-rate=3.0></span>
               
-               <span class="star star_left"></span>
-               <span class="star star_right"></span>
+               <span class="star star_left" data-rate=3.5></span>
+               <span class="star star_right" data-rate=4.0></span>
               
-               <span class="star star_left"></span>
-               <span class="star star_right"></span>
-              </div>  
+               <span class="star star_left" data-rate=4.5></span>
+               <span class="star star_right" data-rate=5.0></span>
+               <!-- <div id="myStar"> -->
+               	<input type="text" id="starValue" name="starValue" style="display:none;"></input>
+            
+               <!-- <div type="text" id="passwdMsg"></div> -->
+               <!-- <input type="text" class="form-control" name="userName" id="userName" readonly="readonly"> -->
+              </div>   
+              
+          
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
 
              
               <div class="form-group">

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kh.tastyMap.post.model.vo.Picture;
 import com.kh.tastyMap.restaurant.model.dao.RestaurantDAO;
 import com.kh.tastyMap.restaurant.model.vo.Restaurant;
+import com.kh.tastyMap.restaurant.model.vo.RestaurantList;
 
 @Service("restaurantService")
 public class RestaurantServiceImpl implements RestaurantService {
@@ -58,11 +59,6 @@ public class RestaurantServiceImpl implements RestaurantService {
 		return restaurantDAO.selectRestaurantList(cPage, numPerPage);
 	}
 
-	@Override
-	public int selectRestaurantTotalContents() {
-		// TODO Auto-generated method stub
-		return restaurantDAO.selectRestaurantTotalContents();
-	}
 
 	@Override
 
@@ -101,7 +97,18 @@ public class RestaurantServiceImpl implements RestaurantService {
 		return restaurantDAO.restaurantChartTwo(rno);
 	}
 
+	@Override
+	public List<RestaurantList> restaurantAllList(int cPage, int numPerPage) {
 	
+		return restaurantDAO.restaurantAllList(cPage, numPerPage);
+	}
+
+	@Override
+	public int selectRestaurantTotal() {
+		// TODO Auto-generated method stub
+		return restaurantDAO.selectRestaurantTotal();
+	}
+
 
 //	 사진입니다
 /*	@Override

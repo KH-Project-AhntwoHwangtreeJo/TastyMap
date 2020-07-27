@@ -169,12 +169,41 @@ function displayPlaces(places) {
                    infowindow.close();
                };
                // 마커 클릭시 이동
-               kakao.maps.event.addListener(marker, 'click', function() {
-					displayInfowindow(marker,title);
+               kakao.maps.event.addListener(marker, 'click', function(mouseEvent) {
+            	/*    displayInfowindow2(marker, title); */
             	/*  $('.roadFullAddr').val(title);
             	 $('.roadFullAddr').val(address);
-            	cosole.log(title);
-            	console.log(address); */
+            	*/
+           	    searchDetailAddrFromCoords(marker, function(result, status) {
+           	        if (status === kakao.maps.services.Status.OK) {
+           	            var detailAddr = !!result[0].road_address ? '<div>도로222명주소 : ' + result[0].road_address.address_name + '</div>' : '';
+           	            detailAddr += '<div>지1번 주소 : ' + result[0].address.address_name + '</div>';
+           	            
+           	            var content = '<div class="bAddr">' +
+           	                            '<span class="title">바부야 법정동222 주소정보</span>' + 
+           	                            detailAddr + title + 
+           	                        '</div>';
+
+           	            var road_addr = result[0].road_address.address_name
+           	            var addr = result[0].address.address_name
+           	       		  console.log(title)
+           	            console.log(road_addr)
+           	              console.log(addr)
+           	               
+           	                
+           	           
+           	            // 마커를 클릭한 위치에 표시합니다 
+/*            	            marker.setPosition(mouseEvent.latLng);
+           	            marker.setMap(map); */
+
+           	            // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
+           	            infowindow.setContent(content);
+           	            infowindow.open(map, marker);
+           	        }   
+           	    });
+            	
+            	
+            	
                });
                // 검색 결과 입력시 이동
                itemEl.onclick =  function () {
@@ -285,10 +314,13 @@ function displayInfowindow(marker, title) {
 
     infowindow.setContent(content);
     infowindow.open(map, marker);
+   
 }
 
 
 function displayInfowindow2(marker, title) {
+	 console.log("타이틀 :" + title); // 식당 이름
+	 
     var lat = marker.getPosition().getLat();
     var lng = marker.getPosition().getLng();
     
@@ -296,8 +328,18 @@ function displayInfowindow2(marker, title) {
     var content = '<div style="padding:5px;z-index:1;">' + title + lat + lng + '</div>';
 
     infowindow.setContent(content);
-    infowindow.open(map, marker);
-    
+    infowindow.open(map, marker);   
+}
+
+var geocoder = new kakao.maps.services.Geocoder();
+
+function searchDetailAddrFromCoords(marker, callback) {
+	console.log("xxxx")
+      var lat = marker.getPosition().getLat();
+    var lng = marker.getPosition().getLng();
+    // 좌표로 법정동 상세 주소 정보를 요청합니다
+/*     geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+ */    geocoder.coord2Address(lng, lat, callback);
 }
  // 검색결과 목록의 자식 Element를 제거하는 함수입니다
 function removeAllChildNods(el) {   
