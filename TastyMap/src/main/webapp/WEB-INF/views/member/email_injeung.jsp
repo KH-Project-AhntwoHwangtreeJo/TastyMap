@@ -18,7 +18,7 @@
             <tr>        
                 <td>
                 <center>
-                    <form action="join_injeung.do${dice}" method="post"> //받아온 인증코드를 컨트롤러로 넘겨서 일치하는지 확인                  
+                    <form action="join_injeung.do?dice=${dice}&InputEmail=${InputEmail}" method="post"> //받아온 인증코드를 컨트롤러로 넘겨서 일치하는지 확인                  
                     <center>
                         <br>
                         <div>
@@ -28,7 +28,7 @@
  
                         <br> <br>
                         <button type="submit" name="submit">인증번호 전송</button>
- 
+ 	
                         </div>
                     </td>
                 </tr>
@@ -37,6 +37,8 @@
         </form>
 </center>
  
+ <script>
  
+ </script>
 </body>
 </html>

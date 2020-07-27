@@ -130,7 +130,7 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 	@Override
 	public List<RestaurantList> restaurantAllList(int cPage, int numPerPage) {
 		RowBounds rows = new RowBounds((cPage-1)*numPerPage, numPerPage);
-		return sqlSession.selectList("restaurantMapper.restaurantAllList", rows);
+		return sqlSession.selectList("restaurantMapper.restaurantAllList",  rows);
 	}
 
 	@Override

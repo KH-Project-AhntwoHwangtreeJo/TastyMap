@@ -24,9 +24,9 @@
 		#{gender}, #{phone}, #{email}, #{address}, DEFAULT , #{mphoto})
 	</insert>
 	
-	<select id="checkIdDuplicate" parameterType="HashMap" statementType="CALLABLE">
-		{ CALL ID_DUP_CHECK(
-                       #{userId, mode=IN, jdbcType=VARCHAR}, 
+	<select id="checkIdDuplicate" parameterType="HashMap" resultMap="memberMap" statementType="CALLABLE">
+		{ CALL ID_DUP_CHK(
+                       #{memberId, mode=IN, jdbcType=VARCHAR}, 
                      #{result, mode=OUT, jdbcType=NUMERIC, javaType=integer} ) 
        }
 	</select>

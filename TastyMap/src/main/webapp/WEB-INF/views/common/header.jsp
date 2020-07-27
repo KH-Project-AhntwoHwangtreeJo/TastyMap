@@ -3,8 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
-<!DOCTYPE html>
-<html>
 <head>
    <meta charset="UTF-8">
 
@@ -33,6 +31,16 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/icomoon.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     
+    <script>
+    function goFindId(){
+    		// 주소검색을 수행할 팝업 페이지를 호출합니다.
+    		// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+    		var pop = window.open("${pageContext.request.contextPath}/member/goFindId.do","pop","width=570,height=380, scrollbars=yes, resizable=yes"); 
+    		
+    		// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
+    	  //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
+    	}
+    </script>
   </head>
   <body>
 
@@ -169,13 +177,14 @@
    <!-- 로그인 모달 시작 -->
    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
+	    <div class="modal-content" style="padding:5%">
 	      <div class="modal-header">
 	        <h5 class="modal-title" id="loginModalLabel">로그인</h5>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
+	      <br />
           <!--로그인폼 -->
           <!-- https://getbootstrap.com/docs/4.1/components/forms/#overview -->
           <form action="${pageContext.request.contextPath}/member/memberLogin.do" method="post">
@@ -196,20 +205,20 @@
                     </div>
                     <div class="form-group text-center">
                      <a href="${pageContext.request.contextPath}/member/goInsertMember.do">
-                      <button type="button" id="join-submit" class="btn btn-primary" style="width: 40%; height: 50px;">
+                      <button type="button" id="join-submit" class="btn btn-primary" style="width: 50%; height: 50px;">
                           회원가입
                       </button>
                       </a>
                      
-                     <a href="${pageContext.request.contextPath}/member/goInsertMember.do">
-                      <button type="button" id="find-submit" class="btn btn-primary" style="width: 40%; height: 50px;">
+                      <button type="button" id="find-submit" class="btn btn-primary" onclick="goFindId();" style="width: 49%; height: 50px;">
                           아이디 / 비밀번호 찾기
                         </button>   
-                     </a>
                   </div>
                 </form>
 	    </div>
 	  </div>
 	</div>
 	<!-- 로그인 모달 끝-->
+	
+	
 </html>
