@@ -54,5 +54,12 @@ public interface PostService  {
 	 * @return
 	 */
 	List postDetailPhoto(int pNo);
+	
+	/**
+	 * 게시글 조회수 증가 메소드
+	 * @param pno
+	 * @return
+	 */
+	int updatePCNT(int pNo);
 
 }

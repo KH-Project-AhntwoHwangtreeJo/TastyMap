@@ -116,8 +116,7 @@
 	</table>
  		
             <!--해당 페이지 출력 기능-->
-                <input class="btn btn-outline-info" type="button" value="프린트하기" onclick="window.print()" style="float: right"/>
-            <!--//해당 페이지 출력 기능-->
+            <img onclick="window.print()" border="0" src="${pageContext.request.contextPath}/resources/images/print/print.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;" />
            
             <form>
               <p class="test">

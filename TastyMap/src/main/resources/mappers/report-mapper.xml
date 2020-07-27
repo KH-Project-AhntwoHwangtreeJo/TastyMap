@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reportMapper">
+
+	<!-- ● 게시글 신고 확인 -->
+	<select id ="postReportCheck" parameterType="Report" resultType="_int">
+		SELECT COUNT(*) 
+		FROM REPORT 
+		WHERE MEMBER_ID = #{memberId} AND REPORT_NO = #{reportNo} AND REPORT_TYPE = 'P'
+		<!-- 이게 1이면 신고 된거 0이면 신고 안된거 -->
+	</select>
+	
+	<!-- ●게시글 신고 -->
+	<insert id="insertPostReport" parameterType="Report">
+		INSERT INTO REPORT
+		VALUES(#{memberId}, #{reportNo}, 'P', 'R')
+	</insert>
+	
+	<!-- ●댓글 신고 확인 -->
+	<select id ="commentReportCheck" parameterType="Report" resultType="_int">
+		SELECT COUNT(*) FROM REPORT
+		WHERE MEMBER_ID = #{memberId} AND REPORT_NO = #{reportNo} AND REPORT_TYPE = 'C'
+		<!-- 이게 1이면 신고 된거 0이면 신고 안된거 -->
+	</select>
+	
+	<!-- ●댓글 신고 -->
+	<insert id="insertCommentReport" parameterType="Report">
+		INSERT INTO REPORT
+		VALUES(#{memberId}, #{cno}, 'C', 'R'}
+	</insert>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+

@@ -1,5 +1,7 @@
 package com.kh.tastyMap.report.model.service;
 
+import java.util.Map;
+
 import com.kh.tastyMap.post.model.vo.Post;
 import com.kh.tastyMap.postComment.model.vo.PostComment;
 import com.kh.tastyMap.report.model.vo.Report;
@@ -7,12 +9,28 @@ import com.kh.tastyMap.report.model.vo.Report;
 public interface ReportService {
 	
 	/**
+	 * 게시글 신고 조회
+	 * reportType=='P'
+	 * @param report
+	 * @return
+	 */
+	int selectPostReport(Report report);
+	
+	/**
 	 * 게시글 신고하기
 	 * reportType=='P'
 	 * @param report
 	 * @return
 	 */
-	int insertPostReport(Report report);
+	Map<String, Object> insertPostReport(Report report);
+	
+	/**
+	 * 댓글 신고 조회
+	 * reportType=='C'
+	 * @param report
+	 * @return
+	 */
+	int selectCommentReport(Report report);
 	
 	/**
 	 * 댓글 신고하기

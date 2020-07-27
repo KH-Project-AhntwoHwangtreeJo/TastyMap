@@ -8,7 +8,8 @@ public interface LoveDAO {
 	 * @param bookmark
 	 * @return
 	 */
-	Love selectBookmarkOne(Love love);
+	int selectLoveOne(Love love);
+	
 	
 	/**
 	 * 게시글을 좋아요 하는 기능

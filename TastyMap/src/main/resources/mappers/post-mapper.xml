@@ -56,6 +56,15 @@
 		FROM PICTURE
 		WHERE PNO = #{pNo}
 	</select>
+	
+	<!-- ●POST 조회수 증가  -->
+	<update id="updatePCNT" parameterType="_int">
+		UPDATE POST
+		SET
+		PCNT = NVL(PCNT, 0) + 1
+		WHERE
+		PNO = #{pNo}
+	</update>
 </mapper>
 
 

@@ -11,5 +11,13 @@ public class Love {
 	
 	private int lno;
 	private String memberId;
-	private int pno;
+	private int pNo;
+	
+	
+	public Love(String memberId, int pNo) {
+		this.memberId = memberId;
+		this.pNo = pNo;
+	}
+	
+	
 }

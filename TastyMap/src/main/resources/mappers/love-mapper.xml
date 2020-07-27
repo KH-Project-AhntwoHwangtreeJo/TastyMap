@@ -4,24 +4,28 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="loveMapper">
 
+	<resultMap id="loveMap" type="Love">
+		<id property="memberId" column="MEMBER_ID"/>
+	</resultMap>
+
 	<!-- 좋아요 확인 -->
-	<select id ="loveCheck" parameterType="Love" resultType="Love">
+	<select id ="selectPostLove" parameterType="Love" resultType="_int">
 		SELECT COUNT(*) FROM LOVE
-		WHERE MEMBER_ID = #{memberId} AND PNO = #{pno};
+		WHERE MEMBER_ID = #{memberId} AND PNO = #{pNo}
 	</select>
 	
 		<!-- 1이면 이미 좋아요 한거 0이면 좋아요 안한거 -->
 	<!--0일때 좋아요 실행
 	좋아요 버튼 <마이페이지 내에 정렬 때문에 시퀀스로 고유키 주는 걸로 수정>  -->
 	<insert id="insertPostLove" parameterType="Love"> 
-		INSERT INTO LOVE VALUES(SEQ_LOVE.CURRVAL,#{memberId}, #{pno})
+		INSERT INTO LOVE VALUES(SEQ_LOVE.NEXTVAL,#{memberId}, #{pNo})
 	</insert>
 	
 	<!-- 1일때 좋아요 취소 실행
 	좋아요 취소 -->
 	<delete id="deletePostLove" parameterType="Love"> 
 		DELETE FROM LOVE 
-		WHERE MEMBER_ID = #{memberId} AND PNO = #{pno}
+		WHERE MEMBER_ID = #{memberId} AND PNO = #{pNo}
 	</delete>
 	
 </mapper>

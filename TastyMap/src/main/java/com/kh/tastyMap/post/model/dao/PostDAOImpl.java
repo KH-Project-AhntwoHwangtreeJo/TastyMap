@@ -88,16 +88,12 @@ public class PostDAOImpl implements PostDAO {
 	@Override
 	public Post postDetail(int pNo) {
 		
-		System.out.println("postDAO detail pNo : " + pNo);
-		
 		return sqlSession.selectOne("postMapper.postDetail", pNo);
 	}
 	
 	// post 상세페이지 사진 
 	@Override
 	public List postDetailPhoto(int pNo) {
-		
-		System.out.println("postDAO photo pNo : " + pNo);
 		
 		return sqlSession.selectList("postMapper.postDetailPicture", pNo);
 	}
@@ -106,6 +102,13 @@ public class PostDAOImpl implements PostDAO {
 	public List<PostComment> commemtList(int pno) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+
+	@Override
+	public int updatePCNT(int pNo) {
+		return sqlSession.update("postMapper.updatePCNT", pNo);
 	}
 
 }

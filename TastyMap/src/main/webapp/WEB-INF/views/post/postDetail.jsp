@@ -52,65 +52,9 @@
         <br>
       </div>
      
-<!-- 지도  -->
-
-<!-- <div id="map" class="carousel slide col-lg-8 col-lg-offset-4 col-md-10 col-md-offset-4 col-xs-2" style="width:87%;height:200px; " ></div>
-
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f71cfabf5739c195830217cd92296d03"></script>
-<script>
-   var container = document.getElementById('map');
-   var options = {
-      center: new kakao.maps.LatLng(33.450701, 126.570667),
-      level: 3
-   };
-
-   var map = new kakao.maps.Map(container, options);
-</script> -->
-
 <div id="mapapi" class="carousel slide col-lg-8 col-lg-offset-4 col-md-10 col-md-offset-4 col-xs-2" style="width:87%;height:200px; "></div> 
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f71cfabf5739c195830217cd92296d03&libraries=services"></script>
 
-<script>
-var mapContainer = document.getElementById('mapapi'), // 지도를 표시할 div 
-    mapOption = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };  
-
-// 지도를 생성합니다    
-var map = new kakao.maps.Map(mapContainer, mapOption); 
-
-// 주소-좌표 변환 객체를 생성합니다
-var geocoder = new kakao.maps.services.Geocoder();
-
-// 주소로 좌표를 검색합니다
-geocoder.addressSearch("${post.address}", function(result, status) {
-
-    // 정상적으로 검색이 완료됐으면 
-     if (status === kakao.maps.services.Status.OK) {
-
-        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-        // 결과값으로 받은 위치를 마커로 표시합니다
-        var marker = new kakao.maps.Marker({
-            map: map,
-            position: coords
-        });
-
-        // 인포윈도우로 장소에 대한 설명을 표시합니다
-        var infowindow = new kakao.maps.InfoWindow({
-            content: '<div style="width:150px;text-align:center;padding:6px 0;">"${post.rname}"</div>'
-        });
-        infowindow.open(map, marker);
-
-        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-        map.setCenter(coords);
-    } 
-});    
-</script>
-
-<!-- 지도 끝-->
 
      
 <!-- 작성자 설명 란 -->
@@ -118,8 +62,28 @@ geocoder.addressSearch("${post.address}", function(result, status) {
           <div class="col-md-8 ftco-animate">
             <br>
             <h4 class="mb-3" style="float: left;"> ${ post.nickname } </h4> 
-            <button type="button" class="btn btn-outline-danger" style="float: right;">신고</button>
-            <button type="button" class="btn btn-outline-info" style="float: right; margin-right: 5px;">좋아요 </button> 
+            
+            <!--해당 페이지 출력 기능-->
+            <img onclick="window.print()" border="0" src="${pageContext.request.contextPath}/resources/images/print/print.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;" />
+                        
+            <!-- 신고 이미지 -->
+            <c:if test="${ map.pstatus eq 'N' }">
+            <img id="postreportimage" onclick="changePostReport();" border="0" src="${pageContext.request.contextPath}/resources/images/report/siren1.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;">
+      		</c:if>
+            <c:if test="${ map.pstatus eq 'Y' }">
+            <img id="postreportimage" onclick="changePostReport();" border="0" src="${pageContext.request.contextPath}/resources/images/report/siren2.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;">
+      		</c:if>
+                       
+            <!-- 좋아요 이미지 -->
+            <c:if test="${ map.status eq 'N' }">
+            <img id="loveimage" onclick="changeLove();" border="0" src="${pageContext.request.contextPath}/resources/images/heart/heart1.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;">
+      		</c:if>
+            <c:if test="${ map.status eq 'Y' }">
+            <img id="loveimage" onclick="changeLove();" border="0" src="${pageContext.request.contextPath}/resources/images/heart/heart2.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;">
+      		</c:if>
+      		
+      		
+      		
             <br>
             <hr/>
             <p>${post.PContent}</p>
@@ -175,6 +139,105 @@ geocoder.addressSearch("${post.address}", function(result, status) {
       </div>
     </section> <!-- .section -->
 
+	<script type="text/javascript">
+	// 좋아요 버튼
+	  function changeLove() {
+		   console.log("Post 번호 : " + pNo);
+			console.log("아이디 : " + memberId); 
+			
+			var memberId = "${member.memberId}" ;
+			 var pNo = "${post.PNo}";
+			  console.log("Post 번호 : " + pNo);
+				console.log("아이디 : " + memberId); 
+			  //var state =0;
+	    		$.ajax({
+	    			url :'${pageContext.request.contextPath}/love/postLove.do',
+	    			data : { pNo : pNo, memberId : memberId }, 
+	    			dataType : 'json',  
+	    			success : function(data){
+	    				if(data.status == "Y"){
+	    					   document.getElementById('loveimage').src="${pageContext.request.contextPath}/resources/images/heart/heart2.png"; 
+	    				}else{
+	    					   document.getElementById('loveimage').src="${pageContext.request.contextPath}/resources/images/heart/heart1.png";
+	    				}
+	    				alert(data.msg);		
+	    			},error : function(req, status, error) {
+	    				console.log(req);
+	    				console.log(status);
+	    				console.log(error);
+	   				alert('에러임');		
+	    			}
+	   		});
+	   	}   
+	  
+  	// 게시글 신고
+		function changePostReport() {
+			
+			var memberId = "${member.memberId}";
+			var pNo = "${post.PNo}";
+			
+			$.ajax({
+				url : '${pageContext.request.contextPath}/report/insertPostReport.do',
+				data : { pNo : pNo, memberId : memberId },
+				dataType : 'json',
+				success : function(data) {
+					// 메세지 출력			
+					alert(data.pmsg);
+					document.getElementById('postreportimage').src="${pageContext.request.contextPath}/resources/images/report/siren2.png";
+				}, error : function(req, qstatus, error) {
+					console.log(req);
+					console.log(qstatus);
+					console.log(error);
+					alert('에러입니다.');
+				}
+				
+			});
+		}	  
+	 </script>  
+	 
+	 <!-- 지도 시작 -->
+	 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f71cfabf5739c195830217cd92296d03&libraries=services"></script>
+	
+	<script>
+	var mapContainer = document.getElementById('mapapi'), // 지도를 표시할 div 
+	    mapOption = {
+	        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+	        level: 3 // 지도의 확대 레벨
+	    };  
+	
+	// 지도를 생성합니다    
+	var map = new kakao.maps.Map(mapContainer, mapOption); 
+	
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
+	
+	// 주소로 좌표를 검색합니다
+	geocoder.addressSearch("${post.address}", function(result, status) {
+	
+	    // 정상적으로 검색이 완료됐으면 
+	     if (status === kakao.maps.services.Status.OK) {
+	
+	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+	
+	        // 결과값으로 받은 위치를 마커로 표시합니다
+	        var marker = new kakao.maps.Marker({
+	            map: map,
+	            position: coords
+	        });
+	
+	        // 인포윈도우로 장소에 대한 설명을 표시합니다
+	        var infowindow = new kakao.maps.InfoWindow({
+	            content: '<div style="width:150px;text-align:center;padding:6px 0;">"${post.rname}"</div>'
+	        });
+	        infowindow.open(map, marker);
+	
+	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	        map.setCenter(coords);
+	    } 
+	});    
+	</script>
+	
+	<!-- 지도 끝-->
       
     <!-- footer 시작 -->
 <c:import url="/views/common/footer.jsp"/>
