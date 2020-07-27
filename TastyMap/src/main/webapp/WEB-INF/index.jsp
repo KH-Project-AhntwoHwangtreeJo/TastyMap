@@ -649,7 +649,7 @@
 				for(var i in list) {
 					var html = '<div class="col-md-4">' + 
 			    	        		'<div class="listing-wrap img rounded d-flex align-items-end"' + 
-			    	        		'style="background-image: url(/tastyMap/resources/images/res/res2.jpg);">' + 
+			    	        		'style="background-image: url(${pageContext.request.contextPath}/resources/upload/post/' + list[i].prenamedname + ');">' + 
 			            			'<div class="location">' + 
 			            				'<span class="rounded">' + list[i].address + '</span>' + 
 			            			'</div>' + 
@@ -679,20 +679,22 @@
 				var $influencer = $('.ftco-section.ftco-no-pt>.container>.row.d-flex')[0];
 				
 				for(var i in list) {
+					
 					var html1 = '<div class="col-md-3 d-flex ftco-animate">' +  
 		    		          	'<div class="blog-entry justify-content-end">' + 
 		    		              '<div class="text">' +  
-		    		              	'<a href="blog-single.html" class="block-20 img" style="background-image: url(/tastyMap/resources/images/res/' + list[i].prenameName + ');">' + 
+		    		              	'<a href="blog-single.html" class="block-20 img" style="background-image: url(${pageContext.request.contextPath}/resources/upload/post/' + list[i].prenamedName + ');">' + 
 		    			              '</a>' + 
 		    		                '<h3 class="heading"><a href="#">' + list[i].pcontent + '</a></h3>' + 
 		    		                '<div class="meta mb-3">' + 
-		    		                  '<div><a href="#">' + list[i].date + '</a></div>' + 
-		    		                  '<div><a href="#">' + list[i].nickname + '</a></div>' + 
+		    		                  '<div><a href="#">' + formatDate(taskDate(list[i].pdate)) + '</a></div>' + 
+		    		                  '<div><a href="#">' + list[i].nickName + '</a></div>' + 
 		    		                  '<div><a href="#" class="meta-chat"><span class="icon-chat"></span> ' + list[i].pc_cnt + '</a></div>' + 
 		    		                '</div>' + 
 		    		              '</div>' + 
 		    		            '</div>' + 
 		    		          '</div>';
+		    		          console.log($(list[i].pDate));
 			    	$($influencer).append($(html1)[0]);
 			    	
 				}
@@ -765,6 +767,28 @@
 			}
 		});
 	});
+	
+	function taskDate(dateMilli) {
+	    var d = (new Date(dateMilli) + '').split(' ');
+	    d[2] = d[2] + ',';
+
+	    return [d[0], d[1], d[2], d[3]].join(' ');
+	}
+	
+	function formatDate(date) {
+	    var d = new Date(date),
+	        month = '' + (d.getMonth() + 1),
+	        day = '' + d.getDate(),
+	        year = d.getFullYear();
+
+	    if (month.length < 2) 
+	        month = '0' + month;
+	    if (day.length < 2) 
+	        day = '0' + day;
+
+	    return [year, month, day].join('/');
+	}
+
 	
 	function btnTitle(obj) {
 		

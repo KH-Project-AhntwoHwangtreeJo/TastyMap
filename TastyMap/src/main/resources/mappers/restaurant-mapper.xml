@@ -25,8 +25,8 @@
 	</select>
 
 	<!-- 음식점 Top9 (조현민) -->
-	<select id="selectTop8" resultType="Restaurant">
-		SELECT A.*, NAME.PRENAMEDNAME
+	<select id="selectTop8" resultType="RestaurantList">
+		SELECT A.RNAME, SUBSTR(A.ADDRESS, 1, 7) "ADDRESS", NAME.PRENAMEDNAME
 		FROM (SELECT ROUND(AVG_STAR, 1) "STAR", R.*
 		      FROM (
 		               SELECT AVG(STAR) "AVG_STAR",COUNT(RNO), RNO

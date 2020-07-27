@@ -11,7 +11,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
-
+	
+	<!--Chrome, Safari, IE -->
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.png" type="image/x-icon">
+	<!-- Firefox, Opera  -->
+	<link rel="icon" href="${pageContext.request.contextPath}/resources/images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/animate.css">
     
