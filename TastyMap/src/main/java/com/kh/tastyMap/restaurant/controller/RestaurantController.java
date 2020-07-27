@@ -82,10 +82,6 @@ public class RestaurantController {
 		int totalContent = restaurantService.selectRestaurantTotal();
 		
 //		String pageBar = Utils.getPageBar(totalContent, cPage, numPerPage, "restaurantAllList.do");
-
-		System.out.println("k" + kList);
-		System.out.println("c" + cList);
-		System.out.println("j" + jList);
 		
 		model.addAttribute("RList", RList);
 		model.addAttribute("kList", kList);
@@ -97,7 +93,7 @@ public class RestaurantController {
 		
 		
 		
-	return kList;
+	return RList;
 	}
 	
 	@Autowired
@@ -128,14 +124,14 @@ public class RestaurantController {
 		return list;
 	}
 
-	@RequestMapping("/restaurant/searchBar")
-	public List searchBar(@RequestParam String keyword, Restaurant restaurant, Model model) {
+	@RequestMapping("/restaurant/searchBar.do")
+	public String searchBar(@RequestParam String keyword, Restaurant restaurant, Model model) {
 		
 		List<Map<String, String>> list = restaurantService.searchBar();
 		
 		model.addAttribute("list",list);
 		
-		return list;
+		return "/restaurant/restaurantAllList";
 	}
 	
   // Restaurant Detail Page

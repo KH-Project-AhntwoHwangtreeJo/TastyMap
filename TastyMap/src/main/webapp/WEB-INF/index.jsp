@@ -20,13 +20,13 @@
           	<div class="text text-center w-100">
 				<h1 class="mb-4">Find Restaurant <br>Where You Want to Go!</h1>
 				<div class="search_form" style="background: #fff; border-radius: 5px; border: solid #d4ca68;">
-					<form action="#">
+					<form action="${pageContext.request.contextPath}/restaurant/searchBar.do" id="searchForm" method="get">
 						<div class="row align-items-center">
 							<div class="col-10">
 								<div class="input_field">
-									<input type="text" placeholder="What's your favorite food?  어떤 음식을 좋아하시나요?"
-										style="width:100%; height:30px; padding: 15px; border: none;"
-									>
+									<input type="text" id="keyword" name="keyword" 
+										   placeholder="What's your favorite food?  어떤 음식을 좋아하시나요?"
+										   style="width:100%; height:30px; padding: 15px; border: none;">
 								</div>
 							</div>
 							<div class="col-2">
@@ -634,5 +634,145 @@
     <section class="ftco-section" style="padding:1em 0;"></section>
     
     <c:import url="views/common/footer.jsp"/>
+    
+    <script>
+    $(function() {
+		$.ajax({
+			url : '${pageContext.request.contextPath}/restaurant/top8.do',
+			type : 'get',
+			// data : { g}
+			success : function(list) {
+				console.log(list);
+				
+				var $tab_content = $('.ftco-section-top8>.container>.row')[0];
+				
+				for(var i in list) {
+					var html = '<div class="col-md-4">' + 
+			    	        		'<div class="listing-wrap img rounded d-flex align-items-end"' + 
+			    	        		'style="background-image: url(/tastyMap/resources/images/res/res2.jpg);">' + 
+			            			'<div class="location">' + 
+			            				'<span class="rounded">' + list[i].address + '</span>' + 
+			            			'</div>' + 
+			            			'<div class="text">' + 
+			            				'<h3><a href="#"> '+ list[i].rname +' </a></h3>' + 
+			            				'<a href="#" class="btn-link">자세히 <span class="ion-ios-arrow-round-forward"></span></a>' + 
+			            			'</div>' +
+			            		'</div>' + 
+			            	'</div>';
+			    	$tab_content.append($(html)[0]);
+			    	
+				}
+			}, error : function() {
+				alert("음식점 top 8 조회 실패");
+			}
+		});
+	});
+	
+	$(function() {
+		$.ajax({
+			url : '${pageContext.request.contextPath}/restaurant/influencer.do',
+			type : 'get',
+			// data : { g}
+			success : function(list) {
+				console.log(list);
+				
+				var $influencer = $('.ftco-section.ftco-no-pt>.container>.row.d-flex')[0];
+				
+				for(var i in list) {
+					var html1 = '<div class="col-md-3 d-flex ftco-animate">' +  
+		    		          	'<div class="blog-entry justify-content-end">' + 
+		    		              '<div class="text">' +  
+		    		              	'<a href="blog-single.html" class="block-20 img" style="background-image: url(/tastyMap/resources/images/res/' + list[i].prenameName + ');">' + 
+		    			              '</a>' + 
+		    		                '<h3 class="heading"><a href="#">' + list[i].pcontent + '</a></h3>' + 
+		    		                '<div class="meta mb-3">' + 
+		    		                  '<div><a href="#">' + list[i].date + '</a></div>' + 
+		    		                  '<div><a href="#">' + list[i].nickname + '</a></div>' + 
+		    		                  '<div><a href="#" class="meta-chat"><span class="icon-chat"></span> ' + list[i].pc_cnt + '</a></div>' + 
+		    		                '</div>' + 
+		    		              '</div>' + 
+		    		            '</div>' + 
+		    		          '</div>';
+			    	$($influencer).append($(html1)[0]);
+			    	
+				}
+				
+				var counter = function() {
+					
+					$('#section-counter, .hero-wrap, .ftco-counter').waypoint( function( direction ) {
+
+						if( direction === 'down' && !$(this.element).hasClass('ftco-animated') ) {
+
+							var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',')
+							$('.number').each(function(){
+								var $this = $(this),
+									num = $this.data('number');
+									console.log(num);
+								$this.animateNumber(
+								  {
+								    number: num,
+								    numberStep: comma_separator_number_step
+								  }, 7000
+								);
+							});
+							
+						}
+
+					} , { offset: '95%' } );
+
+				}
+				counter();
+
+
+				var contentWayPoint = function() {
+					var i = 0;
+					$('.ftco-animate').waypoint( function( direction ) {
+
+						if( direction === 'down' && !$(this.element).hasClass('ftco-animated') ) {
+							
+							i++;
+
+							$(this.element).addClass('item-animate');
+							setTimeout(function(){
+
+								$('body .ftco-animate.item-animate').each(function(k){
+									var el = $(this);
+									setTimeout( function () {
+										var effect = el.data('animate-effect');
+										if ( effect === 'fadeIn') {
+											el.addClass('fadeIn ftco-animated');
+										} else if ( effect === 'fadeInLeft') {
+											el.addClass('fadeInLeft ftco-animated');
+										} else if ( effect === 'fadeInRight') {
+											el.addClass('fadeInRight ftco-animated');
+										} else {
+											el.addClass('fadeInUp ftco-animated');
+										}
+										el.removeClass('item-animate');
+									},  k * 50, 'easeInOutExpo' );
+								});
+								
+							}, 100);
+							
+						}
+
+					} , { offset: '95%' } );
+				};
+				contentWayPoint();
+
+			}, error : function() {
+				alert("Influencer 8 조회 실패");
+			}
+		});
+	});
+	
+	function btnTitle(obj) {
+		
+        $('#keyword').val($(obj).text());
+        $('#searchForm').submit();
+
+     }
+    
+    </script>
 	</body>
 </html>

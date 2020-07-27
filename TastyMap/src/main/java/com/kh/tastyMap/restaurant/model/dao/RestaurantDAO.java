@@ -9,8 +9,6 @@ import com.kh.tastyMap.restaurant.model.vo.RestaurantList;
 
 public interface RestaurantDAO {
 
-	List<Map<String, String>> selectRestaurantList(int cPage, int numPerPage);
-
 
     int insertRestaurant(Restaurant restaurant);
 
