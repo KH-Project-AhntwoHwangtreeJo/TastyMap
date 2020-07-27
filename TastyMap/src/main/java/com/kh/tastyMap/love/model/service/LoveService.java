@@ -1,5 +1,7 @@
 package com.kh.tastyMap.love.model.service;
 
+import java.util.Map;
+
 import com.kh.tastyMap.love.model.vo.Love;
 
 public interface LoveService {
@@ -11,7 +13,7 @@ public interface LoveService {
 	 * @param bookmark
 	 * @return
 	 */
-	int clickLove(Love love);
+	Map<String, Object> clickLove(Love love);
 	
 	/**
 	 * 마이페이지에서 게시글 좋아요 리스트 출력
@@ -19,5 +21,7 @@ public interface LoveService {
 	 * @return
 	 */
 	Love selectMyLoveList(String memberId);
+	
+	int selectLove(Love love);
 
 }

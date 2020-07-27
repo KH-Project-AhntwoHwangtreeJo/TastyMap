@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,17 +19,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.kh.tastyMap.post.model.exception.PostException;
+import com.kh.tastyMap.love.model.service.LoveService;
+import com.kh.tastyMap.love.model.vo.Love;
 import com.kh.tastyMap.post.model.service.PostService;
 import com.kh.tastyMap.post.model.vo.Picture;
 import com.kh.tastyMap.post.model.vo.Post;
 import com.kh.tastyMap.post.model.vo.PostRequest;
+import com.kh.tastyMap.report.model.service.ReportService;
+import com.kh.tastyMap.report.model.vo.Report;
 
 @Controller
 public class PostController {
 	
 	@Autowired
 	PostService postService;
+	@Autowired
+	LoveService loveService;
+	@Autowired
+	ReportService reportService;
 	
 	@RequestMapping("/post/insertPost.do")
 	public void insertPost() {
@@ -161,19 +170,65 @@ public class PostController {
 		System.out.println("ggg");
 		return "post/resAddress";
 	}
-	// post 상세 페이지
+	
+	// post 상세페이지
 	@RequestMapping("/post/postDetail.do")
-	public String selectOne(@RequestParam int pNo, Model model) {
-		
+	public String selectOne(@RequestParam int pNo, Model model, @RequestParam String memberId) {
+		// 1. 게시글 정보
+		// 2. 게시글에 대한 사진 리스트
+		// 3. 특정 유저의 해당 게시글 좋아요 여부 조회
+		// 4. 특정 유저의 해당 게시글 신고 여부
+		//--------------------------------------//
+		// <변수 선언부 > 
+		// 1. 포스트 기타 정보 및 사진 정보 (선언과 동시에 실행) 
 		Post p = postService.postDetail(pNo);
+		
+		// 2. 사진 리스트(선언과 동시에 실행)
 		List postPhoto = postService.postDetailPhoto(pNo);
+		// 3. 좋아요 여부 조회 / 4. 신고여부 조회
+		Map<String, Object> map = new HashMap<String, Object>(); // 좋아요 조회용
+
 		
-		System.out.println("controller postPhoto : " + postPhoto);
-		System.out.println("controller p : " + p);
+		String status; // 좋아요 조회용 결과를 받아올 변수
+		String pstatus; // 포스트 신고 조회용  결과를 받아올 변수
+		//-------------------------------------//
+	
+		// <변수 실행부>
+		Love love = new Love(memberId, pNo); // 좋아요 조회용
+		Report report = new Report(memberId, pNo); // 포스트 신고 조회용
+		postService.updatePCNT(pNo);
+
+		int result= loveService.selectLove(love); // 좋아요 조회용
+
+		int presult = reportService.selectPostReport(report); // 포스트 신고 조회용
 		
-		model.addAttribute("post", p)
-			 .addAttribute("postDetailPhotoList", postPhoto);
+		// 좋아요 조회 결과에 따른 상태 선언 조건문
+		if (result == 0) { // SELECT해서 COUNT 한 결과가 없을 때
+			status = "N"; // N : DB에 있다.
+		} else if(result == 1) { // SELECT 해서 COUNT 한 결과가 있을 때
+			status = "Y"; // Y : DB에 있다.
+		} else {
+			status="null";
+		}
 		
+		
+		  // 게시글 신고 조회 조건문 
+		if (presult == 0) { // SELECT 해서 COUNT 한 결과가 없을때 (신고 안한거) -게시글 
+			pstatus = "N"; 
+		} else if(presult == 1) { // SELECT 해서 COUNT 한 결과가 있을 때 (신고 한거) - 게시글 
+			pstatus = "Y"; 
+		} else { 
+			pstatus = "null"; 
+		}
+		 
+		
+		map.put("status", status); // 좋아요 결과 넣어줌
+		map.put("pstatus", pstatus); // 게시글 신고 결과 넣어줌
+		
+		model.addAttribute("post", p) // 포스트 기본 정보
+			 .addAttribute("postDetailPhotoList", postPhoto) // 포스트 내 사진 정보
+			 .addAttribute("map", map); // 좋아요 정보 & 게시글 신고 정보
+
 		return "post/postDetail";
 			
 	}

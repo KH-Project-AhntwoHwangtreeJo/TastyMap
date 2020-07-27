@@ -7,12 +7,28 @@ import com.kh.tastyMap.report.model.vo.Report;
 public interface ReportDAO {
 	
 	/**
+	 * 게시글 신고 조회
+	 * reportType=='P'
+	 * @param report
+	 * @return
+	 */
+	int selectPostReport(Report report);
+	
+	/**
 	 * 게시글 신고하기
 	 * reportType=='P'
 	 * @param report
 	 * @return
 	 */
 	int insertPostReport(Report report);
+	
+	/**
+	 * 댓글 신고 조회
+	 * reportType=='C'
+	 * @param report
+	 * @return
+	 */
+	int selectCommentReport(Report report);
 	
 	/**
 	 * 댓글 신고하기

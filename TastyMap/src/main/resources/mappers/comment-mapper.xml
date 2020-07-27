@@ -4,6 +4,31 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="commentMapper">
 	
+	<!-- ●댓글 레벨별 조회 -->
+	<select id="selectPcomment" parameterType="PostComment" resultType="POSTCOMMENT">
+		SELECT *, LEVEL
+		FROM  POST_COMMENT
+		START WITH PARENTKEY = 0,  <!-- 최상위노드 설정 -->
+		CONNECT BY PRIOR PARENTKEY = COMMENT_SEQ <!-- 부모노드와 자식노드 연결 -->
+	</select>
+	
+	<!-- ●댓글 등록 -->
+	<insert id="insertPostComment" parameterType="PostComment" >  
+		INSERT INTO POST_COMMENT
+		VALUES(SEQ_CNO.NEXTVAL, #{pNo}, #{ccontent}, DEFAULT, #{memberId}, DEFAULT,  #{parentKey})
+	</insert>
+	
+	<!-- ●댓글 수정 -->
+	<update id="updatePostComment" parameterType="PostComment">
+		UPDATE POST_COMMENT SET CCONTENT = #{ccontent}
+		WHERE CNO = #{cno}
+	</update>
+	
+	<!-- ●댓글 삭제 -->
+	<delete id="deletePostComment" parameterType="_int">
+		DELETE FROM POST_COMMENT 
+		WHERE CNO = #{cno}
+	</delete>
 	
 </mapper>
 
