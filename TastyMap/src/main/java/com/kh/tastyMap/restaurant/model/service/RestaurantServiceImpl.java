@@ -54,13 +54,6 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 
 	@Override
-	public List<Map<String, String>> selectRestaurantList(int cPage, int numPerPage) {
-		// TODO Auto-generated method stub
-		return restaurantDAO.selectRestaurantList(cPage, numPerPage);
-	}
-
-
-	@Override
 
 	public List<Map<String, String>> top8() {
 		// TODO Auto-generated method stub

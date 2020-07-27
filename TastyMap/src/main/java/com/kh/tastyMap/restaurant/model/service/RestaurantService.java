@@ -50,8 +50,6 @@ public interface RestaurantService {
 	 */
 	int deleteRestaurant(Restaurant restaurant);
 
-	List<Map<String, String>> selectRestaurantList(int cPage, int numPerPage);
-
 
 	List<Map<String, String>> top8();
 

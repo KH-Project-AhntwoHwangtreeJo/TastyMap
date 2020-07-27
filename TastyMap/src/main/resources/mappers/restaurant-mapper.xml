@@ -61,9 +61,9 @@
 	
 	<!-- searchBar (조현민) -->
 	<select id="searchBar" resultType="Restaurant">
-		SELECT * FROM RESTAURANT WHERE RNAME LIKE '%'||?||'%' 
-								OR RCONTENT LIKE '%'||?||'%' 
-								OR CATEGORY LIKE '%'||?||'%'
+		SELECT * FROM RESTAURANT WHERE RNAME LIKE '%'||#{rname}||'%' 
+								OR RCONTENT LIKE '%'||#{rcontent}||'%' 
+								OR CATEGORY LIKE '%'||#{category}||'%'
 	</select>
 
 	
