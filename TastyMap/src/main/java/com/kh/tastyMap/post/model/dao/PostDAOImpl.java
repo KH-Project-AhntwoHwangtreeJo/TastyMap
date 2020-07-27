@@ -84,7 +84,7 @@ public class PostDAOImpl implements PostDAO {
 		return null;
 	}
 
-	// post 상세페이지
+	// post 상세 페이지
 	@Override
 	public Post postDetail(int pNo) {
 		

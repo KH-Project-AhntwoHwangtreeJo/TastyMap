@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.kh.tastyMap.post.model.vo.Picture;
 import com.kh.tastyMap.restaurant.model.vo.Restaurant;
+import com.kh.tastyMap.restaurant.model.vo.RestaurantList;
 
 public interface RestaurantService {
 	
@@ -51,8 +52,6 @@ public interface RestaurantService {
 
 	List<Map<String, String>> selectRestaurantList(int cPage, int numPerPage);
 
-	int selectRestaurantTotalContents();
-
 
 	List<Map<String, String>> top8();
 
@@ -66,7 +65,9 @@ public interface RestaurantService {
 
 	List<Map<String, String>> restaurantChartTwo(int rno);
 
+	int selectRestaurantTotal();
 
+	List<RestaurantList> restaurantAllList(int cPage, int numPerPage);
 	
 	
 //	식당 상세 페이지 사진

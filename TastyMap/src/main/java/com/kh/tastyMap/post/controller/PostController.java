@@ -36,7 +36,8 @@ public class PostController {
 	
 	@RequestMapping("/post/insertPostEnd.do")
 	public String insertPost(PostRequest postRequst, Model model, HttpSession session, HttpServletRequest request,
-			@RequestParam(value="upFile", required= false) List<MultipartFile> upFile) {
+			@RequestParam(value="upFile", required= false) List<MultipartFile> upFile
+			) {
 		
 		//int star = Integer.parseInt(request.getParameter("star"));
 		System.out.println("화면에서 넘어온 값:" + postRequst);
@@ -76,11 +77,12 @@ public class PostController {
 		Post post = new Post();
 		post.setMember_Id(postRequst.getMember_Id());
 		post.setPContent(postRequst.getPContent());
-		post.setStar(postRequst.getStar());
+		post.setStar(postRequst.getStarValue());
 		post.setRNo(rno);
 		
 		System.out.println("DB에 입력되는 값:" + post);
 		
+	
 		
 		
 		//1. 파일을 저장할 경로 생성
@@ -159,8 +161,7 @@ public class PostController {
 		System.out.println("ggg");
 		return "post/resAddress";
 	}
-	
-	// post 상세페이지
+	// post 상세 페이지
 	@RequestMapping("/post/postDetail.do")
 	public String selectOne(@RequestParam int pNo, Model model) {
 		

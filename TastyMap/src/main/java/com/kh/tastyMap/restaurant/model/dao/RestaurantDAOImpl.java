@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.tastyMap.post.model.vo.Picture;
 import com.kh.tastyMap.restaurant.model.vo.Restaurant;
+import com.kh.tastyMap.restaurant.model.vo.RestaurantList;
 
 @Repository("restaurantDAO")
 public class RestaurantDAOImpl implements RestaurantDAO {
@@ -17,20 +18,16 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-	@Override
-	public List<Map<String, String>> selectRestaurantList(int cPage, int numPerPage) {
-		RowBounds rows = new RowBounds((cPage-1)*numPerPage, numPerPage);
-		
-		return sqlSession.selectList("restaurantMapper.selectrestaurantList", null, rows);
-	}
+//	@Override
+//	public List<Map<String, String>> selectRestaurantList(int cPage, int numPerPage) {
+//		RowBounds rows = new RowBounds((cPage-1)*numPerPage, numPerPage);
+//		
+//		return sqlSession.selectList("restaurantMapper.selectrestaurantList", null, rows);
+//	}
+//	
+
 	
-
-	@Override
-	public int selectRestaurantTotalContents() {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("restaurantMapper.selectRestaurantTotalContent");
-	}
-
+	
 	@Override
 	public int insertRestaurant(Restaurant restaurant) {
 		// TODO Auto-generated method stub
@@ -130,6 +127,19 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 	}
 
 
+	@Override
+	public List<RestaurantList> restaurantAllList(int cPage, int numPerPage) {
+		RowBounds rows = new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return sqlSession.selectList("restaurantMapper.restaurantAllList", rows);
+	}
+
+	@Override
+	public int selectRestaurantTotal() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("restaurantMapper.selectRestaurantTotal");
+	}
+
+	
 	
 			//사진입니다
 /*	@Override

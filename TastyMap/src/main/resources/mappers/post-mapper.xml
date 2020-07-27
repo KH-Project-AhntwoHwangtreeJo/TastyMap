@@ -9,29 +9,33 @@
       <result property="pRenamedName" column="PRENAMEDNAME"/>
    </resultMap>
    
+   	<!-- 식당이름 조회 -->
 	<select id="selectRestaurantName" parameterType="String" resultType="Restaurant">
 		SELECT * FROM RESTAURANT WHERE RNAME = #{rName}
 	</select>
 	
+	<!-- 식당이름이 등록안되있으면 추가 -->
 	<insert id="insertFirstRestaurant" parameterType="Map"> 
        INSERT INTO RESTAURANT(RNO, RNAME, ADDRESS) 
        VALUES(SEQ_RES.NEXTVAL, #{rNameParam}, #{addressParam})
 	</insert>
 	
+	<!-- 게시글 등록 -->
 	<insert id="insertPost" parameterType="Post"> 
        INSERT INTO POST(PNO, RNO, MEMBER_ID, PCONTENT, STAR) 
        VALUES(SEQ_POST.NEXTVAL, #{rNo}, #{member_Id}, #{pContent}, #{star})
 	</insert>
  
- 
+ 	<!-- 사진을 DB에 저장하기 위해 게시글 등록할 때 방금 들어간 번호를 가져옴 -->
  	<select id="selectCurrval" resultType="_int">
  		SELECT SEQ_POST.CURRVAL FROM DUAL
  	</select>
  
+ 	<!-- 게시글 등록 할때 첨부한 사진 insert -->
 	<insert id="insertPicture">
 <!-- 		<selectKey keyProperty="pNo_CURRVAL" resultType="_int" order="BEFORE">
 			SELECT SEQ_PNO.CURRVAL FROM DUAL
-		</selectKey> 
+		</selectKey> 하나씩 따로 작성해주는 방법과 두개를 한꺼번에 작성해주는 방법이 있음 
 -->
 			INSERT INTO PICTURE(PICTURE_NO, PNO, PORIGINNAME, PRENAMEDNAME, PLEVEL, UPLOADDATE)
 			VALUES(SEQ_PICTURE.NEXTVAL, #{pNo}, #{pOriginName}, #{pRenamedName}, #{pLevel}, SYSDATE)

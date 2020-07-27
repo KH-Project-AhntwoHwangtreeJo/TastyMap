@@ -68,11 +68,6 @@
 
 	
 
-	<select id="selectrestaurantList" resultType="Restaurant" >	
-		SELECT *
-		FROM RESTAURANT
-	</select>
-
 
 <!-- 북마크 확인  (조은성)-->
 <select id="selectBookmark"  parameterType="Bookmark" resultType="_int">
@@ -156,4 +151,45 @@ FROM(SELECT *
         WHERE WRITER."YEAR" >=50) "50대 이상"
 FROM DUAL
 </select>
+
+
+<!-- 식당 전체 리스트 조회  by 안예진-->
+	<select id = "restaurantAllList" resultType="RestaurantList">
+       SELECT R.* , PO."AVG_STAR", PO."PCNT", (SELECT PNO
+		FROM PICTURE
+		WHERE PNO = (SELECT MIN(PNO)
+		                      FROM POST
+		                      JOIN RESTAURANT USING(RNO)
+		                      WHERE RNO = PO.RNO
+		                     GROUP BY RNO, RNAME)
+		    AND <![CDATA[ROWNUM < 2]]>) "PIC_NO", (SELECT PORIGINNAME
+		FROM PICTURE
+		WHERE PNO = (SELECT MIN(PNO)
+		                      FROM POST
+		                      JOIN RESTAURANT USING(RNO)
+		                      WHERE RNO = PO.RNO
+		                     GROUP BY RNO, RNAME)
+		    AND <![CDATA[ROWNUM < 2]]>) "PIC_ORIGINNAME", (SELECT PRENAMEDNAME
+		FROM PICTURE
+		WHERE PNO = (SELECT MIN(PNO)
+		                      FROM POST
+		                      JOIN RESTAURANT USING(RNO)
+		                      WHERE RNO = PO.RNO
+		                     GROUP BY RNO, RNAME)
+		    AND <![CDATA[ROWNUM < 2]]>) "PRENAMEDNAME"
+		FROM 
+		        (SELECT RNO, ROUND(AVG(STAR),1) "AVG_STAR", COUNT(PNO) "PCNT"
+		        FROM POST
+		        GROUP BY RNO
+		        ORDER BY 1 , 2) PO
+		JOIN RESTAURANT R ON(R.RNO=PO.RNO)
+		WHERE RSTATUS='Y'AND ADMINSTATUS='C'
+	
+	</select>
+	
+	<select id="selectRestaurantTotal" resultType="_int">
+		SELECT COUNT(*)FROM RESTAURANT
+	</select>
+
+
 </mapper>

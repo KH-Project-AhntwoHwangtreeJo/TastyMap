@@ -5,12 +5,12 @@ import java.util.Map;
 
 import com.kh.tastyMap.post.model.vo.Picture;
 import com.kh.tastyMap.restaurant.model.vo.Restaurant;
+import com.kh.tastyMap.restaurant.model.vo.RestaurantList;
 
 public interface RestaurantDAO {
 
 	List<Map<String, String>> selectRestaurantList(int cPage, int numPerPage);
 
-    int selectRestaurantTotalContents();
 
     int insertRestaurant(Restaurant restaurant);
 
@@ -39,4 +39,8 @@ public interface RestaurantDAO {
     List<Map<String, String>> restaurantChartTwo(int rno);
 
 	List<Map<String, String>> searchBar();
+	
+	int selectRestaurantTotal();
+
+	List<RestaurantList> restaurantAllList(int cPage, int numPerPage);
 }

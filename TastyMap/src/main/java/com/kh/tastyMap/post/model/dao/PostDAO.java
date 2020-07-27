@@ -9,7 +9,7 @@ import com.kh.tastyMap.restaurant.model.vo.Restaurant;
 
 public interface PostDAO {
 	
-	
+	// 식당 이름 조회
 	Restaurant selectRestaurantName(String rName);	
 	
 	int insertFirstRestaurant(String rName, String address);

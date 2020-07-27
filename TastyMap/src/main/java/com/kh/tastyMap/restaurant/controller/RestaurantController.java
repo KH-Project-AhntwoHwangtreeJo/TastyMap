@@ -1,10 +1,11 @@
 package com.kh.tastyMap.restaurant.controller;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,13 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
+import com.kh.tastyMap.bookmark.model.service.BookmarkService;
+import com.kh.tastyMap.bookmark.model.vo.Bookmark;
 import com.kh.tastyMap.common.util.Utils;
 import com.kh.tastyMap.bookmark.model.service.BookmarkService;
 import com.kh.tastyMap.bookmark.model.vo.Bookmark;
 import com.kh.tastyMap.post.model.vo.Picture;
+import com.kh.tastyMap.post.model.vo.Picture;
 import com.kh.tastyMap.restaurant.model.service.RestaurantService;
 import com.kh.tastyMap.restaurant.model.vo.Restaurant;
+import com.kh.tastyMap.restaurant.model.vo.RestaurantList;
 
 @Controller
 public class RestaurantController {
@@ -50,12 +54,51 @@ public class RestaurantController {
 	 * 
 	 * return "restaurant/restaurantAllList"; }
 	 */
-	
-	
-	  @RequestMapping("/restaurant/restaurantAllList.do") public String
-	  Restaurant() { return "/restaurant/restaurantAllList"; }
-	 
-	
+	@RequestMapping("/restaurant/restaurantAllList.do")
+	public List restaurantAllList(
+			@RequestParam (value="cPage", required=false, defaultValue="1")
+			int cPage, Model model) {
+		int numPerPage = 5;
+
+		
+		List<RestaurantList> RList = restaurantService.restaurantAllList(cPage, numPerPage);
+			
+		System.out.println(RList);
+			
+		List<RestaurantList> kList = new ArrayList<>();
+		List<RestaurantList> cList = new ArrayList<>();
+		List<RestaurantList> jList = new ArrayList<>();
+		
+		for(RestaurantList r : RList) {
+			if("한식".equals(r.getCategory())){
+				kList.add(r);
+			} else if ("중식".equals(r.getCategory())) {
+				cList.add(r);
+			} else if ("일식".equals(r.getCategory())) {
+				jList.add(r);
+			}
+		}
+		
+		int totalContent = restaurantService.selectRestaurantTotal();
+		
+//		String pageBar = Utils.getPageBar(totalContent, cPage, numPerPage, "restaurantAllList.do");
+
+		System.out.println("k" + kList);
+		System.out.println("c" + cList);
+		System.out.println("j" + jList);
+		
+		model.addAttribute("RList", RList);
+		model.addAttribute("kList", kList);
+		model.addAttribute("cList", cList);
+		model.addAttribute("jList", jList);
+		model.addAttribute("totalContent", totalContent);
+		model.addAttribute("numPerPage", numPerPage);
+//		model.addAttribute("pageBar", pageBar);
+		
+		
+		
+	return kList;
+	}
 	
 	@Autowired
 	BookmarkService bookmarkService;
