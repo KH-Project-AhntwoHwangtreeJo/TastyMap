@@ -20,7 +20,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int checkIdDuplicate(String memberId) {
 		HashMap<String, Object> hmap = new HashMap<>();
-		hmap.put("userId", memberId);
+		hmap.put("memberId", memberId);
 		return memberDAO.checkIdDuplicate(hmap);
 	}
 

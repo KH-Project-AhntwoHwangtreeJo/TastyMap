@@ -55,45 +55,49 @@ public class RestaurantController {
 	 * return "restaurant/restaurantAllList"; }
 	 */
 	@RequestMapping("/restaurant/restaurantAllList.do")
-	public List restaurantAllList(
-			@RequestParam (value="cPage", required=false, defaultValue="1")
-			int cPage, Model model) {
-		int numPerPage = 5;
+	   public List restaurantAllList(
+	         @RequestParam (value="cPage", required=false, defaultValue="1")
+	         int cPage, Model model) {
+	      int numPerPage = 5;
 
-		
-		List<RestaurantList> RList = restaurantService.restaurantAllList(cPage, numPerPage);
-			
-		System.out.println(RList);
-			
-		List<RestaurantList> kList = new ArrayList<>();
-		List<RestaurantList> cList = new ArrayList<>();
-		List<RestaurantList> jList = new ArrayList<>();
-		
-		for(RestaurantList r : RList) {
-			if("한식".equals(r.getCategory())){
-				kList.add(r);
-			} else if ("중식".equals(r.getCategory())) {
-				cList.add(r);
-			} else if ("일식".equals(r.getCategory())) {
-				jList.add(r);
-			}
-		}
-		
-		int totalContent = restaurantService.selectRestaurantTotal();
-		
-//		String pageBar = Utils.getPageBar(totalContent, cPage, numPerPage, "restaurantAllList.do");
-		
-		model.addAttribute("RList", RList);
-		model.addAttribute("kList", kList);
-		model.addAttribute("cList", cList);
-		model.addAttribute("jList", jList);
-		model.addAttribute("totalContent", totalContent);
-		model.addAttribute("numPerPage", numPerPage);
-//		model.addAttribute("pageBar", pageBar);
-		
-		
-		
-	return RList;
+	      
+	      List<RestaurantList> RList = restaurantService.restaurantAllList(cPage, numPerPage);
+	         
+	      System.out.println(RList);
+	         
+	      List<RestaurantList> kList = new ArrayList<>();
+	      List<RestaurantList> cList = new ArrayList<>();
+	      List<RestaurantList> jList = new ArrayList<>();
+	      
+	      for(RestaurantList r : RList) {
+	         if("한식".equals(r.getCategory())){
+	            kList.add(r);
+	         } else if ("중식".equals(r.getCategory())) {
+	            cList.add(r);
+	         } else if ("일식".equals(r.getCategory())) {
+	            jList.add(r);
+	         }
+	      }
+	      
+	      int totalContent = restaurantService.selectRestaurantTotal();
+	      
+//	      String pageBar = Utils.getPageBar(totalContent, cPage, numPerPage, "restaurantAllList.do");
+
+	      System.out.println("k" + kList);
+	      System.out.println("c" + cList);
+	      System.out.println("j" + jList);
+	      
+	      model.addAttribute("RList", RList);
+	      model.addAttribute("kList", kList);
+	      model.addAttribute("cList", cList);
+	      model.addAttribute("jList", jList);
+	      model.addAttribute("totalContent", totalContent);
+	      model.addAttribute("numPerPage", numPerPage);
+//	      model.addAttribute("pageBar", pageBar);
+	      
+	      
+	      
+	   return kList;
 	}
 	
 	@Autowired
@@ -106,7 +110,6 @@ public class RestaurantController {
 		
 		List<Map<String, String>> list = restaurantService.top8();
 
-		//System.out.println(list);
 		model.addAttribute("list",list);
 
 		return list;
@@ -118,7 +121,6 @@ public class RestaurantController {
 		
 		List<Map<String, String>> list = restaurantService.influencerTop8();
 
-		//System.out.println(list);
 		model.addAttribute("list",list);
 
 		return list;

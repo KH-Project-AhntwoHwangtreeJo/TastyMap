@@ -73,18 +73,50 @@
         <!-- kList -->
         <!-- jList -->
         <!-- cist -->
-
+	
          <!-- 전체 -->
+         <div class="col-md-3 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <div class="text">
+              	<a href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=1&memberId=${member.memberId}" class="block-20 img" style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.prenamedname}');">
+	              </a>
+                <h3 class="heading">${A.rname}</h3>
+                <div class="meta mb-3">
+                  <div>${A.address}</div>
+                  <div>${A.address}</div>
+                  <div><span class="icon-chat"></span>${A.avg_star}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+         
          <div class="col-12">
               <div class="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-profile-tab" style="display:flex;">
            <c:forEach var="A" items="${ RList }">
        	<%-- 	<c:if test="${ A.category eq '한식' }"> --%>
-          <div class="col-md-3 d-flex ftco-animate">
+       	
+       	<div class="col-md-3 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end" id="nav-home" role="tabpanel" aria-labelledby="nav-profile-tab" style="display:flex;">
+              <div class="text">
+              	<a href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=1&memberId=${member.memberId}" class="block-20 img" style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.prenamedname}');">
+	              </a>
+                <h3 class="heading">${A.rname}</h3>
+                <div class="meta mb-3">
+                  <div>${A.address}</div><br />
+                  <div><span class="icon-chat"></span>${A.avg_star}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+       	
+       	
+       	
+          <%-- <div class="col-md-3 d-flex ftco-animate">
              <div class="blog-entry justify-content-end">
               <div class="text">         
                    <a href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=1&memberId=${member.memberId}" class="block-20 img"   id="trd" style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.prenamedname}');">
                  </a>
-             <%--     <img src="${pageContext.request.contextPath}/resources/upload/post/${A.prenamedname}" class="img-fluid" alt="Colorlib Template"style="width: 100%; height: 100%;" > --%>
+                 <img src="${pageContext.request.contextPath}/resources/upload/post/${A.prenamedname}" class="img-fluid" alt="Colorlib Template"style="width: 100%; height: 100%;" >
                 <h3 class="heading"><a href="#">${A.rname}</a></h3>
                 <h6 class="heading1" style="font-size:smaller;"><a href="#">${A.address}</a></h6>
                 <div class="meta mb-3">               
@@ -92,7 +124,12 @@
                 </div>            
               </div>
             </div>
-          </div>
+          </div> --%>
+          
+          
+          
+          
+          
      <%--      </c:if>  --%>
           </c:forEach>
           </div>

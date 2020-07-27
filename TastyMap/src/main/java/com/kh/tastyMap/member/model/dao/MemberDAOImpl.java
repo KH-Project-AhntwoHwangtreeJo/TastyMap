@@ -19,8 +19,7 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	@Override
 	public int checkIdDuplicate(HashMap<String, Object> hmap) {
-		sqlSession.selectOne("memberMapper.checkIdDuplicate", hmap);
-		
+		sqlSession.selectOne("memberMapper.checkIdDuplicate", hmap);	
 		return (int)hmap.get("result");
 	}
 
