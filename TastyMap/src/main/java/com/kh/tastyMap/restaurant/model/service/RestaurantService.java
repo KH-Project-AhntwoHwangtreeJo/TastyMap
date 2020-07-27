@@ -57,7 +57,8 @@ public interface RestaurantService {
 	List<Map<String, String>> top8();
 
 	List<Map<String, String>> influencerTop8();
-	
+
+	List<Map<String, String>> searchBar();
 	
 	List<Picture> pictureList(int rno);
 

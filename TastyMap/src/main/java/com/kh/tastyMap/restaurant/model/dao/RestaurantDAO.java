@@ -38,5 +38,5 @@ public interface RestaurantDAO {
 
     List<Map<String, String>> restaurantChartTwo(int rno);
 
-
+	List<Map<String, String>> searchBar();
 }

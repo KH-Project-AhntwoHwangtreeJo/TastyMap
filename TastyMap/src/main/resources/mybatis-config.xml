@@ -19,6 +19,7 @@
 		 <typeAlias type="com.kh.tastyMap.member.model.vo.Member" alias="Member"/>
 		 <typeAlias type="com.kh.tastyMap.love.model.vo.Love" alias="Love"/>
 		 <typeAlias type="com.kh.tastyMap.restaurant.model.vo.Restaurant" alias="Restaurant"/>
+		 <typeAlias type="com.kh.tastyMap.restaurant.model.vo.Influencer" alias="Influencer"/>
 		 <typeAlias type="com.kh.tastyMap.post.model.vo.Post" alias="Post"/>
 		 <typeAlias type="com.kh.tastyMap.post.model.vo.Picture" alias="Picture"/>
 		 <typeAlias type="com.kh.tastyMap.bookmark.model.vo.Bookmark" alias="Bookmark"/>

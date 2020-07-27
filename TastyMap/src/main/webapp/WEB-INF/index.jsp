@@ -8,7 +8,7 @@
  	
 <head>
 	<meta charset="UTF-8">
-	<c:import url="/views/common/header.jsp"/>
+	<c:import url="views/common/header.jsp"/>
 </head>
     
     <div class="hero-wrap" style="background-image: url('/tastyMap/resources/images/main/main.jpg');" data-stellar-background-ratio="0.5">
@@ -48,6 +48,7 @@
 				</a>
 			</div>
     </div>
+    <section class="ftco-section" style="padding:5em 0;"></section>
 
 
     <!-- <section class="ftco-section ftco-no-pb">
@@ -467,6 +468,8 @@
         </div>
     	</div>
     </section>
+    
+    <section class="ftco-section" style="padding:5em 0;"></section>
 
     <!-- <section class="ftco-section testimony-section bg-light">
       <div class="container">
@@ -623,121 +626,13 @@
           </div>
         </div>
         <div class="row d-flex">
-          <div class="col-md-3 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <div class="text">
-              	<a href="blog-single.html" class="block-20 img" style="background-image: url('/tastyMap/resources/images/res/res1.jpg');">
-	              </a>
-                <h3 class="heading"><a href="#">강남 브런치 맛집!!</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">2019년 10월 17일 </a></div>
-                  <div><a href="#">유정훈</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 5</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- <div class="col-md-3 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <div class="text">
-              	<a href="blog-single.html" class="block-20 img" style="background-image: url('/tastyMap/resources/images/image_2.jpg');">
-	              </a>
-                <h3 class="heading"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">October 17, 2019</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <div class="text">
-              	<a href="blog-single.html" class="block-20 img" style="background-image: url('/tastyMap/resources/images/image_3.jpg');">
-	              </a>
-                <h3 class="heading"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">October 17, 2019</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <div class="text">
-              	<a href="blog-single.html" class="block-20 img" style="background-image: url('/tastyMap/resources/images/image_4.jpg');">
-	              </a>
-                <h3 class="heading"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">October 17, 2019</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-              </div>
-            </div>
-		  </div>
-		  <div class="col-md-3 d-flex ftco-animate">
-			<div class="blog-entry justify-content-end">
-			<div class="text">
-				<a href="blog-single.html" class="block-20 img" style="background-image: url('/tastyMap/resources/images/image_1.jpg');">
-				</a>
-			  <h3 class="heading"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-			  <div class="meta mb-3">
-				<div><a href="#">October 17, 2019</a></div>
-				<div><a href="#">Admin</a></div>
-				<div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-			  </div>
-			</div>
-		  </div>
-		</div>
-		<div class="col-md-3 d-flex ftco-animate">
-			<div class="blog-entry justify-content-end">
-			<div class="text">
-				<a href="blog-single.html" class="block-20 img" style="background-image: url('/tastyMap/resources/images/image_2.jpg');">
-				</a>
-			  <h3 class="heading"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-			  <div class="meta mb-3">
-				<div><a href="#">October 17, 2019</a></div>
-				<div><a href="#">Admin</a></div>
-				<div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-			  </div>
-			</div>
-		  </div>
-		</div>
-		<div class="col-md-3 d-flex ftco-animate">
-			<div class="blog-entry justify-content-end">
-			<div class="text">
-				<a href="blog-single.html" class="block-20 img" style="background-image: url('/tastyMap/resources/images/image_3.jpg');">
-				</a>
-			  <h3 class="heading"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-			  <div class="meta mb-3">
-				<div><a href="#">October 17, 2019</a></div>
-				<div><a href="#">Admin</a></div>
-				<div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-			  </div>
-			</div>
-		  </div>
-		</div>
-		<div class="col-md-3 d-flex ftco-animate">
-			<div class="blog-entry justify-content-end">
-			<div class="text">
-				<a href="blog-single.html" class="block-20 img" style="background-image: url('/tastyMap/resources/images/image_4.jpg');">
-				</a>
-			  <h3 class="heading"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-			  <div class="meta mb-3">
-				<div><a href="#">October 17, 2019</a></div>
-				<div><a href="#">Admin</a></div>
-				<div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-			  </div>
-			</div>
-		  </div>
-		</div> -->
+         
         </div>
       </div>
     </section>		
-    <c:import url="/views/common/footer.jsp"/>
+    
+    <section class="ftco-section" style="padding:1em 0;"></section>
+    
+    <c:import url="views/common/footer.jsp"/>
 	</body>
 </html>

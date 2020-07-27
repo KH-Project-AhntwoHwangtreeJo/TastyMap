@@ -16,7 +16,7 @@
 		WHERE  RNO = #{rno}
 	</select>
 
-
+	<!-- 식당 상세 페이지 (사진 슬라이드) -->
 	 <select  id="PictureList" parameterType="_int" resultMap="PICTURE_NO">
 	SELECT PRENAMEDNAME
 	FROM PICTURE A
@@ -24,21 +24,47 @@
 	WHERE P.RNO=#{rno}
 	</select>
 
-	
+	<!-- 음식점 Top9 (조현민) -->
 	<select id="selectTop8" resultType="Restaurant">
-		SELECT ROUND(AVG_STAR, 1), R.*
-		FROM (
-        	    SELECT AVG(STAR) "AVG_STAR",COUNT(RNO), RNO
-            	FROM POST
-            	GROUP BY RNO
-            	ORDER BY 1 DESC, 2 DESC) S
-		JOIN RESTAURANT R ON(R.RNO=S.RNO)
-		<![CDATA[WHERE ROWNUM<10]]>
+		SELECT A.*, NAME.PRENAMEDNAME
+		FROM (SELECT ROUND(AVG_STAR, 1) "STAR", R.*
+		      FROM (
+		               SELECT AVG(STAR) "AVG_STAR",COUNT(RNO), RNO
+		               FROM POST P
+		               GROUP BY RNO
+		               ORDER BY 1 DESC, 2 DESC) S
+		      JOIN RESTAURANT R ON(R.RNO=S.RNO)
+		      <![CDATA[WHERE ROWNUM<10]]>) A
+		left JOIN (SELECT PC.*, P.RNO
+		FROM(
+		SELECT PRENAMEDNAME,PNO
+		FROM PICTURE 
+		WHERE PLEVEL=0) PC
+		JOIN POST P ON(P.PNO=PC.PNO)
+		JOIN (SELECT MIN(PNO) "PNO", RNO
+		FROM POST
+		GROUP BY RNO) MINPOST ON(MINPOST.PNO=PC.PNO) )NAME ON(NAME.RNO=A.RNO)
+		ORDER BY STAR DESC
 	</select>
-
-	<resultMap id="PICTURE_NO" type="map">
-      <result property="prenamedname" column="PRENAMEDNAME"/>
-   </resultMap>
+	
+	<!-- 인플루언서 Top8 (조현민) -->
+	<select id="influencerTop8" resultType="Influencer">
+		SELECT V_INF.*, PI.PRENAMEDNAME, NICKNAME, (SELECT COUNT(*)
+                    FROM POST_COMMENT
+                    WHERE PNO=1 AND CSTATUS = 'Y') PC_CNT
+		FROM V_INF
+		JOIN PICTURE PI ON(V_INF.PNO = PI.PNO)
+		JOIN MEMBER M ON(V_INF.MEMBER_ID = M.MEMBER_ID)
+		WHERE PLEVEL = 0
+		ORDER BY LOVECNT DESC
+	</select>
+	
+	<!-- searchBar (조현민) -->
+	<select id="searchBar" resultType="Restaurant">
+		SELECT * FROM RESTAURANT WHERE RNAME LIKE '%'||?||'%' 
+								OR RCONTENT LIKE '%'||?||'%' 
+								OR CATEGORY LIKE '%'||?||'%'
+	</select>
 
 	
 
@@ -47,21 +73,6 @@
 		FROM RESTAURANT
 	</select>
 
-</mapper>
-
-<!-- 식당 상세 페이지  조은성-->
-<select id="selectOneRestaurant" parameterType="_int" resultType="Restaurant">
-	SELECT * FROM RESTAURANT
-	WHERE  RNO = #{rno}
-</select>
-
-<!-- 식당 상세 페이지 (사진 슬라이드) 조은성 -->
- <select  id="PictureList" parameterType="_int" resultMap="PICTURE_NO">
-SELECT PRENAMEDNAME
-FROM PICTURE A
-JOIN POST P ON(A.PNO=P.PNO)
-WHERE P.RNO=#{rno}
-</select>
 
 <!-- 북마크 확인  (조은성)-->
 <select id="selectBookmark"  parameterType="Bookmark" resultType="_int">

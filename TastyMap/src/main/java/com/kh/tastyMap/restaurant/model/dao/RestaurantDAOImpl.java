@@ -81,15 +81,20 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 	@Override
 	public List<Map<String, String>> top8() {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("restaurantMapper.selectTop8", null);
+		return sqlSession.selectList("restaurantMapper.selectTop8");
 	}
 
 	@Override
 	public List<Map<String, String>> influencerTop8() {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("restaurantMapper.influencerTop8", null);
+		return sqlSession.selectList("restaurantMapper.influencerTop8");
 	}
 
+	@Override
+	public List<Map<String, String>> searchBar() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("restaurantMapper.searchBar");
+	}
 
 	@Override
 	public List<Picture> pictureList(int rno) {
@@ -111,15 +116,30 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 	}
 
 
+	@Override
+	public int deleteRestaurant(int restaurantNo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int deleteFile(int attNo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
 	
 			//사진입니다
 /*	@Override
 	public List<Picture> PictureList(int rno) {
 	
 		return sqlSession.selectOne("restaurantMapper.PictureList", rno);
-		*/
+		
 	}
-
+	*/
+	
 }
 	
 
