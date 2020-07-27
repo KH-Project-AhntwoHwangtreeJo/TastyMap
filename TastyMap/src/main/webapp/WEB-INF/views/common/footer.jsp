@@ -178,32 +178,32 @@
   
    
   <script>
-   $("#pop").popover({
-      html: true,
-      animation:true,
-      container : 'body',
-      placement : 'bottom',
-      content: function () {
-         return $('#popover-content').html();
-      }
-   });
-
-   // $('.select2').select2({
-   //    placeholder: 'Select',
-   //    width: '100%',
-   // });
-
-   function btnTitle(obj) {
-     //$('#keyword').val($(obj).text()).on('click', function() {
-     //    $('.boxed-btn2').click();
-     //    
-     //});
-      
-      $('#keyword').val($(obj).text());
-      $('#searchForm').submit();
-       //<%-- location.href="<%=request.getContextPath()%>/goalList.go; --%>
-     // $('#nav-profile-tab').click();
-   }   
+	   $("#pop").popover({
+	      html: true,
+	      animation:true,
+	      container : 'body',
+	      placement : 'bottom',
+	      content: function () {
+	         return $('#popover-content').html();
+	      }
+	   });
+	
+	   // $('.select2').select2({
+	   //    placeholder: 'Select',
+	   //    width: '100%',
+	   // });
+	
+	   function btnTitle(obj) {
+	     //$('#keyword').val($(obj).text()).on('click', function() {
+	     //    $('.boxed-btn2').click();
+	     //    
+	     //});
+	      
+	      $('#keyword').val($(obj).text());
+	      $('#searchForm').submit();
+	       //<%-- location.href="<%=request.getContextPath()%>/goalList.go; --%>
+	     // $('#nav-profile-tab').click();
+	   }   
    
     	$(function() {
     		$.ajax({
@@ -229,7 +229,7 @@
 				            		'</div>' + 
 				            	'</div>';
 				    	$tab_content.append($(html)[0]);
-				    	console.log(i.address);
+				    	
     				}
     			}, error : function() {
     				alert("음식점 top 8 조회 실패");
@@ -245,25 +245,90 @@
     			success : function(list) {
     				console.log(list);
     				
-    				var $tab_content = $('.ftco-section ftco-no-pt>.container>.row d-flex')[0];
+    				var $influencer = $('.ftco-section.ftco-no-pt>.container>.row.d-flex')[0];
     				
     				for(var i in list) {
-    					var html = '<div class="col-md-3 d-flex ftco-animate">' +  
+    					var html1 = '<div class="col-md-3 d-flex ftco-animate">' +  
 			    		          	'<div class="blog-entry justify-content-end">' + 
 			    		              '<div class="text">' +  
-			    		              	'<a href="blog-single.html" class="block-20 img" style="background-image: url(/tastyMap/resources/images/res/res1.jpg);">' + 
+			    		              	'<a href="blog-single.html" class="block-20 img" style="background-image: url(/tastyMap/resources/images/res/' + list[i].prenameName + ');">' + 
 			    			              '</a>' + 
-			    		                '<h3 class="heading"><a href="#">강남 브런치 맛집!!</a></h3>' + 
+			    		                '<h3 class="heading"><a href="#">' + list[i].pcontent + '</a></h3>' + 
 			    		                '<div class="meta mb-3">' + 
-			    		                  '<div><a href="#">2019년 10월 17일 </a></div>' + 
-			    		                  '<div><a href="#">유정훈</a></div>' + 
-			    		                  '<div><a href="#" class="meta-chat"><span class="icon-chat"></span> 5</a></div>' + 
+			    		                  '<div><a href="#">' + list[i].date + '</a></div>' + 
+			    		                  '<div><a href="#">' + list[i].nickname + '</a></div>' + 
+			    		                  '<div><a href="#" class="meta-chat"><span class="icon-chat"></span> ' + list[i].pc_cnt + '</a></div>' + 
 			    		                '</div>' + 
 			    		              '</div>' + 
 			    		            '</div>' + 
 			    		          '</div>';
-				    	$tab_content.append($(html)[0]);
+				    	$($influencer).append($(html1)[0]);
+				    	
     				}
+    				
+    				var counter = function() {
+    					
+    					$('#section-counter, .hero-wrap, .ftco-counter').waypoint( function( direction ) {
+
+    						if( direction === 'down' && !$(this.element).hasClass('ftco-animated') ) {
+
+    							var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',')
+    							$('.number').each(function(){
+    								var $this = $(this),
+    									num = $this.data('number');
+    									console.log(num);
+    								$this.animateNumber(
+    								  {
+    								    number: num,
+    								    numberStep: comma_separator_number_step
+    								  }, 7000
+    								);
+    							});
+    							
+    						}
+
+    					} , { offset: '95%' } );
+
+    				}
+    				counter();
+
+
+    				var contentWayPoint = function() {
+    					var i = 0;
+    					$('.ftco-animate').waypoint( function( direction ) {
+
+    						if( direction === 'down' && !$(this.element).hasClass('ftco-animated') ) {
+    							
+    							i++;
+
+    							$(this.element).addClass('item-animate');
+    							setTimeout(function(){
+
+    								$('body .ftco-animate.item-animate').each(function(k){
+    									var el = $(this);
+    									setTimeout( function () {
+    										var effect = el.data('animate-effect');
+    										if ( effect === 'fadeIn') {
+    											el.addClass('fadeIn ftco-animated');
+    										} else if ( effect === 'fadeInLeft') {
+    											el.addClass('fadeInLeft ftco-animated');
+    										} else if ( effect === 'fadeInRight') {
+    											el.addClass('fadeInRight ftco-animated');
+    										} else {
+    											el.addClass('fadeInUp ftco-animated');
+    										}
+    										el.removeClass('item-animate');
+    									},  k * 50, 'easeInOutExpo' );
+    								});
+    								
+    							}, 100);
+    							
+    						}
+
+    					} , { offset: '95%' } );
+    				};
+    				contentWayPoint();
+
     			}, error : function() {
     				alert("Influencer 8 조회 실패");
     			}
@@ -288,6 +353,13 @@
 			}
 		}
 	});  */
+	
+	function btnTitle(obj) {
+		
+         $('#keyword').val($(obj).text());
+         $('#searchForm').submit();
+
+      }
     </script>
 
 

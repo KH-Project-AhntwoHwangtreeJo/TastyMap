@@ -84,9 +84,17 @@ public class RestaurantController {
 
 		return list;
 	}
-	
-	
 
+	@RequestMapping("/restaurant/searchBar")
+	public List searchBar(@RequestParam String keyword, Restaurant restaurant, Model model) {
+		
+		List<Map<String, String>> list = restaurantService.searchBar();
+		
+		model.addAttribute("list",list);
+		
+		return list;
+	}
+	
   // Restaurant Detail Page
 	@RequestMapping("/restaurant/restaurantDatail.do")
 	public String RestaurantDetail(@RequestParam int rno, @RequestParam String memberId, Model model) {	

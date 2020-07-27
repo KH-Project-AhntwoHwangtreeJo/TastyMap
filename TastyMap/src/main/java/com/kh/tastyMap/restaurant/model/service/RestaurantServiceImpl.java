@@ -78,6 +78,12 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 
 	@Override
+	public List<Map<String, String>> searchBar() {
+		// TODO Auto-generated method stub
+		return restaurantDAO.searchBar();
+	}
+
+	@Override
 	public List<Picture> pictureList(int rno) {
 		return restaurantDAO.pictureList(rno);
 	}
