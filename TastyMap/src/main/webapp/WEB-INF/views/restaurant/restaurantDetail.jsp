@@ -142,13 +142,11 @@
                       <h6>조은성</h6>
                     </div>
                     <div class="comment-body">
-                      <button type="button" class="btn btn-outline-danger" style="float: right;">신고</button>
-                      
+                      <button type="button" class="btn btn-outline-danger" style="float: right;">신고</button>                    
                       <div class="meta">날짜시간</div>
                         <div class="col-md-11">이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??</div>
                         <br>
                     </div>
-
                     <img class="pt"src="images/person_1.jpg"  style="width: 200px; height: 200px;">
                     <hr>
                   </li>
