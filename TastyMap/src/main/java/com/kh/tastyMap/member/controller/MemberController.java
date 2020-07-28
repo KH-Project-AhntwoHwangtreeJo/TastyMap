@@ -14,6 +14,7 @@ import javax.inject.Inject;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -29,8 +30,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
 import com.kh.tastyMap.member.model.exception.MemberException;
 import com.kh.tastyMap.member.model.service.MemberService;
+import com.kh.tastyMap.member.model.vo.Follower;
 import com.kh.tastyMap.member.model.vo.Member;
 
 @SessionAttributes(value= {"member"})
@@ -48,25 +51,52 @@ public class MemberController {
    
    // 마이 갤러리 조회
    @RequestMapping("/member/myGallery.do")
-   public String selectOne(@RequestParam String memberId, Model model) {
-      
-      Member m = memberService.myGallery(memberId);
+   public String selectOne(@RequestParam String memberId, @RequestParam String followerId, Model model, HttpSession session) {
+	  // 변수 설명
+	  // memberId = 마이갤러리 주인 아이디
+	  // followerId = 세션의 아이디
+	   //-------------------------------------//
+	  // 1. 마이갤러리 유저 정보
+	  // 2. 마이갤러리 사진 리스트
+	  // 3. 포스트 개수, 팔로우 개수, 팔로워 개수
+	  // 4. 특정 유저의 팔로우 여부
+	  //--------------------------------------//
+	  // < 변수 선언부 >
+	  // 1. 마이갤러리 유저 정보
+      Member u = memberService.myGallery(memberId);
+      // 2. 마이갤러리 사진 리스트
       List photo = memberService.myGalleryPhoto(memberId);
+      // 3. 포스트 개수, 팔로우 개수, 팔로워 개수 
       Map<String, Object> cntMap = memberService.followAndPostCnt(memberId); 
+      // 4. 멤버가 유저를 팔로우한 여부 
+      Map<String, Object> map = new HashMap<String, Object>();
       
-//      System.out.println(cntMap.get("followerCnt")); 팔로워 카운트
-//      System.out.println(cntMap.get("followingCnt")); 팔로잉 카운트
-//      System.out.println(cntMap.get("myPostCnt")); 포스트 카운트
+            
+      String status; // 팔로우 했는지 결과를 받아올 변수 
+      //---------------------------------------//
+      // <변수 실행부>
+      Follower follower = new Follower(memberId, followerId); // 팔로우 조회용
+      int result = memberService.selectFollower(follower); // 팔로우 조회용
       
-      model.addAttribute("user", m)
-          .addAttribute("myGPhoto", photo)
+      // 팔로우 했는지 조회 결과에 따른 상태 선언 조건문 
+      if (result == 0) { // select해서 count 결과가 없을 때
+    	  status = "N"; // N : DB 에 없다.
+      } else if (result == 1) { // select 해서 count 한 결과가 있을 때
+    	  status = "Y"; // Y : DB 에 있다. 
+      } else {
+    	  status = "null";
+      }
+    
+      map.put("status", status); // 팔로우 결과 넣어줌
+      map.put("follower", follower); // 팔로우 객체에 있는 정보 맵에 넣어줌
+      
+      model.addAttribute("user", u)  // 마이갤러리 소유중인 user 의 정보
+          .addAttribute("myGPhoto", photo) // 마이갤러리에 사진 리스트 정보
+          .addAttribute("map", map) // 팔로우 정보
           .addAttribute("followerCnt", cntMap.get("followerCnt"))
           .addAttribute("followingCnt", cntMap.get("followingCnt"))
           .addAttribute("myPostCnt", cntMap.get("myPostCnt"));
         //                 jsp,              맵으로 가져온 카운트
-      
-//      System.out.println("controller cnt : " + cntMap); cntMap 에 들어간 거 확인
-//      System.out.println("controller photo : " + photo);
       
       return "post/myGallery";
    }
@@ -500,5 +530,18 @@ public class MemberController {
          
          
          return "myPage/myPage";
+      }
+      
+      @RequestMapping("member/clickFollower.do")
+      // ↓ ajax 사용해서 값만 여기로 보낼때 사용한다.
+      @ResponseBody  
+      public Map<String, Object> clickFollower(@RequestParam String memberId, @RequestParam String followerId, Model model, HttpSession session) {
+    	  Map<String, Object> map;
+    	  
+    	  Follower follower = new Follower(memberId, followerId);
+    	  
+    	  map = memberService.clickFollower(follower);
+    	  
+    	  return map;
       }
 }

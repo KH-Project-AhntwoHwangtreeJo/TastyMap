@@ -5,7 +5,7 @@ public interface LoveDAO {
 	
 	/**
 	 * 이미 해당 사용자가 좋아요 했는지 조회하는 기능
-	 * @param bookmark
+	 * @param love
 	 * @return
 	 */
 	int selectLoveOne(Love love);
@@ -13,7 +13,7 @@ public interface LoveDAO {
 	
 	/**
 	 * 게시글을 좋아요 하는 기능
-	 * @param bookmark
+	 * @param love
 	 * @return
 	 */
 	int insertLove(Love love);
@@ -21,7 +21,7 @@ public interface LoveDAO {
 	
 	/**
 	 * 게시글 좋아요를 취소하는 기능
-	 * @param bookmark
+	 * @param love
 	 * @return
 	 */
 	int deleteLove(Love love);

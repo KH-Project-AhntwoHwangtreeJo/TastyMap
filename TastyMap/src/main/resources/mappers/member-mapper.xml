@@ -38,7 +38,7 @@
 	
 	<!-- ●마이 갤러리페이지 조회용  -->
 	<select id="myGallery" parameterType="string" resultMap="memberMap">
-		SELECT NICKNAME, MCONTENT, MPHOTO
+		SELECT MEMBER_ID,NICKNAME, MCONTENT, MPHOTO
 		FROM MEMBER 
 		WHERE MEMBER_ID = #{memberId} AND MSTATUS = 'Y'
 	</select>

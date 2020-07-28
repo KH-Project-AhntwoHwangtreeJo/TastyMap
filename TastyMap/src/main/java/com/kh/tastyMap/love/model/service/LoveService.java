@@ -10,7 +10,7 @@ public interface LoveService {
 	 * - 이미 해당 게시글을 좋아요 했다면 취소
 	 * - 좋아요 한적 없으면 좋아요 추가
 	 *  
-	 * @param bookmark
+	 * @param love
 	 * @return
 	 */
 	Map<String, Object> clickLove(Love love);
