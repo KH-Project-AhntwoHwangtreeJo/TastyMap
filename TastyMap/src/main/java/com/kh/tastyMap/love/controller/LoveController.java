@@ -1,6 +1,7 @@
 package com.kh.tastyMap.love.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.tastyMap.love.model.service.LoveService;
 import com.kh.tastyMap.love.model.vo.Love;
+import com.kh.tastyMap.post.model.vo.PostList;
 
 @Controller
 public class LoveController {
@@ -61,4 +63,16 @@ public class LoveController {
 		
 		return map;
 	} 
+	
+	@RequestMapping("/love/iHaveLoveList.do")
+	public String restarauntTop8(@RequestParam String member_Id, Model model, HttpSession session) {
+		
+		List<PostList> list = loveService.iHaveLoveList(member_Id);
+
+		model.addAttribute("list",list);
+
+		return "myPage/myLove";
+	}
+	
+	
 }

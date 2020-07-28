@@ -1,5 +1,8 @@
 package com.kh.tastyMap.bookmark.model.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Repository;
 
 import com.kh.tastyMap.bookmark.model.vo.Bookmark;
@@ -33,6 +36,7 @@ public interface BookmarkDAO {
 	 * @param memberId
 	 * @return
 	 */
-	Bookmark selectMyBookList(String memberId);
+	Bookmark selectMyBookList(String member_Id);
 
+	List<Bookmark> iHaveBookmarkList(String member_Id);
 }

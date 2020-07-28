@@ -7,6 +7,22 @@
 	<resultMap id="loveMap" type="Love">
 		<id property="memberId" column="MEMBER_ID"/>
 	</resultMap>
+	
+   <resultMap id="POSTLIST" type="map">
+			<result property="lNo" column="LNO"/>
+   			<result property="member_Id" column="MEMBER_ID"/>		
+			<result property="pNo" column="PNO"/>
+			<result property="nickname" column="NICKNAME"/>
+			<result property="prenamedname" column="PRENAMEDNAME"/>
+	</resultMap>
+   <!-- 
+	<resultMap id="PICTURE_NO" type="map">
+      <result property="prenamedname" column="PRENAMEDNAME"/>
+   </resultMap>
+	<resultMap type="map" id="RPicture">
+			<result property="prenamedname" column="PRENAMEDNAME"/>
+			<result property="avg_star" column="STAR"/>
+	</resultMap> -->
 
 	<!-- 좋아요 확인 -->
 	<select id ="selectPostLove" parameterType="Love" resultType="_int">
@@ -27,6 +43,40 @@
 		DELETE FROM LOVE 
 		WHERE MEMBER_ID = #{memberId} AND PNO = #{pNo}
 	</delete>
+	
+	<!-- 내가 좋아요한 게시글 목록 리스트(조현민이 했다) -->
+	<select id="iHaveLoveList" parameterType="string" resultType="PostList">
+		SELECT L.*, PI.PRENAMEDNAME "PRENAMEDNAME", PO.PCONTENT, PO.PDATE
+		FROM (SELECT LO.*, M.NICKNAME
+		        FROM LOVE LO
+		        JOIN MEMBER M ON(M.MEMBER_ID=LO.MEMBER_ID)
+		        WHERE M.MEMBER_ID = #{member_Id}) L
+		JOIN PICTURE PI ON(PI.PNO = L.PNO)
+		JOIN POST PO ON(PO.PNO = PI.PNO)
+		WHERE PI.PLEVEL = 0
+		ORDER BY L.LNO DESC
+	</select>
+	
+	<!-- 내가 좋아요한 게시글 목록 리스트(조현민이 했다) -->
+	<select id="iHaveBookmarkList" parameterType="String" resultType="RestaurantList">
+		SELECT A.BNO, A.RNAME, SUBSTR(A.ADDRESS, 1, 7) "ADDRESS", NAME.PRENAMEDNAME
+		FROM (SELECT B.*, R.RNAME, R.ADDRESS
+		      FROM (
+		                SELECT BO.BNO, BO.RNO, BO.MEMBER_ID
+		                FROM BOOKMARK BO
+		                WHERE MEMBER_ID = #{memberId}
+		                ORDER BY BNO DESC) B
+		      JOIN RESTAURANT R ON(R.RNO=B.RNO)) A
+		left JOIN (SELECT PC.*, P.RNO
+		FROM(
+		SELECT PRENAMEDNAME,PNO
+		FROM PICTURE 
+		WHERE PLEVEL=0) PC
+		JOIN POST P ON(P.PNO=PC.PNO)
+		JOIN (SELECT MIN(PNO) "PNO", RNO
+		FROM POST
+		GROUP BY RNO) MINPOST ON(MINPOST.PNO=PC.PNO) )NAME ON(NAME.RNO=A.RNO)
+	</select>
 	
 </mapper>
 

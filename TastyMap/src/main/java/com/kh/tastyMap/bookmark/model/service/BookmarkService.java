@@ -1,5 +1,6 @@
 package com.kh.tastyMap.bookmark.model.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.kh.tastyMap.bookmark.model.vo.Bookmark;
@@ -26,5 +27,8 @@ public interface BookmarkService {
 
 
 	int selectBookmark(Bookmark bookmark);
+
+
+	List<Bookmark> iHaveBookmarkList(String member_Id);
 
 }

@@ -13,8 +13,8 @@
               	사용자소개
               </li>
               <li class="list-group-item"><a href="${pageContext.request.contextPath}/member/myGallery.do?memberId=${member.memberId}">마이 갤러리</a></li>
-              <li class="list-group-item"><a href="${pageContext.request.contextPath}/love/myLove.do">좋아요 리스트</a></li>
-              <li class="list-group-item"><a href="${pageContext.request.contextPath}/bookmark/myBookmarkList.do">북마크 리스트</a></li>
+              <li class="list-group-item"><a href="${pageContext.request.contextPath}/love/iHaveLoveList.do?member_Id=${member.memberId}">좋아요 리스트</a></li>
+              <li class="list-group-item"><a href="${pageContext.request.contextPath}/bookmark/iHaveBookmarkList.do?member_Id=${member.memberId}">북마크 리스트</a></li>
               <li class="list-group-item"><a href="#">회원수정/회원탈퇴</a></li>
               <li class="list-group-item"><a href="#">나의 활동로그</a></li>
             </ul>

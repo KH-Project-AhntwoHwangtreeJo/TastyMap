@@ -1,6 +1,7 @@
 package com.kh.tastyMap.love.model.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.tastyMap.love.model.dao.LoveDAO;
 import com.kh.tastyMap.love.model.vo.Love;
+import com.kh.tastyMap.post.model.vo.PostList;
 
 @Service
 public class LoveServiceImpl implements LoveService {
@@ -61,6 +63,13 @@ public class LoveServiceImpl implements LoveService {
 	@Override
 	public int selectLove(Love love) {
 		return loveDAO.selectLoveOne(love);
+	}
+
+
+	@Override
+	public List<PostList> iHaveLoveList(String member_Id) {
+		// TODO Auto-generated method stub
+		return loveDAO.iHaveLoveList(member_Id);
 	}
 
 }

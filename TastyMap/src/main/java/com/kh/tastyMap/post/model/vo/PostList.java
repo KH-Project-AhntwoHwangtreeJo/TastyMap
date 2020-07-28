@@ -30,9 +30,8 @@ public class PostList implements Serializable {
 	private String nickName;
 	private String pRenamedName;
 	private String rName;
-	private String address;
+	private String address;								
 	
 	
 	private List<Picture> files = new ArrayList<Picture>();
 }
-

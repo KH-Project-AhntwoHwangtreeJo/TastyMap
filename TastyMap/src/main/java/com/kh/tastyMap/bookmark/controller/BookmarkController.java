@@ -1,6 +1,7 @@
 package com.kh.tastyMap.bookmark.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -66,6 +67,16 @@ public class BookmarkController {
 	public String myBookmark() {
 		
 		
+		return "myPage/myBookmark";
+	}
+	
+	@RequestMapping("/bookmark/iHaveBookmarkList.do")
+	public String restarauntTop8(@RequestParam String member_Id, Model model, HttpSession session) {
+		
+		List<Bookmark> list = bookmarkService.iHaveBookmarkList(member_Id);
+
+		model.addAttribute("list",list);
+
 		return "myPage/myBookmark";
 	}
 }

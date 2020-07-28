@@ -12,7 +12,7 @@
   </head>
 
   <body>
-    
+    <br />
     <!-- 마이페이지 내용 시작-->
     <section class="ftco-section contact-section" >
       <div class="container">
@@ -24,74 +24,30 @@
           
           <!-- 마이페이지 우측 내용(좋아요한 게시물 리스트)-->
           <div class="col-md-7 align-items-stretch d-flex">
-            <div class="row">
-            
-              <div class="col-md-3 ftco-animate">
-                <div class="agent">
-                  <div class="img" >
-                    <img src="/tastyMap/resources/images/team-1.jpg" class="img-fluid" alt="Colorlib Template">
-                  </div>
-                </div>
-              </div>
+          <div class="row d-flex">    
+          <c:forEach var="list" items="${ list }">    
+	          <div class="col-md-5 d-flex ftco-animate">
+	          	<div class="blog-entry justify-content-end">
+	              <div class="text">
+	              	<a href="blog-single.html" class="block-20 img" style="background-image: url('/tastyMap/resources/upload/post/${list.PRenamedName }');">
+		              </a>
+	                <h3 class="heading"><a href="#">${list.PContent }</a></h3>
+	                <div class="meta mb-3">
+	                  <div><a href="#">${list.PDate }</a></div>
+	                  <div><a href="#">${list.nickName }</a></div>
+	                  <!-- <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div> -->
+	                </div>
+	              </div>
+	            </div>
+	          </div>
+          </c:forEach>    
               
-              <div class="col-md-3 ftco-animate">
-                <div class="agent">
-                  <div class="img">
-                    <img src="/tastyMap/resources/images/team-2.jpg" class="img-fluid" alt="Colorlib Template">
-                  </div>
-                </div>
-              </div>
               
-              <div class="col-md-3 ftco-animate">
-                <div class="agent">
-                  <div class="img">
-                    <img src="/tastyMap/resources/images/team-3.jpg" class="img-fluid" alt="Colorlib Template">
-                  </div>
-                </div>
-              </div>
-              
-              <div class="col-md-3 ftco-animate">
-                <div class="agent">
-                  <div class="img">
-                    <img src="/tastyMap/resources/images/team-4.jpg" class="img-fluid" alt="Colorlib Template">
-                  </div>
-                </div>
-              </div>
-    
-              <div class="col-md-3 ftco-animate">
-                <div class="agent">
-                  <div class="img">
-                    <img src="/tastyMap/resources/images/team-5.jpg" class="img-fluid" alt="Colorlib Template">
-                  </div>
-                </div>
-              </div>
-              
-              <div class="col-md-3 ftco-animate">
-                <div class="agent">
-                  <div class="img">
-                    <img src="/tastyMap/resources/images/team-6.jpg" class="img-fluid" alt="Colorlib Template">
-                  </div>
-                </div>
-              </div>
-              
-              <div class="col-md-3 ftco-animate">
-                <div class="agent">
-                  <div class="img">
-                    <img src="/tastyMap/resources/images/team-7.jpg" class="img-fluid" alt="Colorlib Template">
-                  </div>
-                </div>
-              </div>
-              
-              <div class="col-md-3 ftco-animate">
-                <div class="agent">
-                  <div class="img">
-                    <img src="/tastyMap/resources/images/team-8.jpg" class="img-fluid" alt="Colorlib Template">
-                  </div>
-                </div>
-              </div>
               
             </div>
           </div>
+          
+          
           </div>
         </div>
         <!-- 페이징처리 -->

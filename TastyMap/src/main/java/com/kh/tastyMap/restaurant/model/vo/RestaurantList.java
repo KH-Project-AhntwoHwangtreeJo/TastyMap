@@ -17,6 +17,8 @@ public class RestaurantList implements Serializable {
 	
 	
 	private int rno;
+	private int bno;
+	private String member_Id;
 	private String rname;
 	private String rcontent;
 	private String category;
