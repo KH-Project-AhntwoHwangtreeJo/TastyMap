@@ -1,8 +1,10 @@
 package com.kh.tastyMap.love.model.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.kh.tastyMap.love.model.vo.Love;
+import com.kh.tastyMap.post.model.vo.PostList;
 
 public interface LoveService {
 	/**
@@ -23,5 +25,7 @@ public interface LoveService {
 	Love selectMyLoveList(String memberId);
 	
 	int selectLove(Love love);
+	
+	List<PostList> iHaveLoveList(String member_Id);
 
 }

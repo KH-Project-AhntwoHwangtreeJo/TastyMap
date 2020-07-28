@@ -1,6 +1,7 @@
 package com.kh.tastyMap.bookmark.model.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.collections.map.HashedMap;
@@ -64,6 +65,12 @@ public class BookmarkServiceImpl implements BookmarkService {
 	public int  selectBookmark(Bookmark bookmark) {
 
 		return bookmarkDAO.selectBookmarkOne(bookmark);
+	}
+
+	@Override
+	public List<Bookmark> iHaveBookmarkList(String member_Id) {
+		// TODO Auto-generated method stub
+		return bookmarkDAO.iHaveBookmarkList(member_Id);
 	}
 
 }

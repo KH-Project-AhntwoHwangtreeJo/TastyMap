@@ -43,7 +43,7 @@
         </div>
       </div>
       <div class="mouse">
-				<a href="#" class="mouse-icon">
+				<a href="#here" class="mouse-icon">
 					<div class="mouse-wheel"><span class="ion-ios-arrow-round-down"></span></div>
 				</a>
 			</div>
@@ -455,7 +455,7 @@
     	</div>
     </section> -->
 
-    <section class="ftco-section-top8">
+    <section class="ftco-section-top8" name="here">
     	<div class="container">
     		<div class="row justify-content-center">
           <div class="col-md-12 heading-section text-center ftco-animate mb-5">

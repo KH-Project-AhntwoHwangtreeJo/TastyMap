@@ -1,5 +1,9 @@
 package com.kh.tastyMap.love.model.dao;
+import java.util.List;
+import java.util.Map;
+
 import com.kh.tastyMap.love.model.vo.Love;
+import com.kh.tastyMap.post.model.vo.PostList;
 
 public interface LoveDAO {
 	
@@ -32,4 +36,6 @@ public interface LoveDAO {
 	 * @return
 	 */
 	Love selectMyLoveList(String memberId);
+	
+	List<PostList> iHaveLoveList(String member_Id);
 }
