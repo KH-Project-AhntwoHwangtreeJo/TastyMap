@@ -2,8 +2,8 @@ package com.kh.tastyMap.post.model.vo;
 
 import java.io.Serializable;
 import java.sql.Date;
-
-import com.kh.tastyMap.restaurant.model.vo.RestaurantList;
+import java.util.ArrayList;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,17 +18,21 @@ public class PostList implements Serializable {
 
 	private static final long serialVersionUID = 162221L;
 	
-	private String nickname;
-	private String mphoto;
-	private int pNo; 			
-	private int rNo; 			
-	private String member_Id; 	
-	private Date date;			
-	private String pContent;	
-	private int pCnt;			
-	private double star;			
-	private String pStatus;		
+	private int pno;
+	private int rno;
+	private String member_Id;
+	private Date pDate;
+	private String pContent;
+	private int pCnt;
+	private double star;
+	private String pStatus;
+	private String mPhoto;
+	private String nickName;
+	private String pRenamedName;
+	private String rName;
+	private String address;
 	
 	
-	
+	private List<Picture> files = new ArrayList<Picture>();
 }
+

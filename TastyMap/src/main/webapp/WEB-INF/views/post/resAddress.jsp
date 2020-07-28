@@ -176,11 +176,11 @@ function displayPlaces(places) {
             	*/
            	    searchDetailAddrFromCoords(marker, function(result, status) {
            	        if (status === kakao.maps.services.Status.OK) {
-           	            var detailAddr = !!result[0].road_address ? '<div>도로222명주소 : ' + result[0].road_address.address_name + '</div>' : '';
-           	            detailAddr += '<div>지1번 주소 : ' + result[0].address.address_name + '</div>';
+           	            var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
+           	            detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
            	            
            	            var content = '<div class="bAddr">' +
-           	                            '<span class="title">바부야 법정동222 주소정보</span>' + 
+           	                            /* '<span class="title">법정동 주소정보</span>' +  */
            	                            detailAddr + title + 
            	                        '</div>';
 

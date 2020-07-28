@@ -24,6 +24,7 @@ import com.kh.tastyMap.love.model.vo.Love;
 import com.kh.tastyMap.post.model.service.PostService;
 import com.kh.tastyMap.post.model.vo.Picture;
 import com.kh.tastyMap.post.model.vo.Post;
+import com.kh.tastyMap.post.model.vo.PostList;
 import com.kh.tastyMap.post.model.vo.PostRequest;
 import com.kh.tastyMap.report.model.service.ReportService;
 import com.kh.tastyMap.report.model.vo.Report;
@@ -38,13 +39,29 @@ public class PostController {
 	@Autowired
 	ReportService reportService;
 	
+	
+	// 게시글 전체리스트 조회// 사용자에게 응답할 view를 생성
+		@RequestMapping("/post/postAllList.do")
+		
+		// String은 controller에서 view로 리턴할 때 model을 매개변수로 리턴한다.->postAllList로
+		public String postAllList(Model model) {
+			
+			List<PostList> postList = postService.postAllList();
+			System.out.println(postList);
+		
+			model.addAttribute("postList", postList);
+			
+			return "post/postAllList";
+		}
+		
+	
 	@RequestMapping("/post/insertPost.do")
 	public void insertPost() {
 		
 	}
 	
 	@RequestMapping("/post/insertPostEnd.do")
-	public String insertPost(PostRequest postRequst, Model model, HttpSession session, HttpServletRequest request,
+	public String insertPost(PostRequest postRequst, Picture pic, Model model, HttpSession session, HttpServletRequest request,
 			@RequestParam(value="upFile", required= false) List<MultipartFile> upFile
 			) {
 		
@@ -101,10 +118,14 @@ public class PostController {
 		 //2. 폴더 유무 확인 후 생성
 		File dir = new File(saveDir);
 		
+		// mkdir과 mkdirs 의 차이점 - mkdir은 해당 위치에 폴더가 있어야만 하고, mkdirs는 폴더가 없으면 만들어준다.
 		if(dir.exists() == false) dir.mkdirs();  // getRealPath 경로에 폴더가 없으면 만들어주고 있으면 나두는 코드
 
 		 //3. 파일 업로드 시작 (MultipartFile 사용 시)
 		System.out.println("사진:"+ upFile);
+		int i = 0;
+		// for (Object obj : files)
+		// files를 하나씩 객체를 꺼내서 obj에 넣어준다..
 		for(MultipartFile f : upFile) {
 			if(!f.isEmpty()) {
 				String originName = f.getOriginalFilename();
@@ -122,13 +143,19 @@ public class PostController {
 				} catch (IllegalStateException | IOException e) {
 					e.printStackTrace();
 				}
-
-				Picture pic = new Picture();
+				// 첫번째 사진의 레벨은 0 /즉,대표사진
+				if(i == 0) {
+					pic.setPLevel(0);
+				// 나머지 사진은 1	
+				} else {
+					pic.setPLevel(1);
+				}
 				pic.setPOriginName(originName);
 				pic.setPRenamedName(renamedName);
 		
 				pictureList.add(pic);
 			}
+			i++; // 사진 하나 담기면 +1 // 그러면 레벨 구분됨
 		}
 		int result = 0;
 
@@ -165,6 +192,7 @@ public class PostController {
 
 	}
 	
+	// 게시글 식당 이름 주소 
 	@RequestMapping("/post/resAddress.do")
 	public String resAddress() {
 		System.out.println("ggg");

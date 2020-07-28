@@ -2,6 +2,7 @@ package com.kh.tastyMap.restaurant.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
@@ -27,34 +28,38 @@ public class RestaurantController {
 	RestaurantService restaurantService;
 	
 
+	
+	// 식당 전체리스트 조회
 	@RequestMapping("/restaurant/restaurantAllList.do")
 	   public List restaurantAllList(
 	         @RequestParam (value="cPage", required=false, defaultValue="1")
 	         int cPage, Model model) {
 	      int numPerPage = 5;
 
-	      
-	      List<RestaurantList> RList = restaurantService.restaurantAllList(cPage, numPerPage);
-	         
-	      System.out.println(RList);
-	         
-	      List<RestaurantList> kList = new ArrayList<>();
-	      List<RestaurantList> cList = new ArrayList<>();
-	      List<RestaurantList> jList = new ArrayList<>();
-	      
-	      for(RestaurantList r : RList) {
-	         if("한식".equals(r.getCategory())){
-	            kList.add(r);
-	         } else if ("중식".equals(r.getCategory())) {
-	            cList.add(r);
-	         } else if ("일식".equals(r.getCategory())) {
-	            jList.add(r);
-	         }
-	      }
-	      
-	      int totalContent = restaurantService.selectRestaurantTotal();
-	      
-//	      String pageBar = Utils.getPageBar(totalContent, cPage, numPerPage, "restaurantAllList.do");
+			
+			List<RestaurantList> RList = restaurantService.restaurantAllList(cPage, numPerPage);
+				
+			System.out.println(RList);
+				
+			// 카테고리 별 출력하기 // 한식/중식/일식
+			List<RestaurantList> kList = new ArrayList<>();
+			List<RestaurantList> cList = new ArrayList<>();
+			List<RestaurantList> jList = new ArrayList<>();
+			
+		// 카테고리 별 출력하기 // 한식/중식/일식
+			for(RestaurantList r : RList) {
+				if("한식".equals(r.getCategory())){
+					kList.add(r);
+				} else if ("중식".equals(r.getCategory())) {
+					cList.add(r);
+				} else if ("일식".equals(r.getCategory())) {
+					jList.add(r);
+				}
+			}
+			
+			int totalContent = restaurantService.selectRestaurantTotal();
+			
+//			String pageBar = Utils.getPageBar(totalContent, cPage, numPerPage, "restaurantAllList.do");
 
 	      System.out.println("k" + kList);
 	      System.out.println("c" + cList);

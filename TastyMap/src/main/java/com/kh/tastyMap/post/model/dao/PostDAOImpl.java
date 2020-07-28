@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.tastyMap.post.model.vo.Picture;
 import com.kh.tastyMap.post.model.vo.Post;
+import com.kh.tastyMap.post.model.vo.PostList;
 import com.kh.tastyMap.postComment.model.vo.PostComment;
 import com.kh.tastyMap.restaurant.model.vo.Restaurant;
 
@@ -60,6 +61,17 @@ public class PostDAOImpl implements PostDAO {
 		return sqlSession.insert("postMapper.insertPicture",p);
 	}
 
+	
+	
+	
+	@Override
+	public List<PostList> postAllList() {
+		System.out.println(sqlSession.selectList("postMapper.postAllList"));
+		return sqlSession.selectList("postMapper.postAllList");
+	}
+
+
+
 	@Override
 	public int updatePost(Post post) {
 		// TODO Auto-generated method stub
@@ -76,12 +88,6 @@ public class PostDAOImpl implements PostDAO {
 	public int deletePost(int pno) {
 		// TODO Auto-generated method stub
 		return 0;
-	}
-
-	@Override
-	public List<Post> postList() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	// post 상세 페이지
