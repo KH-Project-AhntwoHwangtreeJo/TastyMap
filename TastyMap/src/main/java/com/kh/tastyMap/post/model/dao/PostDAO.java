@@ -4,8 +4,10 @@ import java.util.List;
 
 import com.kh.tastyMap.post.model.vo.Picture;
 import com.kh.tastyMap.post.model.vo.Post;
+import com.kh.tastyMap.post.model.vo.PostList;
 import com.kh.tastyMap.postComment.model.vo.PostComment;
 import com.kh.tastyMap.restaurant.model.vo.Restaurant;
+import com.kh.tastyMap.restaurant.model.vo.RestaurantList;
 
 public interface PostDAO {
 	
@@ -25,6 +27,12 @@ public interface PostDAO {
 	
 	int insertPicture(Picture p);
 	
+	/**
+	 * 게시글 리스트 전체 조회 메소드
+	 * @return
+	 */
+	List<PostList> postAllList();
+	
 	
 	
 	/**
@@ -42,12 +50,6 @@ public interface PostDAO {
 	 * @return
 	 */
 	int deletePost(int pno);
-	
-	/**
-	 * 게시글 리스트 전체 조회 메소드
-	 * @return
-	 */
-	List<Post> postList();
 	
 	/**
 	 * 게시글 상세 조회 메소드

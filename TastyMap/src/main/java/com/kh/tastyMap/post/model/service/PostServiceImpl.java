@@ -9,6 +9,7 @@ import com.kh.tastyMap.post.model.dao.PostDAO;
 import com.kh.tastyMap.post.model.exception.PostException;
 import com.kh.tastyMap.post.model.vo.Picture;
 import com.kh.tastyMap.post.model.vo.Post;
+import com.kh.tastyMap.post.model.vo.PostList;
 import com.kh.tastyMap.restaurant.model.vo.Restaurant;
 @Service
 public class PostServiceImpl implements PostService {
@@ -70,6 +71,14 @@ public class PostServiceImpl implements PostService {
 	      }
 	      return result;
 	}
+	
+	
+
+	@Override
+	public List<PostList> postAllList() {
+		return postDAO.postAllList();
+	}
+
 
 	@Override
 	public int updatePost(Post post, List<Picture> pictureList) {
@@ -83,11 +92,6 @@ public class PostServiceImpl implements PostService {
 		return 0;
 	}
 
-	@Override
-	public List<Post> postList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	// post 상세페이지
 	@Override

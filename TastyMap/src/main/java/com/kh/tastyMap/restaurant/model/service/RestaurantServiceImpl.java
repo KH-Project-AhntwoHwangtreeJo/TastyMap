@@ -103,17 +103,6 @@ public class RestaurantServiceImpl implements RestaurantService {
 		return restaurantDAO.selectRestaurantTotal();
 	}
 
-	@Override
-	public List<Map<String, String>> selectRestaurantList(int cPage, int numPerPage) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int selectRestaurantTotalContents() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override  //식당 상세페이지  리뷰 가져오기
 	public List<PostList> restaurantPost(int rno) {

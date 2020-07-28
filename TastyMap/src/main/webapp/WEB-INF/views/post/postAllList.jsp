@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<c:import url="/views/common/header.jsp"/>
 <title>게시글 전체리스트</title>
 </head>
 <body>
@@ -27,205 +28,71 @@
     <section class="ftco-section goto-here">
     	<div class="container">
         <div class="row">
+        <c:forEach var="p" items="${ postList }">
+        
+        
 			<!-- 게시글 하나 시작-->
-        	<div class="col-md-4">
+			<div class="col-md-4">
         		<div class="property-wrap ftco-animate">
-        			<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/오미라식당.jpg);">
+        			<div class="img d-flex align-items-center justify-content-center" style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${p.PRenamedName}');">
         			
         				<div class="list-agent d-flex align-items-center">
-        					<a href="#" class="agent-info d-flex align-items-center">
-        						<div class="img-2 rounded-circle" style="background-image: url(images/person_1.jpg);"></div>
-        						<h3 class="mb-0 ml-2">조은성</h3>
+        					<a href="${pageContext.request.contextPath}/post/postDatail.do?pno='${p.pno }" class="agent-info d-flex align-items-center">
+        						<div class="img-2 rounded-circle" style="background-image: url('${pageContext.request.contextPath}/resources/images/profileImage/${P.MPhoto}');"></div>
+        						<h3 class="mb-0 ml-2">${p.nickName }</h3>
         					</a>
         				</div>
 					</div>
 					<!-- 식당이름/주소-->
         			<div class="text">
         				
-						<h3 class="mb-0"><a href="properties-single.html">오미라 식당</a></h3>
-						<p style="margin-bottom: 0px;">한식</p>
-						<div class="star-box">★★★★★</div><!--별점 받아오는 부분-->
-        				<span class="location d-inline-block mb-3"><i class="ion-ios-pin mr-2"></i>서울 강남구 테헤란로 124 삼원타워</span>
+						<h3 class="mb-0"><a href="${pageContext.request.contextPath}/post/postDatail.do?pno='${p.pno }">${p.RName }</a></h3>
+						<!-- <p style="margin-bottom: 0px;">한식</p> -->
+						<div class="star-box">★${p.star}점</div><!--별점 받아오는 부분-->
+        				<span class="location d-inline-block mb-3"><i class="ion-ios-pin mr-2"></i>${p.address }</span>
 					</div>
 					<!--//식당이름/주소 끝-->
         		</div>
 			</div>
+				
+			</c:forEach>
+			</div>
 			<!--// 게시글 하나 끝-->
 			
+			<!-- 게시글 하나 시작-->
+			<%-- 
+			
         	<div class="col-md-4">
         		<div class="property-wrap ftco-animate">
-        			<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/텐동.jpg);">
+        			<a href="${pageContext.request.contextPath}/post/postDatail.do?pno='${p.pno }'" class="img d-flex align-items-center justify-content-center" style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${p.PRenamedName}');">
+        			 
         			
         				<div class="list-agent d-flex align-items-center">
-        					<a href="#" class="agent-info  d-flex align-items-center">
-        						<div class="img-2 rounded-circle" style="background-image: url(images/person_1.jpg);"></div>
-        						<h3 class="mb-0 ml-2">조성아</h3>
+        					<a href="#" class="agent-info d-flex align-items-center">
+        					 <div class="img-2 rounded-circle" style="background-image: url('tastyMap/resources/images/profileImage/${P.MPhoto}');"></div>
+        						<h3 class="mb-0 ml-2"></h3>
         					</a>
         				</div>
-        			</div>
+        				</a>
+					</div>
+					<!-- 식당이름/주소-->
         			<div class="text">
         				
-						<h3 class="mb-0"><a href="properties-single.html">나이스샤워</a></h3>
-						<p style="margin-bottom: 0px;">일식</p>
-						<div class="star-box">★★★★★</div><!--별점 받아오는 부분-->
-        				<span class="location d-inline-block mb-3"><i class="ion-ios-pin mr-2"></i>서울특별시 강남구 역삼동 테헤란로48길</span>
-        			</div>
-        		</div>
-        	</div>
-        	<div class="col-md-4">
-        		<div class="property-wrap ftco-animate">
-        			<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/피자.jpg);">
+						<h3 class="mb-0">${p.RName }</h3>
+						<!-- <p style="margin-bottom: 0px;">한식</p> -->
+						<!-- <div class="star-box">★★★★★</div> --><!--별점 받아오는 부분-->
+        				<span class="location d-inline-block mb-3"><i class="ion-ios-pin mr-2"></i>${p.address }</span>
+					</div>
+					<!--//식당이름/주소 끝-->
         		
-        				<div class="list-agent d-flex align-items-center">
-        					<a href="#" class="agent-info d-flex align-items-center">
-        						<div class="img-2 rounded-circle" style="background-image: url(images/person_1.jpg);"></div>
-        						<h3 class="mb-0 ml-2">황하용</h3>
-        					</a>
-        				</div>
-        			</div>
-        			<div class="text">
-        				
-						<h3 class="mb-0"><a href="properties-single.html">매드포갈릭</a></h3>
-						<p style="margin-bottom: 0px;">양식</p>
-						<div class="star-box">★★★★★</div><!--별점 받아오는 부분-->
-        				<span class="location d-inline-block mb-3"><i class="ion-ios-pin mr-2"></i>서울특별시 강남구 역삼동 테헤란로48길</span>
-        			</div>
         		</div>
-        	</div>
-
-			<div class="col-md-4">
-        		<div class="property-wrap ftco-animate">
-        			<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/오미라식당.jpg);">
-        			
-        				<div class="list-agent d-flex align-items-center">
-        					<a href="#" class="agent-info d-flex align-items-center">
-        						<div class="img-2 rounded-circle" style="background-image: url(images/person_1.jpg);"></div>
-        						<h3 class="mb-0 ml-2">조은성</h3>
-        					</a>
-        				</div>
-					</div>
-					
-        			<div class="text">
-        				
-						<h3 class="mb-0"><a href="properties-single.html">오미라 식당</a></h3>
-						<p style="margin-bottom: 0px;">한식</p>
-						<div class="star-box">★★★★★</div><!--별점 받아오는 부분-->
-        				<span class="location d-inline-block mb-3"><i class="ion-ios-pin mr-2"></i>서울 강남구 테헤란로 124 삼원타워</span>
-					</div>
-					
-        		</div>
-			</div>
-			
-			
-        	<div class="col-md-4">
-        		<div class="property-wrap ftco-animate">
-        			<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/텐동.jpg);">
-        			
-        				<div class="list-agent d-flex align-items-center">
-        					<a href="#" class="agent-info  d-flex align-items-center">
-        						<div class="img-2 rounded-circle" style="background-image: url(images/person_1.jpg);"></div>
-        						<h3 class="mb-0 ml-2">조성아</h3>
-        					</a>
-        				</div>
-        			</div>
-        			<div class="text">
-        				
-						<h3 class="mb-0"><a href="properties-single.html">나이스샤워</a></h3>
-						<p style="margin-bottom: 0px;">일식</p>
-						<div class="star-box">★★★★★</div><!--별점 받아오는 부분-->
-        				<span class="location d-inline-block mb-3"><i class="ion-ios-pin mr-2"></i>서울특별시 강남구 역삼동 테헤란로48길</span>
-        			</div>
-        		</div>
-        	</div>
-        	<div class="col-md-4">
-        		<div class="property-wrap ftco-animate">
-        			<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/피자.jpg);">
-        		
-        				<div class="list-agent d-flex align-items-center">
-        					<a href="#" class="agent-info d-flex align-items-center">
-        						<div class="img-2 rounded-circle" style="background-image: url(images/person_1.jpg);"></div>
-        						<h3 class="mb-0 ml-2">황하용</h3>
-        					</a>
-        				</div>
-        			</div>
-        			<div class="text">
-        				
-						<h3 class="mb-0"><a href="properties-single.html">매드포갈릭</a></h3>
-						<p style="margin-bottom: 0px;">양식</p>
-						<div class="star-box">★★★★★</div><!--별점 받아오는 부분-->  
-        				<span class="location d-inline-block mb-3"><i class="ion-ios-pin mr-2"></i>서울특별시 강남구 역삼동 테헤란로48길</span>
-        			</div>
-        		</div>
-        	</div>
-			<div class="col-md-4">
-        		<div class="property-wrap ftco-animate">
-        			<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/오미라식당.jpg);">
-        			
-        				<div class="list-agent d-flex align-items-center">
-        					<a href="#" class="agent-info d-flex align-items-center">
-        						<div class="img-2 rounded-circle" style="background-image: url(images/person_1.jpg);"></div>
-        						<h3 class="mb-0 ml-2">조은성</h3>
-        					</a>
-        				</div>
-					</div>
-					
-        			<div class="text">
-        				
-						<h3 class="mb-0"><a href="properties-single.html">오미라 식당</a></h3>
-						<p style="margin-bottom: 0px;">한식</p>
-						<div class="star-box">★★★★★</div><!--별점 받아오는 부분-->
-        				<span class="location d-inline-block mb-3"><i class="ion-ios-pin mr-2"></i>서울 강남구 테헤란로 124 삼원타워</span>
-					</div>
-					
-        		</div>
-			</div>
-			
-			
-        	<div class="col-md-4">
-        		<div class="property-wrap ftco-animate">
-        			<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/텐동.jpg);">
-        			
-        				<div class="list-agent d-flex align-items-center">
-        					<a href="#" class="agent-info  d-flex align-items-center">
-        						<div class="img-2 rounded-circle" style="background-image: url(images/person_1.jpg);"></div>
-        						<h3 class="mb-0 ml-2">조성아</h3>
-        					</a>
-        				</div>
-        			</div>
-        			<div class="text">
-        				
-						<h3 class="mb-0"><a href="properties-single.html">나이스샤워</a></h3>
-						<p style="margin-bottom: 0px;">일식</p>
-						<div class="star-box">★★★★★</div><!--별점 받아오는 부분-->
-        				<span class="location d-inline-block mb-3"><i class="ion-ios-pin mr-2"></i>서울특별시 강남구 역삼동 테헤란로48길</span>
-        			</div>
-        		</div>
-        	</div>
-        	<div class="col-md-4">
-        		<div class="property-wrap ftco-animate">
-        			<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/피자.jpg);">
-        		
-        				<div class="list-agent d-flex align-items-center">
-        					<a href="#" class="agent-info d-flex align-items-center">
-        						<div class="img-2 rounded-circle" style="background-image: url(images/person_1.jpg);"></div>
-        						<h3 class="mb-0 ml-2">황하용</h3>
-        					</a>
-        				</div>
-        			</div>
-        			<div class="text">
-        				
-						<h3 class="mb-0"><a href="properties-single.html">매드포갈릭</a></h3>
-						<p style="margin-bottom: 0px;">양식</p>
-						<div class="star-box">★★★★★</div><!--별점 받아오는 부분-->
-        				<span class="location d-inline-block mb-3"><i class="ion-ios-pin mr-2"></i>서울특별시 강남구 역삼동 테헤란로48길</span>
-        			</div>
-        		</div>
-        	</div>
-			
-        
+        		 --%>
+        	
+			      
      
         </div>
-        <div class="row mt-5">
+      
+       <!--  <div class="row mt-5">
           <div class="col text-center">
             <div class="block-27">
               <ul>
@@ -239,9 +106,10 @@
               </ul>
             </div>
           </div>
-        </div>
+        </div> -->
     	</div>
 	</section>
 	<!-- //게시글 리스트 부분 끝-->
+	<c:import url="/views/common/footer.jsp"/>
 </body>
 </html>

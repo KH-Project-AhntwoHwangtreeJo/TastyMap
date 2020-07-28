@@ -25,6 +25,7 @@
        INSERT INTO POST(PNO, RNO, MEMBER_ID, PCONTENT, STAR) 
        VALUES(SEQ_POST.NEXTVAL, #{rNo}, #{member_Id}, #{pContent}, #{star})
 	</insert>
+	
  
  	<!-- 사진을 DB에 저장하기 위해 게시글 등록할 때 방금 들어간 번호를 가져옴 -->
  	<select id="selectCurrval" resultType="_int">
@@ -40,6 +41,21 @@
 			INSERT INTO PICTURE(PICTURE_NO, PNO, PORIGINNAME, PRENAMEDNAME, PLEVEL, UPLOADDATE)
 			VALUES(SEQ_PICTURE.NEXTVAL, #{pNo}, #{pOriginName}, #{pRenamedName}, #{pLevel}, SYSDATE)
 	</insert>
+	
+	<!-- 게시글 전체 조회  -->
+	<select id="postAllList" resultType="PostList">
+		SELECT PO.*, PI.PRENAMEDNAME, R.RNAME, R.ADDRESS
+		FROM (SELECT P.*, M.MPHOTO, M.NICKNAME
+        FROM POST P
+        JOIN MEMBER M ON(P.MEMBER_ID = M.MEMBER_ID)
+        WHERE P.PSTATUS='Y'
+        ORDER BY PNO DESC) PO
+		JOIN PICTURE PI ON(PO.PNO = PI.PNO)
+		JOIN RESTAURANT R ON(PO.RNO = R.RNO)
+		WHERE PI.PLEVEL = 0
+	</select>
+	
+	<!-- 여기까지 안예진 -->
 	
 	<!-- ●POST 디테일 조회용  -->
 	<select id="postDetail" parameterType="_int" resultType="Post">
