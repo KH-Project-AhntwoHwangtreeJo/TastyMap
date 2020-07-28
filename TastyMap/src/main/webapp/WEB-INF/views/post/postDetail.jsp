@@ -61,7 +61,10 @@
 
           <div class="col-md-8 ftco-animate">
             <br>
-            <h4 class="mb-3" style="float: left;"> ${ post.nickname } </h4> 
+            <h4 class="mb-3" style="float: left;"> ${ post.nickname } </h4> .
+            
+           
+
             
             <!--해당 페이지 출력 기능-->
             <img onclick="window.print()" border="0" src="${pageContext.request.contextPath}/resources/images/print/print.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;" />
@@ -197,7 +200,9 @@
 	 
 	 <!-- 지도 시작 -->
 	 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f71cfabf5739c195830217cd92296d03&libraries=services"></script>
-	
+	 
+
+
 	<script>
 	var mapContainer = document.getElementById('mapapi'), // 지도를 표시할 div 
 	    mapOption = {
@@ -235,6 +240,8 @@
 	        map.setCenter(coords);
 	    } 
 	});    
+	
+	
 	</script>
 	
 	<!-- 지도 끝-->

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="followerMapper">
+
+	<resultMap id="followerMap" type="Follower">
+		<id property="memberId" column="MEMBER_ID"/>
+		<result property="followerId" column="FOLLOWER_ID"/>
+	</resultMap>
+
+	<!-- 팔로우 확인 -->
+	<select id ="selectFollower" parameterType="Follower" resultType="_int">
+		SELECT COUNT(*)
+		FROM FOLLOWER
+		WHERE MEMBER_ID = #{memberId} AND FOLLOWER_ID = #{followerId}
+	</select>
+	
+		<!-- 1이면 이미 팔로우 한거 0이면 팔로우 안한거 -->
+	<!-- 0일때 팔로우 실행  -->
+	<insert id="insertFollower" parameterType="Follower"> 
+		INSERT INTO FOLLOWER VALUES(#{memberId}, #{followerId})
+	</insert>
+	
+	<!-- 1일때 팔로우 취소 실행
+	팔로우 취소 -->
+	<delete id="deleteFollower" parameterType="Follower"> 
+		DELETE FROM FOLLOWER
+		WHERE MEMBER_ID = #{memberId} AND FOLLOWER_ID = #{followerId}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+

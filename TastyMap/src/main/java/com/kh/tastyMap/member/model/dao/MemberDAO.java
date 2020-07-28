@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.kh.tastyMap.love.model.vo.Love;
+import com.kh.tastyMap.member.model.vo.Follower;
 import com.kh.tastyMap.member.model.vo.Member;
 
 public interface MemberDAO {
@@ -66,6 +68,27 @@ public interface MemberDAO {
 	 */
 	int checkIdDuplicate(HashMap<String, Object> hmap);
 
+	/**
+	 * 이미 해당 사용자가 팔로우 했는지 조회하는 기능
+	 * @param follower
+	 * @return
+	 */
+	int selectFollower(Follower follower);
 	
+	
+	/**
+	 * 팔로우를 추가 하는 기능
+	 * @param follower
+	 * @return
+	 */
+	int insertFollower(Follower follower);
+	
+	
+	/**
+	 * 팔로우를 취소하는 기능
+	 * @param follower
+	 * @return
+	 */
+	int deleteFollower(Follower follower);
 
 }

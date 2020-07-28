@@ -61,8 +61,18 @@
 			            
 			              <div class="media-body pl-4">
 			              
-			              	<c:if test="${ !empty member and member.memberId ne user.memberId }"> <!-- 비회원이거나  로그인한 아이디와 마이갤러리의 아이디가 다를때 보이기-->
-                     		<button type="button" class="btn btn-outline-success" style="float: right;">팔로우</button>
+			              	<c:if test="${ empty member}"> <!-- 비회원일때-->
+                     			<img id="followerimg" onclick="login();" border="0" src="${pageContext.request.contextPath}/resources/images/follower/follower1.png" style="width: 30px; height: 30px; float: right;">
+                     		</c:if>
+                     		<c:if test="${ !empty member}"> <!-- 회원일때-->
+                     			<c:if test="${member.memberId ne user.memberId }"> <!-- 비회원이거나  로그인한 아이디와 마이갤러리의 아이디가 다를때 보이기-->
+                     				<c:if test="${ map.status eq 'N' }">
+						            <img id="followerimg" onclick="changefollower();" border="0" src="${pageContext.request.contextPath}/resources/images/follower/follower1.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;">
+						      		</c:if>
+						            <c:if test="${ map.status eq 'Y' }">
+						            <img id="followerimg" onclick="changefollower();" border="0" src="${pageContext.request.contextPath}/resources/images/follower/follower2.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;">
+						      		</c:if>
+                     			</c:if>
                      		</c:if>
                      		
 			                <h3>사용자 이름 : ${user.nickname}</h3> 
@@ -117,6 +127,35 @@
        		</div>
     	</div>
     </section>
+    
+	<script type="text/javascript">
+	// 팔로워 버튼
+ 	  function changefollower() {
+			
+			var memberId = "${user.memberId}" ;
+			 var followerId = "${member.memberId}";
+			   
+			  //var state =0;
+	    		$.ajax({
+	    			url :'${pageContext.request.contextPath}/member/clickFollower.do',
+	    			data : { memberId : memberId, followerId : followerId }, 
+	    			dataType : 'json',  
+	    			success : function(data){
+	    				if(data.status == "Y"){
+	    					   document.getElementById('followerimg').src="${pageContext.request.contextPath}/resources/images/follower/follower2.png"; 
+	    				}else{
+	    					   document.getElementById('followerimg').src="${pageContext.request.contextPath}/resources/images/follower/follower1.png";
+	    				}
+	    				alert(data.msg);		
+	    			},error : function(req, status, error) {
+	    				console.log(req);
+	    				console.log(status);
+	    				console.log(error);
+	   				alert('에러임');		
+	    			}
+	   		});
+	   	}    
+	</script>
 		
 <!-- footer 시작 -->
 <c:import url="/views/common/footer.jsp"/>

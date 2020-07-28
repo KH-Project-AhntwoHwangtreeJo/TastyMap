@@ -60,7 +60,6 @@ public class LoveServiceImpl implements LoveService {
 	
 	@Override
 	public int selectLove(Love love) {
-		System.out.println("Service : "+love);
 		return loveDAO.selectLoveOne(love);
 	}
 

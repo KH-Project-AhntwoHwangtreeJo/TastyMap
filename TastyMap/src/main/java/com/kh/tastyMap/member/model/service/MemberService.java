@@ -3,6 +3,8 @@ package com.kh.tastyMap.member.model.service;
 import java.util.List;
 import java.util.Map;
 
+import com.kh.tastyMap.love.model.vo.Love;
+import com.kh.tastyMap.member.model.vo.Follower;
 import com.kh.tastyMap.member.model.vo.Member;
 
 public interface MemberService {
@@ -56,8 +58,6 @@ public interface MemberService {
 	 */
 	List myGalleryPhoto(String memberId);
 
-
-
 	/**
 	 * 아이디 중복 체크
 	 * @param memberId
@@ -65,6 +65,20 @@ public interface MemberService {
 	 */
 	int checkIdDuplicate(String memberId);
 
+	/**
+	 * 팔로우 했는지 조회 
+	 * @param follower
+	 * @return
+	 */
+	int selectFollower(Follower follower);
 	
-
+	/**
+	 * 팔로우 하는 기능
+	 * - 이미 해당 팔로우를 했다면 취소
+	 * - 팔로우 한적 없으면 팔로우 추가
+	 *  
+	 * @param follower
+	 * @return
+	 */
+	Map<String, Object> clickFollower(Follower follower);
 }

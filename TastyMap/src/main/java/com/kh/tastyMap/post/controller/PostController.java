@@ -204,7 +204,7 @@ public class PostController {
 		
 		// 좋아요 조회 결과에 따른 상태 선언 조건문
 		if (result == 0) { // SELECT해서 COUNT 한 결과가 없을 때
-			status = "N"; // N : DB에 있다.
+			status = "N"; // N : DB에 없다.
 		} else if(result == 1) { // SELECT 해서 COUNT 한 결과가 있을 때
 			status = "Y"; // Y : DB에 있다.
 		} else {

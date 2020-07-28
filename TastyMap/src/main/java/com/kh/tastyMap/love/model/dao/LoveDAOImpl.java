@@ -14,7 +14,6 @@ public class LoveDAOImpl implements LoveDAO {
 	
 	@Override
 	public int selectLoveOne(Love love) {
-		System.out.println( "DAO Love : " +love );
 		return sqlSession.selectOne("loveMapper.selectPostLove", love);
 	}
 
