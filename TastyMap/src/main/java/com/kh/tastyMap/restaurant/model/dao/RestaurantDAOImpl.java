@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.tastyMap.post.model.vo.Picture;
+import com.kh.tastyMap.post.model.vo.PostList;
 import com.kh.tastyMap.restaurant.model.vo.Restaurant;
 import com.kh.tastyMap.restaurant.model.vo.RestaurantList;
 
@@ -93,24 +94,26 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 		return sqlSession.selectList("restaurantMapper.searchBar");
 	}
 
-	@Override
+	@Override //식당 상세페이지 사진 
 	public List<Picture> pictureList(int rno) {
 		return sqlSession.selectList("restaurantMapper.PictureList", rno);
 	}
 	
 	
 	
-	@Override  /* 막대 차트 */
-	public List restaurantChart(int rno) {
-		
-		return sqlSession.selectList("restaurantMapper.chartList", rno);
-	}
-
-	@Override /* 원형차트 */
-	public List restaurantChartTwo(int rno) {
+	@Override  //식당 상세페이지 원형 차트
+	public List<Map<String, String>> restaurantChartTwo(int rno) {
 	
 		return sqlSession.selectList("restaurantMapper.chartListTwo", rno);
 	}
+
+	@Override    //식당 상세페이지  막대 차트
+	public List<Map<String, String>> restaurantChart(int rno) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("restaurantMapper.chartList", rno);
+	}
+
+	
 
 
 	@Override
@@ -139,16 +142,21 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 		return sqlSession.selectOne("restaurantMapper.selectRestaurantTotal");
 	}
 
-	
-	
-			//사진입니다
-/*	@Override
-	public List<Picture> PictureList(int rno) {
-	
-		return sqlSession.selectOne("restaurantMapper.PictureList", rno);
+	@Override  	//식당 상세페이지  리뷰 가져오기
+	public List<PostList> restaurantPost(int rno) {
 		
+		return sqlSession.selectList("restaurantMapper.postList", rno);
 	}
-	*/
+
+	@Override  //식당 리뷰 사진
+	public List<Picture> restaurantPicture(int rno) {
+	
+		return sqlSession.selectList("restaurantMapper.postPicture", rno);
+	}
+
+	
+	
+
 	
 }
 	

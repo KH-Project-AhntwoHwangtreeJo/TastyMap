@@ -8,10 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <c:import url="/views/common/header.jsp"/> 
-  
-  <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-  <script src="${pageContext.request.contextPath}/js/jquery-migrate-3.0.1.min.js"></script>
-  
+<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-migrate-3.0.1.min.js"></script>
 
   </head>
   <body>
@@ -23,15 +21,15 @@
    function drawChart() {
 	
 	/* 차트 전체 구조 */
-/* 	오류보고 당황하지 말아주세요. */
+		/*빨간줄떠요 실행됨*/
      var data = google.visualization.arrayToDataTable([
-       ['Task', 'Hours per Day'],
-       ['10대',   ${map.A}],
-       ['20대',   ${map.B}],
-       ['30대',   ${map.C}],
-       ['40대',   ${map.D}],
-       ['50대 이상',${map.E}]
-     ]);
+    	  ['Task', 'Hours per Day'],
+          ['10대',${map.A}],
+          ['20대',${map.B}],
+          ['30대',${map.C}],
+          ['40대',${map.D}],
+          ['50대 이상',${map.E}]
+        ]);
 		
 	/*차트 타이틀 생성 */
      var options = {
@@ -41,19 +39,17 @@
      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 	
      chart.draw(data, options);
-   }
- </script>    
+   } 
+ </script>   
 <!--원형차트 끝-->
 <br />
 <br />
 <br />
 <br />
-
   
   
 	<c:if test="${ empty list}">
      <div id="header">    <!-- 가져오는 값이 없을때 이미지 출력 -->
-
   <img src="${pageContext.request.contextPath}/resources/upload/post/sajin.jpg" style="width: 100% ;height: 70%;" > 
    		  </div>
    </c:if>
@@ -62,7 +58,6 @@
      <div id="header">
         <div class="owl-carousel">
           <c:forEach items="${list}" var="name">   <!-- 가져오는 값이 있을때 이미지 출력 -->
-
     	      <div class="col-md-4">       	
             	<img src="${pageContext.request.contextPath}/resources/upload/post/${name.prenamedname}" style="width: 560px ;height: 370px;" />
 	          </div>
@@ -71,7 +66,10 @@
         </div> 
 	</c:if>  
 	
+	
+      
 
+     
     <!-- <section class="ftco-section ftco-degree-bg"> -->
       <div class="container">
         <div class="row">
@@ -80,12 +78,18 @@
        	   <hr>     	 
             <h1 class="mb-3 bread"> ${restaurant.rname} </h1>
             <hr>
-
+             	
             <c:if test="${ empty member.memberId }">
-            <img id="image" onclick="changeImage();" border="0" src="${pageContext.request.contextPath}/resources/upload/post/front.png" style="width: 30px; height: 30px; float: right;">
+            <img id="image" onclick="login();" border="0" src="${pageContext.request.contextPath}/resources/upload/post/front.png" style="width: 30px; height: 30px; float: right;">
       		</c:if>
-            <c:if test="${ map.status eq 'N' }">
-            <img id="image" onclick="changeImage();" border="0" src="${pageContext.request.contextPath}/resources/upload/post/front.png" style="width: 30px; height: 30px; float: right;">
+      		
+      		<c:if test="${ !empty member.memberId }">
+	            <c:if test="${ map.status eq 'N' }">
+	            <img id="image" onclick="changeImage();" border="0" src="${pageContext.request.contextPath}/resources/upload/post/front.png" style="width: 30px; height: 30px; float: right;">
+	      		</c:if>
+	      		<c:if test="${ map.status eq 'Y' }">
+	            <img id="image" onclick="changeImage();" border="0" src="${pageContext.request.contextPath}/resources/upload/post/back.png" style="width: 30px; height: 30px; float: right;">
+	      		</c:if>
       		</c:if>
 			
  			
@@ -116,7 +120,8 @@
 	</table>
  		
             <!--해당 페이지 출력 기능-->
-            <img onclick="window.print()" border="0" src="${pageContext.request.contextPath}/resources/images/print/print.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;" />
+                <input class="btn btn-outline-info" type="button" value="프린트하기" onclick="window.print()" style="float: right"/>
+            <!--//해당 페이지 출력 기능-->
            
             <form>
               <p class="test">
@@ -125,6 +130,7 @@
                   <br>        
          
               ${restaurant.rcontent}
+     
           
             <div class="pt-5 mt-5">
               <hr>
@@ -133,26 +139,39 @@
              
               <hr>
               <div class="pt-5 mt-5">
-              
-              
+                                                                                                                         
+         
                 <ul class="comment-list">
-                  <li class="comment">
+                <c:forEach items="${RPost}" var="RPost">  
+                	 
+                  <li class="comment">                          
                     <div class="vcard bio">
-                      <img src="images/person_1.jpg" alt="Image placeholder" style="margin-bottom: 5px;">
-                      <h6>조은성</h6>
+                      <img src="${pageContext.request.contextPath}/resources/images/profileImage/person_1.jpg" alt="Image placeholder" style="margin-bottom: 5px;">
+                      <h6>${RPost.NICKNAME}</h6>
                     </div>
                     <div class="comment-body">
                       <button type="button" class="btn btn-outline-danger" style="float: right;">신고</button>                    
-                      <div class="meta">날짜시간</div>
-                        <div class="col-md-11">이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??이게 맞는건가요 ??</div>
+                      <div class="meta">${RPost.date}</div>   
+                                           
                         <br>
                     </div>
-                    <img class="pt"src="images/person_1.jpg"  style="width: 200px; height: 200px;">
-                    <hr>
+                <c:forEach items="${RPicture}" var="RPicture"> 
+                <script>
+                	 	(function(){
+                	 	   var pno=${RPicture.PNO};
+                		   console.log(pno);
+                	 	});
+                	 </script>
+                    <c:if test="${RPost.PNO eq RPicture.PNO}">       			  
+           			 <img class="pt"src="${pageContext.request.contextPath}/resources/upload/post/${RPicture.prenamedname}"  style="width: 200px; height: 200px;">                    
+                    </c:if>
+                     </c:forEach>
+                   	<hr>
                   </li>
                   
+                 </c:forEach>       
                 </ul>
-    
+  
               </div>
                
             </div>
@@ -281,6 +300,8 @@ geocoder.addressSearch('${restaurant.address}', function(result, status) {
           <script >
             // 차트를 사용하기 위한 준비입니다.
             google.charts.load('current', {packages:['corechart']});
+            
+            
           </script>
           
           <!-- <div id="chart_div" ></div> --> <!-- 여기에 차트가 생성됩니다. -->
@@ -295,10 +316,10 @@ geocoder.addressSearch('${restaurant.address}', function(result, status) {
             // 차트 데이터 설정
             /* 	오류보고 당황하지 말아주세요. */
             var data = google.visualization.arrayToDataTable([
-              ['항목', '게시글 수'], // 항목 정의
-              ['남', ${map.M}],
-              ['여', ${map.F}],// 항목, 값 (값은 숫자로 입력하면 그래프로 생성됨)
-              ]);      
+                ['항목', '게시글 수'], // 항목 정의
+                ['남', ${map.M}],
+                ['여', ${map.F}],// 항목, 값 (값은 숫자로 입력하면 그래프로 생성됨)
+                ]);      
             // 그래프 옵션
             var options = {
               title : '게시글 수', // 제목
@@ -351,7 +372,12 @@ $('.stop').on('click',function(){
 
 	<!-- ex> MEMBER_ID = user01 -->
  <script type="text/javascript">
+ 
 
+function login() {
+	alert("로그인 해주세요");
+}
+ 
  
   function changeImage() {
 	   console.log("레스토랑 번호 : "+rno);
@@ -377,15 +403,16 @@ $('.stop').on('click',function(){
     				console.log(req);
     				console.log(status);
     				console.log(error);
-   				alert('에러임');		
+   				alert('에러임');	
     			}
    		});
-   	}   
+   	}  
  </script>  
 
 
+  
+ 
   <c:import url="/views/common/footer.jsp"/>
-
 
   </body>
 </html>

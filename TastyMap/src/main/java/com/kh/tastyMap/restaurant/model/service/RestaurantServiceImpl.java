@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.tastyMap.post.model.vo.Picture;
+import com.kh.tastyMap.post.model.vo.PostList;
 import com.kh.tastyMap.restaurant.model.dao.RestaurantDAO;
 import com.kh.tastyMap.restaurant.model.vo.Restaurant;
 import com.kh.tastyMap.restaurant.model.vo.RestaurantList;
@@ -72,19 +73,19 @@ public class RestaurantServiceImpl implements RestaurantService {
 		return restaurantDAO.searchBar();
 	}
 
-	@Override
+	@Override   ///식당 상세페이지 사진 
 	public List<Picture> pictureList(int rno) {
 		return restaurantDAO.pictureList(rno);
 	}
 
 
-	@Override /* 막대차트 */
+	@Override //식당 상세페이지  막대 차트
 	public List<Map<String, String>> restaurantChart(int rno) {
 		
 		return restaurantDAO.restaurantChart(rno);
 	}
 
-	@Override  /*원형차트*/
+	@Override   //식당 상세페이지 원형 차트
 	public List<Map<String, String>> restaurantChartTwo(int rno) {
 		
 		return restaurantDAO.restaurantChartTwo(rno);
@@ -102,14 +103,31 @@ public class RestaurantServiceImpl implements RestaurantService {
 		return restaurantDAO.selectRestaurantTotal();
 	}
 
-
-//	 사진입니다
-/*	@Override
-	public List<Picture> PictureList(int rno) {
-
-		return restaurantDAO.PictureList(rno);*/
+	@Override
+	public List<Map<String, String>> selectRestaurantList(int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
+	@Override
+	public int selectRestaurantTotalContents() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override  //식당 상세페이지  리뷰 가져오기
+	public List<PostList> restaurantPost(int rno) {
+	
+		return restaurantDAO.restaurantPost(rno);
+
+	}
+
+	@Override //식당 사진 리뷰 가져오기
+	public List<Picture> restaurantPicture(int rno) {
+		
+		return restaurantDAO.restaurantPicture(rno);
+	}
+}
 
 	
 
