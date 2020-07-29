@@ -9,6 +9,30 @@
     <title>tastyMap</title>
     <meta charset="utf-8">
 	<c:import url="/views/common/header.jsp"/>
+	
+	<!-- 경로 복사 -->
+	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+	<style>
+	   .urlCopyBtn {
+	
+	      font-weight:normal;         
+	      color:gray;
+	      text-decoration:none;
+	      font-size:12px;   
+	   }
+	   .urlCopyBtnIcon {
+	      border:1px solid gray;
+	      border-radius:3px;
+	      padding:0px 2px 1px 2px;
+	      color:white;
+	      background-color:gray;   
+	   }
+	   .urlCopyBtnIcon a {
+	      color:white;
+	   }
+	</style>
+	<!-- 경로 복사  끝 -->
+	
 </head>
 <body>
 
@@ -62,9 +86,13 @@
           <div class="col-md-8 ftco-animate">
             <br>
             <h4 class="mb-3" style="float: left;"> ${ post.nickname } </h4> .
-            
            
-
+			<!-- 경로 복사하기 -->
+			<a href="#urlCopyBtn" class="urlCopyBtn">
+				<span class="urlCopyBtnIcon" style="margin-left:10px; float: right;">URL복사</span>
+			</a>
+			<input type="text" value="localhost:8088/${pageContext.request.contextPath}/post/postDetail.do?pNo=${post.PNo}&memberId=" id="urlAddress" style="display:none;">
+			<!-- 경로 복사하기 끝 -->
             
             <!--해당 페이지 출력 기능-->
             <img onclick="window.print()" border="0" src="${pageContext.request.contextPath}/resources/images/print/print.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;" />
@@ -99,6 +127,7 @@
               
               <h3 class="mb-5" style="margin-bottom: 1rem !important;">댓글</h3> 
               <div class="col-12" style="padding: 0px;">
+              
 
                 <input type="text" style="width: 80%; margin-bottom: 5px;">
                 
@@ -240,10 +269,21 @@
 	        map.setCenter(coords);
 	    } 
 	});    
-	
-	
 	</script>
 	
+	<!-- 경로 복사 스크립트 -->
+	<script type="text/javascript">
+		$('.urlCopyBtn').click(function(){   
+		
+		   var urlAddress= $('#urlAddress');
+		   urlAddress.css('display','block').select();
+		   document.execCommand("Copy");
+		   urlAddress.css('display','none');
+		   alert('URL 주소가 복사 되었습니다');   
+		   return false;
+		});
+	</script>   
+
 	<!-- 지도 끝-->
       
     <!-- footer 시작 -->
