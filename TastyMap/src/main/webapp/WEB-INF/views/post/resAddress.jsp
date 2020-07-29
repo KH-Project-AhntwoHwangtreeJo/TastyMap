@@ -170,47 +170,50 @@ function displayPlaces(places) {
                };
                // 마커 클릭시 이동
                kakao.maps.event.addListener(marker, 'click', function(mouseEvent) {
-            	/*    displayInfowindow2(marker, title); */
-            	/*  $('.roadFullAddr').val(title);
-            	 $('.roadFullAddr').val(address);
-            	*/
-           	    searchDetailAddrFromCoords(marker, function(result, status) {
-           	        if (status === kakao.maps.services.Status.OK) {
-           	            var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
-           	            detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
-           	            
-           	            var content = '<div class="bAddr">' +
-           	                            /* '<span class="title">법정동 주소정보</span>' +  */
-           	                            detailAddr + title + 
-           	                        '</div>';
+               /*    displayInfowindow2(marker, title); */
+               /*  $('.roadFullAddr').val(title);
+                $('.roadFullAddr').val(address);
+               */
+                  searchDetailAddrFromCoords(marker, function(result, status) {
+                      if (status === kakao.maps.services.Status.OK) {
+                          var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
+                          detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
+                          
+                          var content = '<div class="bAddr">' +
+                                          /* '<span class="title">법정동 주소정보</span>' +  */
+                                          detailAddr + title + 
+                                      '</div>';
 
-           	            var road_addr = result[0].road_address.address_name
-           	            var addr = result[0].address.address_name
-           	       		  console.log(title)
-           	            console.log(road_addr)
-           	              console.log(addr)
-           	               
-           	                
-           	           
-           	            // 마커를 클릭한 위치에 표시합니다 
-/*            	            marker.setPosition(mouseEvent.latLng);
-           	            marker.setMap(map); */
+                          var road_addr = result[0].road_address.address_name
+                          var addr = result[0].address.address_name
+                          console.log(title)
+                          console.log(road_addr)
+                          console.log(addr)
+                          
+                          // 부모창으로 값 넘겨주기"id값".value = 넘겨줄 값;
+                          opener.document.getElementById("roadFullAddr").value = road_addr;
+                          opener.document.getElementById("rName").value = title;   
+                            
+                         
+                          // 마커를 클릭한 위치에 표시합니다 
+/*                           marker.setPosition(mouseEvent.latLng);
+                          marker.setMap(map); */
 
-           	            // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
-           	            infowindow.setContent(content);
-           	            infowindow.open(map, marker);
-           	            
-           	           
-           	        }   
-           	    });
-            	
-            	
-            	
+                          // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
+                          infowindow.setContent(content);
+                          infowindow.open(map, marker);
+                      }   
+                      
+                      window.close();
+                  });
+               
+               
+               
                });
                // 검색 결과 입력시 이동
                itemEl.onclick =  function () {
-            	   displayInfowindow(marker,title);
-            	 
+                  displayInfowindow(marker,title);
+                
                };
               
            })(marker, places[i].place_name, places[i].address_name);
@@ -321,8 +324,8 @@ function displayInfowindow(marker, title) {
 
 
 function displayInfowindow2(marker, title) {
-	 console.log("타이틀 :" + title); // 식당 이름
-	 
+    console.log("타이틀 :" + title); // 식당 이름
+    
     var lat = marker.getPosition().getLat();
     var lng = marker.getPosition().getLng();
     
@@ -336,7 +339,7 @@ function displayInfowindow2(marker, title) {
 var geocoder = new kakao.maps.services.Geocoder();
 
 function searchDetailAddrFromCoords(marker, callback) {
-	console.log("xxxx")
+   //console.log("xxxx")
       var lat = marker.getPosition().getLat();
     var lng = marker.getPosition().getLng();
     // 좌표로 법정동 상세 주소 정보를 요청합니다

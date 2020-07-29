@@ -61,18 +61,18 @@ public class PostController {
 	}
 	
 	@RequestMapping("/post/insertPostEnd.do")
-	public String insertPost(PostRequest postRequst, Picture pic, Model model, HttpSession session, HttpServletRequest request,
+	public String insertPost(PostRequest postRequst, Model model, HttpSession session, HttpServletRequest request,
 			@RequestParam(value="upFile", required= false) List<MultipartFile> upFile
 			) {
 		
 		//int star = Integer.parseInt(request.getParameter("star"));
-		System.out.println("화면에서 넘어온 값:" + postRequst);
+		//System.out.println("화면에서 넘어온 값:" + postRequst);
 		
-		String rName = "배스킨라빈스 강남중앙점";
-		String address = "서울 강남구 강남대로96길 9";
+		//String rName = "배스킨라빈스 강남중앙점";
+		//String address = "서울 강남구 강남대로96길 9";
 		
-//		String rName = postRequst.getRName();
-//		String address = postRequst.getAddress();
+		String rName = postRequst.getRName();
+		String address = postRequst.getAddress();
 	
 		
 		
@@ -123,9 +123,9 @@ public class PostController {
 
 		 //3. 파일 업로드 시작 (MultipartFile 사용 시)
 		System.out.println("사진:"+ upFile);
-		int i = 0;
 		// for (Object obj : files)
 		// files를 하나씩 객체를 꺼내서 obj에 넣어준다..
+		int i = 0;
 		for(MultipartFile f : upFile) {
 			if(!f.isEmpty()) {
 				String originName = f.getOriginalFilename();
@@ -143,6 +143,13 @@ public class PostController {
 				} catch (IllegalStateException | IOException e) {
 					e.printStackTrace();
 				}
+				
+				Picture pic = new Picture();
+				pic.setPOriginName(originName);
+				pic.setPRenamedName(renamedName);
+				
+				pictureList.add(pic);
+				
 				// 첫번째 사진의 레벨은 0 /즉,대표사진
 				if(i == 0) {
 					pic.setPLevel(0);
@@ -150,10 +157,7 @@ public class PostController {
 				} else {
 					pic.setPLevel(1);
 				}
-				pic.setPOriginName(originName);
-				pic.setPRenamedName(renamedName);
-		
-				pictureList.add(pic);
+				
 			}
 			i++; // 사진 하나 담기면 +1 // 그러면 레벨 구분됨
 		}
@@ -195,7 +199,7 @@ public class PostController {
 	// 게시글 식당 이름 주소 
 	@RequestMapping("/post/resAddress.do")
 	public String resAddress() {
-		System.out.println("ggg");
+		//System.out.println("ggg");
 		return "post/resAddress";
 	}
 	
