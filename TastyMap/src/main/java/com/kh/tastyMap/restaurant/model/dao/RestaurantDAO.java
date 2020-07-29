@@ -48,4 +48,6 @@ public interface RestaurantDAO {
 	List<PostList> restaurantPost(int rno);
 	//식당 리뷰 사진
 	List<Picture> restaurantPicture(int rno);
+	//리뷰 개수
+	int restaurantPostTwo(int rno);
 }

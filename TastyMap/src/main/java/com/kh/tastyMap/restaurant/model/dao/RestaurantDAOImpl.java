@@ -154,6 +154,12 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 		return sqlSession.selectList("restaurantMapper.postPicture", rno);
 	}
 
+	@Override //식당 리뷰 개수
+	public int restaurantPostTwo(int rno) {
+		
+		return sqlSession.selectOne("restaurantMapper.postNumber", rno);
+	}
+
 	
 	
 

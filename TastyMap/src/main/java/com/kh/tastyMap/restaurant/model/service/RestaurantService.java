@@ -75,6 +75,8 @@ public interface RestaurantService {
 	//식당 사진 리뷰 가져오기
 	List<Picture> restaurantPicture(int rno);
 
+	int restaurantPostTwo(int rno);
+
 	
 	
 	
