@@ -3,6 +3,10 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="commentMapper">
+
+	<resultMap id="resultPostComment" type="PostComment">
+		<id property="cno" column="COMMENT_SEQ"/>
+	</resultMap>
 	
 	<!-- ●댓글 레벨별 조회 -->
 	<select id="selectPcomment" parameterType="PostComment" resultType="POSTCOMMENT">
@@ -15,19 +19,19 @@
 	<!-- ●댓글 등록 -->
 	<insert id="insertPostComment" parameterType="PostComment" >  
 		INSERT INTO POST_COMMENT
-		VALUES(SEQ_CNO.NEXTVAL, #{pNo}, #{ccontent}, DEFAULT, #{memberId}, DEFAULT,  #{parentKey})
+		VALUES(SEQ_CNO.NEXTVAL, #{pNo}, #{ccontent}, DEFAULT, #{cwriter}, DEFAULT,  #{parentKey})
 	</insert>
 	
 	<!-- ●댓글 수정 -->
 	<update id="updatePostComment" parameterType="PostComment">
 		UPDATE POST_COMMENT SET CCONTENT = #{ccontent}
-		WHERE CNO = #{cno}
+		WHERE COMMENT_SEQ = #{cno}
 	</update>
 	
 	<!-- ●댓글 삭제 -->
-	<delete id="deletePostComment" parameterType="_int">
+	<delete id="deletePostComment" parameterType="PostComment">
 		DELETE FROM POST_COMMENT 
-		WHERE CNO = #{cno}
+		WHERE COMMENT_SEQ = #{cno}
 	</delete>
 	
 </mapper>

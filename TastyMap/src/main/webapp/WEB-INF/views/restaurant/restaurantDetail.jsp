@@ -23,14 +23,14 @@
 	/* 차트 전체 구조 */
 		/*빨간줄떠요 실행됨*/
      var data = google.visualization.arrayToDataTable([
-    	  ['Task', 'Hours per Day'],
-          ['10대',${map.A}],
-          ['20대',${map.B}],
-          ['30대',${map.C}],
-          ['40대',${map.D}],
-          ['50대 이상',${map.E}]
-        ]);
-		
+	   	  ['Task', 'Hours per Day'],
+	      ['10대',${map.A}],
+	      ['20대',${map.B}],
+	      ['30대',${map.C}],
+	      ['40대',${map.D}],
+	      ['50대 이상',${map.E}]
+	    ]);
+			
 	/*차트 타이틀 생성 */
      var options = {
        title: '리뷰 등록 연령대 비율 차트'
@@ -119,9 +119,8 @@
 	</tr>
 	</table>
  		
-            <!--해당 페이지 출력 기능-->
-                <input class="btn btn-outline-info" type="button" value="프린트하기" onclick="window.print()" style="float: right"/>
-            <!--//해당 페이지 출력 기능-->
+             <!--해당 페이지 출력 기능-->
+            <img onclick="window.print()" border="0" src="${pageContext.request.contextPath}/resources/images/print/print.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;" />
            
             <form>
               <p class="test">
