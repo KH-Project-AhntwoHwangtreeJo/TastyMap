@@ -54,23 +54,28 @@ public class RestaurantServiceImpl implements RestaurantService {
 		return 0;
 	}
 
-	@Override
-
+	@Override	// 식당 top9
 	public List<Map<String, String>> top8() {
 		// TODO Auto-generated method stub
 		return restaurantDAO.top8();
 	}
 
-	@Override
+	@Override	// 인플루언서 top8
 	public List<Map<String, String>> influencerTop8() {
 		// TODO Auto-generated method stub
 		return restaurantDAO.influencerTop8();
 	}
 
-	@Override
-	public List<Map<String, String>> searchBar() {
+	@Override	// 검색바
+	public List<Map<String, String>> RestaurantSearchBar(String searchOption, String keyword) {
 		// TODO Auto-generated method stub
-		return restaurantDAO.searchBar();
+		return restaurantDAO.RestaurantSearchBar(searchOption, keyword);
+	}
+	
+	@Override	// 검색바
+	public List<Map<String, String>> PostSearchBar(String searchOption, String keyword) {
+		// TODO Auto-generated method stub
+		return restaurantDAO.PostSearchBar(searchOption, keyword);
 	}
 
 	@Override   ///식당 상세페이지 사진 
@@ -117,7 +122,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 		return restaurantDAO.restaurantPicture(rno);
 	}
 
-	@Override
+	@Override	// 리뷰갯수
 	public int restaurantPostTwo(int rno) {
 		// TODO Auto-generated method stub
 		return 0;

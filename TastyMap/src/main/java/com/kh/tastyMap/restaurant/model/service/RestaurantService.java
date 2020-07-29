@@ -52,15 +52,20 @@ public interface RestaurantService {
 	 */
 	int deleteRestaurant(Restaurant restaurant);
 
-
+	// 식당 top9
 	List<Map<String, String>> top8();
 
+	// 인플루언서 top8
 	List<Map<String, String>> influencerTop8();
+	
+	// 검색바
+	List<Map<String, String>> RestaurantSearchBar(String searchOption, String keyword);
+	List<Map<String, String>> PostSearchBar(String searchOption, String keyword);
 	
 	//식당 상세페이지 사진 
 	List<Picture> pictureList(int rno);
 	//식당 상세페이지  막대 차트
-	 List<Map<String, String>> restaurantChart(int rno);
+	List<Map<String, String>> restaurantChart(int rno);
 	
 	 //식당 상세페이지 원형 차트
 	List<Map<String, String>> restaurantChartTwo(int rno);
@@ -69,12 +74,11 @@ public interface RestaurantService {
 
 	int selectRestaurantTotal();
 	
-	List<Map<String, String>> searchBar();
 	//식당 상세페이지  리뷰 가져오기
 	List<PostList> restaurantPost(int rno);
 	//식당 사진 리뷰 가져오기
 	List<Picture> restaurantPicture(int rno);
-
+	// 리뷰갯수
 	int restaurantPostTwo(int rno);
 
 	

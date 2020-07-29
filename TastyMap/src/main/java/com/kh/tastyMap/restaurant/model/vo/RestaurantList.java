@@ -19,7 +19,7 @@ public class RestaurantList implements Serializable {
 	private int rno;
 	private int bno;
 	private String member_Id;
-	private String rname;
+	private String rName;
 	private String rcontent;
 	private String category;
 	private int price;
@@ -31,7 +31,8 @@ public class RestaurantList implements Serializable {
 	private int latitude;
 	private int longitude;
 	private String rstatus;
-	private String prenamedname;
+	private String pRenamedName;
 	private double avg_star;
+	private String nickName;
 
 }
