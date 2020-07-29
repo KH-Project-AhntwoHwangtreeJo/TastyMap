@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
@@ -30,7 +31,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.kh.tastyMap.member.model.exception.MemberException;
 import com.kh.tastyMap.member.model.service.MemberService;
 import com.kh.tastyMap.member.model.vo.Follower;
@@ -352,7 +352,28 @@ public class MemberController {
 		
 		return map;
 	}
-   
+	@RequestMapping("/member/checkPassword.do")
+	@ResponseBody
+	public Map<String, Object> respenseBodyProcess(@RequestParam String memberId,@RequestParam  String password){
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		Member m = memberService.selectOne(memberId);
+		
+		boolean isUsable;
+		
+		if(bcryptPasswordEncoder.matches(password, m.getPassword())) {
+			isUsable = true;
+            
+         } else {
+        	 isUsable = false;
+         }
+		
+		map.put("isUsable", isUsable);
+		
+		return map;
+		
+	}
+	
    @RequestMapping(value="/member/memberLogin.do",method=RequestMethod.POST)
    public ModelAndView memberLogin(
          @RequestParam("inputId") String memberId,
@@ -406,6 +427,24 @@ public class MemberController {
       return mav;
    }
    
+   @RequestMapping("/member/findId.do")
+   public String findId(@RequestParam("findIdName") String userName,
+	         @RequestParam("findIdBirth") String birth1 , Model model) throws ParseException {
+	   SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
+	   java.util.Date d1 = sdf.parse(birth1);
+	   sdf.applyPattern("yyyy-MM-dd");
+	   
+	   Date birth = Date.valueOf(sdf.format(d1));
+	   
+	   
+	   Member member = new Member(userName, birth);
+	   
+	   
+	   model.addAttribute("findId", memberService.findIdMember(member));
+	   
+	   return "member/yourId";
+   }
+   
    @RequestMapping("/member/memberLogout.do")
    public String memberLogout(SessionStatus status) {
       // SessionStatus 는 현재 사용자가 접속한 웹 브라우저와 서버 사이의 세션의 설정을 가지는 객체
@@ -416,113 +455,131 @@ public class MemberController {
       
       return "redirect:/";
    }
+   
+   @RequestMapping("/member/deleteMember.do")
+   public String deleteMember(@RequestParam("memberId") String memberId,
+		   					Model model, SessionStatus status) {
+	   
+	   memberService.deleteMember(memberId);
+	   
+	   if(! status.isComplete())
+	         status.setComplete();
+	   
+	   return "redirect:/";
+   }
+   
    // 회원정보 수정 페이지 이동
-         @RequestMapping("/member/memberUpdateView.do")
-         public String memberUpdateView(@RequestParam String memberId, Model model) {
-            
-            model.addAttribute("member", memberService.selectOne(memberId));
-            
-            return "member/memberUpdate";
-         }
+   @RequestMapping("/member/goMemberUpdate.do")
+   public String goMemberUpdate(@RequestParam String memberId,@RequestParam String password, Model model) {
+
+      model.addAttribute("member", memberService.selectOne(memberId));
+      
+      return "member/updateMember";
+   }
          
-         // 회원 정보 수정 기능 메소드
-         @RequestMapping("/member/memberUpdate.do")
-         public String memberUpdate(@RequestParam("inputId") String memberId,
-                  @RequestParam("inputPassword0") String password,
-                  @RequestParam("inputName") String userName,
-                  @RequestParam("inputNicName") String nickname,
-                  @RequestParam("inputIntro") String mcontent,
-                  @RequestParam("yy") String birth0,
-                  @RequestParam("mm") String birth1,
-                  @RequestParam("dd") String birth2,
-                  @RequestParam("inputGender") String gender,
-                  @RequestParam("inputMobile") String phone,
-                  @RequestParam("InputEmail") String email,
-                  @RequestParam("roadFullAddr") String address,
-                  Model model,
-                  @RequestParam(value="mphoto", required = false) MultipartFile[] mphoto, HttpServletRequest request) {
-            
-            Date birth = Date.valueOf(birth0 + "-" + birth1 + "-" + birth2);
-            String mstatus = "Y";
-            
-            // 프로필사진 저장할 폴더
-            String savePath = request.getSession().getServletContext().getRealPath("/resources/images/profileImage");
-            
-            File dir = new File(savePath);
-            
-            
-            if (dir.exists() == false) dir.mkdirs();
-            String renamedFileName = "";
-            
-            // 여기까지 나옴
-            for (MultipartFile f : mphoto) {
-               if (!f.isEmpty()) {
-                  // 파일 이름 재생성 해서 저장하기
-                  String originalFileName = f.getOriginalFilename();
-                  String ext = originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
-                  // sample.jsp --> .jpg 만 꺼냄
+   // 회원 정보 수정 기능 메소드
+   @RequestMapping("/member/memberUpdate.do")
+   public String memberUpdate(@RequestParam("inputId0") String memberId,
+  		 @RequestParam("inputPassword0") String password,
+            @RequestParam("inputNicName") String nickname,
+            @RequestParam("inputIntro") String mcontent,
+            @RequestParam("inputMobile") String phone,
+            @RequestParam("InputEmail") String email,
+            @RequestParam("roadFullAddr") String address,
+            Model model,
+            @RequestParam(value="mphoto", required = false) MultipartFile[] mphoto, HttpServletRequest request) {
+      
+      String mstatus = "Y";
 
-                  SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+      // 프로필사진 저장할 폴더
+      String savePath = request.getSession().getServletContext().getRealPath("/resources/images/profileImage");
+      
+      File dir = new File(savePath);
+      
+      
+      if (dir.exists() == false) dir.mkdirs();
+      String renamedFileName = "";
+      
+      // 여기까지 나옴
+      for (MultipartFile f : mphoto) {
+         if (!f.isEmpty()) {
+            // 파일 이름 재생성 해서 저장하기
+            String originalFileName = f.getOriginalFilename();
+            String ext = originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
+            // sample.jsp --> .jpg 만 꺼냄
 
-                  int rndNum = (int) (Math.random() * 1000);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
 
-                  renamedFileName = sdf.format(new Date(System.currentTimeMillis())) + "_" + rndNum + "." + ext;
-                  // --> 20191230_154500_1.jpg
+            int rndNum = (int) (Math.random() * 1000);
 
-                  try {
-                     f.transferTo(new File(savePath + "/" + renamedFileName));
+            renamedFileName = sdf.format(new Date(System.currentTimeMillis())) + "_" + rndNum + "." + ext;
+            // --> 20191230_154500_1.jpg
 
-                  } catch (IllegalStateException e) {
-                     // TODO Auto-generated catch block
-                     e.printStackTrace();
-                  } catch (IOException e) {
-                     // TODO Auto-generated catch block
-                     e.printStackTrace();
-                  }
+            try {
+               f.transferTo(new File(savePath + "/" + renamedFileName));
 
-               } else {
-                  renamedFileName = "defaultMmember.png";
-               } 
-               
-               
-               // 저장된 파일 정보를 list에 담기
-            
+            } catch (IllegalStateException e) {
+               // TODO Auto-generated catch block
+               e.printStackTrace();
+            } catch (IOException e) {
+               // TODO Auto-generated catch block
+               e.printStackTrace();
             }
-            
-            String plainPassword = password;
-            
-            
-            /********************** 암호화 Start ************************/
-            
-            String encryptPassword = bcryptPasswordEncoder.encode(plainPassword);
-            // $2a$10$rf8eKgXvjSm6ZC7BiP4Lj.I3v6X3sPwbe0fISb3DrYk82mumYtdaW
-            // $2a$ : 암호 알고리즘 (모드)
-            // 10$ : 4-31 회 중 10번 반복 횟수를 거침
-            // rf8eKgXvjSm6ZC7BiP4Lj. : 랜덤 Salt (임의의 문자열 22글자)
-            // I3v6X3sPwbe0fISb3DrYk82mumYtdaW : 실제 암호화된 결과 (31글자)
-            
-            /********************** 암호화    End ************************/
-            
-            
-            Member member = new Member(memberId, encryptPassword, renamedFileName, userName, nickname,
-                  mcontent, birth, gender, phone, email, address, mstatus);
-            
-            // 서비스 로직을 수행
-            int result = memberService.updateMember(member);
-            
-            String loc = "/";
-            String msg = "";
-            
-            // 수행한 결과에 따라 화면 분기 처리 
-            if(result > 0) msg = "회원가입성공!";
-            else msg = "회원가입 실패!";
-            
-            model.addAttribute("loc", loc); // like request.setAttribute("loc", loc);
-            model.addAttribute("msg", msg);
-            
-            
-            return "common/msg";
-         }
+
+         } else {
+            renamedFileName = "null";
+         } 
+         
+         
+         // 저장된 파일 정보를 list에 담기
+      
+      }
+   int result;
+   if(password.length()>0) {
+      String plainPassword = password;
+
+      /********************** 암호화 Start ************************/
+      
+      String encryptPassword = bcryptPasswordEncoder.encode(plainPassword);
+      // $2a$10$rf8eKgXvjSm6ZC7BiP4Lj.I3v6X3sPwbe0fISb3DrYk82mumYtdaW
+      // $2a$ : 암호 알고리즘 (모드)
+      // 10$ : 4-31 회 중 10번 반복 횟수를 거침
+      // rf8eKgXvjSm6ZC7BiP4Lj. : 랜덤 Salt (임의의 문자열 22글자)
+      // I3v6X3sPwbe0fISb3DrYk82mumYtdaW : 실제 암호화된 결과 (31글자)
+      
+      /********************** 암호화    End ************************/
+      
+      
+      Member member = new Member(memberId, encryptPassword, renamedFileName, nickname,
+            mcontent, phone, email, address, mstatus);
+      
+      
+      // 서비스 로직을 수행
+      result = memberService.updateMember1(member);
+      } else {
+      	
+      	Member member = new Member(memberId, renamedFileName, nickname,
+                  mcontent, phone, email, address, mstatus);
+      	
+      result = memberService.updateMember2(member);
+      }
+      
+      String loc = "/";
+      String msg = "";
+      
+      // 수행한 결과에 따라 화면 분기 처리 
+      if(result > 0) msg = "정보수정성공!";
+      else msg = "정보수정 실패!";
+      
+      model.addAttribute("loc", loc); // like request.setAttribute("loc", loc);
+      model.addAttribute("msg", msg);
+      
+      Member m = memberService.selectOne(memberId);
+      
+      model.addAttribute("member", m);
+      
+      return "common/msg";
+   }
          
          
       @RequestMapping("/member/myPage.do")

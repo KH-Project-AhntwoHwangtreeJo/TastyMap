@@ -24,20 +24,14 @@ public interface MemberDAO {
 	 * @return
 	 */
 	Member selectOne(String memberId);
-	 
-	 /**
-	  * 회원 정보 수정용 메소드
-	  * @param m
-	  * @return
-	  */
-	int updateMember(Member m);
+	
 	
 	/**
 	 * 회원 탈퇴용 메소드
 	 * @param m
 	 * @return
 	 */
-	int deleteMember(Member m);
+	int deleteMember(String memberId);
 	
 	/**
 	 * 마이갤러리 조회용
@@ -67,7 +61,26 @@ public interface MemberDAO {
 	 * @return
 	 */
 	int checkIdDuplicate(HashMap<String, Object> hmap);
-
+	/**
+	 * 아이디 찾기
+	 * @param memberId
+	 * @return
+	 */
+	String findId(Member member);
+	
+	/**
+	 * 비밀번호 입력했을 때 수정
+	 * @param memberId
+	 * @return
+	 */
+	int updateMember1(Member member);
+	
+	/**
+	 * 비밀번호 입력안했을 때 수정
+	 * @param memberId
+	 * @return
+	 */
+	int updateMember2(Member member);
 	/**
 	 * 이미 해당 사용자가 팔로우 했는지 조회하는 기능
 	 * @param follower

@@ -4,6 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
 <!DOCTYPE html>
+<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/jquery-migrate-3.0.1.min.js"></script>
  <div class="col-md-3-stretch d-flex">
             <br><br>
             <ul class="list-group" style="width: auto; text-align:center">
@@ -15,7 +17,109 @@
               <li class="list-group-item"><a href="${pageContext.request.contextPath}/member/myGallery.do?memberId=${member.memberId}">마이 갤러리</a></li>
               <li class="list-group-item"><a href="${pageContext.request.contextPath}/love/iHaveLoveList.do?member_Id=${member.memberId}">좋아요 리스트</a></li>
               <li class="list-group-item"><a href="${pageContext.request.contextPath}/bookmark/iHaveBookmarkList.do?member_Id=${member.memberId}">북마크 리스트</a></li>
-              <li class="list-group-item"><a href="#">회원수정/회원탈퇴</a></li>
+              <li class="list-group-item"><a href="#" data-toggle="modal" data-target="#checkPasswordModal"> 회원수정/회원탈퇴 </a></li>
               <li class="list-group-item"><a href="#">나의 활동로그</a></li>
             </ul>
           </div>
+          
+             <!-- 로그인 모달 끝-->
+	
+	<div class="modal fade" id="checkPasswordModal" tabindex="-1" role="dialog" aria-labelledby="checkPasswordLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content" style="padding:5%">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="checkPasswordModalLabel">비밀번호 확인</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <br />
+          <!--로그인폼 -->
+          <!-- https://getbootstrap.com/docs/4.1/components/forms/#overview -->
+          <form id="updateMemberInfo" action="${pageContext.request.contextPath}/member/goMemberUpdate.do" method="post">
+                   <input type="hidden" name="memberId" value="${member.memberId }"/>
+                  <div class="form-group">
+                    <label for="inputPassword">비밀번호 확인</label>
+                    <input type="password" class="form-control" id="checkPassword" name="password" value="" placeholder="비밀번호를 입력해주세요">
+                  </div>
+                  <br>
+
+                    <div class="form-group text-center">
+                        <button type="button" id="checkPasswordSubmit" class="btn btn-primary" style="width: 100%; height: 50px;"  >
+                            	확인<i class="fa fa-check spaceLeft"></i>
+                        </button>
+                    </div>
+                    <div class="form-group text-center">
+                  </div>
+                </form>
+	    </div>
+	  </div>
+	</div>
+	<!-- 로그인 모달 끝-->
+	
+	<script>
+		$('#checkPasswordSubmit').on('click', function(){
+
+			$.ajax({
+				url : '${pageContext.request.contextPath}/member/checkPassword.do',
+				data : {
+					memberId : '${member.memberId}',
+					password : $('#checkPassword').val()
+				}, dataType : 'json',
+				async : false,
+				success : function(data){
+					console.log(data);
+					check = data.isUsable;
+				}
+			});
+			
+			if(check != false){
+				$('#updateMemberInfo').submit();
+			} else {
+				alert("비밀번호를 다시 확인 하세요!");
+			}
+		});
+		 
+	
+/* 	function checkPassword() {
+
+		  if(($('#checkPassword').val()) == "") {
+
+		    alert("비밀번호확인란을 입력해 주세요.");
+
+		    return false; */
+
+		/*   } else {
+				  	var memberId3 = ${member.memberId};
+		          	var password3 = checkPassword.val();
+		          	console.log(memberId3);
+		          	console.log(password3);
+			  
+			  $.ajax({
+					url : '${pageContext.request.contextPath}/member/checkPassword.do',
+		            dataType: "json",
+		            data : JSON.stringify({
+		            	"password" : password3,
+		            }),
+		            success : function(data){
+		                console.log(data);
+		                // if(data=="true") //stream 방식
+		                if(data.isUsable==true){ //viewName 방식
+		                	return true;
+		                } else {
+		                	alert("비밀번호가 틀렸습니다.");
+		                	return false;        
+		                }
+		            }, error : function(jqxhr, textStatus, errorThrown){
+		                console.log("ajax 처리 실패");
+		                //에러로그
+		                console.log(jqxhr);
+		                console.log(textStatus);
+		                console.log(errorThrown);
+		            }
+	        	});
+		  } */
+
+		// }
+	</script>
+	

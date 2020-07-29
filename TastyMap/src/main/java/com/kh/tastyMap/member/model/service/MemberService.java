@@ -23,19 +23,13 @@ public interface MemberService {
 	 */
 	Member selectOne(String memberId);
 	 
-	 /**
-	  * 회원 정보 수정용 메소드
-	  * @param m
-	  * @return
-	  */
-	int updateMember(Member m);
 	
 	/**
 	 * 회원 탈퇴용 메소드
 	 * @param m
 	 * @return
 	 */
-	int deleteMember(Member m);
+	int deleteMember(String memberId);
 	
 	/**
 	 * 마이 갤러리 조회용 메소드
@@ -58,13 +52,35 @@ public interface MemberService {
 	 */
 	List myGalleryPhoto(String memberId);
 
+	
+	
 	/**
 	 * 아이디 중복 체크
 	 * @param memberId
 	 * @return
 	 */
 	int checkIdDuplicate(String memberId);
+	
+	/**
+	 * 아이디 찾기
+	 * @param memberId
+	 * @return
+	 */
+	String findIdMember(Member member);
 
+	/**
+	 * 비밀번호 입력시 수정 체크
+	 * @param memberId
+	 * @return
+	 */
+	int updateMember1(Member member);
+	
+	/**
+	 * 비밀번호 미입력시 수정 체크
+	 * @param memberId
+	 * @return
+	 */
+	int updateMember2(Member member);
 	/**
 	 * 팔로우 했는지 조회 
 	 * @param follower
