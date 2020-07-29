@@ -70,11 +70,16 @@
 	function goAddress(){
 		
 		var add = window.open("${pageContext.request.contextPath}/post/resAddress.do","add","width=570,height=420, scrollbars=yes, resizable=yes");
+		//var vReturn = window.showModalDialog(url, "_blank", sFeatures);
+		 //document.formname.textfield.value = vReturn;
+		//document.formname.rName.value = add;
 	}
 	
-	function jusoCallBack(roadFullAddr){
+	function jusoCallBack(roadFullAddr, title){
 		// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
-		document.form.roadFullAddr.value = roadFullAddr;
+		console.log(roadFullAddr);
+		console.log(title);
+		//document.form.roadFullAddr.value = roadFullAddr;
 		/** 2017년 3월 추가제공 **/
 	}
 	
@@ -188,8 +193,8 @@
 </div> --%>
               <div class="callbackDiv">
               
-                <input type="text" class="form-control" id="rName"name="rName" style="width : 50%; display: inline;" placeholder="주소검색을 눌러주세요" readonly>
-                <input type="text" 						id="address" name="address" readonly></input>
+                <input type="text" class="form-control" id="roadFullAddr" name="address"  placeholder="주소검색을 눌러주세요" readonly required>
+                <input type="text" 						id="rName" name="rName" placeholder="식당이름" readonly></input>
                 <button class="btn btn-primary py-3 px-4" id="address" onclick="goAddress();">주소검색</button>
               </div>
 
@@ -249,3 +254,4 @@
  <c:import url="/views/common/footer.jsp"/>
 </body>
 </html>
+
