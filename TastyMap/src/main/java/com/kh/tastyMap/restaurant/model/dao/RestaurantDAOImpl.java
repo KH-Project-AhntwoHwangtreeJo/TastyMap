@@ -1,5 +1,6 @@
 package com.kh.tastyMap.restaurant.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -76,22 +77,35 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 
 
 
-	@Override
+	@Override	// 식당 top9
 	public List<Map<String, String>> top8() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("restaurantMapper.selectTop8");
 	}
 
-	@Override
+	@Override	// 인플루언서 top8
 	public List<Map<String, String>> influencerTop8() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("restaurantMapper.influencerTop8");
 	}
 
-	@Override
-	public List<Map<String, String>> searchBar() {
+	@Override	// 검색바
+	public List<Map<String, String>> RestaurantSearchBar(String searchOption, String keyword) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("restaurantMapper.searchBar");
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("searchOption", searchOption);
+		map.put("keyword", keyword);
+		
+		return sqlSession.selectList("restaurantMapper.RestaurantSearchBar", map);
+	}
+	@Override	// 검색바
+	public List<Map<String, String>> PostSearchBar(String searchOption, String keyword) {
+		// TODO Auto-generated method stub
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("searchOption", searchOption);
+		map.put("keyword", keyword);
+		
+		return sqlSession.selectList("restaurantMapper.PostSearchBar", map);
 	}
 
 	@Override //식당 상세페이지 사진 

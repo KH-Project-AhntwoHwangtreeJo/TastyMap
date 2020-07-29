@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.tastyMap.bookmark.model.service.BookmarkService;
 import com.kh.tastyMap.bookmark.model.vo.Bookmark;
@@ -100,13 +101,31 @@ public class RestaurantController {
 	}
 
 	@RequestMapping("/restaurant/searchBar.do")
-	public String searchBar(@RequestParam String keyword, Restaurant restaurant, Model model) {
+	public ModelAndView searchBar(@RequestParam(defaultValue="Restaurant") String searchOption, 
+						  @RequestParam(defaultValue="") String keyword, RestaurantList restaurant, PostList post, Model model) {
 		
-		List<Map<String, String>> list = restaurantService.searchBar();
+		ModelAndView mav = new ModelAndView();
 		
-		model.addAttribute("list",list);
+		Map<String, Object> map = new HashMap<String, Object>();
 		
-		return "/restaurant/restaurantAllList";
+		if(searchOption.equals("Restaurant")) {
+			List<Map<String, String>> list = restaurantService.RestaurantSearchBar(searchOption, keyword);
+			map.put("searchOption",searchOption);
+			map.put("keyword",keyword);			
+			mav.addObject("RList",list);
+			mav.addObject("map",map);
+			mav.setViewName("restaurant/restaurantAllList");
+			
+		} else {
+			List<Map<String, String>> list = restaurantService.PostSearchBar(searchOption, keyword);
+			map.put("searchOption",searchOption);
+			map.put("keyword",keyword);			
+			mav.addObject("postList",list);
+			mav.addObject("map",map);
+			mav.setViewName("post/postAllList");
+		}
+
+		return mav;
 	}
 	
   // 레스토랑 디테일 페이지 (조은성)

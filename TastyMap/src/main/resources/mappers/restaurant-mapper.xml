@@ -69,13 +69,41 @@
 	</select>
 	
 	<!-- searchBar (조현민) -->
-	<select id="searchBar" resultType="Restaurant">
-		SELECT * FROM RESTAURANT WHERE RNAME LIKE '%'||#{rname}||'%' 
-								OR RCONTENT LIKE '%'||#{rcontent}||'%' 
-								OR CATEGORY LIKE '%'||#{category}||'%'
+	<select id="RestaurantSearchBar" resultType="RestaurantList">
+		SELECT R.RNO, R.RNAME, R.RCONTENT, R.ADDRESS, NAME.PRENAMEDNAME
+		FROM (SELECT RNO, RNAME, RCONTENT, SUBSTR(ADDRESS, 1, 7) ADDRESS
+		            FROM RESTAURANT
+		            WHERE RNAME LIKE '%'||#{keyword}||'%' 
+			        OR RCONTENT LIKE '%'||#{keyword}||'%' 
+			        OR CATEGORY LIKE '%'||#{keyword}||'%') R
+		left JOIN (SELECT PC.*, P.RNO
+		FROM(
+		SELECT PRENAMEDNAME,PNO
+		FROM PICTURE 
+		WHERE PLEVEL=0) PC
+		JOIN POST P ON(P.PNO=PC.PNO)
+		JOIN (SELECT MIN(PNO) "PNO", RNO
+		FROM POST
+		GROUP BY RNO) MINPOST ON(MINPOST.PNO=PC.PNO)) NAME ON(NAME.RNO=R.RNO)
+		ORDER BY RNO DESC
 	</select>
 
-	
+	<!-- searchBar (조현민) -->
+	<select id="PostSearchBar" resultType="PostList">
+		SELECT R.*, PI.PRENAMEDNAME, M.NICKNAME "NICKNAME"
+		FROM (SELECT RE.RNO, P.PNO, RE.RNAME, P.PCONTENT, SUBSTR(ADDRESS, 1, 7) ADDRESS, P.MEMBER_ID
+		            FROM RESTAURANT RE
+		            JOIN POST P ON(P.RNO = RE.RNO)) R
+		JOIN PICTURE PI ON(PI.PNO=R.PNO)
+		JOIN MEMBER M ON(M.MEMBER_ID = R.MEMBER_ID)
+		WHERE PLEVEL = 0
+		AND RNAME LIKE '%'||#{keyword}||'%' 
+        OR PCONTENT LIKE '%'||#{keyword}||'%' 
+        OR NICKNAME LIKE '%'||#{keyword}||'%'
+		ORDER BY R.PNO DESC
+	</select>
+
+
 
 
 <!-- 북마크 확인  (조은성)-->
@@ -173,6 +201,7 @@ FROM(SELECT *
 FROM DUAL
 </select>
 
+<!-- 리뷰갯수 -->
 <select id="postNumber" resultType="_int">
 SELECT COUNT(*)
 FROM POST P

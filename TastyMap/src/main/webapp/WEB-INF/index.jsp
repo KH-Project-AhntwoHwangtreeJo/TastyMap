@@ -22,8 +22,14 @@
 				<div class="search_form" style="background: #fff; border-radius: 5px; border: solid #d4ca68;">
 					<form action="${pageContext.request.contextPath}/restaurant/searchBar.do" id="searchForm" method="get">
 						<div class="row align-items-center">
-							<div class="col-10">
-								<div class="input_field">
+							<div class="col-10" style="display:flex; margin-top:4px;">
+								<div class="input_field col-2">
+									<select name="searchOption">
+										<option value="Restaurant"><c:out value="${map.searchOption == 'Restaurant'?'selected':''}"/>음식점</option>
+										<option value="Post"><c:out value="${map.searchOption == 'Post'?'selected':''}"/>게시글</option>
+									</select>
+								</div>
+								<div class="input_field col-10">
 									<input type="text" id="keyword" name="keyword" 
 										   placeholder="What's your favorite food?  어떤 음식을 좋아하시나요?"
 										   style="width:100%; height:30px; padding: 15px; border: none;">
@@ -649,12 +655,12 @@
 				for(var i in list) {
 					var html = '<div class="col-md-4">' + 
 			    	        		'<div class="listing-wrap img rounded d-flex align-items-end"' + 
-			    	        		'style="background-image: url(${pageContext.request.contextPath}/resources/upload/post/' + list[i].prenamedname + ');">' + 
+			    	        		'style="background-image: url(${pageContext.request.contextPath}/resources/upload/post/' + list[i].prenamedName + ');">' + 
 			            			'<div class="location">' + 
 			            				'<span class="rounded">' + list[i].address + '</span>' + 
 			            			'</div>' + 
 			            			'<div class="text">' + 
-			            				'<h3><a href="#"> '+ list[i].rname +' </a></h3>' + 
+			            				'<h3><a href="#"> '+ list[i].rname + '</a></h3>' + 
 			            				'<a href="#" class="btn-link">자세히 <span class="ion-ios-arrow-round-forward"></span></a>' + 
 			            			'</div>' +
 			            		'</div>' + 
@@ -789,13 +795,6 @@
 	    return [year, month, day].join('/');
 	}
 
-	
-	function btnTitle(obj) {
-		
-        $('#keyword').val($(obj).text());
-        $('#searchForm').submit();
-
-     }
     
     </script>
 	</body>
