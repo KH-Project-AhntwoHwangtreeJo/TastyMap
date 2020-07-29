@@ -116,6 +116,12 @@ public class RestaurantServiceImpl implements RestaurantService {
 		
 		return restaurantDAO.restaurantPicture(rno);
 	}
+
+	@Override
+	public int restaurantPostTwo(int rno) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
 
 	

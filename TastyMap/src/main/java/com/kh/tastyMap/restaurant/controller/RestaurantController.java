@@ -2,7 +2,6 @@ package com.kh.tastyMap.restaurant.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import java.util.List;
 import java.util.Map;
 
@@ -28,38 +27,34 @@ public class RestaurantController {
 	RestaurantService restaurantService;
 	
 
-	
-	// 식당 전체리스트 조회
 	@RequestMapping("/restaurant/restaurantAllList.do")
 	   public List restaurantAllList(
 	         @RequestParam (value="cPage", required=false, defaultValue="1")
 	         int cPage, Model model) {
 	      int numPerPage = 5;
 
-			
-			List<RestaurantList> RList = restaurantService.restaurantAllList(cPage, numPerPage);
-				
-			System.out.println(RList);
-				
-			// 카테고리 별 출력하기 // 한식/중식/일식
-			List<RestaurantList> kList = new ArrayList<>();
-			List<RestaurantList> cList = new ArrayList<>();
-			List<RestaurantList> jList = new ArrayList<>();
-			
-		// 카테고리 별 출력하기 // 한식/중식/일식
-			for(RestaurantList r : RList) {
-				if("한식".equals(r.getCategory())){
-					kList.add(r);
-				} else if ("중식".equals(r.getCategory())) {
-					cList.add(r);
-				} else if ("일식".equals(r.getCategory())) {
-					jList.add(r);
-				}
-			}
-			
-			int totalContent = restaurantService.selectRestaurantTotal();
-			
-//			String pageBar = Utils.getPageBar(totalContent, cPage, numPerPage, "restaurantAllList.do");
+	      
+	      List<RestaurantList> RList = restaurantService.restaurantAllList(cPage, numPerPage);
+	         
+	      System.out.println(RList);
+	         
+	      List<RestaurantList> kList = new ArrayList<>();
+	      List<RestaurantList> cList = new ArrayList<>();
+	      List<RestaurantList> jList = new ArrayList<>();
+	      
+	      for(RestaurantList r : RList) {
+	         if("한식".equals(r.getCategory())){
+	            kList.add(r);
+	         } else if ("중식".equals(r.getCategory())) {
+	            cList.add(r);
+	         } else if ("일식".equals(r.getCategory())) {
+	            jList.add(r);
+	         }
+	      }
+	      
+	      int totalContent = restaurantService.selectRestaurantTotal();
+	      
+//	      String pageBar = Utils.getPageBar(totalContent, cPage, numPerPage, "restaurantAllList.do");
 
 	      System.out.println("k" + kList);
 	      System.out.println("c" + cList);
@@ -126,6 +121,7 @@ public class RestaurantController {
 		String C ="";
 		String D ="";
 		String E ="";
+	
 //				 식당 디테일 페이지 접속 시 동작하는 구문
 //				1. 식당 기본정보(리스트) 가져오기
 //				2. 해당하는 식당 사진 불러오기 
@@ -133,7 +129,7 @@ public class RestaurantController {
 //				4. 막대 차트 
 //				5. 원형 차트
 //				6. 리뷰 
-//		
+//				7. 리뷰갯수
 //		
 //			1. 식당 기본정보(리스트) 가져오기
 		Restaurant R = restaurantService.restaurantDetail(rno);	
@@ -187,11 +183,17 @@ public class RestaurantController {
 //       	6. 리뷰
 		List<PostList> RPost = restaurantService.restaurantPost(rno);
 		
-		System.out.println(RPost);
+		
 //		 	7. 리뷰 사진
 		List<Picture> RPicture = restaurantService.restaurantPicture(rno);
-		System.out.println(RPicture);
-	
+		System.out.println("RPicture"+RPicture);
+		
+		
+//			8. 리뷰갯수
+		  int PostNumber = restaurantService.restaurantPostTwo(rno);
+		String Pnum = String.valueOf(PostNumber);
+		  
+		map.put("Pnum",Pnum);	
 		map.put("M",M);
 		map.put("F",F);
 		map.put("A",A);
@@ -207,7 +209,7 @@ public class RestaurantController {
 		 model.addAttribute("RPicture", RPicture);
 		
 		 System.out.println("RPost" + RPost);	
-		 	
+		
 			
 		return "restaurant/restaurantDetail";    
 		

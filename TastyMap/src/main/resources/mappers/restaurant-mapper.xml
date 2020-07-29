@@ -173,6 +173,12 @@ FROM(SELECT *
 FROM DUAL
 </select>
 
+<select id="postNumber" resultType="_int">
+SELECT COUNT(*)
+FROM POST P
+JOIN MEMBER M ON(P.MEMBER_ID = M.MEMBER_ID)
+WHERE RNO = ${rno} and PSTATUS = 'Y'
+</select>
 
 <!-- 식당 전체 리스트 조회  by 안예진-->
 	<select id = "restaurantAllList" resultType="RestaurantList">
