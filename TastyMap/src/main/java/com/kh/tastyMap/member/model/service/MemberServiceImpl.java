@@ -36,14 +36,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int updateMember(Member m) {
-		return memberDAO.updateMember(m);
-	}
-
-	@Override
-	public int deleteMember(Member m) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteMember(String memberId) {
+		return memberDAO.deleteMember(memberId);
 	}
 
 
@@ -54,6 +48,23 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 
+	@Override
+	public String findIdMember(Member member) {
+		return memberDAO.findId(member);
+	}
+
+
+	@Override
+	public int updateMember1(Member member) {
+		return memberDAO.updateMember1(member);
+	}
+
+
+	@Override
+	public int updateMember2(Member member) {
+		return memberDAO.updateMember2(member);
+	}
+	
 	@Override
 	public Map<String, Object> followAndPostCnt(String memberId) {
 		return memberDAO.followAndPostCnt(memberId);

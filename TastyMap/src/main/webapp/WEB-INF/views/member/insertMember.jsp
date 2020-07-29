@@ -74,6 +74,7 @@
             <div class="col-sm-6 col-md-offset-3" style="margin: auto; max-width: 60%;" >
                 <form role="form" name="form" id="form" enctype="multipart/form-data" method="post"  onsubmit="return check()" action="${pageContext.request.contextPath }/member/insertMember.do">
                   <label for="profileId">프로필 사진</label>
+                 
                   <div class="wrap-input100 validate-input m-b-23"  data-validate = "Username is reauired">
                     <label for="thumbnailImg" ><img src="/tastyMap/resources/images/intro.png"  id="contentImg" onclick="imgUpload();" class="rounded-circle" style="width: 150px; height: 150px;"></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input type="file" id="test" name="mphoto" onchange="loadImg(this);" multiple style="display:none"/>
@@ -219,7 +220,7 @@
                     </div>
 
                     <div class="form-group text-center">
-                        <button type="submit" id="join-submit" class="btn btn-primary" onclick="form();">
+                        <button type="submit" id="join-submit" class="btn btn-primary">
                             회원가입<i class="fa fa-check spaceLeft"></i>
                         </button>
                         <button type="reset" class="btn btn-warning">

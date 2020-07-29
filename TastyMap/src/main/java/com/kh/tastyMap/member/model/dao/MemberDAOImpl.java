@@ -33,15 +33,10 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectOne("memberMapper.loginMember", memberId);
 	}
 
-	@Override
-	public int updateMember(Member m) {
-		return sqlSession.update("memberMapper.updateMember", m);
-	}
 
 	@Override
-	public int deleteMember(Member m) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteMember(String memberId) {
+		return sqlSession.update("memberMapper.deleteMember",memberId);
 	}
 	
 	// 마이갤러리 조회
@@ -61,7 +56,20 @@ public class MemberDAOImpl implements MemberDAO {
 	public List myGalleryPhoto(String memberId) {
 		return sqlSession.selectList("memberMapper.myGalleryPhoto", memberId);
 	}
-	
+	@Override
+	public String findId(Member member) {
+		return sqlSession.selectOne("memberMapper.findId", member);
+	}
+
+	@Override
+	public int updateMember1(Member member) {
+		return sqlSession.update("memberMapper.updateMember1",member);
+	}
+
+	@Override
+	public int updateMember2(Member member) {
+		return sqlSession.update("memberMapper.updateMember2",member);
+	}
 	// 팔로우 됐는지 조회하는 메소드
 	@Override
 	public int selectFollower(Follower follower) {

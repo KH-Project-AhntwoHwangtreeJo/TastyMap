@@ -34,6 +34,7 @@
 	<select id="loginMember" parameterType="string" resultMap="memberMap">
 		SELECT * FROM MEMBER
 		WHERE MEMBER_ID = #{memberId}
+		AND MSTATUS='Y'
 	</select>
 	
 	<!-- ●마이 갤러리페이지 조회용  -->
@@ -52,21 +53,35 @@
 		ORDER BY PDATE DESC
 	</select>
 	
-	<update id="memberMapper.updateMember" parameterType="Member">
+	<update id="memberMapper.updateMember1" parameterType="Member">
 		UPDATE MEMBER
-            SET
-            MEMBER_ID = #{memberId},
+            <set>
 			PASSWORD = #{password},
-			USERNAME = #{userName},
 			NICKNAME = #{nickname},
 			MCONTENT = #{mcontent},
-			BIRTH = #{birth},
-			GENDER = #{gender},
 			PHONE = #{phone},
 			EMAIL = #{email},
 			ADDRESS = #{address},
-			MSTATUS = DEFAULT,
+			<if test="mphoto !='null' ">
 			MPHOTO = #{mphoto}
+			</if>
+			</set>
+		WHERE MEMBER_ID = #{memberId}
+	</update>
+	
+	<update id="memberMapper.updateMember2" parameterType="Member">
+		UPDATE MEMBER
+            <set>
+			NICKNAME = #{nickname},
+			MCONTENT = #{mcontent},
+			PHONE = #{phone},
+			EMAIL = #{email},
+			ADDRESS = #{address},
+			<if test="mphoto !='null' ">
+			MPHOTO = #{mphoto}
+			</if>
+			</set>
+		WHERE MEMBER_ID = #{memberId}
 	</update>
 	
  	<!-- ●팔로잉 팔로워 게시글 개수 출력 -->
@@ -77,7 +92,18 @@
 	      FROM DUAL
 	</select>
 	
+	<select id="findId" parameterType="Member" resultType="String">
+		SELECT MEMBER_ID FROM MEMBER
+		WHERE USERNAME=#{userName} AND BIRTH=#{birth} AND MSTATUS='Y'
+	</select>
 	
+	<update id="deleteMember" parameterType="String">
+		UPDATE MEMBER
+			<set>
+			MSTATUS = 'N'
+			</set>
+			WHERE MEMBER_ID = #{memberId}
+	</update>
 </mapper>
 
 
