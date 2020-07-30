@@ -1,6 +1,7 @@
 package com.kh.tastyMap.postComment.model.vo;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,12 +14,16 @@ public class PostComment implements Serializable{
 
 	private static final long serialVersionUID = 545L;
 	
-	private String cno;
-	private String pNo;
+	private int cno;
+	private int pNo;
 	private String ccontent;
-	private String cdate;
+	private Date cdate;
 	private String cwriter;
 	private String cstatus;
-	private String parentkey;
+	private int parentkey;
+	
+	private String nickname;
+	private String mphoto;
+	private int level;
 	
 }

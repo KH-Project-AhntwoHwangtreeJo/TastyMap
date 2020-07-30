@@ -105,9 +105,8 @@ public class PostDAOImpl implements PostDAO {
 	}
 
 	@Override
-	public List<PostComment> commemtList(int pno) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<PostComment> commentList(int pNo) {
+		return sqlSession.selectList("postMapper.selectPcommentList", pNo);
 	}
 
 

@@ -1,5 +1,7 @@
 package com.kh.tastyMap.postComment.model.service;
 
+import java.util.List;
+
 import com.kh.tastyMap.postComment.model.vo.PostComment;
 
 public interface CommentService {
@@ -24,5 +26,6 @@ public interface CommentService {
 	 * @return
 	 */
 	int deleteComment(int cno);
+	
 	
 }

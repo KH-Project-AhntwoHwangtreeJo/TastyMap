@@ -1,5 +1,7 @@
 package com.kh.tastyMap.postComment.model.dao;
 
+import java.util.List;
+
 import com.kh.tastyMap.postComment.model.vo.PostComment;
 
 public interface CommentDAO {
@@ -24,6 +26,7 @@ public interface CommentDAO {
 	 * @return
 	 */
 	int deleteComment(int cno);
+	
 	
 
 }

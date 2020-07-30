@@ -10,13 +10,16 @@ import com.kh.tastyMap.post.model.exception.PostException;
 import com.kh.tastyMap.post.model.vo.Picture;
 import com.kh.tastyMap.post.model.vo.Post;
 import com.kh.tastyMap.post.model.vo.PostList;
+import com.kh.tastyMap.postComment.model.dao.CommentDAO;
+import com.kh.tastyMap.postComment.model.vo.PostComment;
 import com.kh.tastyMap.restaurant.model.vo.Restaurant;
 @Service
 public class PostServiceImpl implements PostService {
 
 	@Autowired
 	PostDAO postDAO;
-	
+	@Autowired
+	CommentDAO commentDAO;
 	
 	
 	@Override
@@ -109,6 +112,11 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public int updatePCNT(int pNo) {
 		return postDAO.updatePCNT(pNo);
+	}
+	
+	@Override
+	public List<PostComment> commentList(int pNo) {
+		return postDAO.commentList(pNo);
 	}
 
 }
