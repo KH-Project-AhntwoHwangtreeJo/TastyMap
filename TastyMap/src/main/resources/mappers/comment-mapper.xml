@@ -19,7 +19,16 @@
 	<!-- ●댓글 등록 -->
 	<insert id="insertPostComment" parameterType="PostComment" >  
 		INSERT INTO POST_COMMENT
-		VALUES(SEQ_CNO.NEXTVAL, #{pNo}, #{ccontent}, DEFAULT, #{cwriter}, DEFAULT,  #{parentKey})
+		VALUES(SEQ_COM.NEXTVAL, #{pNo}, #{ccontent}, DEFAULT, #{cwriter}, DEFAULT,  
+		 <choose>
+			<when test="parentkey > 0">
+				#{parentkey}
+			</when>
+			<otherwise>
+				DEFAULT
+			</otherwise>	    
+	    </choose>
+	    )
 	</insert>
 	
 	<!-- ●댓글 수정 -->
@@ -33,6 +42,8 @@
 		DELETE FROM POST_COMMENT 
 		WHERE COMMENT_SEQ = #{cno}
 	</delete>
+	
+
 	
 </mapper>
 

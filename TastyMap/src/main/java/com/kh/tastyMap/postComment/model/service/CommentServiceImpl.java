@@ -1,5 +1,7 @@
 package com.kh.tastyMap.postComment.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +30,5 @@ public class CommentServiceImpl implements CommentService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	
 }

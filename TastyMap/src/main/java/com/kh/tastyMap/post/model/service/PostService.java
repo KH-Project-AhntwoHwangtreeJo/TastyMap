@@ -5,6 +5,7 @@ import java.util.List;
 import com.kh.tastyMap.post.model.vo.Picture;
 import com.kh.tastyMap.post.model.vo.Post;
 import com.kh.tastyMap.post.model.vo.PostList;
+import com.kh.tastyMap.postComment.model.vo.PostComment;
 
 public interface PostService  {
 	
@@ -65,4 +66,5 @@ public interface PostService  {
 	 */
 	int updatePCNT(int pNo);
 
+	List<PostComment> commentList(int pNo);
 }

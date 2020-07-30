@@ -9,6 +9,10 @@
       <result property="pRenamedName" column="PRENAMEDNAME"/>
    </resultMap>
    
+   <resultMap id="resultPostComment" type="PostComment">
+		<id property="cno" column="COMMENT_SEQ"/>
+	</resultMap>
+   
    	<!-- 식당이름 조회 -->
 	<select id="selectRestaurantName" parameterType="String" resultType="Restaurant">
 		SELECT * FROM RESTAURANT WHERE RNAME = #{rName}
@@ -81,6 +85,17 @@
 		WHERE
 		PNO = #{pNo}
 	</update>
+	
+		<!-- ●댓글 리스트 조회 -->
+	<select id="selectPcommentList" parameterType="_int" resultType="PostComment">
+	<!-- 포스트 번호, 댓글 번호, 댓글 내용, 작성자 닉네임, 댓글 날짜, 작성자 프로필 사진, 부모번호, 레벨 -->
+		SELECT PC.*, M.NICKNAME, M.MPHOTO, LEVEL
+		FROM POST_COMMENT PC
+		JOIN MEMBER M ON(M.MEMBER_ID = PC.CWRITER)
+		WHERE PC.PNO= #{pNo} AND PC.CSTATUS = 'Y'
+		START WITH PARENTKEY IS NULL
+		CONNECT BY PRIOR COMMENT_SEQ= PARENTKEY  <!-- 부모 노드가 먼저 와야 한다 comment_seq = parentkey --> 
+	</select>
 </mapper>
 
 

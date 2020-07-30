@@ -1,5 +1,7 @@
 package com.kh.tastyMap.postComment.model.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -28,5 +30,6 @@ public class CommentDAOImpl implements CommentDAO {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
 
 }

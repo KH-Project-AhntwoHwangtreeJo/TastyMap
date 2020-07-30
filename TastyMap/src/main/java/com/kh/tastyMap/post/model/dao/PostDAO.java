@@ -71,7 +71,7 @@ public interface PostDAO {
 	 * @param pno
 	 * @return
 	 */
-	List<PostComment> commemtList(int pno);
+	List<PostComment> commentList(int pno);
 	
 	/**
 	 * 게시글 조회수 증가 메소드

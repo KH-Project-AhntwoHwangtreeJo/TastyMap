@@ -26,6 +26,7 @@ import com.kh.tastyMap.post.model.vo.Picture;
 import com.kh.tastyMap.post.model.vo.Post;
 import com.kh.tastyMap.post.model.vo.PostList;
 import com.kh.tastyMap.post.model.vo.PostRequest;
+import com.kh.tastyMap.postComment.model.vo.PostComment;
 import com.kh.tastyMap.report.model.service.ReportService;
 import com.kh.tastyMap.report.model.vo.Report;
 
@@ -224,6 +225,7 @@ public class PostController {
 		// 2. 게시글에 대한 사진 리스트
 		// 3. 특정 유저의 해당 게시글 좋아요 여부 조회
 		// 4. 특정 유저의 해당 게시글 신고 여부
+		// 5. 댓글 정보
 		//--------------------------------------//
 		// <변수 선언부 > 
 		// 1. 포스트 기타 정보 및 사진 정보 (선언과 동시에 실행) 
@@ -233,7 +235,8 @@ public class PostController {
 		List postPhoto = postService.postDetailPhoto(pNo);
 		// 3. 좋아요 여부 조회 / 4. 신고여부 조회
 		Map<String, Object> map = new HashMap<String, Object>(); // 좋아요 조회용
-
+		// 5. 댓글 정보
+		List<PostComment> PComment = postService.commentList(pNo);
 		
 		String status; // 좋아요 조회용 결과를 받아올 변수
 		String pstatus; // 포스트 신고 조회용  결과를 받아올 변수
@@ -273,8 +276,9 @@ public class PostController {
 		
 		model.addAttribute("post", p) // 포스트 기본 정보
 			 .addAttribute("postDetailPhotoList", postPhoto) // 포스트 내 사진 정보
-			 .addAttribute("map", map); // 좋아요 정보 & 게시글 신고 정보
-
+			 .addAttribute("map", map) // 좋아요 정보 & 게시글 신고 정보
+			 .addAttribute("PComment", PComment); // 댓글 정보
+		
 		return "post/postDetail";
 			
 	}

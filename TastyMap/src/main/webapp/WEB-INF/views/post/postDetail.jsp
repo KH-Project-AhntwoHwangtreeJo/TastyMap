@@ -113,64 +113,66 @@
             <img id="loveimage" onclick="changeLove();" border="0" src="${pageContext.request.contextPath}/resources/images/heart/heart2.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;">
       		</c:if>
       		
-      		
-      		
             <br>
             <hr/>
             <p>${post.PContent}</p>
             <hr/>
             
 
-
-
             <div class="pt-5 mt-5">
-              
-              <h3 class="mb-5" style="margin-bottom: 1rem !important;">댓글</h3> 
-              <div class="col-12" style="padding: 0px;">
-              
-
-                <input type="text" style="width: 80%; margin-bottom: 5px;">
-                
-                <button type="button" class="btn btn-outline-primary col-2"style="float: right;">작성</button>
-              </div>
-              <br><br>
-              <ul class="comment-list">
-                <li class="comment">
-                  <div class="vcard bio">
-                    <img src="images/person_1.jpg" alt="Image placeholder" style="margin-bottom: 5px;">
-                    <h6>조은성</h6>
-                  </div>
-                  <div class="comment-body">
-                    <button type="button" class="btn btn-outline-danger" style="float: right;">신고</button>
-                    <button type="button" class="btn btn-outline-info" style="float: right; margin-right: 5px;"> 댓글 달기 </button>
-                    
-                    <div class="meta">날짜&시간</div>
-                      <p>이게 맞는건가요 ??</p>
-                  </div>
-                </li>
-                    <!-- comment start-->
-                    <li class="comment">
-                      <div class="vcard bio">
-                        <img src="images/person_1.jpg" alt="Image placeholder" style="margin-bottom: 5px;">
-                        <h6>장그래</h6>
-                      </div>
-                      <div class="comment-body">
-                        <button type="button" class="btn btn-outline-danger" style="float: right;">신고</button>
-                        <button type="button" class="btn btn-outline-info" style="float: right; margin-right: 5px;"> 댓글 달기 </button>
-                        
-                        <div class="meta">날짜&시간</div>
-                          <p>맛있다는데 맛있었어요!!</p>
-                      </div>
-                    </li>
-              </ul>
-  
+            	  
+				<h3 class="mb-5" style="margin-bottom: 1rem !important;">댓글</h3> 
+					<div class="col-12" style="padding: 0px;">
+						<input type="text" style="width: 80%; margin-bottom: 5px;" id="normalcomment">
+						<button type="button" class="btn btn-outline-primary col-2"style="float: right;" onclick="commentinsert(0,$('#normalcomment').val());">작성</button>					</div>
+				<br><br>
+				
+				<ul class="comment-list">
+					<!-- comment start-->
+					<c:forEach items="${PComment}" var="PComment">
+					<li class="comment" style="margin-left : ${(PComment.level -1) * 30}px; width : ${800 - ((PComment.level-1) * 15)}px;">
+						<div class="vcard bio">
+							<img src="${pageContext.request.contextPath}/resources/images/profileImage/${PComment.mphoto}" alt="Image placeholder" style="margin-bottom: 5px;">
+							<h6>${PComment.nickname}</h6>
+						</div>
+						<div class="comment-body">
+							<button type="button" class="btn btn-outline-danger" style="float: right;">신고</button>
+							<button type="button" class="btn btn-outline-info" style="float: right; margin-right: 5px;" > 댓글 달기 </button>
+							    
+							<div class="meta">${fn:substring(PComment.cdate, 0, 10)}</div>
+							<p>${PComment.ccontent}</p>
+						</div>
+					</li>
+					</c:forEach>
+				</ul>
             </div>
+            
           </div> <!-- .col-md-8 -->
-
         </div>
       </div>
     </section> <!-- .section -->
-
+	<script type="text/javascript">
+	// 댓글 작성
+  	  function commentinsert(parentkey, content) {
+			
+			var memberId = "${member.memberId}";
+			var pNo = "${post.PNo}";
+			var parentkey = parentkey;
+			var ccontent= content;
+			
+	    		$.ajax({
+	    			url :'${pageContext.request.contextPath}/postComment/insertComment.do',
+	    			data : { cwriter : memberId, pNo : pNo, ccontent : ccontent, parentkey : parentkey }, 
+	    			dataType : 'json',  
+	    			success : function(data){
+	    				alert(data.msg);		
+	    			},error : function(error) {
+	    				console.log(error);
+	   				/* ajax에서 msg에 값을 가져오고 싶으면 컨트롤러에서 map 형식으로 보내줘야한다.	 */	
+	    			}
+	   		});
+	   	}     
+	</script>
 	<script type="text/javascript">
 	// 좋아요 버튼
 	  function changeLove() {
