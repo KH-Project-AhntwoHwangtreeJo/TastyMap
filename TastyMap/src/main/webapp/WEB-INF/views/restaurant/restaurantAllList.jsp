@@ -77,7 +77,7 @@
 									<div class="blog-entry justify-content-end">
 										<div class="text">
 											<a
-												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=${rno}&memberId=${member.memberId}"
+												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=1&memberId=${member.memberId}"
 												class="block-20 img" id="trd"
 												style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.PRenamedName}');">
 											</a>

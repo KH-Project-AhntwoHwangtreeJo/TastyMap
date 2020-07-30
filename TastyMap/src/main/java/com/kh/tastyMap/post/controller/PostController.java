@@ -60,6 +60,20 @@ public class PostController {
 		
 	}
 	
+		//식당 상세페이지 게시글 추가 이동
+	@RequestMapping("/post/restaurantInsert.do")
+	public String restaurantInsert(String rname, String memberId, String address, Model model) {
+		
+		System.out.println(address);
+		
+		model.addAttribute("rname", rname);
+		model.addAttribute("address", address);
+		return "post/insertPost";
+	}
+	
+	
+	
+	
 	@RequestMapping("/post/insertPostEnd.do")
 	public String insertPost(PostRequest postRequst, Model model, HttpSession session, HttpServletRequest request,
 			@RequestParam(value="upFile", required= false) List<MultipartFile> upFile

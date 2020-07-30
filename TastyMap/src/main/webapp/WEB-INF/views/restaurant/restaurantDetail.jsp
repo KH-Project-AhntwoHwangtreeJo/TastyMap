@@ -132,21 +132,22 @@ $('.urlCopyBtn').click(function(){
 	return false;
 });
 
-
+ 		<!--게시글 추가 페이지로 이동-->
 function gajaa(){
-	location.href = "${pageContext.request.contextPath}/post/Rpost.do?rno=${rno}&memberId=${member.memberId}";
-}
+location.href = "${pageContext.request.contextPath}/post/restaurantInsert.do?rname=${restaurant.rname}&memberId=${member.memberId}&address=${restaurant.address}";
+} 
 </script>    	 
     	 <!-- 경로 복사하기 끝 -->
     	 
        	   <hr>     	 
             <h1 class="mb-3 bread"> ${restaurant.rname} </h1>
             <hr>
-             	
+             		<!-- 북마크 -->
             <c:if test="${ empty member.memberId }">
-            <img id="image" onclick="login();" border="0" src="${pageContext.request.contextPath}/resources/upload/post/bookmark.png" style="width: 30px; height: 30px; float: right;">
-      		</c:if>
-      		
+            <a href="#loginModal" class="nav-link">        
+            <img id="image"  border="0" src="${pageContext.request.contextPath}/resources/upload/post/bookmark.png" data-toggle="modal" data-target="#loginModal" style="width: 30px; height: 30px; float: right;">
+            </a>
+      		</c:if>    		
       		<c:if test="${ !empty member.memberId }">
 	            <c:if test="${ map.status eq 'N' }">
 	            <img id="image" onclick="changeImage();" border="0" src="${pageContext.request.contextPath}/resources/upload/post/bookmark.png" style="width: 30px; height: 30px; float: right;">
@@ -155,7 +156,7 @@ function gajaa(){
 	            <img id="image" onclick="changeImage();" border="0" src="${pageContext.request.contextPath}/resources/upload/post/bookmark2.png" style="width: 30px; height: 30px; float: right;">
 	      		</c:if>
       		</c:if>
-			
+					<!-- 북마크 끝 -->
 			<img onclick="window.print()" border="0" src="${pageContext.request.contextPath}/resources/images/print/print.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;" />
  		
  	<table border="0">
@@ -191,7 +192,14 @@ function gajaa(){
          		<h6>${PostNumber}</h6>
               <hr>                                    
               <h3 class="mb-1">리뷰(${map.Pnum}) 
-              <input class="btn btn-outline-info" onclick="gajaa()" type="button" value="리뷰등록하기" style="font-size: 10px; float: right;" >
+                <c:if test="${ empty member.memberId }">
+                <a href="#loginModal" class="nav-link"> 
+              <input class="btn btn-outline-info" data-toggle="modal" data-target="#loginModal" type="button" value="리뷰등록하기" style="font-size: 10px; float: right;" >
+		   		</a>
+		    	</c:if>
+		    	<c:if test="${ !empty member.memberId }">
+		  		<input class="btn btn-outline-info" type="button" onclick="gajaa()" value="리뷰등록하기" style="font-size: 10px; float: right;" >
+		    	</c:if>
 		    </h3>           
               <hr>
               <div class="pt-5 mt-5">     
@@ -204,9 +212,14 @@ function gajaa(){
                       <h6 style="top: 8px;position: relative;">${RPost.NICKNAME}</h6>
                     </div>
                     <div class="comment-body">
-                      <button  type="button" class="btn btn-outline-danger" style="right: -580px;position: relative;">신고</button>   
-                   
-                     
+                     <c:if test="${ empty member.memberId }">
+                    <a href="#loginModal" class="nav-link"> 
+                      <input class="btn btn-outline-danger" data-toggle="modal" data-target="#loginModal" onclick="" type="button" value="신고" style="font-size: 10px; float: right;" >
+                  		</a>
+                  	 </c:if>
+                 	 <c:if test="${ !empty member.memberId }">
+        			  <input class="btn btn-outline-danger"  onclick="" type="button" value="신고" style="font-size: 10px; float: right;" >          		
+           		</c:if>
               
                       <div class="meta" style="position: relative;margin-left: 490px; font-size: 30px; top: -43px;"><img src="${pageContext.request.contextPath}/resources/upload/post/star1.png" style="width: 30px; height: 30px; margin-bottom: 0px;">  &nbsp;${RPost.STAR}</div> 
                     
