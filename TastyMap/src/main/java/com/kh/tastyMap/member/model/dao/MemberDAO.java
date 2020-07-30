@@ -8,6 +8,7 @@ import java.util.Map;
 import com.kh.tastyMap.love.model.vo.Love;
 import com.kh.tastyMap.member.model.vo.Follower;
 import com.kh.tastyMap.member.model.vo.Member;
+import com.kh.tastyMap.post.model.vo.PostList;
 
 public interface MemberDAO {
 	
@@ -103,5 +104,7 @@ public interface MemberDAO {
 	 * @return
 	 */
 	int deleteFollower(Follower follower);
+
+	List<PostList> myPage(String member_Id);
 
 }

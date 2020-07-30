@@ -26,6 +26,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -35,6 +36,7 @@ import com.kh.tastyMap.member.model.exception.MemberException;
 import com.kh.tastyMap.member.model.service.MemberService;
 import com.kh.tastyMap.member.model.vo.Follower;
 import com.kh.tastyMap.member.model.vo.Member;
+import com.kh.tastyMap.post.model.vo.PostList;
 
 @SessionAttributes(value= {"member"})
 @Controller
@@ -583,10 +585,15 @@ public class MemberController {
          
          
       @RequestMapping("/member/myPage.do")
-      public String myPage() {
-         
-         
-         return "myPage/myPage";
+      public String myPage(@RequestParam String memberId, PostList post, Model model, HttpSession session) {
+    	  String member_Id=memberId;
+    	  System.out.println(member_Id);
+    	  List<PostList> list = memberService.myPage(member_Id);
+    	  
+    	  model.addAttribute("list",list);
+          System.out.println(list);
+          
+          return "myPage/myPage";
       }
       
       @RequestMapping("member/clickFollower.do")

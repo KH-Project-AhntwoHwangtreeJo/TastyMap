@@ -24,7 +24,7 @@
 						<div class="row align-items-center">
 							<div class="col-10" style="display:flex; margin-top:4px;">
 								<div class="input_field col-2">
-									<select name="searchOption">
+									<select name="searchOption" style="border:none;">
 										<option value="Restaurant"><c:out value="${map.searchOption == 'Restaurant'?'selected':''}"/>음식점</option>
 										<option value="Post"><c:out value="${map.searchOption == 'Post'?'selected':''}"/>게시글</option>
 									</select>

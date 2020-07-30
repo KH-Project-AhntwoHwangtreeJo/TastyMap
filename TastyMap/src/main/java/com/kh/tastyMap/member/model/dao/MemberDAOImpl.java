@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.tastyMap.member.model.vo.Follower;
 import com.kh.tastyMap.member.model.vo.Member;
+import com.kh.tastyMap.post.model.vo.PostList;
 
 @Repository("memberDAO")
 public class MemberDAOImpl implements MemberDAO {
@@ -86,6 +87,12 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public int deleteFollower(Follower follower) {
 		return sqlSession.delete("followerMapper.deleteFollower", follower);
+	}
+
+	@Override
+	public List<PostList> myPage(String member_Id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("memberMapper.myPage", member_Id);
 	}
 
 }

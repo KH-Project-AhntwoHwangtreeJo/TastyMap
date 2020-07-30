@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.kh.tastyMap.member.model.dao.MemberDAO;
 import com.kh.tastyMap.member.model.vo.Follower;
 import com.kh.tastyMap.member.model.vo.Member;
+import com.kh.tastyMap.post.model.vo.PostList;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService {
@@ -114,6 +115,13 @@ public class MemberServiceImpl implements MemberService {
 		map.put("status", status);
 		
 		return map;
+	}
+
+
+	@Override
+	public List<PostList> myPage(String member_Id) {
+		// TODO Auto-generated method stub
+		return memberDAO.myPage(member_Id);
 	}
 	
 	

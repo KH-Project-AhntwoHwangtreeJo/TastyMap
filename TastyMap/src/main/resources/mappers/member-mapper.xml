@@ -104,6 +104,15 @@
 			</set>
 			WHERE MEMBER_ID = #{memberId}
 	</update>
+	
+	<!-- 마이페이지 지도 마커 표시(조현민) -->
+	<select id="myPage" parameterType="String" resultType="PostList">
+		SELECT M.MEMBER_ID, NICKNAME, P.PNO, R.RNO, R.RNAME, R.ADDRESS
+		FROM MEMBER M
+		JOIN POST P ON(P.MEMBER_ID= M.MEMBER_ID)
+		JOIN RESTAURANT R ON(R.RNO= P.RNO)
+		WHERE PSTATUS = 'Y' AND RSTATUS = 'Y' AND M.MEMBER_ID = #{member_Id} 	
+	</select>
 </mapper>
 
 
