@@ -37,7 +37,7 @@
         			<div class="img d-flex align-items-center justify-content-center" style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${p.PRenamedName}');">
         			
         				<div class="list-agent d-flex align-items-center">
-        					<a href="${pageContext.request.contextPath}/post/postDatail.do?pno='${p.pno }" class="agent-info d-flex align-items-center">
+        					<a href="${pageContext.request.contextPath}/post/postDetail.do?pno=${p.pno }&memberId=${member.memberId}" class="agent-info d-flex align-items-center">
         						<div class="img-2 rounded-circle" style="background-image: url('${pageContext.request.contextPath}/resources/images/profileImage/${P.MPhoto}');"></div>
         						<h3 class="mb-0 ml-2">${p.nickName }</h3>
         					</a>
@@ -46,7 +46,7 @@
 					<!-- 식당이름/주소-->
         			<div class="text">
         				
-						<h3 class="mb-0"><a href="${pageContext.request.contextPath}/post/postDatail.do?pno='${p.pno }">${p.RName }</a></h3>
+						<h3 class="mb-0"><a href="${pageContext.request.contextPath}/post/postDetail.do?pno=${p.pno }&memberId=${member.memberId}">${p.RName }</a></h3>
 						<!-- <p style="margin-bottom: 0px;">한식</p> -->
 						<div class="star-box">★${p.star}점</div><!--별점 받아오는 부분-->
         				<span class="location d-inline-block mb-3"><i class="ion-ios-pin mr-2"></i>${p.address }</span>

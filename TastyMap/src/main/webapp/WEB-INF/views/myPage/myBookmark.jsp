@@ -30,14 +30,14 @@
         		<c:forEach var="list" items="${ list }">
                 <div class="col-md-4">
                   <div class="property-wrap ftco-animate">
-                    <div class="img d-flex align-items-center justify-content-center" style="background-image: url('/tastyMap/resources/upload/post/${list.prenamedname }');">
+                    <div class="img d-flex align-items-center justify-content-center" style="background-image: url('/tastyMap/resources/upload/post/${list.PRenamedName }');">
                       <a href="properties-single.html" class="icon d-flex align-items-center justify-content-center btn-custom">
                         <span class="ion-ios-link"></span>
                       </a>
                       
                     </div>
                     <div class="text">
-                      <h3 class="mb-0"><a href="properties-single.html">${list.rname }</a></h3>
+                      <h3 class="mb-0"><a href="properties-single.html">${list.RName }</a></h3>
                       <span class="location d-inline-block mb-3"><i class="ion-ios-pin mr-2"></i>${list.address }</span>
                       <ul class="property_list">
                         <!-- <li><span class="flaticon-heart"></span>4.5</li>

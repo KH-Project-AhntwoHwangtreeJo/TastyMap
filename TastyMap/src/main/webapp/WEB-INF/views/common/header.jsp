@@ -77,7 +77,7 @@
          <!--  로그인 후  -->
          <c:if test="${!empty member}">
          	<li class="nav-item">
-         		<a href="${pageContext.request.contextPath}/member/myPage.do" class="nav-link">
+         		<a href="${pageContext.request.contextPath}/member/myPage.do?memberId=${member.memberId}" class="nav-link">
 	         		<img src="${pageContext.request.contextPath}/resources/images/profileImage/${member.mphoto}"
 			   						class="rounded-circle" style="width:31px; height: 31px"alt="">
 			   	</a>
