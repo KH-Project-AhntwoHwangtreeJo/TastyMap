@@ -193,8 +193,8 @@
 </div> --%>
               <div class="callbackDiv">
               
-                <input type="text" class="form-control" id="roadFullAddr" name="address"  placeholder="주소검색을 눌러주세요" readonly required>
-                <input type="text" 						id="rName" name="rName" placeholder="식당이름" readonly></input>
+                <input type="text" class="form-control" value="${address}" id="roadFullAddr" name="address"  placeholder="주소검색을 눌러주세요" readonly required>
+                <input type="text" 	value="${rname}" id="rName" name="rName" placeholder="식당이름" readonly></input>
                 <button class="btn btn-primary py-3 px-4" id="address" onclick="goAddress();">주소검색</button>
               </div>
 

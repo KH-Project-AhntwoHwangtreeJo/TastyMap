@@ -38,8 +38,8 @@
 			SELECT SEQ_PNO.CURRVAL FROM DUAL
 		</selectKey> 하나씩 따로 작성해주는 방법과 두개를 한꺼번에 작성해주는 방법이 있음 
 -->
-			INSERT INTO PICTURE(PICTURE_NO, PNO, PORIGINNAME, PRENAMEDNAME, PLEVEL, UPLOADDATE)
-			VALUES(SEQ_PICTURE.NEXTVAL, #{pNo}, #{pOriginName}, #{pRenamedName}, #{pLevel}, SYSDATE)
+			INSERT INTO PICTURE(PICTURE_NO, PNO, PORIGINNAME, PRENAMEDNAME, PLEVEL, UPLOADDATE, PICTURE_STATUS)
+			VALUES(SEQ_PICTURE.NEXTVAL, #{pNo}, #{pOriginName}, #{pRenamedName}, #{pLevel}, SYSDATE, default)
 	</insert>
 	
 	<!-- 게시글 전체 조회  -->
