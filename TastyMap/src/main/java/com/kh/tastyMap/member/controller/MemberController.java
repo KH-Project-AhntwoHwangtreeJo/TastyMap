@@ -595,31 +595,30 @@ public class MemberController {
     	  
     	  Map<String, String> map =new HashMap<String, String>();
 
-  		  String A ="";
-  		  String B ="";
-  		  String C ="";
-  		  String D ="";
-  		  String E ="";
+    	  	String k="";
+    		String c="";
+    		String j ="";
+    		String y ="";
+    		String e ="";
   		
-  	  	  List<Map<String, String>> chartTwo = memberService.restaurantCargoChartList();
-  	   	  System.out.println("chartTwo : " + chartTwo);
-  		  // 한식/중식/일식/양식/기타
-  	      for( Map<String, String> r : chartTwo ) {
-
-  	   		 A = String.valueOf((r.get("한식")));
-  			 B = String.valueOf((r.get("중식")));
-  			 C = String.valueOf((r.get("일식")));
-  			 D = String.valueOf((r.get("양식")));
-  			 E = String.valueOf((r.get("기타")));
-  		  }
-  	      System.out.println("chartTwo : " + chartTwo);
-  		
-     		map.put("A",A);
-  		    map.put("B",B);
-  		    map.put("C",C);
-  		    map.put("D",D);
-  		    map.put("E",E);
-     		model.addAttribute("map", map);
+    		List<Map<String, String>> rChart = memberService.restaurantCargoChartList();	
+     	// 한식/중식/일식/양식/기타
+      		for( Map<String, String> r : rChart ) {
+      			
+      			 k = String.valueOf((r.get("한식")));
+      			 c = String.valueOf((r.get("중식")));
+      			 j = String.valueOf((r.get("일식")));
+      			 y = String.valueOf((r.get("양식")));
+      			 e = String.valueOf((r.get("기타")));
+      		System.out.println(rChart);
+      		}
+      		
+      		map.put("k", k);
+      		map.put("c", c);
+      		map.put("j", j);
+      		map.put("y", y);
+      		map.put("e", e);
+      		model.addAttribute("map", map);
   		
      		System.out.println("map : " + map);
     	  

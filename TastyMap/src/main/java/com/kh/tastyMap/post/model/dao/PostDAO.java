@@ -79,5 +79,10 @@ public interface PostDAO {
 	 * @return
 	 */
 	int updatePCNT(int pNo);
+	
+	/**
+	 * 내 게시글에 좋아요한 사용자 리스트 by 안예진
+	 */
+	List<PostList> getLoveMemberList(int pNo);
 
 }

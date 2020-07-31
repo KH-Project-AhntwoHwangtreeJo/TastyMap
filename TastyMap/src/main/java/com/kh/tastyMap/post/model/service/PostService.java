@@ -65,6 +65,8 @@ public interface PostService  {
 	 * @return
 	 */
 	int updatePCNT(int pNo);
+	
+	List<PostList>getLoveMemberList(int pNo);
 
 	List<PostComment> commentList(int pNo);
 }

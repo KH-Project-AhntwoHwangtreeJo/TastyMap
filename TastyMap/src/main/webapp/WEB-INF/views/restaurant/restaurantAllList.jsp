@@ -44,7 +44,15 @@
 											aria-controls="nav-contact2" aria-selected="false">중식</a> <a
 											class="nav-item nav-link" id="nav-contact3-tab"
 											data-toggle="tab" href="#nav-contact3" role="tab"
-											aria-controls="nav-contact3" aria-selected="false">일식</a>
+											aria-controls="nav-contact3" aria-selected="false">일식</a> <a
+											
+											
+											class="nav-item nav-link" id="nav-contact4-tab"
+											data-toggle="tab" href="#nav-contact4" role="tab"
+											aria-controls="nav-contact4" aria-selected="false">양식</a> <a
+											class="nav-item nav-link" id="nav-contact5-tab"
+											data-toggle="tab" href="#nav-contact5" role="tab"
+											aria-controls="nav-contact5" aria-selected="false">기타</a>
 									</div>
 								</nav>
 
@@ -59,6 +67,8 @@
 				<!-- kList는 한식 -->
 				<!-- cList는 중식 -->
 				<!-- jList는  일식-->
+				<!-- yList는  양식-->
+				<!-- etcList는  기타-->
 
 
 
@@ -199,6 +209,132 @@
 						</div>
 					</div>
 
+
+				<!-- 양식 -->
+					<div class="tab-pane fade" id="nav-contact4" role="tabpanel"
+						aria-labelledby="nav-contact4-tab">
+						<div class="row">
+							<c:forEach var="A" items="${ yList }">
+								<div class="col-md-3 d-flex ">
+									<div class="blog-entry justify-content-end">
+										<div class="text">
+											<a
+												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=1&memberId=${member.memberId}"
+												class="block-20 img" id="trd"
+												style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.prenamedname}');">
+											</a>
+											<h3 class="heading">
+												<a href="#">${A.rname}</a>
+											</h3>
+											<h6 class="heading1" style="font-size: smaller;">
+												<a href="#">${A.address}</a>
+											</h6>
+											<div class="meta mb-3">
+												<div>
+													<a href="#" class="meta-chat"><span class="icon-chat"></span>${A.avg_star}</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+						</div>
+					</div>
+					
+					
+					<!-- 기타 -->
+					<div class="tab-pane fade" id="nav-contact5" role="tabpanel"
+						aria-labelledby="nav-contact5-tab">
+						<div class="row">
+							<c:forEach var="A" items="${ etcList }">
+								<div class="col-md-3 d-flex ">
+									<div class="blog-entry justify-content-end">
+										<div class="text">
+											<a
+												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=1&memberId=${member.memberId}"
+												class="block-20 img" id="trd"
+												style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.prenamedname}');">
+											</a>
+											<h3 class="heading">
+												<a href="#">${A.rname}</a>
+											</h3>
+											<h6 class="heading1" style="font-size: smaller;">
+												<a href="#">${A.address}</a>
+											</h6>
+											<div class="meta mb-3">
+												<div>
+													<a href="#" class="meta-chat"><span class="icon-chat"></span>${A.avg_star}</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+						</div>
+					</div>
+
+				<!-- 양식 -->
+					<div class="tab-pane fade" id="nav-contact4" role="tabpanel"
+						aria-labelledby="nav-contact4-tab">
+						<div class="row">
+							<c:forEach var="A" items="${ yList }">
+								<div class="col-md-3 d-flex ">
+									<div class="blog-entry justify-content-end">
+										<div class="text">
+											<a
+												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=1&memberId=${member.memberId}"
+												class="block-20 img" id="trd"
+												style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.prenamedname}');">
+											</a>
+											<h3 class="heading">
+												<a href="#">${A.rname}</a>
+											</h3>
+											<h6 class="heading1" style="font-size: smaller;">
+												<a href="#">${A.address}</a>
+											</h6>
+											<div class="meta mb-3">
+												<div>
+													<a href="#" class="meta-chat"><span class="icon-chat"></span>${A.avg_star}</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+						</div>
+					</div>
+					
+					
+					<!-- 기타 -->
+					<div class="tab-pane fade" id="nav-contact5" role="tabpanel"
+						aria-labelledby="nav-contact5-tab">
+						<div class="row">
+							<c:forEach var="A" items="${ etcList }">
+								<div class="col-md-3 d-flex ">
+									<div class="blog-entry justify-content-end">
+										<div class="text">
+											<a
+												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=1&memberId=${member.memberId}"
+												class="block-20 img" id="trd"
+												style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.prenamedname}');">
+											</a>
+											<h3 class="heading">
+												<a href="#">${A.rname}</a>
+											</h3>
+											<h6 class="heading1" style="font-size: smaller;">
+												<a href="#">${A.address}</a>
+											</h6>
+											<div class="meta mb-3">
+												<div>
+													<a href="#" class="meta-chat"><span class="icon-chat"></span>${A.avg_star}</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+						</div>
+					</div>
 
 				</div>
 

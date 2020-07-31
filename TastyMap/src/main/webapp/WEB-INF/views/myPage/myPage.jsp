@@ -29,6 +29,34 @@
 
     </style>
     <c:import url="/views/common/header.jsp"/>
+  <!--원형차트 시작-->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['한식', ${map.k}],
+          ['중식', ${map.c}],
+          ['일식', ${map.j}],
+          ['양식', ${map.y}],
+          ['기타', ${map.e}]
+        ]);
+
+        var options = {
+          title: '식당 카테고리별 차트'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+ 
+<!--원형차트 끝-->
   </head>
   <body>
   
@@ -137,42 +165,17 @@
         
       </div>
       </div>
+     
+      
     </section>
+    
+    
+   
 		
     <!-- footer 위치 -->
     
     <c:import url="/views/common/footer.jsp"/>
 	
-	<!--원형차트 시작-->
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-	<script type="text/javascript">    
-		google.charts.load('current', {'packages':['corechart']});
-		google.charts.setOnLoadCallback(drawChart);  
-		function drawChart() {
-		
-		/* 차트 전체 구조 */
-			/*빨간줄떠요 실행됨*/
-		    var data = google.visualization.arrayToDataTable([
-		   	  ['Task', 'Hours per Day'],
-		         ['한식',${map.A}],
-		         ['중식',${map.B}],
-		         ['일식',${map.C}],
-		         ['양식',${map.D}],
-		         ['기타',${map.E}]
-		       ]);
-			console.log(data);
-		/*차트 타이틀 생성 */
-		    var options = {
-		      title: '카테고리별 음식점 차트'
-		    };
-		
-		    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-		    console.log(chart);
-		    
-		    chart.draw(data, options);
-		} 
-	</script>   
-	<!--원형차트 끝-->
     
   </body>
 </html>
