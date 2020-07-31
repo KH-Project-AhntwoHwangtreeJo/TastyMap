@@ -58,4 +58,5 @@ public interface RestaurantDAO {
 	
 	//주변인기 식당
 	List<Restaurant> Raround(String address);
+	
 }

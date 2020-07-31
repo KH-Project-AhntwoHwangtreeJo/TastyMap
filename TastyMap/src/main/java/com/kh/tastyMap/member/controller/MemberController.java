@@ -26,12 +26,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
 import com.kh.tastyMap.member.model.exception.MemberException;
 import com.kh.tastyMap.member.model.service.MemberService;
 import com.kh.tastyMap.member.model.vo.Follower;
@@ -591,8 +591,39 @@ public class MemberController {
     	  List<PostList> list = memberService.myPage(member_Id);
     	  
     	  model.addAttribute("list",list);
-          System.out.println(list);
           
+    	  
+    	  Map<String, String> map =new HashMap<String, String>();
+
+  		  String A ="";
+  		  String B ="";
+  		  String C ="";
+  		  String D ="";
+  		  String E ="";
+  		
+  	  	  List<Map<String, String>> chartTwo = memberService.restaurantCargoChartList();
+  	   	  System.out.println("chartTwo : " + chartTwo);
+  		  // 한식/중식/일식/양식/기타
+  	      for( Map<String, String> r : chartTwo ) {
+
+  	   		 A = String.valueOf((r.get("한식")));
+  			 B = String.valueOf((r.get("중식")));
+  			 C = String.valueOf((r.get("일식")));
+  			 D = String.valueOf((r.get("양식")));
+  			 E = String.valueOf((r.get("기타")));
+  		  }
+  	      System.out.println("chartTwo : " + chartTwo);
+  		
+     		map.put("A",A);
+  		    map.put("B",B);
+  		    map.put("C",C);
+  		    map.put("D",D);
+  		    map.put("E",E);
+     		model.addAttribute("map", map);
+  		
+     		System.out.println("map : " + map);
+    	  
+    	  
           return "myPage/myPage";
       }
       

@@ -107,4 +107,6 @@ public interface MemberDAO {
 
 	List<PostList> myPage(String member_Id);
 
+	List<Map<String, String>> restaurantCargoChartList();
+
 }

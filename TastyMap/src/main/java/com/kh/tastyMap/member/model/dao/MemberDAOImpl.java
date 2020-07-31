@@ -95,4 +95,10 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectList("memberMapper.myPage", member_Id);
 	}
 
+	@Override
+	public List<Map<String, String>> restaurantCargoChartList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("restaurantMapper.restaurantCargoChartList");
+	}
+
 }
