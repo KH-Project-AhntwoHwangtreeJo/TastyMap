@@ -80,6 +80,9 @@ public interface RestaurantService {
 	List<Picture> restaurantPicture(int rno);
 	// 리뷰갯수
 	int restaurantPostTwo(int rno);
+	//주변 인기 식당
+	List<Restaurant> Raround(String address);
+
 
 	
 	

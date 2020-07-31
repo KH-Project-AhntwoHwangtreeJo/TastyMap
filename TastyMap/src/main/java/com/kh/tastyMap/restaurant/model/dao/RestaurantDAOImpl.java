@@ -56,27 +56,7 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 	public int updateRestaurant(Restaurant restaurant) {
 		// TODO Auto-generated method stub
 		return 0;
-	}
-
-
-	/*
-	 * @Override public int updateAttachment(Attachment a) { // TODO Auto-generated
-	 * method stub return 0;
-  */
-
-  /*
-	@Override
-	public int deleteRestaurant(int restaurantNo) {
-		// TODO Auto-generated method stub
-		return 0;
-
-	}
-	 */
-
-
-
-
-
+	} 
 	@Override	// 식당 top9
 	public List<Map<String, String>> top8() {
 		// TODO Auto-generated method stub
@@ -174,9 +154,13 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 		return sqlSession.selectOne("restaurantMapper.postNumber", rno);
 	}
 
-	
-	
+	@Override  //주변 인기 식당
+	public List<Restaurant> Raround(String address) {
 
+		return sqlSession.selectList("restaurantMapper.Raround",address);
+	}
+
+	
 	
 }
 	

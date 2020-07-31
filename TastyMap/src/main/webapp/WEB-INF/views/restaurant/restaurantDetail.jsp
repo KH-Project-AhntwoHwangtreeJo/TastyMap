@@ -6,6 +6,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  
 <!-- 경로 복사 -->
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 <style>
@@ -132,13 +135,61 @@ $('.urlCopyBtn').click(function(){
 	return false;
 });
 
- 		<!--게시글 추가 페이지로 이동-->
+ 	
 function gajaa(){
 location.href = "${pageContext.request.contextPath}/post/restaurantInsert.do?rname=${restaurant.rname}&memberId=${member.memberId}&address=${restaurant.address}";
 } 
+
+/* 호호 */
+ /*  $(function(){
+ var address = "${restaurant.address}"; 
+			alert(address);
+	$.ajax({
+		url :'${pageContext.request.contextPath}/restaurant/restaurantaround.do',
+		data : { address: address}, 
+		dataType : 'json',  
+		success : function(data){
+			 console.log(data); //-->adr[]  
+			for(var i in data) {
+				console.log(dat);
+				
+			}
+ 			var $aroundRestaurant = $('sidebar-box ftco-animate')[0]; 
+				 alert(i.adr); 
+			 console.log(i.Rname);
+			var html1 =  
+				 '<div class="block-21 mb-4 d-flex">'+
+		         '<a class="blog-img" style="background-image: url(images/image_2.jpg);"' + '</a>' + 
+		         '<div class="text pl-3">' + 
+		          '<h3 class="heading"><a href="#"> + Why Lead Generation is Key  +</a></h3>'+
+		       
+		          '<div class="meta">'+
+		             '<div><a href="#"><span class="icon-calendar mr-2"></span> + Oct. 17, 2019+ </a></div>'+ 
+		             '<div><a href="#"><span class="icon-person"></span>+ Admin + </a></div>'+
+		             '<div><a href="#"><span class="icon-chat"></span>+ 19 + </a></div>'+
+		           '</div>'+
+		         '</div>'+
+		       '</div>';      
+		       console.log($(data[i].address));
+			$($aroundRestaurant).append($(html1)[0]);
+	 	'<input type="text" value="나왈나나와라나와라나와라" />';
+		$($aroundRestaurant).append($(html1)[0]); 
+			}
+			
+		
+	
+		},error : function() {	
+			alert('에러임');	
+	
+		} 
+	}); 
+ 
+ });   */
+/* 호호 끝  */
+
+
 </script>    	 
-    	 <!-- 경로 복사하기 끝 -->
-    	 
+    	 <!-- 경로 복사하기 끝 -->	 
        	   <hr>     	 
             <h1 class="mb-3 bread"> ${restaurant.rname} </h1>
             <hr>
@@ -214,11 +265,11 @@ location.href = "${pageContext.request.contextPath}/post/restaurantInsert.do?rna
                     <div class="comment-body">
                      <c:if test="${ empty member.memberId }">
                     <a href="#loginModal" class="nav-link"> 
-                      <input class="btn btn-outline-danger" data-toggle="modal" data-target="#loginModal" onclick="" type="button" value="신고" style="font-size: 10px; float: right;" >
+                      <input class="btn btn-outline-danger" data-toggle="modal" data-target="#loginModal" onclick="" type="button" value="신고" style="font-size: 10px;position: relative;left: 590px;" >
                   		</a>
                   	 </c:if>
                  	 <c:if test="${ !empty member.memberId }">
-        			  <input class="btn btn-outline-danger"  onclick="" type="button" value="신고" style="font-size: 10px; float: right;" >          		
+        			  <input class="btn btn-outline-danger"  onclick="" type="button" value="신고" style="font-size: 10px;position: relative;left: 590px;" >          		
            		</c:if>
               
                       <div class="meta" style="position: relative;margin-left: 490px; font-size: 30px; top: -43px;"><img src="${pageContext.request.contextPath}/resources/upload/post/star1.png" style="width: 30px; height: 30px; margin-bottom: 0px;">  &nbsp;${RPost.STAR}</div> 
@@ -247,33 +298,7 @@ location.href = "${pageContext.request.contextPath}/post/restaurantInsert.do?rna
     	 <!-- 리뷰 기능 -->
     	 
 
-    	 
-    	 
-    	 
-  		<script>
-  		function taskDate(dateMilli) {
-  		    var d = (new Date(dateMilli) + '').split(' ');
-  		    d[2] = d[2] + ',';
-
-  		    return [d[0], d[1], d[2], d[3]].join(' ');
-  		}
-  		
-  		function formatDate(date) {
-  		    var d = new Date(date),
-  		        month = '' + (d.getMonth() + 1),
-  		        day = '' + d.getDate(),
-  		        year = d.getFullYear();
-
-  		    if (month.length < 2) 
-  		        month = '0' + month;
-  		    if (day.length < 2) 
-  		        day = '0' + day;
-
-  		    return [year, month, day].join('/');
-  		}
-
-  		</script>
-  
+ 
   
 			<!-- 지도  시작 -->
          
@@ -346,43 +371,22 @@ geocoder.addressSearch('${restaurant.address}', function(result, status) {
            
      <div class="sidebar-box ftco-animate" style ="height: 2500px;">
        <h3>주변인기식당</h3>
-       <div class="block-21 mb-4 d-flex">
-         <a class="blog-img" style="background-image: url(images/image_1.jpg);"></a>
+       	<c:forEach items="${adr}" var="adr">
+       	<c:if test="${ restaurant.rname ne adr.rname}"> 
+    	<div class="block-21 mb-4 d-flex">
+         <a class="blog-img" style="background-image: url(${pageContext.request.contextPath}/resources/upload/post/${adr.prenamedname};"></a>
          <div class="text pl-3">
-           <h3 class="heading"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
+           <h3 class="heading"><a href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=${adr.RNO}&memberId=${member.memberId}">${adr.rname}&nbsp;&nbsp;&nbsp;${adr.avg_star}</a></h3>
            <div class="meta">
-             <div><a href="#"><span class="icon-calendar mr-2"></span>Oct. 17, 2019</a></div>
-             <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-             <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+             <div><a href="#"><span class="icon-calendar mr-2"></span>${adr.address}</a></div>
            </div>
          </div>
        </div>
-       <div class="block-21 mb-4 d-flex">
-         <a class="blog-img" style="background-image: url(images/image_2.jpg);"></a>
-         <div class="text pl-3">
-           <h3 class="heading"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-           <div class="meta">
-             <div><a href="#"><span class="icon-calendar mr-2"></span>Oct. 17, 2019</a></div>
-             <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-             <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-           </div>
-         </div>
-       </div>
-       <div class="block-21 mb-4 d-flex">
-         <a class="blog-img" style="background-image: url(images/image_3.jpg);"></a>
-         <div class="text pl-3">
-           <h3 class="heading"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-           <div class="meta">
-             <div><a href="#"><span class="icon-calendar mr-2"></span>Oct. 17, 2019</a></div>
-             <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-             <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-           </div>
-         </div>
-       </div>
+       </c:if> 
+       </c:forEach>   
        <div id="chart_div"style="position: relative;margin-left: -60px;" ></div>
        <div id="piechart" style="position: relative;margin-left: -133px; width: 900px; height: 500px; "></div>
-
-
+       
      </div>
 
             
@@ -395,14 +399,10 @@ geocoder.addressSearch('${restaurant.address}', function(result, status) {
           <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
           <script >
             // 차트를 사용하기 위한 준비입니다.
-            google.charts.load('current', {packages:['corechart']});
-            
-            
+            google.charts.load('current', {packages:['corechart']});                 
           </script>
-          
-          <!-- <div id="chart_div" ></div> --> <!-- 여기에 차트가 생성됩니다. -->
-          <script >
-          
+       
+          <script >          
           // 로딩 완료시 함수 실행하여 차트 생성
           google.charts.setOnLoadCallback(drawChart);
           
@@ -510,12 +510,7 @@ function login() {
   
   
   
- </script>  
-
-
-  
- 
+ </script> 
   <c:import url="/views/common/footer.jsp"/>
-
   </body>
 </html>
