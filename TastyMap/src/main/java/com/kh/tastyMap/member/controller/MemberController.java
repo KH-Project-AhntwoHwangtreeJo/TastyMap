@@ -3,6 +3,7 @@ package com.kh.tastyMap.member.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -592,15 +593,19 @@ public class MemberController {
     	  
     	  model.addAttribute("list",list);
           
-    	  
-    	  Map<String, String> map =new HashMap<String, String>();
+    	  // --------------------------------------------------------------------------------
+    	  // 
+    	  Map<String, Object> map =new HashMap<String, Object>();
 
     	  	String k="";
     		String c="";
     		String j ="";
     		String y ="";
     		String e ="";
-  		
+    		
+    		String[] countrys = new String[5];
+    		BigDecimal[] ctyCounts = new BigDecimal[5];
+    		
     		List<Map<String, String>> rChart = memberService.restaurantCargoChartList();	
      	// 한식/중식/일식/양식/기타
       		for( Map<String, String> r : rChart ) {
@@ -621,8 +626,35 @@ public class MemberController {
       		model.addAttribute("map", map);
   		
      		System.out.println("map : " + map);
-    	  
-    	  
+     		
+     	// --------------------------------------------------------------------------------
+     		List<Map<String, Object>> nawhabariChart = memberService.addressChartList();
+     		System.out.println(nawhabariChart);
+     		
+     		int idx = 0;
+     		for( Map<String, Object> n : nawhabariChart ) {
+     			countrys[idx] = (String)n.get("COUNTRY");
+     			System.out.println("보여줘 : " + countrys[idx]);
+     			ctyCounts[idx] = (BigDecimal)(n.get("ctyCount"));
+     			
+     			//System.out.println("check : "+countrys[idx]+"/"+ctyCounts[idx]);
+     			idx++;
+     		}    	
+
+     		for(int i=0; i<idx; i++) {
+ 			System.out.println("countrys : " + countrys[i]);
+ 			System.out.println("ctyCounts : " + ctyCounts[i]);
+ 			
+ 			map.put(countrys[i], ctyCounts[i]);
+     		}
+     		
+     		model.addAttribute("map", map);
+     		model.addAttribute("countrys",countrys);
+ 			
+     		System.out.println("map : " + map);
+     		//System.out.println("countrys : " + countrys);
+     		//System.out.println("ctyCounts : " + ctyCounts);
+     		
           return "myPage/myPage";
       }
       

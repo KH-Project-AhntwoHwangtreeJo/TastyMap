@@ -282,6 +282,16 @@ WHERE RNO = ${rno} and PSTATUS = 'Y'
            (SELECT COUNT(*) FROM RESTAURANT WHERE CATEGORY ='기타') "기타"
 		FROM DUAL
 	</select>
+	
+	<select id="addressChartList" resultType="HashMap">
+		SELECT A.* 
+		FROM (SELECT  R.ADDRESS "COUNTRY", COUNT(*) "ctyCount"
+		FROM (SELECT SUBSTR(ADDRESS,4,3) "ADDRESS"
+		FROM RESTAURANT) R
+		GROUP BY ADDRESS
+		ORDER BY 2 DESC) A
+		WHERE <![CDATA[ROWNUM < 6]]>
+	</select>
 
 
 </mapper>

@@ -130,6 +130,13 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return memberDAO.restaurantCargoChartList();
 	}
+
+
+	@Override
+	public List<Map<String, Object>> addressChartList() {
+		// TODO Auto-generated method stub
+		return memberDAO.addressChartList();
+	}
 	
 	
 

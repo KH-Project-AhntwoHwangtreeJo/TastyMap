@@ -109,4 +109,6 @@ public interface MemberDAO {
 
 	List<Map<String, String>> restaurantCargoChartList();
 
+	List<Map<String, Object>> addressChartList();
+
 }

@@ -57,6 +57,36 @@
     </script>
  
 <!--원형차트 끝-->
+
+<!--원형차트 시작-->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart1);
+
+      function drawChart1() {
+
+    	  
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'], 
+          ['${countrys[0]}', ${map.get(countrys[0])}],
+          ['${countrys[1]}', ${map.get(countrys[1])}],
+          ['${countrys[2]}', ${map.get(countrys[2])}],
+          ['${countrys[3]}', ${map.get(countrys[3])}],
+          ['${countrys[4]}', ${map.get(countrys[4])}] 
+        ]);
+
+        var options = {
+          title: '지역별 음식점 차트'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
+
+        chart.draw(data, options);
+      }
+    </script>
+ 
+<!--원형차트 끝-->
   </head>
   <body>
   
@@ -158,14 +188,17 @@
 		</script>
 		</div>
         
-        <div id="chart_div"style="position: relative;margin-left: -60px;" ></div>
-        <div id="piechart" style="position: relative;margin-left: -133px; width: 900px; height: 500px; "></div>
         
         
         
       </div>
       </div>
      
+     <div class="col-10" style="margin-left:20%; display:flex;">
+     
+        <div class="col-6" id="piechart" style="position: relative;margin-left: -133px; width: 900px; height: 500px; display:flex;"></div>
+        <div class="col-6" id="piechart1" style="position: relative;margin-left: -133px; width: 900px; height: 500px; "></div>
+     </div>
       
     </section>
     
