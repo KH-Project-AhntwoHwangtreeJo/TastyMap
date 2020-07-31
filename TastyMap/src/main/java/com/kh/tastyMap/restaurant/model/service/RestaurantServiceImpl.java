@@ -125,7 +125,12 @@ public class RestaurantServiceImpl implements RestaurantService {
 	@Override	// 리뷰갯수
 	public int restaurantPostTwo(int rno) {
 		// TODO Auto-generated method stub
-		return 0;
+		return restaurantDAO.restaurantPostTwo(rno);
+	}
+
+	@Override	//주변인기식당
+	public List<Restaurant> Raround(String address) {
+		return restaurantDAO.Raround(address);
 	}
 }
 

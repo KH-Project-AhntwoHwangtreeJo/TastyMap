@@ -55,4 +55,6 @@ public interface RestaurantDAO {
 	List<Picture> restaurantPicture(int rno);
 	//리뷰 개수
 	int restaurantPostTwo(int rno);
+	//주변인기 식당
+	List<Restaurant> Raround(String address);
 }

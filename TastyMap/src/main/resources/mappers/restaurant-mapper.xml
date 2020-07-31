@@ -18,6 +18,15 @@
 			<result property="prenamedname" column="PRENAMEDNAME"/>
 			<result property="avg_star" column="STAR"/>
 	</resultMap>
+	
+	<resultMap  type="map" id="around">	
+				<result property="prenamedname" column="PRENAMEDNAME"/>
+				<result property="avg_star" column="STAR"/>
+				<result property="rname" column="RNAME"/>
+				<result property="address" column="ADDRESS"/>
+
+	</resultMap>
+
 
 	<!-- 식당 상세 페이지 (조은성)-->
 	<select id="selectOneRestaurant" parameterType="_int" resultType="Restaurant">
@@ -201,7 +210,24 @@ FROM(SELECT *
 FROM DUAL
 </select>
 
-<!-- 리뷰갯수 -->
+<!-- 식당디테일 페이지 주변식당 찾기 (조은성) -->
+ <select id="Raround" resultMap="around" >
+SELECT PI.PRENAMEDNAME, P.RNO,P.STAR, R.*
+FROM PICTURE PI
+JOIN POST P ON(P.PNO=PI.PNO)
+JOIN (
+    SELECT *
+    FROM RESTAURANT
+    WHERE  RSTATUS='Y' AND ADDRESS LIKE (SUBSTR ('${adress}', 1, 2)||'%')
+    AND ROWNUM  <![CDATA[<]]> 5) R ON(R.RNO=P.RNO)
+WHERE PI.PLEVEL=0 AND PICTURE_STATUS='Y'
+AND (P.PNO, P.RNO) IN (SELECT MIN(PNO), RNO
+        FROM POST
+        WHERE PSTATUS='Y'
+        GROUP BY RNO)
+</select> 
+
+<!-- 리뷰개수 (조은성) -->
 <select id="postNumber" resultType="_int">
 SELECT COUNT(*)
 FROM POST P

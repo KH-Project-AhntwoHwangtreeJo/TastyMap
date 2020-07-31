@@ -128,6 +128,27 @@ public class RestaurantController {
 		return mav;
 	}
 	
+	//주변식당 출력
+	@RequestMapping("/restaurant/restaurantaround.do")
+	@ResponseBody
+	public Map<String, List<Restaurant>> Raround(String address, Model model) {	 
+		  List<Restaurant> adr = restaurantService.Raround(address);
+		  
+		  for( Restaurant s: adr) {
+			 System.out.println("s"+s);
+			  
+		  }
+		 
+		  
+		  Map<String,List<Restaurant>> map = new HashMap<String, List<Restaurant>>();
+		  System.out.println("주변식당 찾기"+adr);
+		  
+		  
+		  map.put("adr",adr);
+		  return map;
+		  
+	}
+	
   // 레스토랑 디테일 페이지 (조은성)
 	@RequestMapping("/restaurant/restaurantDatail.do")
 	public String RestaurantDetail(@RequestParam int rno, @RequestParam String memberId, Model model) {	
@@ -149,10 +170,11 @@ public class RestaurantController {
 //				5. 원형 차트
 //				6. 리뷰 
 //				7. 리뷰갯수
-//		
+//				8. 리뷰 사진
+//				9. 주변식당 리스트 출력
 //			1. 식당 기본정보(리스트) 가져오기
 		Restaurant R = restaurantService.restaurantDetail(rno);	
-		
+		System.out.println(R.getAddress());
 //			2. 사진 리스트 불러오기
 		List<Picture> list = restaurantService.pictureList(rno);
 		
@@ -205,13 +227,16 @@ public class RestaurantController {
 		
 //		 	7. 리뷰 사진
 		List<Picture> RPicture = restaurantService.restaurantPicture(rno);
-		System.out.println("RPicture"+RPicture);
+	
 		
 		
 //			8. 리뷰갯수
 		  int PostNumber = restaurantService.restaurantPostTwo(rno);
 		String Pnum = String.valueOf(PostNumber);
-		  
+		
+//	        9. 주변식당 리스트 출력 
+		List<Restaurant> adr = restaurantService.Raround(R.getAddress());
+		  System.out.println("adr입니다" +adr );
 		map.put("Pnum",Pnum);	
 		map.put("M",M);
 		map.put("F",F);
@@ -226,10 +251,10 @@ public class RestaurantController {
 		 model.addAttribute("list", list);
 		 model.addAttribute("RPost", RPost);
 		 model.addAttribute("RPicture", RPicture);
+		 model.addAttribute("adr", adr);
 		
-		 System.out.println("RPost" + RPost);	
-		
-			
+		 
+		 
 		return "restaurant/restaurantDetail";    
 		
 		
