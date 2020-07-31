@@ -29,6 +29,6 @@ public class Restaurant implements Serializable {
 	private int latitude;
 	private int longitude;
 	private String rstatus;
-	private String field13;
+	private String adminStatus;
 
 }
