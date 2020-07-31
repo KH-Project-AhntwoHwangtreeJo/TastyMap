@@ -170,7 +170,7 @@ public class RestaurantController {
 //				5. 원형 차트
 //				6. 리뷰 
 //				7. 리뷰갯수
-//				8. 리뷰 사진
+//				8. 리뷰 사진						
 //				9. 주변식당 리스트 출력
 //			1. 식당 기본정보(리스트) 가져오기
 		Restaurant R = restaurantService.restaurantDetail(rno);	
@@ -234,9 +234,14 @@ public class RestaurantController {
 		  int PostNumber = restaurantService.restaurantPostTwo(rno);
 		String Pnum = String.valueOf(PostNumber);
 		
+	   
+	
+	
+		
 //	        9. 주변식당 리스트 출력 
 		List<Restaurant> adr = restaurantService.Raround(R.getAddress());
-		  System.out.println("adr입니다" +adr );
+		
+		  
 		map.put("Pnum",Pnum);	
 		map.put("M",M);
 		map.put("F",F);
