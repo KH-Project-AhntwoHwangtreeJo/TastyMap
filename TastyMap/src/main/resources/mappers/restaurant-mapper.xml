@@ -273,15 +273,25 @@ WHERE RNO = ${rno} and PSTATUS = 'Y'
 	<select id="selectRestaurantTotal" resultType="_int">
 		SELECT COUNT(*)FROM RESTAURANT
 	</select>
-
+	
 	<select id="restaurantCargoChartList" resultType="HashMap">
-	    SELECT (SELECT COUNT(*) FROM RESTAURANT WHERE CATEGORY = '한식') "한식",
-	           (SELECT COUNT(*) FROM RESTAURANT WHERE CATEGORY ='중식') "중식",
-	           (SELECT COUNT(*) FROM RESTAURANT WHERE CATEGORY ='일식') "일식",
-	           (SELECT COUNT(*) FROM RESTAURANT WHERE CATEGORY ='양식') "양식",
-	           (SELECT COUNT(*) FROM RESTAURANT WHERE CATEGORY ='기타') "기타"
-	    FROM DUAL
-    </select>
+		SELECT (SELECT COUNT(*) FROM RESTAURANT WHERE CATEGORY = '한식') "한식",
+           (SELECT COUNT(*) FROM RESTAURANT WHERE CATEGORY ='중식') "중식",
+           (SELECT COUNT(*) FROM RESTAURANT WHERE CATEGORY ='일식') "일식",
+           (SELECT COUNT(*) FROM RESTAURANT WHERE CATEGORY ='양식') "양식",
+           (SELECT COUNT(*) FROM RESTAURANT WHERE CATEGORY ='기타') "기타"
+		FROM DUAL
+	</select>
+	
+	<select id="addressChartList" resultType="HashMap">
+		SELECT A.* 
+		FROM (SELECT  R.ADDRESS "COUNTRY", COUNT(*) "ctyCount"
+		FROM (SELECT SUBSTR(ADDRESS,4,3) "ADDRESS"
+		FROM RESTAURANT) R
+		GROUP BY ADDRESS
+		ORDER BY 2 DESC) A
+		WHERE <![CDATA[ROWNUM < 6]]>
+	</select>
 
 
 </mapper>

@@ -116,4 +116,8 @@ public class PostDAOImpl implements PostDAO {
 		return sqlSession.update("postMapper.updatePCNT", pNo);
 	}
 
+	@Override
+	public List<PostList> getLoveMemberList(int pNo) {
+		return sqlSession.selectList("postMapper.getLoveMemberList", pNo);
+	}
 }

@@ -39,32 +39,43 @@ public class RestaurantController {
 	         
 	      System.out.println(RList);
 	         
-	      List<RestaurantList> kList = new ArrayList<>();
-	      List<RestaurantList> cList = new ArrayList<>();
-	      List<RestaurantList> jList = new ArrayList<>();
-	      
-	      for(RestaurantList r : RList) {
-	         if("한식".equals(r.getCategory())){
-	            kList.add(r);
-	         } else if ("중식".equals(r.getCategory())) {
-	            cList.add(r);
-	         } else if ("일식".equals(r.getCategory())) {
-	            jList.add(r);
-	         }
-	      }
+	   // 카테고리 별 출력하기 // 한식/중식/일식/양식/기타(디저트등등..)
+	   			List<RestaurantList> kList = new ArrayList<>();
+	   			List<RestaurantList> cList = new ArrayList<>();
+	   			List<RestaurantList> jList = new ArrayList<>();
+	   			List<RestaurantList> yList = new ArrayList<>();
+	   			List<RestaurantList> etcList = new ArrayList<>();
+	   			
+	   			
+	   		// 카테고리 별 출력하기 // 한식/중식/일식/양식/기타(디저트등등..)
+	   			for(RestaurantList r : RList) {
+	   				if("한식".equals(r.getCategory())){
+	   					kList.add(r);
+	   				} else if ("중식".equals(r.getCategory())) {
+	   					cList.add(r);
+	   				} else if ("일식".equals(r.getCategory())) {
+	   					jList.add(r);
+	   				} else if ("양식".equals(r.getCategory())) {
+	   					yList.add(r);
+	   				} else if ("기타".equals(r.getCategory())) {
+	   					etcList.add(r);
+	   				}
+	   			}
 	      
 	      int totalContent = restaurantService.selectRestaurantTotal();
 	      
 //	      String pageBar = Utils.getPageBar(totalContent, cPage, numPerPage, "restaurantAllList.do");
 
-	      System.out.println("k" + kList);
-	      System.out.println("c" + cList);
-	      System.out.println("j" + jList);
+	    //  System.out.println("k" + kList);
+	    //  System.out.println("c" + cList);
+	    //  System.out.println("j" + jList);
 	      
 	      model.addAttribute("RList", RList);
 	      model.addAttribute("kList", kList);
 	      model.addAttribute("cList", cList);
 	      model.addAttribute("jList", jList);
+	      model.addAttribute("yList", yList);
+	      model.addAttribute("etcList", etcList);
 	      model.addAttribute("totalContent", totalContent);
 	      model.addAttribute("numPerPage", numPerPage);
 //	      model.addAttribute("pageBar", pageBar);

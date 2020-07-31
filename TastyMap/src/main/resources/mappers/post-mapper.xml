@@ -59,6 +59,15 @@
 		WHERE PI.PLEVEL = 0
 	</select>
 	
+	<!-- 내 게시글에 좋아요한 사용자 리스트 by 안예진-->
+	<select id="getLoveMemberList" parameterType="_int" resultType="PostList">
+		SELECT L.PNO, M.MPHOTO, M.NICKNAME
+		FROM LOVE L
+		JOIN POST P ON(P.PNO = L.PNO)
+		JOIN MEMBER M ON(M.MEMBER_ID=L.MEMBER_ID)
+		WHERE P.PNO= #{pNo} AND M.MSTATUS='Y'
+	</select>
+	
 	<!-- 여기까지 안예진 -->
 	
 	<!-- ●POST 디테일 조회용  -->

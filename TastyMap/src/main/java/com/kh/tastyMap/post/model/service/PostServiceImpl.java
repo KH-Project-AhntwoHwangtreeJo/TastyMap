@@ -119,4 +119,8 @@ public class PostServiceImpl implements PostService {
 		return postDAO.commentList(pNo);
 	}
 
+	@Override
+	public List<PostList> getLoveMemberList(int pNo) {
+		return postDAO.getLoveMemberList(pNo);
+	}
 }

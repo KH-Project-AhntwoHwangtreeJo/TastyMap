@@ -102,4 +102,6 @@ public interface MemberService {
 	List<PostList> myPage(String member_Id);
 
 	List<Map<String, String>> restaurantCargoChartList();
+
+	List<Map<String, Object>> addressChartList();
 }

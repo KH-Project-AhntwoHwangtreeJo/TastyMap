@@ -3,6 +3,7 @@ package com.kh.tastyMap.member.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -592,38 +593,68 @@ public class MemberController {
     	  
     	  model.addAttribute("list",list);
           
-    	  
-    	  Map<String, String> map =new HashMap<String, String>();
+    	  // --------------------------------------------------------------------------------
+    	  // 
+    	  Map<String, Object> map =new HashMap<String, Object>();
 
-  		  String A ="";
-  		  String B ="";
-  		  String C ="";
-  		  String D ="";
-  		  String E ="";
-  		
-  	  	  List<Map<String, String>> chartTwo = memberService.restaurantCargoChartList();
-  	   	  System.out.println("chartTwo : " + chartTwo);
-  		  // 한식/중식/일식/양식/기타
-  	      for( Map<String, String> r : chartTwo ) {
-
-  	   		 A = String.valueOf((r.get("한식")));
-  			 B = String.valueOf((r.get("중식")));
-  			 C = String.valueOf((r.get("일식")));
-  			 D = String.valueOf((r.get("양식")));
-  			 E = String.valueOf((r.get("기타")));
-  		  }
-  	      System.out.println("chartTwo : " + chartTwo);
-  		
-     		map.put("A",A);
-  		    map.put("B",B);
-  		    map.put("C",C);
-  		    map.put("D",D);
-  		    map.put("E",E);
-     		model.addAttribute("map", map);
+    	  	String k="";
+    		String c="";
+    		String j ="";
+    		String y ="";
+    		String e ="";
+    		
+    		String[] countrys = new String[5];
+    		BigDecimal[] ctyCounts = new BigDecimal[5];
+    		
+    		List<Map<String, String>> rChart = memberService.restaurantCargoChartList();	
+     	// 한식/중식/일식/양식/기타
+      		for( Map<String, String> r : rChart ) {
+      			
+      			 k = String.valueOf((r.get("한식")));
+      			 c = String.valueOf((r.get("중식")));
+      			 j = String.valueOf((r.get("일식")));
+      			 y = String.valueOf((r.get("양식")));
+      			 e = String.valueOf((r.get("기타")));
+      		System.out.println(rChart);
+      		}
+      		
+      		map.put("k", k);
+      		map.put("c", c);
+      		map.put("j", j);
+      		map.put("y", y);
+      		map.put("e", e);
+      		model.addAttribute("map", map);
   		
      		System.out.println("map : " + map);
-    	  
-    	  
+     		
+     	// --------------------------------------------------------------------------------
+     		List<Map<String, Object>> nawhabariChart = memberService.addressChartList();
+     		System.out.println(nawhabariChart);
+     		
+     		int idx = 0;
+     		for( Map<String, Object> n : nawhabariChart ) {
+     			countrys[idx] = (String)n.get("COUNTRY");
+     			System.out.println("보여줘 : " + countrys[idx]);
+     			ctyCounts[idx] = (BigDecimal)(n.get("ctyCount"));
+     			
+     			//System.out.println("check : "+countrys[idx]+"/"+ctyCounts[idx]);
+     			idx++;
+     		}    	
+
+     		for(int i=0; i<idx; i++) {
+ 			System.out.println("countrys : " + countrys[i]);
+ 			System.out.println("ctyCounts : " + ctyCounts[i]);
+ 			
+ 			map.put(countrys[i], ctyCounts[i]);
+     		}
+     		
+     		model.addAttribute("map", map);
+     		model.addAttribute("countrys",countrys);
+ 			
+     		System.out.println("map : " + map);
+     		//System.out.println("countrys : " + countrys);
+     		//System.out.println("ctyCounts : " + ctyCounts);
+     		
           return "myPage/myPage";
       }
       

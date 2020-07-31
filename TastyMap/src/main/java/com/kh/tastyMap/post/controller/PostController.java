@@ -283,7 +283,16 @@ public class PostController {
 			
 	}
 	
-
+	/*
+	 * @RequestMapping("/post/postDetail.do") public String selectList(@RequestParam Model
+	 * model, int pNo) {
+	 * 
+	 * List<PostList> pList = postService.getLoveMemberList(pNo);
+	 * 
+	 * model.addAttribute(pList);
+	 * 
+	 * return "post/PostDetail"; }
+	 */
 	
 	
 }
