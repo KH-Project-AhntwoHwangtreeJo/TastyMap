@@ -194,7 +194,7 @@
       </div>
       </div>
      
-     <div class="col-10" style="margin-left:20%; display:flex;">
+     <div class="col-10" style="margin-left:20%; display:flex;"> 
      
         <div class="col-6" id="piechart" style="position: relative;margin-left: -133px; width: 900px; height: 500px; display:flex;"></div>
         <div class="col-6" id="piechart1" style="position: relative;margin-left: -133px; width: 900px; height: 500px; "></div>
