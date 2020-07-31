@@ -123,6 +123,13 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return memberDAO.myPage(member_Id);
 	}
+
+
+	@Override
+	public List<Map<String, String>> restaurantCargoChartList() {
+		// TODO Auto-generated method stub
+		return memberDAO.restaurantCargoChartList();
+	}
 	
 	
 

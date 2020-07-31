@@ -100,4 +100,6 @@ public interface MemberService {
 	Map<String, Object> clickFollower(Follower follower);
 
 	List<PostList> myPage(String member_Id);
+
+	List<Map<String, String>> restaurantCargoChartList();
 }
