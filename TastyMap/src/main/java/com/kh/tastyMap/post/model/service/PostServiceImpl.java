@@ -120,7 +120,8 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<PostList> getLoveMemberList(int pNo) {
-		return postDAO.getLoveMemberList(pNo);
+	public List<PostList> getLoveMemberList(int pno) {
+		//System.out.println(pNo);
+		return postDAO.getLoveMemberList(pno);
 	}
 }
