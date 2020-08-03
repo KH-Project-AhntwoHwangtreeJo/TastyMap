@@ -274,6 +274,13 @@
     <artifactId>mail</artifactId>
     <version>1.4</version>
 </dependency>
+
+		<!-- spring-websocket -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-websocket</artifactId>
+		    <version>5.2.7.RELEASE</version>
+		</dependency>
 		        
 	</dependencies>
     <build>

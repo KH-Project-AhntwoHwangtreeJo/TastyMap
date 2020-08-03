@@ -62,7 +62,12 @@
              <li class="nav-item"><a href="${pageContext.request.contextPath}/restaurant/restaurantAllList.do" class="nav-link">Restaurant</a></li>
            <li class="nav-item"><a href="${pageContext.request.contextPath}/post/postAllList.do" class="nav-link">Post</a></li>
            <li class="nav-item"><a href="${pageContext.request.contextPath}/post/insertPost.do" class="nav-link">Write</a></li>
-           <li class="nav-item"><a href="${pageContext.request.contextPath}/member/myGallery.do?memberId=${member.memberId}&followerId=${member.memberId}" class="nav-link">my Gallery</a></li>
+           <c:if test="${ empty member.memberId }">
+           		<li class="nav-item"><a href="#loginModal" class="nav-link" data-toggle="modal" data-target="#loginModal" >my Gallery</a></li>
+           </c:if> 
+           <c:if test="${ !empty member.memberId }">
+           		<li class="nav-item"><a href="${pageContext.request.contextPath}/member/myGallery.do?memberId=${member.memberId}&followerId=${member.memberId}" class="nav-link">my Gallery</a></li>
+     	   </c:if>
              <!-- <li class="nav-item"><a href="agent.html" class="nav-link">Agent</a></li>
              <li class="nav-item"><a href="properties.html" class="nav-link">Listing</a></li> -->
              <li class="nav-item" id="pop"><span class="nav-link" data-toggle="popover"><img src="${pageContext.request.contextPath}/resources/images/bell.png" data-toggle="popover"></span></li>

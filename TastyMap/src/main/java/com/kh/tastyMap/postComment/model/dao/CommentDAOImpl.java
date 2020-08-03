@@ -21,14 +21,12 @@ public class CommentDAOImpl implements CommentDAO {
 
 	@Override
 	public int updateComment(PostComment comment) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update("commentMapper.updatePostComment", comment);
 	}
 
 	@Override
 	public int deleteComment(int cno) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete("commentMapper.deletePostComment", cno);
 	}
 	
 
