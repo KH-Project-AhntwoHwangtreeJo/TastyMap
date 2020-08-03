@@ -88,7 +88,35 @@ public class MemberDAOImpl implements MemberDAO {
 	public int deleteFollower(Follower follower) {
 		return sqlSession.delete("followerMapper.deleteFollower", follower);
 	}
+	// 내가 팔로우 한사람 리스트 출력
+		@Override
+		public List<Map<String, String>> myFollowingList(String memberId) {
+			/*
+			 * System.out.println("gd"+
+			 * sqlSession.selectMap("followerMapper.myFollowingList", memberId));
+			 */
+			return sqlSession.selectList("followerMapper.myFollowingList", memberId);
+		}
 
+		// 내를 팔로우 한사람 리스트 출력
+		@Override
+		public List<Map<String, String>> myFollowerList(String memberId) {
+			/*
+			 * System.out.println("gd"+
+			 * sqlSession.selectMap("followerMapper.myFollowerList", memberId));
+			 */
+			return sqlSession.selectList("followerMapper.myFollowerList", memberId);
+		}
+
+		@Override
+		public int followerCancel(Follower follower) {
+			return sqlSession.delete("followerMapper.deleteFollower", follower);
+		}
+
+		@Override
+		public int followingCancel(Follower follower) {
+			return sqlSession.delete("followerMapper.deleteFollower", follower);
+		}
 	@Override
 	public List<PostList> myPage(String member_Id) {
 		// TODO Auto-generated method stub
