@@ -31,7 +31,6 @@
 	      color:white;
 	   }
 	</style>
-	<!-- 경로 복사  끝 -->
 	
 </head>
 <body>
@@ -85,7 +84,7 @@
 
           <div class="col-md-8 ftco-animate">
             <br>
-            <h4 class="mb-3" style="float: left;"> ${ post.nickname } </h4> .
+            <h4 class="mb-3" style="float: left;"> ${ post.nickname } </h4> 
            
 			<!-- 경로 복사하기 -->
 			<a href="#urlCopyBtn" class="urlCopyBtn">
@@ -94,28 +93,36 @@
 			<input type="text" value="localhost:8088/${pageContext.request.contextPath}/post/postDetail.do?pNo=${post.PNo}&memberId=" id="urlAddress" style="display:none;">
 			<!-- 경로 복사하기 끝 -->
             
+            <!-- 신고 이미지, 삭제 버튼 -->
+            <c:if test ="${post.member_Id ne member.memberId and !empty member.memberId}"> <!-- 세션아이디와 포스트 아이디가 같지 않으면 신고보여주기 -->
+	            <c:if test="${ map.pstatus eq 'N' }">
+	            <img id="postreportimage" onclick="changePostReport();" border="0" src="${pageContext.request.contextPath}/resources/images/report/siren1.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;">
+	      		</c:if>
+	            <c:if test="${ map.pstatus eq 'Y' }">
+	            <img id="postreportimage" onclick="changePostReport();" border="0" src="${pageContext.request.contextPath}/resources/images/report/siren2.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;">
+	      		</c:if>
+            </c:if>     
+            <c:if test ="${post.member_Id eq member.memberId and !empty member.memberId}">
+            	 <img id="deleteimage" onclick="" border="0" src="${pageContext.request.contextPath}/resources/images/delete/delete.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;">
+ 
+            </c:if>
+            
             <!--해당 페이지 출력 기능-->
             <img onclick="window.print()" border="0" src="${pageContext.request.contextPath}/resources/images/print/print.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;" />
                         
-            <!-- 신고 이미지 -->
-            <c:if test="${ map.pstatus eq 'N' }">
-            <img id="postreportimage" onclick="changePostReport();" border="0" src="${pageContext.request.contextPath}/resources/images/report/siren1.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;">
-      		</c:if>
-            <c:if test="${ map.pstatus eq 'Y' }">
-            <img id="postreportimage" onclick="changePostReport();" border="0" src="${pageContext.request.contextPath}/resources/images/report/siren2.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;">
-      		</c:if>
-                       
             <!-- 좋아요 이미지 -->
-            <c:if test="${ map.status eq 'N' }">
-            <img id="loveimage" onclick="changeLove();" border="0" src="${pageContext.request.contextPath}/resources/images/heart/heart1.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;">
-      		</c:if>
-            <c:if test="${ map.status eq 'Y' }">
-            <img id="loveimage" onclick="changeLove();" border="0" src="${pageContext.request.contextPath}/resources/images/heart/heart2.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;">
+            <c:if test="${ !empty member.memberId }">
+	            <c:if test="${ map.status eq 'N' }">
+	            <img id="loveimage" onclick="changeLove();" border="0" src="${pageContext.request.contextPath}/resources/images/heart/heart1.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;">
+	      		</c:if>
+	            <c:if test="${ map.status eq 'Y' }">
+	            <img id="loveimage" onclick="changeLove();" border="0" src="${pageContext.request.contextPath}/resources/images/heart/heart2.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;">
+	      		</c:if>
       		</c:if>
       		
             <br>
             <hr/>
-            <p>${post.PContent}</p>
+            <h4>${post.PContent}</h4>
             <hr/>
             
 
@@ -123,8 +130,23 @@
             	  
 				<h3 class="mb-5" style="margin-bottom: 1rem !important;">댓글</h3> 
 					<div class="col-12" style="padding: 0px;">
-						<input type="text" style="width: 80%; margin-bottom: 5px;" id="normalcomment">
-						<button type="button" class="btn btn-outline-primary col-2"style="float: right;" onclick="commentinsert(0,$('#normalcomment').val());">작성</button>					</div>
+<%-- 						<input type="text" style="width: 80%; margin-bottom: 5px;" id="normalcomment">
+						<c:if test="${ empty member.memberId }">
+							<button type="button" class="btn btn-outline-primary col-2"style="float: right;" data-toggle="modal" data-target="#loginModal" onclick="loginModal">작성</button>
+						</c:if>	
+						<c:if test="${ !empty member.memberId }">
+							<button type="button" class="btn btn-outline-primary col-2"style="float: right;" onclick="commentinsert(0,$('#normalcomment').val());">작성</button>
+						</c:if>	 --%>
+						<form action="${pageContext.request.contextPath}/postComment/insertComment.do">
+							<input type="hidden" class="cwriter" name="cwriter" value="${member.memberId}"/>
+							<input type="hidden" class="pNo" name="pNo" value="${post.PNo}"/>
+							<input type="hidden" class="parentkey" name="parentkey" value="0"/>
+							<input type="hidden" class="level" name="level" value="1"/>
+							<input type="text" class="ccontent"name="ccontent" value="" style="width: 80%; margin-bottom: 5px;">
+							<button type="submit" id="addReply(this)" class="btn btn-outline-primary col-2"style="float: right;" >작성</button>
+						</form>
+										
+					</div>
 				<br><br>
 				
 				<ul class="comment-list">
@@ -135,13 +157,29 @@
 							<img src="${pageContext.request.contextPath}/resources/images/profileImage/${PComment.mphoto}" alt="Image placeholder" style="margin-bottom: 5px;">
 							<h6>${PComment.nickname}</h6>
 						</div>
-						<div class="comment-body">
-							<button type="button" class="btn btn-outline-danger" style="float: right;">신고</button>
-							<button type="button" class="btn btn-outline-info" style="float: right; margin-right: 5px;" > 댓글 달기 </button>
-							    
+						<div class="comment-body" id="commentadd" style="margin-bottom : 5px;">
+							<c:if test="${ !empty member.memberId }">
+								<c:if test="${PComment.cwriter eq member.memberId}">
+									<input type="hidden" id="cno" class="cnopalce" name="cno" value="${PComment.cno}"/>
+									<button type="button" id="deleteComment" class="btn btn-outline-info deleteBtn" onclick="deleteReply(this);" style="float: right; margin-right: 5px;">삭제하기</button>
+									<button type="button" id="updateCommentBtn"class="btn btn-outline-info updateCommentBtn" style="float: right; margin-right: 5px; display:block"onclick="updateReply(this);" > 댓글 수정 </button>
+									<button type="button" id="updateCompleteComment"class="btn btn-outline-info updateConfirm" onclick="updateConfirm(this);"	style="display:none; float: right; margin-right: 5px;" >수정완료</button> 
+								</c:if>
+								<c:if test="${PComment.cwriter ne member.memberId}">
+									<input type="hidden" name="cwriter" class="cwriter" value="${member.memberId}"/>
+									<input type="hidden" id="cno" class="cnopalce" name="cno" value="${PComment.cno}"/>
+									<input type="hidden" name="level" class="level" value="${PComment.level}"/>
+									<button type="button" class="btn btn-outline-danger" style="float: right;">신고</button>
+									<button type="button" class="btn btn-outline-info" onclick="reComment(this);" style="float: right; margin-right: 5px;" >답글 달기</button>
+									<button type="button" class="btn btn-outline-info insertConfirm" onclick="reConfirm(this);" style="display:none; float: right; margin-right: 5px;" >답글 완료</button>
+								</c:if>
+							</c:if>  
 							<div class="meta">${fn:substring(PComment.cdate, 0, 10)}</div>
-							<p>${PComment.ccontent}</p>
+							
 						</div>
+						<p>${PComment.ccontent}</p>
+					<input type="text" style=" display:none; width: 75%; margin-bottom: 5px; margin-top:13px" value="${PComment.ccontent}" class="inputupdate">  <!-- commentinsert(${PComment.level},$('#largecomment').val()); -->
+					<input type="text" style=" display:none; width: 75%; margin-bottom: 5px; margin-top:13px" value="" class="largecomment">
 					</li>
 					</c:forEach>
 				</ul>
@@ -151,28 +189,122 @@
         </div>
       </div>
     </section> <!-- .section -->
-	<script type="text/javascript">
-	// 댓글 작성
-  	  function commentinsert(parentkey, content) {
-			
-			var memberId = "${member.memberId}";
-			var pNo = "${post.PNo}";
-			var parentkey = parentkey;
-			var ccontent= content;
-			
-	    		$.ajax({
-	    			url :'${pageContext.request.contextPath}/postComment/insertComment.do',
-	    			data : { cwriter : memberId, pNo : pNo, ccontent : ccontent, parentkey : parentkey }, 
-	    			dataType : 'json',  
-	    			success : function(data){
-	    				alert(data.msg);		
-	    			},error : function(error) {
-	    				console.log(error);
-	   				/* ajax에서 msg에 값을 가져오고 싶으면 컨트롤러에서 map 형식으로 보내줘야한다.	 */	
-	    			}
-	   		});
-	   	}     
+    
+	<!-- 댓글 관련 스크립트 -->
+	<script>
+
+	
+	function updateReply(obj){
+		// input 보이게 하기
+		$(obj).parent().parent().find('.inputupdate').css('display', 'block');
+		// 수정하기 버튼 숨기기
+		$(obj).css('display', 'none');
+		// 수정 완료 버튼 화면에 보이게 하기
+		$(obj).next().css('display', 'block');
+	}
+	
+	function updateConfirm(obj){
+		// 변수 찾아오기
+		var ccontent=$(obj).parent().parent().find('.inputupdate').val();
+		var cno=$(obj).parent().children().eq(0).val();
+		
+		// 수정완료 버튼 숨기기
+		$(obj).css('display', 'none');
+		// 수정 하기 버튼 화면에 보이게 하기
+		$(obj).prev().css('display', 'block');
+		//input 안보이게 하기
+		$(obj).parent().parent().find('.inputupdate').css('display', 'none');
+		
+		// ajax로 컨트롤러로 content 보내기
+	 
+		$.ajax({
+			url :'${pageContext.request.contextPath}/postComment/updateComment.do',
+			data : {cno : cno, ccontent : ccontent}, 
+			dataType : 'json',  
+			success : function(data){
+				alert(data.msg);		
+			},error : function(error) {
+				console.log(error);
+				// ajax에서 msg에 값을 가져오고 싶으면 컨트롤러에서 map 형식으로 보내줘야한다.	
+			}
+		}); 
+		
+	}
+	
+	function deleteReply(obj) {
+		var cno = $(obj).parent().children().eq(0).val();
+		
+		$.ajax({
+			url :'${pageContext.request.contextPath}/postComment/deleteCommnet.do',
+			data : {cno : cno }, 
+			dataType : 'json',  
+			success : function(data){
+				alert(data.msg);		
+			},error : function(error) {
+				console.log(error);
+				// ajax에서 msg에 값을 가져오고 싶으면 컨트롤러에서 map 형식으로 보내줘야한다.	
+			}
+		}); 
+	}
+	
+	// 답글 달기 버튼 누르면
+	function reComment(obj) {
+		// input 보여주고
+		$(obj).parent().parent().find('.largecomment').css('display', 'block');
+		// 답글달기 버튼 숨기고
+		$(obj).css('display', 'none');
+		// 답글완료 버튼 화면에 보이게 하기
+		$(obj).next().css('display', 'block');
+	}
+	
+	// 답글 완료 버튼 누르면
+	function reConfirm(obj){
+		// 변수 찾아오기
+		var ccontent=$(obj).parent().parent().find('.largecomment').val();
+		var cno=$(obj).parent().children().eq(1).val();
+		var cwriter=$(obj).parent().find('.cwriter').val();
+		var pNo = "${post.PNo}";
+		
+		console.log(ccontent);
+		console.log(cno);
+		console.log(cwriter);
+		console.log(pNo);
+		
+		// 답글 완료 버튼 숨기기
+		$(obj).css('display', 'none');
+		// 수정 하기 버튼 화면에 보이게 하기
+		//$(obj).parent().find('.updateCommentBtn').css('display', 'block');
+		// input 숨기기
+		$(obj).parent().parent().find('.largecomment').css('display', 'none');
+		
+		// ajax로 컨트롤러로 content 보내기
+	 
+		$.ajax({
+			url :'${pageContext.request.contextPath}/postComment/insertComment.do',
+			data : {ccontent : ccontent, parentkey : cno, cwriter : cwriter, pNo : pNo}, 
+			dataType : 'json',  
+			success : function(data){
+				alert(data.msg);		
+			},error : function(error) {
+				console.log(error);
+				// ajax에서 msg에 값을 가져오고 싶으면 컨트롤러에서 map 형식으로 보내줘야한다.	
+			}
+		}); 
+		
+	}
+	
 	</script>
+	
+	<script type="text/javascript">
+	
+	function commentUpdate(obj){
+		document.getElementById('updateComment').attr('display','block');
+
+
+	}
+	</script>
+	
+
 	<script type="text/javascript">
 	// 좋아요 버튼
 	  function changeLove() {
@@ -275,7 +407,7 @@
 	
 	<!-- 경로 복사 스크립트 -->
 	<script type="text/javascript">
-		$('.urlCopyBtn').click(function(){   
+		$('.urlCopyBtn').click(function(){
 		
 		   var urlAddress= $('#urlAddress');
 		   urlAddress.css('display','block').select();
@@ -285,9 +417,10 @@
 		   return false;
 		});
 	</script>   
-
 	<!-- 지도 끝-->
-      
+	
+
+    
     <!-- footer 시작 -->
 <c:import url="/views/common/footer.jsp"/>
 </body>

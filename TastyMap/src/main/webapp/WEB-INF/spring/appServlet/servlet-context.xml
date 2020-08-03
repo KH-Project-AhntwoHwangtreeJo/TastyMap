@@ -4,7 +4,9 @@
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd
+		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
@@ -81,7 +83,23 @@
 		<!--  10MB  -->
 		</beans:bean>
 	
-	
+		<!-- websocket handler -->
+	<!-- 	웹소켓 연결 시 수행할 설정등을 담당한다.(onOpen/onClose 등등)
+		<beans id="echoHandler" class="com.kh.websocket.common.EchoHandler"/>
+	 
+		<websocket:handlers>
+			웹 소켓에 연결하기 위한 url 써서 주소 매핑(등록)을 한다.
+			<websocket:mapping handler="echoHandler" path="/echo" />
+			
+			 웹 소켓의 session과 HttpSesstion을 연결하는 인터셉터 등록(스프링이 제공한다.)
+			<websocket:handshake-interceptors>
+		         <beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
+		      </websocket:handshake-interceptors>
+	 
+			sockJS : 웹소켓이 불가능한 환경에서도 웹소켓을 등록할 수 있게 하는 라이브러리 
+			스프링으로 stockJS를 사용하겠다라는 설정이다.
+		      <websocket:sockjs/>
+		 </websocket:handlers> -->
 	
 	
 	<context:component-scan base-package="com.kh.tastyMap" />

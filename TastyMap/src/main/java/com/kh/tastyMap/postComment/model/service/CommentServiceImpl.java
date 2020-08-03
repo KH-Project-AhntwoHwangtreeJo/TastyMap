@@ -21,14 +21,12 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public int updateComment(PostComment comment) {
-		// TODO Auto-generated method stub
-		return 0;
+		return commentDAO.updateComment(comment);
 	}
 
 	@Override
 	public int deleteComment(int cno) {
-		// TODO Auto-generated method stub
-		return 0;
+		return commentDAO.deleteComment(cno);
 	}
 	
 }

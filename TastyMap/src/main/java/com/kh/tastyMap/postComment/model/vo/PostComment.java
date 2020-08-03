@@ -26,4 +26,22 @@ public class PostComment implements Serializable{
 	private String mphoto;
 	private int level;
 	
+	// 댓글 수정용 생성자
+	public PostComment(int cno, String ccontent) {
+		super();
+		this.cno = cno;
+		this.ccontent = ccontent;
+	}
+
+	public PostComment(int pNo, String ccontent, String cwriter, int parentkey, int level) {
+		super();
+		this.pNo = pNo;
+		this.ccontent = ccontent;
+		this.cwriter = cwriter;
+		this.parentkey = parentkey;
+		this.level = level;
+	}
+	
+	
+	
 }

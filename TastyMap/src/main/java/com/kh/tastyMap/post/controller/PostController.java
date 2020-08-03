@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.tastyMap.love.model.service.LoveService;
@@ -294,5 +295,15 @@ public class PostController {
 	 * return "post/PostDetail"; }
 	 */
 	
+	// (게시글 상세페이지) 댓글 리스트
+	@RequestMapping("/post/postCommentList.do")
+	@ResponseBody 
+	public List<PostComment> postCommentList(@RequestParam int pNo, Model model, @RequestParam String memberId) {
+		List<PostComment> PComment = postService.commentList(pNo);
+		
+		model.addAttribute("PComment", PComment);
+		
+		return PComment;
+	}
 	
 }
