@@ -274,13 +274,11 @@ WHERE RNO = ${rno} and PSTATUS = 'Y'
 		SELECT COUNT(*)FROM RESTAURANT
 	</select>
 	
+	<!-- 식당 차트 -->
 	<select id="restaurantCargoChartList" resultType="HashMap">
-		SELECT (SELECT COUNT(*) FROM RESTAURANT WHERE CATEGORY = '한식') "한식",
-           (SELECT COUNT(*) FROM RESTAURANT WHERE CATEGORY ='중식') "중식",
-           (SELECT COUNT(*) FROM RESTAURANT WHERE CATEGORY ='일식') "일식",
-           (SELECT COUNT(*) FROM RESTAURANT WHERE CATEGORY ='양식') "양식",
-           (SELECT COUNT(*) FROM RESTAURANT WHERE CATEGORY ='기타') "기타"
-		FROM DUAL
+		SELECT CATEGORY, COUNT(*) FROM RESTAURANT
+		GROUP BY CATEGORY
+		ORDER BY 2 DESC
 	</select>
 	
 	<select id="addressChartList" resultType="HashMap">

@@ -657,7 +657,7 @@ public class MemberController {
       			 j = String.valueOf((r.get("일식")));
       			 y = String.valueOf((r.get("양식")));
       			 e = String.valueOf((r.get("기타")));
-      		System.out.println(rChart);
+      		//System.out.println(rChart);
       		}
       		
       		map.put("k", k);
@@ -667,16 +667,16 @@ public class MemberController {
       		map.put("e", e);
       		model.addAttribute("map", map);
   		
-     		System.out.println("map : " + map);
+     		//System.out.println("map : " + map);
      		
      	// --------------------------------------------------------------------------------
      		List<Map<String, Object>> nawhabariChart = memberService.addressChartList();
-     		System.out.println(nawhabariChart);
+     		//System.out.println(nawhabariChart);
      		
      		int idx = 0;
      		for( Map<String, Object> n : nawhabariChart ) {
      			countrys[idx] = (String)n.get("COUNTRY");
-     			System.out.println("보여줘 : " + countrys[idx]);
+     			//System.out.println("보여줘 : " + countrys[idx]);
      			ctyCounts[idx] = (BigDecimal)(n.get("ctyCount"));
      			
      			//System.out.println("check : "+countrys[idx]+"/"+ctyCounts[idx]);
@@ -684,8 +684,8 @@ public class MemberController {
      		}    	
 
      		for(int i=0; i<idx; i++) {
- 			System.out.println("countrys : " + countrys[i]);
- 			System.out.println("ctyCounts : " + ctyCounts[i]);
+ 			//System.out.println("countrys : " + countrys[i]);
+ 			//System.out.println("ctyCounts : " + ctyCounts[i]);
  			
  			map.put(countrys[i], ctyCounts[i]);
      		}
@@ -693,7 +693,7 @@ public class MemberController {
      		model.addAttribute("map", map);
      		model.addAttribute("countrys",countrys);
  			
-     		System.out.println("map : " + map);
+     		//System.out.println("map : " + map);
      		//System.out.println("countrys : " + countrys);
      		//System.out.println("ctyCounts : " + ctyCounts);
      		
