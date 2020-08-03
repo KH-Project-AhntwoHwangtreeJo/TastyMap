@@ -116,7 +116,29 @@ public class MemberServiceImpl implements MemberService {
 		
 		return map;
 	}
+	@Override
+	public List<Map<String, String>> myFollowingList(String memberId) {
+		return memberDAO.myFollowingList(memberId);
+	}
 
+
+	@Override
+	public List<Map<String, String>> myFollowerList(String memberId) {
+		return memberDAO.myFollowerList(memberId);
+	}
+
+
+	@Override
+	public int followerCancel(Follower follower) {
+		return memberDAO.followerCancel(follower);
+	}
+
+
+	@Override
+	public int followingCancel(Follower follower) {
+		// TODO Auto-generated method stub
+		return memberDAO.followingCancel(follower);
+	}
 
 	@Override
 	public List<PostList> myPage(String member_Id) {

@@ -98,6 +98,27 @@ public interface MemberService {
 	 * @return
 	 */
 	Map<String, Object> clickFollower(Follower follower);
+	
+
+	/**
+	 * 내가 팔로잉 한사람 리스트
+	 *  
+	 * @param follower
+	 * @return
+	 */
+	List<Map<String, String>> myFollowingList(String memberId);
+	
+	/**
+	 * 나를 팔로잉 한사람 리스트
+	 *  
+	 * @param follower
+	 * @return
+	 */
+	List<Map<String, String>> myFollowerList(String memberId);
+
+	int followerCancel(Follower follower);
+
+	int followingCancel(Follower follower);
 
 	List<PostList> myPage(String member_Id);
 

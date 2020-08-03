@@ -74,7 +74,12 @@ public class MemberController {
       // 4. 멤버가 유저를 팔로우한 여부 
       Map<String, Object> map = new HashMap<String, Object>();
       
-            
+   // 황하용 제작 팔로워 리스트 뽑아옴//
+      List<Map<String, String>> myFollowingList = memberService.myFollowingList(memberId);
+      List<Map<String, String>> myFollowerList = memberService.myFollowerList(memberId);
+      System.out.println("myFollowingList" + myFollowingList);
+      System.out.println("myFollowerList" + myFollowerList);
+      
       String status; // 팔로우 했는지 결과를 받아올 변수 
       //---------------------------------------//
       // <변수 실행부>
@@ -98,12 +103,49 @@ public class MemberController {
           .addAttribute("map", map) // 팔로우 정보
           .addAttribute("followerCnt", cntMap.get("followerCnt"))
           .addAttribute("followingCnt", cntMap.get("followingCnt"))
-          .addAttribute("myPostCnt", cntMap.get("myPostCnt"));
+          .addAttribute("myPostCnt", cntMap.get("myPostCnt"))
+          .addAttribute("myFollowingList", myFollowingList)
+          .addAttribute("myFollowerList", myFollowerList);
+      
         //                 jsp,              맵으로 가져온 카운트
       
       return "post/myGallery";
    }
    
+   @RequestMapping("/member/followerCancel.do")
+	@ResponseBody
+	public Map<String, Object> followerCancel(@RequestParam String memberId, @RequestParam String followerId, Model model, HttpSession session){
+		Map<String, Object> map = new HashMap<String, Object>(); 
+		Follower follower = new Follower(memberId, followerId);
+		System.out.println(memberId +" : " +followerId);
+		
+		boolean isUsable = memberService.followerCancel(follower) != 0 ? true : false;
+		System.out.println(isUsable);
+		
+		map.put("isUsable", isUsable);
+		
+		// @ResponseBody는 결과가 viewResolver로 가지 않고, 직접 그 결과 자체를 화면으로 전달한다
+		
+		return map;
+	}
+  
+  @RequestMapping("/member/followingCancel.do")
+  @ResponseBody
+  public Map<String, Object>followingCancel(@RequestParam String memberId, @RequestParam String followerId, Model model, HttpSession session){
+	   Map<String, Object> map = new HashMap<String, Object>(); 
+		Follower follower = new Follower(memberId, followerId);
+		System.out.println(memberId +" : " +followerId);
+		
+		boolean isUsable = memberService.followingCancel(follower) != 0 ? true : false;
+		System.out.println(isUsable);
+		
+		map.put("isUsable", isUsable);
+		
+		// @ResponseBody는 결과가 viewResolver로 가지 않고, 직접 그 결과 자체를 화면으로 전달한다
+		
+		return map;
+  }
+  
    @RequestMapping("/member/jusoPopup.do")
    public String jusoPopup() {
       

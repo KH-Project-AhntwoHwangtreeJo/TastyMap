@@ -8,7 +8,14 @@
 		<id property="memberId" column="MEMBER_ID"/>
 		<result property="followerId" column="FOLLOWER_ID"/>
 	</resultMap>
-
+	
+	<resultMap id="followMemberMap" type="map">
+		<id property="fmemberId" column="MEMBER_ID"/>
+		<result property="mphoto" column="MPHOTO" />
+		<result property="nickname" column="NICKNAME" />
+		<result property="userName" column="USERNAME" />
+	</resultMap>
+	
 	<!-- 팔로우 확인 -->
 	<select id ="selectFollower" parameterType="Follower" resultType="_int">
 		SELECT COUNT(*)
@@ -28,6 +35,14 @@
 		DELETE FROM FOLLOWER
 		WHERE MEMBER_ID = #{memberId} AND FOLLOWER_ID = #{followerId}
 	</delete>
+	
+		<select id="myFollowingList" parameterType="string" resultMap="followMemberMap">
+		SELECT M.MEMBER_ID, M.MPHOTO, M.NICKNAME, M.USERNAME FROM MEMBER M, FOLLOWER F WHERE M.MEMBER_ID=F.FOLLOWER_ID AND F.MEMBER_ID=#{memberId}
+	</select>
+	
+	<select id="myFollowerList" parameterType="string" resultMap="followMemberMap">
+		SELECT M.MEMBER_ID, M.MPHOTO, M.NICKNAME, M.USERNAME FROM MEMBER M, FOLLOWER F WHERE M.MEMBER_ID=F.MEMBER_ID AND F.FOLLOWER_ID=#{memberId}
+	</select>
 	
 </mapper>
 
