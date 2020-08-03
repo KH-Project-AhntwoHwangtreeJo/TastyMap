@@ -68,6 +68,7 @@
 		WHERE P.PNO= #{pNo} AND M.MSTATUS='Y'
 	</select>
 	
+	
 	<!-- 여기까지 안예진 -->
 	
 	<!-- ●POST 디테일 조회용  -->
