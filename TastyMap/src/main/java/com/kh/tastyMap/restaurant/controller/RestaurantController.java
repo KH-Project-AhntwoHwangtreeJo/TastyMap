@@ -27,7 +27,7 @@ public class RestaurantController {
 	@Autowired
 	RestaurantService restaurantService;
 	
-
+	// 식당 전체리스트 출력(안예진)
 	@RequestMapping("/restaurant/restaurantAllList.do")
 	   public List restaurantAllList(
 	         @RequestParam (value="cPage", required=false, defaultValue="1")

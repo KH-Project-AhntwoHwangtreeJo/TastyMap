@@ -280,6 +280,16 @@ public class PostController {
 			 .addAttribute("map", map) // 좋아요 정보 & 게시글 신고 정보
 			 .addAttribute("PComment", PComment); // 댓글 정보
 		
+		String member_Id = memberId;
+		int pno = pNo;
+		//내 게시글에 좋아요한 사용자 리스트(안예진)
+		List<PostList> pList = postService.getLoveMemberList(pno);
+		
+		System.out.println(pNo);
+		System.out.println(pno);
+		System.out.println(pList);
+		model.addAttribute("pList" ,pList);
+		
 		return "post/postDetail";
 			
 	}

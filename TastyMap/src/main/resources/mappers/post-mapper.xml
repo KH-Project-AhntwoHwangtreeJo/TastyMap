@@ -76,7 +76,7 @@
 		FROM POST P
 		JOIN MEMBER M ON(M.MEMBER_ID=P.MEMBER_ID)
 		JOIN RESTAURANT R ON(R.RNO = P.RNO)
-		WHERE P.PNO=#{pNo} AND P.PSTATUS = 'Y'
+		WHERE P.PNO=#{pno} AND P.PSTATUS = 'Y'
 	</select>
 	
 	<!-- ●POST 디테일 사진 조회용  -->
