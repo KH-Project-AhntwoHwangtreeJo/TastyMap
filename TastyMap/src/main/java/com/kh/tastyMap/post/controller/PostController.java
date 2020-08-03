@@ -285,25 +285,16 @@ public class PostController {
 		//내 게시글에 좋아요한 사용자 리스트(안예진)
 		List<PostList> pList = postService.getLoveMemberList(pno);
 		
-		System.out.println(pNo);
-		System.out.println(pno);
-		System.out.println(pList);
+		//System.out.println(pNo);
+		//System.out.println(pno);
+		//System.out.println(pList);
 		model.addAttribute("pList" ,pList);
 		
 		return "post/postDetail";
 			
 	}
 	
-	/*
-	 * @RequestMapping("/post/postDetail.do") public String selectList(@RequestParam Model
-	 * model, int pNo) {
-	 * 
-	 * List<PostList> pList = postService.getLoveMemberList(pNo);
-	 * 
-	 * model.addAttribute(pList);
-	 * 
-	 * return "post/PostDetail"; }
-	 */
+
 	
 	// (게시글 상세페이지) 댓글 리스트
 	@RequestMapping("/post/postCommentList.do")
