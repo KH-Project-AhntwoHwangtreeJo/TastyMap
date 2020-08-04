@@ -20,7 +20,7 @@ public class Restaurant implements Serializable {
 	private String rname;
 	private String rcontent;
 	private String category;
-	private int price;
+	private String price;
 	private String time;
 	private String tel;
 	private String address;
@@ -30,5 +30,20 @@ public class Restaurant implements Serializable {
 	private int longitude;
 	private String rstatus;
 	private String adminStatus;
-
+	
+	// 관리자가 식당등록하는 생성자
+	public Restaurant(String rname, String rcontent, String category, String price, String time, String tel,
+			String address, String paking, Date updatedate, String rstatus) {
+		super();
+		this.rname = rname;
+		this.rcontent = rcontent;
+		this.category = category;
+		this.price = price;
+		this.time = time;
+		this.tel = tel;
+		this.address = address;
+		this.paking = paking;
+		this.updatedate = updatedate;
+		this.rstatus = rstatus;
+	}
 }

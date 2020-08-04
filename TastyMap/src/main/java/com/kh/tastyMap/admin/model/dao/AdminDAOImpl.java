@@ -8,6 +8,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.tastyMap.restaurant.model.vo.Restaurant;
+
 @Repository
 public class AdminDAOImpl implements AdminDAO {
 	
@@ -62,12 +64,30 @@ public class AdminDAOImpl implements AdminDAO {
 		//-----------------------------------//
 		// 5. [신고 ] 관리 조회용
 		@Override
-		public List<Map<String, String>> selectReportList() {
-			return sqlSession.selectList("adminMapper.selectReportList");
+		public List<Map<String, String>> selectCommentReportList() {
+			// TODO Auto-generated method stub
+			return null;
 		}
-		
+
+
+		@Override
+		public List<Map<String, String>> selectPostReportList() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		 
 		
 		//-----------------------------------//
+		
+		@Override
+		public int insertRestaurant(Restaurant R) {
+			return sqlSession.insert("adminMapper.insertRestaurnat",R);
+		}
+
+
+		
+
+
 
 
 }

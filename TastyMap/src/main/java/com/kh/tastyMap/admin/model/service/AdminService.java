@@ -69,7 +69,7 @@ public interface AdminService {
 	  */
 	 List<Map<String, String>>  selectPostReportList();
 
-
+	 int insertRestaurant(Restaurant R);
 	
 	 
 

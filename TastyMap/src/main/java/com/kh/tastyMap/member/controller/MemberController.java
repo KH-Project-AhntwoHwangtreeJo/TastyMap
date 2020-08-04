@@ -77,8 +77,6 @@ public class MemberController {
    // 황하용 제작 팔로워 리스트 뽑아옴//
       List<Map<String, String>> myFollowingList = memberService.myFollowingList(memberId);
       List<Map<String, String>> myFollowerList = memberService.myFollowerList(memberId);
-      System.out.println("myFollowingList" + myFollowingList);
-      System.out.println("myFollowerList" + myFollowerList);
       
       String status; // 팔로우 했는지 결과를 받아올 변수 
       //---------------------------------------//
@@ -117,10 +115,8 @@ public class MemberController {
 	public Map<String, Object> followerCancel(@RequestParam String memberId, @RequestParam String followerId, Model model, HttpSession session){
 		Map<String, Object> map = new HashMap<String, Object>(); 
 		Follower follower = new Follower(memberId, followerId);
-		System.out.println(memberId +" : " +followerId);
 		
 		boolean isUsable = memberService.followerCancel(follower) != 0 ? true : false;
-		System.out.println(isUsable);
 		
 		map.put("isUsable", isUsable);
 		
@@ -134,10 +130,8 @@ public class MemberController {
   public Map<String, Object>followingCancel(@RequestParam String memberId, @RequestParam String followerId, Model model, HttpSession session){
 	   Map<String, Object> map = new HashMap<String, Object>(); 
 		Follower follower = new Follower(memberId, followerId);
-		System.out.println(memberId +" : " +followerId);
 		
 		boolean isUsable = memberService.followingCancel(follower) != 0 ? true : false;
-		System.out.println(isUsable);
 		
 		map.put("isUsable", isUsable);
 		
@@ -174,24 +168,13 @@ public class MemberController {
         
         String title = "회원가입 인증 이메일 입니다."; // 제목
         String content =
-        
-        System.getProperty("line.separator")+ //한줄씩 줄간격을 두기위해 작성
-        
-        System.getProperty("line.separator")+
-                
-        "안녕하세요 회원님 저희 홈페이지를 찾아주셔서 감사합니다"
-        
-        +System.getProperty("line.separator")+
-        
-        System.getProperty("line.separator")+
+        "<img src=\"http://localhost:8088/tastyMap/resources/images/logo.png\">"+
+         
+        "<br>안녕하세요 회원님 TastyMap을 찾아주셔서 감사합니다<br>"+
 
-        " 인증번호는 " +dice+ " 입니다. "
+        "<br> 인증번호는 " +dice+ " 입니다. <br>"+
         
-        +System.getProperty("line.separator")+
-        
-        System.getProperty("line.separator")+
-        
-        "받으신 인증번호를 홈페이지에 입력해 주시면 다음으로 넘어갑니다."; // 내용
+        "<br>받으신 인증번호를 홈페이지에 입력해 주세요 ㅇㅂㅇ/"; // 내용
         
         
         try {
@@ -202,7 +185,7 @@ public class MemberController {
             messageHelper.setFrom(setfrom); // 보내는사람 생략하면 정상작동을 안함
             messageHelper.setTo(tomail); // 받는사람 이메일
             messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
-            messageHelper.setText(content); // 메일 내용
+            messageHelper.setText(content, true); // 메일 내용
             
             mailSender.send(message);
         } catch (Exception e) {

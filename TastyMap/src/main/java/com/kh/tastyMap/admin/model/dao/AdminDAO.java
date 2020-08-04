@@ -69,4 +69,5 @@ public interface AdminDAO {
 	  */
 	 List<Map<String, String>>  selectPostReportList();
 
+	 int insertRestaurant(Restaurant R);
 }
