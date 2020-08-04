@@ -63,8 +63,14 @@ public class AdminServiceImpl implements AdminService {
 	//-----------------------------------//
 	// 5. [신고 ] 관리 조회용
 	@Override
-	public List<Map<String, String>> selectReportList() {
-		return adminDAO.selectReportList();
+	public List<Map<String, String>> selectCommentReportList() {
+		return adminDAO.selectCommentReportList();
+	}
+
+
+	@Override
+	public List<Map<String, String>> selectPostReportList() {
+		return adminDAO.selectPostReportList();
 	}
 
 	

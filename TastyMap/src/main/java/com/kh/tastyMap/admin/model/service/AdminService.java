@@ -60,7 +60,14 @@ public interface AdminService {
 	 * @author Sung A Cho
 	 * @return
 	 */
-	 List<Map<String, String>>  selectReportList();
+	 List<Map<String, String>>  selectCommentReportList();
+
+	 /**
+	  * 관리자 페이지에서 신고내용 리스트를 불러오는 메소드
+	  * @author Sung A Cho
+	  * @return
+	  */
+	 List<Map<String, String>>  selectPostReportList();
 
 
 	

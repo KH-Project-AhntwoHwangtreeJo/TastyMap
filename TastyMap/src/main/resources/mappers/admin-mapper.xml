@@ -5,6 +5,9 @@
 <mapper namespace="adminMapper">
 
 
+	<!-- //======= ResultMap Zone Start ============// -->
+	
+		<!-- [1. 회원 관리용 resultMap]  -->
 		<resultMap id="memberMap" type="Member">
 			<id property="memberId" column="MEMBER_ID"/>
 		</resultMap>
@@ -14,26 +17,33 @@
 			<id property="date" column="PDATE"/>
 		</resultMap>
 		
+	<!-- //======= ResultMap Zone End ============// -->
 	
+	
+	<!-- //======= Query Zone start ============// -->
+	
+		<!-- [1. 회원 관리 페이지 출력 쿼리]  -->
 		<select id="selectMemberList" resultMap="memberMap" >
 			SELECT *
 			FROM MEMBER
 		</select>
 		
-		
+		<!-- [2. 식당 관리 페이지 출력 쿼리]  -->
 		<select id="selectRestaurantList" resultType="Restaurant">
 			SELECT *
 			FROM RESTAURANT
 			ORDER BY RNO DESC
 		</select>
 		
+		<!-- [3. 게시글 관리 페이지 출력 쿼리]  -->
+		<!-- [3-1. 게시글 정보 출력 쿼리]  -->
 		<select id="selectPostList" resultMap="postMap" >
 			SELECT P.* ,R.RNAME 
 	        FROM POST P
 			JOIN RESTAURANT R ON(P.RNO=R.RNO)
 			ORDER BY PNO DESC
 		</select>
-	
+		<!-- [3-1. 사진 정보 출력 쿼리]  -->
 		<select id="selectPictureList" resultMap="postMap" >
 			SELECT P.* ,R.RNAME 
 	        FROM POST P
@@ -41,30 +51,43 @@
 			ORDER BY PNO DESC
 		</select>
 		
-	
+		
+		
+		<!-- [4. 공지사항 관리 페이지 출력 쿼리]  -->
+		<!-- [4-1. 공지사항 리스트 출력 쿼리]  -->
 		<select id="selectNoticeList" >
 			SELECT * FROM NOTICE
 			ORDER BY NNO DESC
 		</select>
-	
+		<!-- [4-2. 공지사항 등록 쿼리]  -->
 		<select id="insertNotice">
 			
 		</select>
-	
+		<!-- [4-3. 공지사항 수정  쿼리]  -->
 		<select id="updateNotice" >
 			
 		</select>
 		
+		<!-- [4-3. 공지사항 상태수정(비게시) 쿼리]  -->
 		<select id="updateNoticeStatus" >
 			
 		</select>
 		
 		
-	
-		<select id="selectReportList" resultType="Post" >
+		<!-- [5. 신고 관리 페이지 출력 쿼리]  -->
+		<!-- [5-1. 댓글 신고내역 출력 쿼리]  -->
+		<select id="selectCommentReportList" resultType="Post" >
 			SELECT * FROM  REPORT
+			WHERE REPORT_TYPE='C'
+			ORDER BY RENO DESC
 		</select>
-	
+		<!-- [5-2. 게시글 신고내역 출력 쿼리]  -->
+		<select id="selectPostReportList" resultType="Post" >
+			SELECT * FROM  REPORT
+			WHERE REPORT_TYPE='P'
+			ORDER BY RENO DESC
+		</select>
+		<!-- ======= Query Zone End ============ -->
 		
 </mapper>
 

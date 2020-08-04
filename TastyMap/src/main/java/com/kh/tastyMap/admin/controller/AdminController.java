@@ -65,6 +65,22 @@ public class AdminController {
 	}
 	
 	/**
+	 * admin 식당 관리 등록 서블릿
+	 * @author Sung A Cho
+	 * @return
+	 */
+	@RequestMapping("/admin/insertRestaurant.do")
+	public String adminRestaurantInsert(Model model) {
+		
+		//List<Map<String, String>> list=adminService.insertRestaurantList();
+		
+		
+		//model.addAttribute("list", list);
+			
+		return "admin/restaurantInsert";
+	}
+	
+	/**
 	 * admin 게시글 관리 출력 서블릿
 	 * @author Sung A Cho
 	 * @return
@@ -87,20 +103,37 @@ public class AdminController {
 	
 	
 	/**
-	 * admin 신고 관리 출력 서블릿
+	 * admin 댓글 신고 관리 출력 서블릿
 	 * @author Sung A Cho
 	 * @return
 	 */
 	
-	@RequestMapping("/admin/selectReport.do")
-	public String adminReportList(Model model) {
+	@RequestMapping("/admin/selectCommentReport.do")
+	public String adminCommentReportList(Model model) {
 		
-		List<Map<String, String>> list=adminService.selectReportList();
+		List<Map<String, String>> list=adminService.selectCommentReportList();
 		
 		
 		model.addAttribute("list", list);
 			
-		return "admin/reportList";
+		return "admin/commentReportList";
+	}
+	
+	/**
+	 * admin 게시글 신고 관리 출력 서블릿
+	 * @author Sung A Cho
+	 * @return
+	 */
+	
+	@RequestMapping("/admin/selectPostReport.do")
+	public String adminPostReportList(Model model) {
+		
+		List<Map<String, String>> list=adminService.selectPostReportList();
+		
+		
+		model.addAttribute("list", list);
+			
+		return "admin/postReportList";
 	}
 	
 	
