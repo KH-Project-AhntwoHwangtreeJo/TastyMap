@@ -134,7 +134,7 @@
 				        });
 				
 				        // 인포윈도우로 장소에 대한 설명을 표시합니다
-				        var infowindow = new kakao.maps.InfoWindow({
+				        var infowindow = new kakao.maps.InfoWindow({				 
 				            content: 
 				            	'<div class="wrap">' + 
 				                '    <div class="info">' + 
@@ -149,42 +149,29 @@
 				                '            </div>' + 
 				                '        </div>' + 
 				                '    </div>' +    
-				                '</div>'
+				                '</div>',
+				                removable : true
 				        });
-				        infowindow.open(map, marker);
 				        
-				     	
-				     	
-				
+				        (function(marker, infowindow) {
+					        // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
+					        kakao.maps.event.addListener(marker, 'mouseover', function() {
+					            infowindow.open(map, marker);
+					        });
+
+					        // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
+					        kakao.maps.event.addListener(marker, 'mouseout', function() {
+					            infowindow.close();
+					        });
+					    })(marker, infowindow);
+				     				
 				        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 				        map.setCenter(coords);
 				    } 
 				});
 
 				</c:forEach>
-				/* 
-				// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-				kakao.maps.event.addListener(map, 'click', function() {
-					map.open(map, marker);
-				});
-				
-				// 마커 위에 커스텀오버레이를 표시합니다
-				// 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
-				var overlay = new kakao.maps.CustomOverlay({
-				    content: content,
-				    map: map,
-				    position: marker.getPosition()       
-				});
-				
-				// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-				kakao.maps.event.addListener(marker, 'click', function(mouseEvent) {
-				    overlay.setMap(map);
-				});
-
-				// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
-				function closeOverlay() {
-				    overlay.setMap(null);     
-				} */
+  
 		</script>
 		</div>
         
