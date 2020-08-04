@@ -88,50 +88,63 @@ input:checked+.slider:before {
 <div class="col-md-10">
 			<div class="content-box-large">
 				<div class="panel-heading">
-					<div class="panel-title"></div>
+					<div class="panel-title"><h1>Restaurant Register</h1></div>
 				</div>
 				<div class="panel-body">
-					<table cellpadding="0" cellspacing="0" border="0"
-						class="table table-striped table-bordered" id="example">
-						<thead>
-							<tr>
-								<th>아이디</th>
-								<th>회원사진</th>
-								<th>이름</th>
-								<th>닉네임</th>
-								<th>성별</th>
-								<th>연락처</th>
-								<th>이메일</th>
-								<th>주소</th>
-								<th>횔성화여부</th>
-							</tr>
-						</thead>
-						<tbody>
-					
-							<c:forEach items="${list}" var="m"> 
-							<tr>
-								<td>${m.memberId}</td>
-								<td><img src="${pageContext.request.contextPath}/resources/images/profileImage/${member.mphoto}" /></td>
-								<td>${m.userName}</td>
-								<td>${m.nickname}</td>
-								<td>${m.gender}</td>
-								<td>${m.phone}</td>
-								<td>${m.email}</td>
-								<td>${m.address}</td>
-								<td><label class="switch"> <input type="checkbox"
-										onclick="toggle(this)"
-										${m.mstatus eq 'Y' ? "checked" : ""}>  <span
-										class="slider round"></span>
-								</label></td>
-							</tr>
-								</c:forEach>
-							
-							
+				
+					<form action="">
 						
-						</tbody>
-					</table>
-					<button type="button" id="btn1" onclick="click1();">버튼1</button>
-					<button type="button" id="btn2" onclick="click2();">버튼2</button>
+						<table style="width: 30%;">
+							<tr>
+								<td>식당이름 : </td>
+								<td><input type="text" style="width:100%" readonly placeholder="검색버튼으로 등록해주세요"/></td>
+								<td><button type="button">검색</button></td>
+							</tr>
+							<tr>
+								<td>주소 : </td>
+								<td><input type="text"style="width:100%" readonly placeholder="검색버튼으로 등록해주세요"/></td>
+							</tr>
+							<tr>
+								<td>소개내용 : </td>
+								<td><input type="text" style="width:100%"/></td>
+							</tr>
+							<tr>
+								<td>카테고리 : </td>
+								<td><input type="text" style="width:100%"/></td>
+							</tr>
+							<tr>
+								<td>가격 : </td>
+								<td><input type="text" style="width:100%"/></td>
+							</tr>
+							<tr>
+								<td>영업시간 : </td>
+								<td><input type="text" style="width:100%"/></td>
+							</tr>
+							<tr>
+								<td>연락처 : </td>
+								<td><input type="text" style="width:100%"/></td>
+							</tr>
+							<tr>
+								<td>주차여부 : </td>
+								<td><input type="text" style="width:100%"/></td>
+							</tr>
+							<tr>
+								<td>등록일자 : </td>
+								<td><input type="date"style="width:100%" /></td>
+							</tr>
+							<tr>
+								<td>활성화상태 : </td>
+								<td><input type="text" style="width:100%"/></td>
+							</tr>
+						</table>
+						
+						<br /><br />
+						<button type="submit" id="insertRestaurant" class="btn-btn-info" onclick="">식당 등록 insert</button>
+				
+					</form>
+					
+					
+					
 						<script>
 						function toggle(obj) {
 
@@ -160,31 +173,6 @@ input:checked+.slider:before {
 								}
 							});
 						};
-						
-						function click1(){
-							alert("버튼1 클릭됨");
-							$('#btn2').click();
-							//$('#btn2').addClass('on')
-							document.getElementById('btn2').classList.add( 'someclass' );
-						}
-						
-						function click2(){
-							alert("버튼2 클릭됨");
-						}
-						
-					</script>
-					
-					<script>
-					function click1(){
-						alert("버튼1 클릭됨");
-						$('#btn2').click();
-						$('#btn2').addClass('on')
-						document.getElementById('btn2').classList.add( 'someclass' );
-					}
-					
-					function click2(){
-						alert("버튼2 클릭됨");
-					}
 					</script>
 					
 					

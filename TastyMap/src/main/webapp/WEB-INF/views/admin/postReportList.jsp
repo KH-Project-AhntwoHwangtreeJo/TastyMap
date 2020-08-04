@@ -95,32 +95,34 @@ input:checked+.slider:before {
 						class="table table-striped table-bordered" id="example">
 						<thead>
 							<tr>
-								<th>아이디</th>
-								<th>회원사진</th>
-								<th>이름</th>
-								<th>닉네임</th>
-								<th>성별</th>
-								<th>연락처</th>
-								<th>이메일</th>
-								<th>주소</th>
-								<th>횔성화여부</th>
+								<th>신고번호</th>
+								<th>신고자</th>
+								<th>댓글 번호</th>
+								<th>내용</th>
+								<th>작성자</th>
+								<th>작성일</th>
+								<th>활성화여부</th>
+								<th>관리자 체크여부</th>
 							</tr>
 						</thead>
 						<tbody>
 					
-							<c:forEach items="${list}" var="m"> 
+							<c:forEach items="${list}" var="rec"> 
 							<tr>
-								<td>${m.memberId}</td>
-								<td><img src="${pageContext.request.contextPath}/resources/images/profileImage/${member.mphoto}" /></td>
-								<td>${m.userName}</td>
-								<td>${m.nickname}</td>
-								<td>${m.gender}</td>
-								<td>${m.phone}</td>
-								<td>${m.email}</td>
-								<td>${m.address}</td>
+								<td>${rec.reno}</td>
+								<td>${rec.memberId}</td>
+								<td>${rec.reportNo}</td>
+								<td>${rec.content}</td>
+								<td>${rec.writer}</td>
+								<td>${rec.writeDate}</td>
 								<td><label class="switch"> <input type="checkbox"
 										onclick="toggle(this)"
-										${m.mstatus eq 'Y' ? "checked" : ""}>  <span
+										${rec.status eq 'Y' ? "checked" : ""}>  <span
+										class="slider round"></span>
+								</label></td>
+								<td><label class="switch"> <input type="checkbox"
+										onclick="toggle(this)"
+										${rec.reportStatus eq 'R' ? "checked" : "C"}>  <span
 										class="slider round"></span>
 								</label></td>
 							</tr>
@@ -130,8 +132,7 @@ input:checked+.slider:before {
 						
 						</tbody>
 					</table>
-					<button type="button" id="btn1" onclick="click1();">버튼1</button>
-					<button type="button" id="btn2" onclick="click2();">버튼2</button>
+					
 						<script>
 						function toggle(obj) {
 
@@ -160,31 +161,6 @@ input:checked+.slider:before {
 								}
 							});
 						};
-						
-						function click1(){
-							alert("버튼1 클릭됨");
-							$('#btn2').click();
-							//$('#btn2').addClass('on')
-							document.getElementById('btn2').classList.add( 'someclass' );
-						}
-						
-						function click2(){
-							alert("버튼2 클릭됨");
-						}
-						
-					</script>
-					
-					<script>
-					function click1(){
-						alert("버튼1 클릭됨");
-						$('#btn2').click();
-						$('#btn2').addClass('on')
-						document.getElementById('btn2').classList.add( 'someclass' );
-					}
-					
-					function click2(){
-						alert("버튼2 클릭됨");
-					}
 					</script>
 					
 					

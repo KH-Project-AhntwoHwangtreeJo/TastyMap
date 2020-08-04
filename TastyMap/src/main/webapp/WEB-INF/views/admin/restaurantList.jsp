@@ -139,7 +139,7 @@ input:checked+.slider:before {
 						</tbody>
 					</table>
 					
-					<button id="insertRestaurant" class="btn-btn-info" onclick="">admin 식당등록</button>
+					<button id="insertRestaurant" class="btn-btn-info" onclick="insertRestaurant();">admin 식당등록</button>
 					
 						<script>
 						function toggle(obj) {
@@ -169,6 +169,11 @@ input:checked+.slider:before {
 								}
 							});
 						};
+						
+						
+						function insertRestaurant(){
+							location.href="${pageContext.request.contextPath}/admin/insertRestaurant.do"
+						}
 					</script>
 					
 					
