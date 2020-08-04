@@ -19,6 +19,7 @@
           <div class="col-lg-8 col-md-6 ftco-animate d-flex align-items-end">
           	<div class="text text-center w-100">
 				<h1 class="mb-4">Find Restaurant <br>Where You Want to Go!</h1>
+				<!-- 검색바 시작 -->
 				<div class="search_form" style="background: #fff; border-radius: 5px; border: solid #d4ca68;">
 					<form action="${pageContext.request.contextPath}/restaurant/searchBar.do" id="searchForm" method="get">
 						<div class="row align-items-center">
@@ -42,19 +43,24 @@
 							</div>
 						</div>
 					</form>
-				</div>	        
+				</div>
+				<!-- 검색바 끝 -->	        
             </div>
           </div>
         </div>
       </div>
-      <!-- 검색바 시작 -->
+      
+      <!-- scroll 시작 -->
       <div class="mouse">
 		<a href="#here" class="mouse-icon">
-			<div class="mouse-wheel"><span class="ion-ios-arrow-round-down"></span></div>
+			<div class="mouse-wheel">
+				<span class="ion-ios-arrow-round-down"></span>
+			</div>
 		</a>
 	  </div>
-	  <!-- 검색바 끝 -->
+	  <!-- scroll 시작 -->  
     </div>
+    
     <section class="ftco-section" style="padding:5em 0;"></section>
 
 
@@ -62,16 +68,17 @@
 	<!-- Top 9 맛집 검색 시작 -->
     <section class="ftco-section-top8" name="here">
     	<div class="container">
-    		<div class="row justify-content-center">
-          <div class="col-md-12 heading-section text-center ftco-animate mb-5">
-          	<span class="subheading">Find Restaurant</span>
-			<h2 class="mb-2">Find Restaurant Around Your City</h2>
-			<p>음식점 Top 9</p>
+    	  <div class="row justify-content-center">
+	         <div class="col-md-12 heading-section text-center ftco-animate mb-5">
+	          	<span class="subheading">Find Restaurant</span>
+				<h2 class="mb-2">Find Restaurant Around Your City</h2>
+				<p>음식점 Top 9</p>
+	         </div>
+          </div>
+          <div class="row">
+        
           </div>
         </div>
-        <div class="row">
-        </div>
-    	</div>
     </section>
     <!-- Top 9 맛집 검색 끝 -->
     
@@ -107,7 +114,6 @@
 			type : 'get',
 			// data : { g}
 			success : function(list) {
-				console.log(list);
 				
 				var $tab_content = $('.ftco-section-top8>.container>.row')[0];
 				
@@ -124,6 +130,7 @@
 			            			'</div>' +
 			            		'</div>' + 
 			            	'</div>';
+			            	
 			    	$tab_content.append($(html)[0]);
 			    	
 				}
@@ -138,8 +145,7 @@
 			url : '${pageContext.request.contextPath}/restaurant/influencer.do',
 			type : 'get',
 			// data : { g}
-			success : function(list) {
-				console.log(list);
+			success : function(list) {		
 				
 				var $influencer = $('.ftco-section.ftco-no-pt>.container>.row.d-flex')[0];
 				
@@ -159,7 +165,7 @@
 		    		              '</div>' + 
 		    		            '</div>' + 
 		    		          '</div>';
-		    		          console.log($(list[i].pDate));
+		    		          
 			    	$($influencer).append($(html1)[0]);
 			    	
 				}

@@ -11,14 +11,14 @@
             <ul class="list-group" style="width: auto; text-align:center">
               <li class="list-group-item" >
               	<img class="rounded-circle"src="/tastyMap/resources/images/person_1.jpg" style="width:auto; height:100px"/><br />
-              	<b>닉네임</b><br />
-              	사용자소개
+              	<b>${member.nickname}</b><br />
+              	<p style="font-size:10px;">${member.mcontent}</p>
               </li>
-              <li class="list-group-item"><a href="${pageContext.request.contextPath}/member/myGallery.do?memberId=${member.memberId}">마이 갤러리</a></li>
+              <li class="list-group-item"><a href="${pageContext.request.contextPath}/member/myGallery.do?memberId=${member.memberId}&followerId=${member.memberId}">마이 갤러리</a></li>
               <li class="list-group-item"><a href="${pageContext.request.contextPath}/love/iHaveLoveList.do?member_Id=${member.memberId}">좋아요 리스트</a></li>
               <li class="list-group-item"><a href="${pageContext.request.contextPath}/bookmark/iHaveBookmarkList.do?member_Id=${member.memberId}">북마크 리스트</a></li>
               <li class="list-group-item"><a href="#" data-toggle="modal" data-target="#checkPasswordModal"> 회원수정/회원탈퇴 </a></li>
-              <li class="list-group-item"><a href="#">나의 활동로그</a></li>
+              <!-- <li class="list-group-item"><a href="#">나의 활동로그</a></li> -->
             </ul>
           </div>
           
@@ -79,47 +79,5 @@
 				alert("비밀번호를 다시 확인 하세요!");
 			}
 		});
-		 
-	
-/* 	function checkPassword() {
-
-		  if(($('#checkPassword').val()) == "") {
-
-		    alert("비밀번호확인란을 입력해 주세요.");
-
-		    return false; */
-
-		/*   } else {
-				  	var memberId3 = ${member.memberId};
-		          	var password3 = checkPassword.val();
-		          	console.log(memberId3);
-		          	console.log(password3);
-			  
-			  $.ajax({
-					url : '${pageContext.request.contextPath}/member/checkPassword.do',
-		            dataType: "json",
-		            data : JSON.stringify({
-		            	"password" : password3,
-		            }),
-		            success : function(data){
-		                console.log(data);
-		                // if(data=="true") //stream 방식
-		                if(data.isUsable==true){ //viewName 방식
-		                	return true;
-		                } else {
-		                	alert("비밀번호가 틀렸습니다.");
-		                	return false;        
-		                }
-		            }, error : function(jqxhr, textStatus, errorThrown){
-		                console.log("ajax 처리 실패");
-		                //에러로그
-		                console.log(jqxhr);
-		                console.log(textStatus);
-		                console.log(errorThrown);
-		            }
-	        	});
-		  } */
-
-		// }
 	</script>
 	
