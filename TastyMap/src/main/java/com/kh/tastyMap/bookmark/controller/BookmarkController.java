@@ -59,7 +59,7 @@ public class BookmarkController {
 		}
 		System.out.println(result);
 		map.put("status",status);
-		
+		  
 		return map;
 	}
 	

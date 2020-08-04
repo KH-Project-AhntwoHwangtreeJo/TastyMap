@@ -44,7 +44,7 @@
 
 	<!-- 음식점 Top9 (조현민) -->
 	<select id="selectTop8" resultType="RestaurantList">
-		SELECT A.RNAME, SUBSTR(A.ADDRESS, 1, 7) "ADDRESS", NAME.PRENAMEDNAME
+		SELECT A.RNO, A.RNAME, SUBSTR(A.ADDRESS, 1, 7) "ADDRESS", NAME.PRENAMEDNAME
 		FROM (SELECT ROUND(AVG_STAR, 1) "STAR", R.*
 		      FROM (
 		               SELECT AVG(STAR) "AVG_STAR",COUNT(RNO), RNO
@@ -54,55 +54,58 @@
 		      JOIN RESTAURANT R ON(R.RNO=S.RNO)
 		      <![CDATA[WHERE ROWNUM<10]]>) A
 		left JOIN (SELECT PC.*, P.RNO
-		FROM(
-		SELECT PRENAMEDNAME,PNO
-		FROM PICTURE 
-		WHERE PLEVEL=0) PC
-		JOIN POST P ON(P.PNO=PC.PNO)
-		JOIN (SELECT MIN(PNO) "PNO", RNO
-		FROM POST
-		GROUP BY RNO) MINPOST ON(MINPOST.PNO=PC.PNO) )NAME ON(NAME.RNO=A.RNO)
+				   FROM(
+						SELECT PRENAMEDNAME,PNO
+						FROM PICTURE 
+						WHERE PLEVEL=0) PC
+				   JOIN POST P ON(P.PNO=PC.PNO)
+				   JOIN (SELECT MIN(PNO) "PNO", RNO
+						 FROM POST
+						 GROUP BY RNO) MINPOST ON(MINPOST.PNO=PC.PNO) )NAME ON(NAME.RNO=A.RNO)
+		WHERE A.RSTATUS = 'Y'
 		ORDER BY STAR DESC
 	</select>
 	
 	<!-- 인플루언서 Top8 (조현민) -->
 	<select id="influencerTop8" resultType="Influencer">
 		SELECT V_INF.*, PI.PRENAMEDNAME, NICKNAME, (SELECT COUNT(*)
-                    FROM POST_COMMENT
-                    WHERE PNO=1 AND CSTATUS = 'Y') PC_CNT
+								                    FROM POST_COMMENT
+								                    WHERE PNO=1 AND CSTATUS = 'Y') PC_CNT
 		FROM V_INF
 		JOIN PICTURE PI ON(V_INF.PNO = PI.PNO)
 		JOIN MEMBER M ON(V_INF.MEMBER_ID = M.MEMBER_ID)
-		WHERE PLEVEL = 0
+		WHERE PLEVEL = 0 AND  V_INF.PSTATUS = 'Y'
 		ORDER BY LOVECNT DESC
 	</select>
 	
-	<!-- searchBar (조현민) -->
+	<!-- searchBar 음식점 (조현민) -->
 	<select id="RestaurantSearchBar" resultType="RestaurantList">
 		SELECT R.RNO, R.RNAME, R.RCONTENT, R.ADDRESS, NAME.PRENAMEDNAME
 		FROM (SELECT RNO, RNAME, RCONTENT, SUBSTR(ADDRESS, 1, 7) ADDRESS
 		            FROM RESTAURANT
 		            WHERE RNAME LIKE '%'||#{keyword}||'%' 
-			        OR RCONTENT LIKE '%'||#{keyword}||'%' 
-			        OR CATEGORY LIKE '%'||#{keyword}||'%') R
+		            OR RCONTENT LIKE '%'||#{keyword}||'%' 
+		            OR CATEGORY LIKE '%'||#{keyword}||'%') R
 		left JOIN (SELECT PC.*, P.RNO
-		FROM(
-		SELECT PRENAMEDNAME,PNO
-		FROM PICTURE 
-		WHERE PLEVEL=0) PC
-		JOIN POST P ON(P.PNO=PC.PNO)
-		JOIN (SELECT MIN(PNO) "PNO", RNO
-		FROM POST
-		GROUP BY RNO) MINPOST ON(MINPOST.PNO=PC.PNO)) NAME ON(NAME.RNO=R.RNO)
+		               FROM(
+		                          SELECT PRENAMEDNAME,PNO
+		                          FROM PICTURE 
+		                          WHERE PLEVEL=0) PC
+		              JOIN POST P ON(P.PNO=PC.PNO)
+		              JOIN (SELECT MIN(PNO) "PNO", RNO
+		                       FROM POST
+		                       WHERE PSTATUS = 'Y'
+		                       GROUP BY RNO) MINPOST ON(MINPOST.PNO=PC.PNO)) NAME ON(NAME.RNO=R.RNO)
 		ORDER BY RNO DESC
 	</select>
 
-	<!-- searchBar (조현민) -->
+	<!-- searchBar 게시글 (조현민) -->
 	<select id="PostSearchBar" resultType="PostList">
 		SELECT R.*, PI.PRENAMEDNAME, M.NICKNAME "NICKNAME"
 		FROM (SELECT RE.RNO, P.PNO, RE.RNAME, P.PCONTENT, SUBSTR(ADDRESS, 1, 7) ADDRESS, P.MEMBER_ID
 		            FROM RESTAURANT RE
-		            JOIN POST P ON(P.RNO = RE.RNO)) R
+		            JOIN POST P ON(P.RNO = RE.RNO)
+		            WHERE RE.RSTATUS = 'Y') R
 		JOIN PICTURE PI ON(PI.PNO=R.PNO)
 		JOIN MEMBER M ON(M.MEMBER_ID = R.MEMBER_ID)
 		WHERE PLEVEL = 0
