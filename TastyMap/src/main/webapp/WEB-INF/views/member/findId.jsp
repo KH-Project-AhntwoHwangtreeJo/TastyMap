@@ -58,7 +58,7 @@
           <h5 class="" id="findId">아이디찾기</h5>
           <form onsubmit="return findId()" action="${pageContext.request.contextPath}/member/findId.do"  method="post">
                   <div class="form-group">
-                    <label for="findIdName">아이디</label>
+                    <label for="findIdName">이름</label>
                     <input type="text" class="form-control" id="findIdName" name="findIdName" placeholder="이름를 입력해주세요" value="">
                   </div>
                   <div class="form-group">

@@ -95,6 +95,7 @@ input:checked+.slider:before {
 						class="table table-striped table-bordered" id="example">
 						<thead>
 							<tr>
+								<th>식당 번호</th>
 								<th>식당이름</th>
 								<th>주소</th>
 								<th>소개글</th>
@@ -112,6 +113,7 @@ input:checked+.slider:before {
 					
 							<c:forEach items="${list}" var="r"> 
 							<tr>
+								<td>${r.rno}</td>
 								<td>${r.rname}</td>
 								<td>${r.address }</td>
 								<td>${r.rcontent}</td>
@@ -138,9 +140,9 @@ input:checked+.slider:before {
 						
 						</tbody>
 					</table>
-					
-					<button id="insertRestaurant" class="btn-btn-info" onclick="insertRestaurant();">admin 식당등록</button>
-					
+					<a href="${pageContext.request.contextPath}/admin/goinsertRestaurant.do">
+					<button type="button" id="insertRestaurant" class="btn-btn-info">admin 식당등록</button>
+					</a>
 						<script>
 						function toggle(obj) {
 
@@ -169,11 +171,6 @@ input:checked+.slider:before {
 								}
 							});
 						};
-						
-						
-						function insertRestaurant(){
-							location.href="${pageContext.request.contextPath}/admin/insertRestaurant.do"
-						}
 					</script>
 					
 					

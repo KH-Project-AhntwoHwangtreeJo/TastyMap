@@ -87,7 +87,15 @@
 			WHERE REPORT_TYPE='P'
 			ORDER BY RENO DESC
 		</select>
+		
+		<insert id="insertRestaurnat" parameterType="Restaurant">
+			INSERT INTO RESTAURANT(RNO, RNAME, RCONTENT, CATEGORY, PRICE, TIME,TEL, ADDRESS, PAKING, UPDATEDATE, RSTATUS, ADMINSTATUS) 
+       		VALUES(SEQ_RES.NEXTVAL, #{rname}, #{rcontent}, #{category}, #{price}, #{time}, #{tel}, #{address}, #{paking},#{updatedate},#{rstatus},'A')
+		</insert>
+		
 		<!-- ======= Query Zone End ============ -->
+		
+		
 		
 </mapper>
 

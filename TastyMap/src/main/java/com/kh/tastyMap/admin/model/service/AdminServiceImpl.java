@@ -75,7 +75,10 @@ public class AdminServiceImpl implements AdminService {
 
 	
 	//-----------------------------------//
-
+	@Override
+	public int insertRestaurant(Restaurant R) {
+		return adminDAO.insertRestaurant(R);
+	}
 
 
 }

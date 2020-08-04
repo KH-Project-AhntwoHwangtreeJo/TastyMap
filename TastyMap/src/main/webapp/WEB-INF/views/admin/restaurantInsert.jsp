@@ -14,6 +14,24 @@
 <!-- styles -->
 <link href="${pageContext.request.contextPath}/resources/resource/css/styles.css" rel="stylesheet">
 
+<script>
+function goAddress(){
+	
+	var add = window.open("${pageContext.request.contextPath}/post/resAddress.do","add","width=570,height=420, scrollbars=yes, resizable=yes");
+	//var vReturn = window.showModalDialog(url, "_blank", sFeatures);
+	 //document.formname.textfield.value = vReturn;
+	//document.formname.rName.value = add;
+}
+
+function jusoCallBack(roadFullAddr, title){
+	// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+	console.log(roadFullAddr);
+	console.log(title);
+	//document.form.roadFullAddr.value = roadFullAddr;
+	/** 2017년 3월 추가제공 **/
+}
+</script>
+
 		<style>
 @charset "UTF-8";
 
@@ -92,90 +110,57 @@ input:checked+.slider:before {
 				</div>
 				<div class="panel-body">
 				
-					<form action="">
+					<form action="${pageContext.request.contextPath }/admin/insertRestaurant.do">
 						
 						<table style="width: 30%;">
 							<tr>
 								<td>식당이름 : </td>
-								<td><input type="text" style="width:100%" readonly placeholder="검색버튼으로 등록해주세요"/></td>
-								<td><button type="button">검색</button></td>
+								<td><input type="text" id="rName" name="rName" value="${rname}" style="width:100%" readonly placeholder="검색버튼으로 등록해주세요"/></td>
+								<td><button type="button" onclick="goAddress();">검색</button></td>
 							</tr>
 							<tr>
 								<td>주소 : </td>
-								<td><input type="text"style="width:100%" readonly placeholder="검색버튼으로 등록해주세요"/></td>
+								<td><input type="text" id="roadFullAddr" name="address" value="${address}" style="width:100%" readonly placeholder="검색버튼으로 등록해주세요"/></td>
 							</tr>
 							<tr>
 								<td>소개내용 : </td>
-								<td><input type="text" style="width:100%"/></td>
+								<td><input type="text" name="rcontent" style="width:100%"/></td>
 							</tr>
 							<tr>
 								<td>카테고리 : </td>
-								<td><input type="text" style="width:100%"/></td>
+								<td><input type="text" name="category" style="width:100%"/></td>
 							</tr>
 							<tr>
 								<td>가격 : </td>
-								<td><input type="text" style="width:100%"/></td>
+								<td><input type="text" name="price" style="width:100%"/></td>
 							</tr>
 							<tr>
 								<td>영업시간 : </td>
-								<td><input type="text" style="width:100%"/></td>
+								<td><input type="text" name="time" style="width:100%"/></td>
 							</tr>
 							<tr>
 								<td>연락처 : </td>
-								<td><input type="text" style="width:100%"/></td>
+								<td><input type="text" name="tel" style="width:100%"/></td>
 							</tr>
 							<tr>
 								<td>주차여부 : </td>
-								<td><input type="text" style="width:100%"/></td>
+								<td><input type="text" name="paking" style="width:100%"/></td>
 							</tr>
 							<tr>
 								<td>등록일자 : </td>
-								<td><input type="date"style="width:100%" /></td>
+								<td><input type="date" name="updatedate" style="width:100%" /></td>
 							</tr>
 							<tr>
 								<td>활성화상태 : </td>
-								<td><input type="text" style="width:100%"/></td>
+								<td><input type="text" name="rstatus" style="width:100%"/></td>
 							</tr>
 						</table>
 						
 						<br /><br />
-						<button type="submit" id="insertRestaurant" class="btn-btn-info" onclick="">식당 등록 insert</button>
+						<button type="submit" id="insertRestaurant" class="btn-btn-info">식당 등록 insert</button>
 				
 					</form>
-					
-					
-					
-						<script>
-						function toggle(obj) {
 
-							var str = ""
-							var tdArr = new Array();
-
-							var tr = $(obj).parent().parent().parent();
-							var td = tr.children();
-
-							var no = td.eq(0).text();
-							console.log(no + " : " + $(obj).prop('checked'));
-							$.ajax({
-								url : "Status.do",
-								data : {
-									userId : no,
-									status : $(obj).prop('checked')
-
-								},
-								success : function(data) {
-									console.log(data);
-									if (data > 0) {
-										console.log("회원 활성성화 상태 변경 완료");
-									} else {
-										console.log("변경 실패");
-									}
-								}
-							});
-						};
-					</script>
-					
-					
 				</div>
 			</div>
 		</div>
