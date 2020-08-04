@@ -16,7 +16,7 @@
 
 
 </head>
-
+ 
 
 <body>
 
@@ -189,7 +189,6 @@
 												class="block-20 img" id="trd"
 												style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.PRenamedName}');">
 											</a>
-											<%-- <img src="${pageContext.request.contextPath}/resources/upload/post/${A.prenamedname}" class="img-fluid" alt="Colorlib Template"style="width: 100%; height: 100%;" > --%>
 											<h3 class="heading">
 												<a href="#">${A.RName}</a>
 											</h3>
@@ -221,10 +220,10 @@
 											<a
 												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=1&memberId=${member.memberId}"
 												class="block-20 img" id="trd"
-												style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.prenamedname}');">
+												style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.PRenamedName}');">
 											</a>
 											<h3 class="heading">
-												<a href="#">${A.rname}</a>
+												<a href="#">${A.RName}</a>
 											</h3>
 											<h6 class="heading1" style="font-size: smaller;">
 												<a href="#">${A.address}</a>
@@ -253,10 +252,10 @@
 											<a
 												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=1&memberId=${member.memberId}"
 												class="block-20 img" id="trd"
-												style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.prenamedname}');">
+												style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.PRenamedName}');">
 											</a>
 											<h3 class="heading">
-												<a href="#">${A.rname}</a>
+												<a href="#">${A.RName}</a>
 											</h3>
 											<h6 class="heading1" style="font-size: smaller;">
 												<a href="#">${A.address}</a>
@@ -284,10 +283,10 @@
 											<a
 												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=1&memberId=${member.memberId}"
 												class="block-20 img" id="trd"
-												style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.prenamedname}');">
+												style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.PRenamedName}');">
 											</a>
 											<h3 class="heading">
-												<a href="#">${A.rname}</a>
+												<a href="#">${A.RName}</a>
 											</h3>
 											<h6 class="heading1" style="font-size: smaller;">
 												<a href="#">${A.address}</a>
@@ -316,10 +315,10 @@
 											<a
 												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=1&memberId=${member.memberId}"
 												class="block-20 img" id="trd"
-												style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.prenamedname}');">
+												style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.PRenamedName}');">
 											</a>
 											<h3 class="heading">
-												<a href="#">${A.rname}</a>
+												<a href="#">${A.RName}</a>
 											</h3>
 											<h6 class="heading1" style="font-size: smaller;">
 												<a href="#">${A.address}</a>
