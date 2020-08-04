@@ -68,6 +68,21 @@
 		WHERE P.PNO= #{pNo} AND M.MSTATUS='Y'
 	</select>
 	
+	<!-- 게시글 삭제 -->
+	<update id="deletePost" parameterType="_int">
+		UPDATE POST SET PSTATUS='N'
+		WHERE PNO= #{pNo}
+	</update>
+	
+	<update id="deletePicture" parameterType="_int">
+		UPDATE PICTURE SET PICTURE_STATUS='N'
+		WHERE PNO= #{pNo}
+	</update>
+	
+	<update id="deleteComment" parameterType="_int">
+		UPDATE POST_COMMENT SET CSTATUS='N'
+		WHERE PNO=#{pNo}
+	</update>
 	
 	<!-- 여기까지 안예진 -->
 	

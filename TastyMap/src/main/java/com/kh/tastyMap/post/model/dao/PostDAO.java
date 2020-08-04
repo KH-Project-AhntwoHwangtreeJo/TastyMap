@@ -32,7 +32,7 @@ public interface PostDAO {
 	 * @return
 	 */
 	List<PostList> postAllList();
-	
+	//여기까지 안예진
 	
 	
 	/**
@@ -45,11 +45,13 @@ public interface PostDAO {
 	int updatePicture(Picture p);
 	
 	/**
-	 * 게시글 삭제 메소드
+	 * 게시글 삭제 메소드 by 안예진
 	 * @param pno
 	 * @return
 	 */
-	int deletePost(int pno);
+	int deletePost(int pNo);
+	int deletePicture(int pNo);
+	int deleteComment(int pNo);
 	
 	/**
 	 * 게시글 상세 조회 메소드

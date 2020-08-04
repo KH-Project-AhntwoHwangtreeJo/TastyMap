@@ -42,7 +42,10 @@ public interface PostService  {
 	 * @param pno
 	 * @return
 	 */
-	int deletePost(int pno);
+	//int deletePost(int pNo, List<Picture> pictureList);
+	int deletePost(int pNo);
+	int deletePicture(int pNo);
+	int deleteComment(int pNo);
 	
 	
 	/**

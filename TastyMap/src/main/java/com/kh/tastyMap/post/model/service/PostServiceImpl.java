@@ -89,12 +89,23 @@ public class PostServiceImpl implements PostService {
 	    	return 0;
 	}
 
+	// post 삭제 메소드
 	@Override
-	public int deletePost(int pno) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deletePost(int pNo) {
+		
+		return postDAO.deletePost(pNo);
+	}
+	
+	@Override
+	public int deletePicture(int pNo) {
+		return postDAO.deletePicture(pNo);
 	}
 
+
+	@Override
+	public int deleteComment(int pNo) {
+		return postDAO.deleteComment(pNo);
+	}
 
 	// post 상세페이지
 	@Override
@@ -124,4 +135,7 @@ public class PostServiceImpl implements PostService {
 		//System.out.println(pNo);
 		return postDAO.getLoveMemberList(pno);
 	}
+
+
+	
 }
