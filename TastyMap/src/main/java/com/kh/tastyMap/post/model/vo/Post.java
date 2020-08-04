@@ -25,7 +25,7 @@ public class Post implements Serializable{
 	private int pCnt;			// 게시글 조회수
 	private double star;			// 게시글 별점
 	private String pStatus;		// 게시상태
-	
+	private int picture_No;
 	
 	// 첨부파일 갯수 확인용 가상 변수
 	private int fileCount;

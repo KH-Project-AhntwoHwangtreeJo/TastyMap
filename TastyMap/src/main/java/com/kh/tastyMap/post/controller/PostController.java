@@ -212,6 +212,21 @@ public class PostController {
 
 	}
 	
+	@RequestMapping("/post/postDelete.do")
+	public String postDelete(@RequestParam int pNo, HttpSession session, Model model) {
+		
+		
+		
+		
+		int result2 = postService.deletePicture(pNo);
+		int result = postService.deletePost(pNo);
+		int result1= postService.deleteComment(pNo);
+		
+	
+		
+		return "post/myGallery";
+	}
+	
 	// 게시글 식당 이름 주소 
 	@RequestMapping("/post/resAddress.do")
 	public String resAddress() {
@@ -285,9 +300,6 @@ public class PostController {
 		//내 게시글에 좋아요한 사용자 리스트(안예진)
 		List<PostList> pList = postService.getLoveMemberList(pno);
 		
-		//System.out.println(pNo);
-		//System.out.println(pno);
-		//System.out.println(pList);
 		model.addAttribute("pList" ,pList);
 		
 		return "post/postDetail";

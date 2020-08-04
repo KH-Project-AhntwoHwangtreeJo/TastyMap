@@ -367,15 +367,9 @@
 }
 
 @
-keyframes tabEffect {from { top:-40px;
-	
-}
+keyframes tabEffect {from { top:-40px;}
 
-to {
-	top: 0px;
-}
-
-}
+to {top: 0px;}}
 .tabcontent.active {
 	transition: all 1s ease;
 	display: block;
@@ -543,10 +537,12 @@ to {
 			<input type="text" value="localhost:8088/${pageContext.request.contextPath}/post/postDetail.do?pNo=${post.PNo}&memberId=" id="urlAddress" style="display:none;">
 			<!-- 경로 복사하기 끝 -->
 			
+			<!-- 내 게시글에 좋아요한 사용자 리스트 -->
 			<p>
 				<a href="#followListModal" data-toggle="modal"
 					data-target="#followListModal">좋아요♥  ${followerCnt}</a>
 			</p>
+			<!-- 끝 -->
 			
             
             <!-- 신고 이미지, 삭제 버튼 -->
@@ -640,10 +636,13 @@ to {
 					</c:forEach>
 				</ul>
             </div>
-            
+            <c:if test="${member.memberId eq post.member_Id}">
+     		<input type="button" class="btn btn-outline-danger" value="삭제" onclick="location.href='${pageContext.request.contextPath}/post/postDelete.do?pNo=${post.PNo}'"style="float: right;" />
+     		</c:if>
           </div> <!-- .col-md-8 -->
         </div>
       </div>
+      
     </section> <!-- .section -->
     
     <!-- 좋아요 시작 -->

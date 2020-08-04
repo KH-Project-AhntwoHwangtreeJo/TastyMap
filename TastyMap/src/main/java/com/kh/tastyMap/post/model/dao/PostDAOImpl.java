@@ -70,6 +70,7 @@ public class PostDAOImpl implements PostDAO {
 		return sqlSession.selectList("postMapper.postAllList");
 	}
 
+	//여기까지 안예진
 
 
 	@Override
@@ -84,11 +85,24 @@ public class PostDAOImpl implements PostDAO {
 		return 0;
 	}
 
+	//게시글 삭제
 	@Override
-	public int deletePost(int pno) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deletePost(int pNo) {
+		
+		return sqlSession.update("postMapper.deletePost", pNo);
 	}
+	
+	@Override
+	public int deletePicture(int pNo) {
+		return sqlSession.update("postMapper.deletePicture", pNo);
+	}
+	
+	@Override
+	public int deleteComment(int pNo) {
+		return sqlSession.update("postMapper.deleteComment",pNo);
+	}
+	
+	
 
 	// post 상세 페이지
 	@Override
