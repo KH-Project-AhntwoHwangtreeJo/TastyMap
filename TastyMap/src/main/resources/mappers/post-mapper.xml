@@ -26,9 +26,20 @@
 	
 	<!-- 게시글 등록 -->
 	<insert id="insertPost" parameterType="Post"> 
-       INSERT INTO POST(PNO, RNO, MEMBER_ID, PCONTENT, STAR) 
+     INSERT INTO POST(PNO, RNO, MEMBER_ID, PCONTENT, STAR) 
        VALUES(SEQ_POST.NEXTVAL, #{rNo}, #{member_Id}, #{pContent}, #{star})
 	</insert>
+	
+	<!-- 게시글 수정(조은성) -->
+	<update id="updatePost" parameterType="Post"> 
+       UPDATE POST 
+       SET 
+       RNO = #{rNo},
+       MEMBER_ID = #{member_Id},
+       PCONTENT = #{pContent},
+       STAR = #{star}
+       WHERE PNO = #{pNo}
+	</update>
 	
  
  	<!-- 사진을 DB에 저장하기 위해 게시글 등록할 때 방금 들어간 번호를 가져옴 -->
@@ -45,6 +56,8 @@
 			INSERT INTO PICTURE(PICTURE_NO, PNO, PORIGINNAME, PRENAMEDNAME, PLEVEL, UPLOADDATE, PICTURE_STATUS)
 			VALUES(SEQ_PICTURE.NEXTVAL, #{pNo}, #{pOriginName}, #{pRenamedName}, #{pLevel}, SYSDATE, default)
 	</insert>
+	
+
 	
 	<!-- 게시글 전체 조회  -->
 	<select id="postAllList" resultType="PostList">
@@ -121,6 +134,9 @@
 		START WITH PARENTKEY IS NULL
 		CONNECT BY PRIOR COMMENT_SEQ= PARENTKEY  <!-- 부모 노드가 먼저 와야 한다 comment_seq = parentkey --> 
 	</select>
+
+	
+	
 </mapper>
 
 

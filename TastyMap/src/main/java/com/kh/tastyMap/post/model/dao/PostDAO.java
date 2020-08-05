@@ -36,7 +36,7 @@ public interface PostDAO {
 	
 	
 	/**
-	 * 게시글 수정 메소드
+	 *  게시글 수정(조은성) 
 	 * @param post
 	 * @return
 	 */

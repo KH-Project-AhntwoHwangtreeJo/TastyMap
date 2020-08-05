@@ -33,65 +33,83 @@
 <c:import url="/views/common/header.jsp"/>
 <script>
 
-	/* textarea에도 required속성을 적용가능하지만, 공백이 입력된 경우 대비 유효성검사를 실시함. */
-	function validate() {
-		var content = $("[name=pContent]").val();
-		if (content.trim().length == 0) {
-			alert("내용을 입력하세요");
-			return false;
-		}
-		return true;
-	}
+//파일 삭제하기
+function fileDelete() {
+	$('#upFile').val(''); 
+	$(".block-20.img").attr('src', '${pageContext.request.contextPath}/resources/images/picture.png');
 
-	// 사진 게시판 미리보기 기능 지원 스크립트
-	function loadImg(value) {
-		//location.href="${pageContext.request.contextPath}/../..";
-		//console.log(value.files);
-		// 파일 객체의 내용을 텍스트 형식으로 읽는다.
-		var reader = new FileReader();
-
-		function readFile(index) {
-			if (index >= value.files.length)
-				return;// 이미지 길이가 갯수보다 작으면 리턴
-			var file = value.files[index];
-			//읽기가 성공하면, 읽기 결과를 표시한다.
-			reader.onload = function(e) {
-
-				//var bin = e.target.result;
-				console.log("#upFile" + index);
-				$("#upFile" + index).attr('src', e.target.result);
-				readFile(index + 1);// 0부터 시작하니깐 끝날때마다 +1씩 더해준다.
-			}
-			reader.readAsDataURL(value.files[index]); // 0,1,2
-		}
-		readFile(0);//초기화
-	}
-
-	function goAddress(){
-		
-		var add = window.open("${pageContext.request.contextPath}/post/resAddress.do","add","width=570,height=420, scrollbars=yes, resizable=yes");
-		//var vReturn = window.showModalDialog(url, "_blank", sFeatures);
-		 //document.formname.textfield.value = vReturn;
-		//document.formname.rName.value = add;
-	}
 	
-	function jusoCallBack(roadFullAddr, title){
-		// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
-		console.log(roadFullAddr);
-		console.log(title);
-		//document.form.roadFullAddr.value = roadFullAddr;
-		/** 2017년 3월 추가제공 **/
-	}
-	
-	/* $.ajax({
-		url :"${pageContext.request.contextPath}/post/resAddress.do",
-		dataType : "json",
-		type : "POST",
-		success : function(result){
-			for(var i=0; i<result.length; i++){
-				var
-			}
-		}*/
+    for(var i =0; i < 11; i++){  	  
+       $("#upFile" + i).attr('src', '${pageContext.request.contextPath}/resources/images/picture.png');
+      }
+
+         
+ 
+
+}
+
+
+
+   /* textarea에도 required속성을 적용가능하지만, 공백이 입력된 경우 대비 유효성검사를 실시함. */
+   function validate() {
+      var content = $("[name=pContent]").val();
+      if (content.trim().length == 0) {
+         alert("내용을 입력하세요");
+         return false;
+      }
+      return true;
+   }
+
+   // 사진 게시판 미리보기 기능 지원 스크립트
+   function loadImg(value) {
+      //location.href="${pageContext.request.contextPath}/../..";
+      //console.log(value.files);
+      // 파일 객체의 내용을 텍스트 형식으로 읽는다.
+      console.log(value);
+      var reader = new FileReader();
+
+      function readFile(index) {
+         if (index >= value.files.length)
+            return;// 이미지 길이가 갯수보다 작으면 리턴
+         var file = value.files[index];
+         //읽기가 성공하면, 읽기 결과를 표시한다.
+         reader.onload = function(e) {
+
+            //var bin = e.target.result;
+            console.log("#upFile" + index);
+            $("#upFile" + index).attr('src', e.target.result);
+            readFile(index + 1);// 0부터 시작하니깐 끝날때마다 +1씩 더해준다.
+         }
+         reader.readAsDataURL(value.files[index]); // 0,1,2
+      }
+      readFile(0);//초기화
+   }
+
+   function goAddress(){
+      
+      var add = window.open("${pageContext.request.contextPath}/post/resAddress.do","add","width=570,height=420, scrollbars=yes, resizable=yes");
+      //var vReturn = window.showModalDialog(url, "_blank", sFeatures);
+       //document.formname.textfield.value = vReturn;
+      //document.formname.rName.value = add;
+   }
+   
+   function jusoCallBack(roadFullAddr, title){
+      // 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+      console.log(roadFullAddr);
+      console.log(title);
+      //document.form.roadFullAddr.value = roadFullAddr;
+      /** 2017년 3월 추가제공 **/
+   }
+   
+   /* $.ajax({
+      url :"${pageContext.request.contextPath}/post/resAddress.do",
+      dataType : "json",
+      type : "POST",
+      success : function(result){
+         for(var i=0; i<result.length; i++){
+            var
+         }
+      }*/
 
 </script>
 <script>
@@ -118,7 +136,13 @@ function check(){
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
           <div class="col-md-9 ftco-animate pb-5 mb-5 text-center">
+          		
+             <c:if test="${ empty star }">
             <h1 class="mb-3 bread">게시글 작성</h1>
+            </c:if>
+            <c:if test="${ !empty star }">
+            <h1 class="mb-3 bread">게시글 수정</h1>
+            </c:if>
             <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Contact <i class="ion-ios-arrow-forward"></i></span></p>
           </div>
         </div>
@@ -130,10 +154,10 @@ function check(){
        
         <div class="row block-9 justify-content-center mb-5">
           <div class="col-md-6 align-items-stretch d-flex">
-            <form method="post" action="${pageContext.request.contextPath}/post/insertPostEnd.do" class="bg-light p-5 contact-form" enctype="multipart/form-data">
+            <form method="post"  class="bg-light p-5 contact-form" enctype="multipart/form-data">
               <!--사진 업로드-->
               <div class="wrap-input100 validate-input m-b-23"  data-validate = "Username is required">
-                <span class="label-input100" ></span>		
+                <span class="label-input100" ></span>      
                 <label class="upLoad"  id="upLoad" for="upFile" ><img src="${pageContext.request.contextPath}/resources/images/add-photo.png"  style="width: 50px;"></label>
                 <br><input  multiple="multiple" type="file" id="upFile" name="upFile" onchange="loadImg(this);" style="display:none;" required>
                <!--  <span class="focus-input100" ></span> -->
@@ -155,6 +179,25 @@ function check(){
 
                 </ol>
                 <div class="carousel-inner">
+                  <c:if test="${ !empty star }">
+                  <input type="hidden" name="pno" value="${pNo}" > 
+                 <c:forEach var="postDetailimg" items="${ postPhoto }" varStatus="status"> <!-- 이미지 반복문 -->
+       	 		<c:if test="${status.index eq 0}">
+	          <div class="carousel-item active " style="width:100%; height:100%">
+	            <img src="${pageContext.request.contextPath}/resources/upload/post/${postDetailimg.pRenamedName}" class="block-20 img" style="width:100%; height:600px">
+	          </div>
+	          </c:if>
+	          <c:if test="${status.index ne 0}">
+ 	          <div class="carousel-item" style="width:100%; height:100%">
+	            <img src="${pageContext.request.contextPath}/resources/upload/post/${postDetailimg.pRenamedName}" class="block-20 img" style="width:100%; height:600px">
+	          </div>
+	          </c:if>	        
+         		</c:forEach>                          
+               	 </c:if>
+                
+                
+                
+                  <c:if test="${ empty star }">
                   <div class="carousel-item active">
                     <img src="${pageContext.request.contextPath}/resources/images/picture.png" id="upFile0" class="d-block w-100" alt="...">
                   </div>
@@ -185,6 +228,7 @@ function check(){
                   <div class="carousel-item">
                     <img src="${pageContext.request.contextPath}/resources/images/picture.png" id="upFile9" class="d-block w-100" alt="...">
                   </div>
+                  </c:if>
                 </div>
                 
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" >
@@ -203,13 +247,12 @@ function check(){
               <!-- <div class="form-group">
               <span class="location d-inline-block mb-3"><i class="ion-ios-pin mr-2"></i>서울 강남구 테헤란로 124 삼원타워</span>
               </div> -->
-<%-- <div>
-	<c:import url="/views/post/resAddress.jsp"/>
-</div> --%>
+
               <div class="callbackDiv">
-              
+              	<button type="button" class="btn btn-outline-danger col-3" onclick="fileDelete();">파일 삭제</button>
+                
                 <input type="text" class="form-control" value="${address}" id="roadFullAddr" name="address"  placeholder="주소검색을 눌러주세요" required>
-                <input type="text" 	value="${rname}" id="rName" name="rName" placeholder="식당이름" readonly></input>
+                <input type="text"    value="${rname}" id="rName" name="rName" placeholder="식당이름" readonly></input>
                 <button class="btn btn-primary py-3 px-4" id="address" onclick="goAddress();">주소검색</button>
               </div>
 
@@ -230,7 +273,7 @@ function check(){
                <span class="star star_left" data-rate=4.5></span>
                <span class="star star_right" data-rate=5.0></span>
                <!-- <div id="myStar"> -->
-               	<input type="text" id="starValue" name="starValue" style="display:none;" required></input>
+                  <input type="text" id="starValue" name="starValue" value="${star}" style="display:none;"  required></input>
             
                <!-- <div type="text" id="passwdMsg"></div> -->
                <!-- <input type="text" class="form-control" name="userName" id="userName" readonly="readonly"> -->
@@ -238,6 +281,8 @@ function check(){
               
 
              
+               
+  
               <div class="form-group">
                 <input type="text" class="form-control" placeholder="작성자 닉네임" name="member_Id" value="${member.memberId}" readonly required>
               </div>
@@ -245,9 +290,13 @@ function check(){
                 <textarea class="form-control" name="pContent" cols="30" rows="7" placeholder="글 작성" required></textarea>
               </div>
               <div class="btnArea">
-                <input type="submit" id="submit" value="올리기" class="btn btn-primary py-3 px-5" onclick="check()">
-              
-                <input type="reset" value="작성 취소" class="btn btn-info py-3 px-5">
+              <c:if test="${ empty star }">
+              	<input type="submit" value="올리기" class="btn btn-primary py-3 px-5" onclick=" javascript: check(); form.action='${pageContext.request.contextPath}/post/insertPostEnd.do';" >
+              	</c:if>
+              <c:if test="${ !empty star }">
+                <input type="submit" value="수정하기" class="btn btn-primary py-3 px-5" onclick="javascript:  check(); form.action='${pageContext.request.contextPath}/post/updatePostEnd.do';">
+                </c:if>
+                <input type="reset" value="취소" class="btn btn-info py-3 px-5">
               </div>
             </form>
           </div>        

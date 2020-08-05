@@ -73,15 +73,13 @@ public class PostDAOImpl implements PostDAO {
 	//여기까지 안예진
 
 
-	@Override
+	@Override /* 게시글 수정(조은성) */
 	public int updatePost(Post post) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update("postMapper.updatePost", post);
 	}
 
 	@Override
 	public int updatePicture(Picture p) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
