@@ -7,4 +7,5 @@ public class RestauranException extends RuntimeException {
 	public RestauranException(String message) {
 		super("식당 기능 에러 발생 : " + message);
 	}
+	
 }
