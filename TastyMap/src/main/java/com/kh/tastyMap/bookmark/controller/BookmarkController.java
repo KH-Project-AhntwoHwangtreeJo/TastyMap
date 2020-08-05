@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kh.tastyMap.bookmark.model.exception.IHaveBookmarkListException;
 import com.kh.tastyMap.bookmark.model.service.BookmarkService;
 import com.kh.tastyMap.bookmark.model.vo.Bookmark;
 
@@ -70,12 +71,25 @@ public class BookmarkController {
 		return "myPage/myBookmark";
 	}
 	
+	/**
+	 * 마이페이지에 북마크한 음식점 목록 출력 서블릿
+	 * @author Hyunmin Jo
+	 * @return
+	 */
 	@RequestMapping("/bookmark/iHaveBookmarkList.do")
 	public String restarauntTop8(@RequestParam String member_Id, Model model, HttpSession session) {
 		
-		List<Bookmark> list = bookmarkService.iHaveBookmarkList(member_Id);
-
-		model.addAttribute("list",list);
+		try {
+			
+			List<Bookmark> list = bookmarkService.iHaveBookmarkList(member_Id);
+			
+			model.addAttribute("list",list);
+			
+		} catch(Exception e) {
+			
+			throw new IHaveBookmarkListException(e.getMessage());
+			
+		}
 
 		return "myPage/myBookmark";
 	}

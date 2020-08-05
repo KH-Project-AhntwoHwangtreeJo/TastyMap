@@ -662,7 +662,11 @@ public class MemberController {
       return "common/msg";
    }
          
-         
+   	 /**
+	  * 마이페이지에 지도 마커와 카테고리별 차트, 지역별 차트 출력 서블릿
+	  * @author Hyunmin Jo, Yejin An
+	  * @return
+	  */   
       @RequestMapping("/member/myPage.do")
       public String myPage(@RequestParam String memberId, PostList post, Model model, HttpSession session) {
     	  String member_Id=memberId;
@@ -674,7 +678,7 @@ public class MemberController {
     	  model.addAttribute("list",list);
           
     	  // --------------------------------------------------------------------------------
-    	  // 
+    	  
     	  Map<String, Object> map =new HashMap<String, Object>();
 
     	  	String k="";
@@ -687,7 +691,7 @@ public class MemberController {
     		BigDecimal[] ctyCounts = new BigDecimal[5];
     		
     		List<Map<String, String>> rChart = memberService.restaurantCargoChartList();	
-     	// 한식/중식/일식/양식/기타
+    		// 한식/중식/일식/양식/기타
       		for( Map<String, String> r : rChart ) {
       			
       			 k = String.valueOf((r.get("한식")));
@@ -695,7 +699,7 @@ public class MemberController {
       			 j = String.valueOf((r.get("일식")));
       			 y = String.valueOf((r.get("양식")));
       			 e = String.valueOf((r.get("기타")));
-      		//System.out.println(rChart);
+
       		}
       		
       		map.put("k", k);
@@ -704,36 +708,25 @@ public class MemberController {
       		map.put("y", y);
       		map.put("e", e);
       		model.addAttribute("map", map);
-  		
-     		//System.out.println("map : " + map);
      		
      	// --------------------------------------------------------------------------------
      		List<Map<String, Object>> nawhabariChart = memberService.addressChartList();
-     		//System.out.println(nawhabariChart);
      		
      		int idx = 0;
      		for( Map<String, Object> n : nawhabariChart ) {
      			countrys[idx] = (String)n.get("COUNTRY");
-     			//System.out.println("보여줘 : " + countrys[idx]);
      			ctyCounts[idx] = (BigDecimal)(n.get("ctyCount"));
      			
-     			//System.out.println("check : "+countrys[idx]+"/"+ctyCounts[idx]);
      			idx++;
      		}    	
 
      		for(int i=0; i<idx; i++) {
- 			//System.out.println("countrys : " + countrys[i]);
- 			//System.out.println("ctyCounts : " + ctyCounts[i]);
- 			
+
  			map.put(countrys[i], ctyCounts[i]);
      		}
      		
      		model.addAttribute("map", map);
      		model.addAttribute("countrys",countrys);
- 			
-     		//System.out.println("map : " + map);
-     		//System.out.println("countrys : " + countrys);
-     		//System.out.println("ctyCounts : " + ctyCounts);
      		
     	  } catch (Exception e) {
   			
@@ -741,6 +734,7 @@ public class MemberController {
   		}
           return "myPage/myPage";
       }
+      
       
       @RequestMapping("member/clickFollower.do")
       // ↓ ajax 사용해서 값만 여기로 보낼때 사용한다.

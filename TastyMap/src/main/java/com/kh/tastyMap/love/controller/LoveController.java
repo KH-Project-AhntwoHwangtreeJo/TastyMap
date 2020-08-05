@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kh.tastyMap.love.model.exception.IHaveLoveListException;
 import com.kh.tastyMap.love.model.service.LoveService;
 import com.kh.tastyMap.love.model.vo.Love;
 import com.kh.tastyMap.post.model.vo.PostList;
@@ -64,13 +65,24 @@ public class LoveController {
 		return map;
 	} 
 	
+	/**
+	 * 마이페이지에 좋아요한 게시글 목록 출력 서블릿
+	 * @author Hyunmin Jo
+	 * @return
+	 */
 	@RequestMapping("/love/iHaveLoveList.do")
 	public String restarauntTop8(@RequestParam String member_Id, Model model, HttpSession session) {
 		
-		List<PostList> list = loveService.iHaveLoveList(member_Id);
-
-		model.addAttribute("list",list);
-
+		try {
+			List<PostList> list = loveService.iHaveLoveList(member_Id);
+			
+			model.addAttribute("list",list);	
+			
+		} catch(Exception e) {
+			
+			throw new IHaveLoveListException(e.getMessage());
+		}
+		
 		return "myPage/myLove";
 	}
 	

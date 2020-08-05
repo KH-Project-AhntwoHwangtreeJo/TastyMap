@@ -33,12 +33,12 @@
 								<div class="input_field col-10">
 									<input type="text" id="keyword" name="keyword" 
 										   placeholder="What's your favorite food?  어떤 음식을 좋아하시나요?"
-										   style="width:100%; height:30px; padding: 15px; border: none;">
+										   style="width:100%; height:30px; padding: 15px; border: none;" required>
 								</div>
 							</div>
 							<div class="col-2">
 								<div class="button_search" style="display: grid;">
-									<button class="btn btn-primary py-3 px-4" type="submit">Search</button>
+									<button class="btn btn-primary py-3 px-4" type="submit" id="search">Search</button>
 								</div>
 							</div>
 						</div>
@@ -260,7 +260,6 @@
 	    return [year, month, day].join('/');
 	}
 
-    
     </script>
 	</body>
 </html>

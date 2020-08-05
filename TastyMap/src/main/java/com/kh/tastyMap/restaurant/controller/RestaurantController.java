@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,13 +19,15 @@ import com.kh.tastyMap.bookmark.model.service.BookmarkService;
 import com.kh.tastyMap.bookmark.model.vo.Bookmark;
 import com.kh.tastyMap.post.model.vo.Picture;
 import com.kh.tastyMap.post.model.vo.PostList;
+import com.kh.tastyMap.restaurant.model.exception.searchBarPostException;
+import com.kh.tastyMap.restaurant.model.exception.searchBarRestaurantException;
 import com.kh.tastyMap.restaurant.model.service.RestaurantService;
 import com.kh.tastyMap.restaurant.model.vo.Restaurant;
 import com.kh.tastyMap.restaurant.model.vo.RestaurantList;
 
 @Controller
 public class RestaurantController {
-
+	
 	@Autowired
 	RestaurantService restaurantService;
 
@@ -89,7 +93,11 @@ public class RestaurantController {
 	}
 	
 	
-	
+	/**
+	 * 음식점 Top 9개 index에 출력 서블릿
+	 * @author Hyunmin Jo
+	 * @return
+	 */
 	@RequestMapping("/restaurant/top8.do")
 	@ResponseBody
 	public List restarauntTop8(Model model) {
@@ -101,6 +109,11 @@ public class RestaurantController {
 		return list;
 	}
 	
+	/**
+	 * 인플루언서 게시글 Top 8 개 index에 출력 서블릿
+	 * @author Hyunmin Jo
+	 * @return
+	 */
 	@RequestMapping("/restaurant/influencer.do")
 	@ResponseBody 
 	public List influencerTop8(Model model) {
@@ -112,6 +125,11 @@ public class RestaurantController {
 		return list;
 	}
 
+	/**
+	 * 검색 기능 서블릿
+	 * @author Hyunmin Jo
+	 * @return
+	 */
 	@RequestMapping("/restaurant/searchBar.do")
 	public ModelAndView searchBar(@RequestParam(defaultValue="Restaurant") String searchOption, 
 						  @RequestParam(defaultValue="") String keyword, RestaurantList restaurant, PostList post, Model model) {
@@ -120,24 +138,51 @@ public class RestaurantController {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
+		List<Map<String, String>> list = null;
+		
 		if(searchOption.equals("Restaurant")) {
-			List<Map<String, String>> list = restaurantService.RestaurantSearchBar(searchOption, keyword);
-			map.put("searchOption",searchOption);
-			map.put("keyword",keyword);			
-			mav.addObject("RList",list);
-			mav.addObject("map",map);
-			mav.setViewName("restaurant/restaurantAllList");
+			
+			try {
+				list = restaurantService.RestaurantSearchBar(searchOption, keyword);
+				map.put("searchOption",searchOption);
+				map.put("keyword",keyword);			
+				mav.addObject("RList",list);
+				mav.addObject("map",map);
+				mav.setViewName("restaurant/restaurantAllList");
+				
+			} catch(Exception e) {
+			
+				throw new searchBarRestaurantException(e.getMessage());
+			}
+			
+		} else if(searchOption.equals("Post")){
+			
+			try {
+				list = restaurantService.PostSearchBar(searchOption, keyword);
+				map.put("searchOption",searchOption);
+				map.put("keyword",keyword);			
+				mav.addObject("postList",list);
+				mav.addObject("map",map);
+				mav.setViewName("post/postAllList");
+				
+			} catch (Exception e){
+				
+				throw new searchBarPostException(e.getMessage());
+			}
+		}
+		
+		if(list == null || list.isEmpty()){
+			mav.addObject("loc","/");
+			mav.addObject("msg","조회한 결과가 없습니다.");
+			mav.setViewName("common/msg");
+			
+			return mav;
 			
 		} else {
-			List<Map<String, String>> list = restaurantService.PostSearchBar(searchOption, keyword);
-			map.put("searchOption",searchOption);
-			map.put("keyword",keyword);			
-			mav.addObject("postList",list);
-			mav.addObject("map",map);
-			mav.setViewName("post/postAllList");
+			
+			return mav;
 		}
 
-		return mav;
 	}
 	
 	//식당 디테일 페이지 - 주변식당 리스트(조은성) 
