@@ -14,16 +14,11 @@ public interface RestaurantDAO {
 
     int insertRestaurant(Restaurant restaurant);
 
-
     Restaurant selectOneRestaurant(int restaurantNo);
  
-
     int updateRestaurant(Restaurant restaurant);
 
-
     int deleteRestaurant(int restaurantNo);
-
-
 
     int deleteFile(int attNo);
 
@@ -37,29 +32,24 @@ public interface RestaurantDAO {
     List<Map<String, String>> RestaurantSearchBar(String searchOption, String keyword);
     List<Map<String, String>> PostSearchBar(String searchOption, String keyword);
     
-    //식당 상세페이지 사진 
+    //식당 상세페이지 사진(조은성) 
     List<Picture> pictureList(int rno);
-    //식당 상세페이지  막대 차트
+    //식당 상세페이지  막대 차트(조은성)
     List<Map<String, String>> restaurantChart(int rno);
-	 //식당 상세페이지 원형 차트
+	 //식당 상세페이지 원형 차트(조은성)
     List<Map<String, String>> restaurantChartTwo(int rno);
 
 	
-	//식당전체리스트
 	int selectRestaurantTotal();
-	//식당전체리스트
-	List<RestaurantList> restaurantAllList(int cPage, int numPerPage);
-	//식당카테고리 차트
-	//List<Map<String, String>> restaurantCargoChartList(); 
 
-	//식당 상세페이지  리뷰 가져오기
+	List<RestaurantList> restaurantAllList(int cPage, int numPerPage);
+
+	//식당 상세페이지  리뷰 가져오기(조은성)
 	List<PostList> restaurantPost(int rno);
-	//식당 리뷰 사진
+	//식당 리뷰 사진(조은성)
 	List<Picture> restaurantPicture(int rno);
-	//리뷰 개수
+	//리뷰 개수 확인(조은성)
 	int restaurantPostTwo(int rno);
-	
-	//주변인기 식당
+	//주변인기 식당(조은성)
 	List<Restaurant> Raround(String address);
-	
 }

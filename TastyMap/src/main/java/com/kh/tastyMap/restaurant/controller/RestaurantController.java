@@ -26,6 +26,9 @@ public class RestaurantController {
 
 	@Autowired
 	RestaurantService restaurantService;
+
+	@Autowired
+	BookmarkService bookmarkService;
 	
 	// 식당 전체리스트 출력(안예진)
 	@RequestMapping("/restaurant/restaurantAllList.do")
@@ -85,8 +88,6 @@ public class RestaurantController {
 	   return kList;
 	}
 	
-	@Autowired
-	BookmarkService bookmarkService;
 	
 	
 	@RequestMapping("/restaurant/top8.do")
@@ -139,20 +140,20 @@ public class RestaurantController {
 		return mav;
 	}
 	
-	//주변식당 출력
+	//식당 디테일 페이지 - 주변식당 리스트(조은성) 
 	@RequestMapping("/restaurant/restaurantaround.do")
 	@ResponseBody
 	public Map<String, List<Restaurant>> Raround(String address, Model model) {	 
 		  List<Restaurant> adr = restaurantService.Raround(address);
 		  
 		  for( Restaurant s: adr) {
-			 System.out.println("s"+s);
+			
 			  
 		  }
 		 
 		  
 		  Map<String,List<Restaurant>> map = new HashMap<String, List<Restaurant>>();
-		  System.out.println("주변식당 찾기"+adr);
+		
 		  
 		  
 		  map.put("adr",adr);
@@ -160,7 +161,8 @@ public class RestaurantController {
 		  
 	}
 	
-  // 레스토랑 디테일 페이지 (조은성)
+	
+    //식당 디테일 페이지 - 전체 기능(조은성)
 	@RequestMapping("/restaurant/restaurantDatail.do")
 	public String RestaurantDetail(@RequestParam int rno, @RequestParam String memberId, Model model) {	
 		Map<String, String> map =new HashMap<String, String>();
@@ -173,16 +175,17 @@ public class RestaurantController {
 		String D ="";
 		String E ="";
 	
-//				 식당 디테일 페이지 접속 시 동작하는 구문
-//				1. 식당 기본정보(리스트) 가져오기
-//				2. 해당하는 식당 사진 불러오기 
-//				3. 북마크 조회 하기 
-//				4. 막대 차트 
-//				5. 원형 차트
-//				6. 리뷰 
-//				7. 리뷰갯수
-//				8. 리뷰 사진						
-//				9. 주변식당 리스트 출력
+//		 식당 디테일 페이지 
+//		 1. 식당 기본정보(리스트) 가져오기
+//		 2. 해당하는 식당 사진 불러오기 
+//		 3. 북마크 조회 하기 
+//		 4. 막대 차트 
+//		 5. 원형 차트
+//	     6. 리뷰 
+//		 7. 리뷰갯수
+//		 8. 리뷰 사진						
+//		 9. 주변식당 리스트 출력
+		
 //			1. 식당 기본정보(리스트) 가져오기
 		Restaurant R = restaurantService.restaurantDetail(rno);	
 		System.out.println(R.getAddress());
@@ -201,8 +204,7 @@ public class RestaurantController {
 			status="null"; 
 		}
 		
-
-		
+	
 //		4. 막대 차트 
 		List<Map<String, String>> chart = restaurantService.restaurantChart(rno);
 
@@ -226,33 +228,19 @@ public class RestaurantController {
 			 D = String.valueOf((e.get("40대")));
 			 E = String.valueOf((e.get("50대 이상")));
 		}
-   	
-  
-   	   
-   	   
-		
 		
 //       	6. 리뷰
-		List<PostList> RPost = restaurantService.restaurantPost(rno);
-		
-		
+		List<PostList> RPost = restaurantService.restaurantPost(rno);		
 //		 	7. 리뷰 사진
-		List<Picture> RPicture = restaurantService.restaurantPicture(rno);
-	
-		
-		
+		List<Picture> RPicture = restaurantService.restaurantPicture(rno);		
 //			8. 리뷰갯수
 		  int PostNumber = restaurantService.restaurantPostTwo(rno);
 		String Pnum = String.valueOf(PostNumber);
 		
-	   
-	
-	
-		
+			
 //	        9. 주변식당 리스트 출력 
 		List<Restaurant> adr = restaurantService.Raround(R.getAddress());
-		
-		  
+				  
 		map.put("Pnum",Pnum);	
 		map.put("M",M);
 		map.put("F",F);

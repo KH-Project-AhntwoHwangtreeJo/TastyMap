@@ -35,6 +35,7 @@ public interface PostService  {
 	 * @param post
 	 * @return
 	 */
+	/* 게시글 수정(조은성) */
 	int updatePost(Post post, List<Picture> pictureList);
 	
 	/**

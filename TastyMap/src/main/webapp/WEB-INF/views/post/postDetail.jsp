@@ -456,7 +456,7 @@ to {
 	</style>
 	<!-- 경로 복사 -->
 	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-	<style>
+	<style>	
 	   .urlCopyBtn {
 	
 	      font-weight:normal;         
@@ -475,6 +475,7 @@ to {
 	      color:white;
 	   }
 	</style>
+	<!-- 경로 복사  끝 -->
 	
 </head>
 <body>
@@ -561,7 +562,17 @@ to {
             
             <!--해당 페이지 출력 기능-->
             <img onclick="window.print()" border="0" src="${pageContext.request.contextPath}/resources/images/print/print.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;" />
-                        
+             
+             <!-- 수정 이미지 -->        
+             <c:if test="${post.member_Id eq member.memberId}"> 
+            <c:if test="${ map.pstatus eq 'N' }"> 			
+            <img id="postchange" onclick="change()" border="0" src="${pageContext.request.contextPath}/resources/images/report/siren3.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;">
+      		</c:if>
+            <c:if test="${ map.pstatus eq 'Y' }">
+            <img id="postchange" onclick="change()" border="0" src="${pageContext.request.contextPath}/resources/images/report/siren3.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;">
+      		</c:if>
+   		    </c:if>
+   		     
             <!-- 좋아요 이미지 -->
             <c:if test="${ !empty member.memberId }">
 	            <c:if test="${ map.status eq 'N' }">
@@ -575,6 +586,7 @@ to {
             <br>
             <hr/>
             <h4>${post.PContent}</h4>
+            <p>${post.star}</p>
             <hr/>
             
 
@@ -878,7 +890,14 @@ to {
 				}
 				
 			});
-		}	  
+		}	
+  	
+  	//수정 버튼 함수
+function change(){
+location.href = "${pageContext.request.contextPath}/post/postchange.do?nickname=${post.nickname}&rname=${post.rname}&memberId=${member.memberId}&address=${post.address}&pContent=${post.PContent}&star=${post.star}&pNo=${post.PNo}";
+
+  	} 
+	
 	 </script>  
 	 
 	 <!-- 지도 시작 -->

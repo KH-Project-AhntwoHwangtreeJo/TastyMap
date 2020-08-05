@@ -82,11 +82,42 @@ public class PostServiceImpl implements PostService {
 		return postDAO.postAllList();
 	}
 
-
-	@Override
+ 
+	@Override  /* 게시글 수정(조은성) */
 	public int updatePost(Post post, List<Picture> pictureList) {
-		// TODO Auto-generated method stub
-	    	return 0;
+		int result = 0;
+		int pNo = 0;
+			System.out.println("postservice입니다"+ post);
+		 try{
+	         result = postDAO.updatePost(post);
+	         
+	         if(result == POST_SERVICE_ERROR) throw new PostException();
+	         
+	         
+//	         pNo = post.getPNo(); //pNo를 리턴함.
+	         pNo = post.getPNo();
+	         System.out.println("currval: " + pNo);
+	         
+	         //현재 Picture객체의 pNo는 값이 없다. 
+	         //1. 가져온 postNo를 대입하던지
+	         //2. mapper의 insert문에서 selectKey를 사용함
+	         
+	         System.out.println("pno가지고왔니"+pictureList);
+	         
+	         if(pictureList.size()>0){
+	            for(Picture p : pictureList){
+	              // a.setBoardNo(boardNo); //게시물번호 대입
+	            	p.setPNo(pNo);
+	            	System.out.println(p);
+	               result = postDAO.insertPicture(p);
+	               if(result == POST_SERVICE_ERROR) throw new PostException();
+	            }
+	         }
+	      } catch(Exception e){
+//	         throw new BoardException("게시물등록오류");
+	         throw e;
+	      }
+	      return result;
 	}
 
 	// post 삭제 메소드
