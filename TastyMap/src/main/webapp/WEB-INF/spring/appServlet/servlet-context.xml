@@ -58,6 +58,7 @@
 		          <!-- 인터셉터가 동작할 주소 -->
 		          <!-- 특정 URL 경로를 로그인 여부로 차단하기 -->
 		          <mapping path="/member/**/**.do" />
+		          <mapping path="/admin/**/*.do"/>
 		          <exclude-mapping path="/member/memberLogin.do" />
 		          <exclude-mapping path="/member/jusoPopup.do" />
 		          <exclude-mapping path="/member/emailAuth.do" />
@@ -73,11 +74,14 @@
 		          <!-- <mapping path="/member/**/*.do" /> --> 
 		          <!-- 모든 경로 차단 중 특정 경로를 제외할 수도 있다. -->
 		          <!-- <exclude-mapping path="/member/memberEnroll.do" /> -->
-		          
-		          
-		    
 		         <beans:bean id="loginCheckInterceptor"
 		                     class="com.kh.tastyMap.common.interceptor.LoginCheckInterceptor" />
+		      </interceptor>
+		      <interceptor>
+		          <!-- admin 인터셉터 -->
+		             <mapping path="/admin/**/*.do"/>
+		         <beans:bean id="AdminCheckInterceptor"
+		                     class="com.kh.tastyMap.common.interceptor.AdminCheckInterceptor" />
 		      </interceptor>
 		   </interceptors>
 		   
