@@ -10,8 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kh.tastyMap.admin.model.exception.AdminException;
 import com.kh.tastyMap.admin.model.service.AdminService;
-import com.kh.tastyMap.common.util.Utils;
 import com.kh.tastyMap.restaurant.model.vo.Restaurant;
 
 @Controller
@@ -40,11 +40,15 @@ public class AdminController {
 	@RequestMapping("/admin/selectMember.do")
 	public String adminMemberSelect(Model model) {
 		
-		List<Map<String, String>> list=adminService.selectMemberList();
-		
-		
-		model.addAttribute("list", list);
+		try {
+			// 회원 리스트 가져와서
+			List<Map<String, String>> list=adminService.selectMemberList();
+			// 화면으로 보냄
+			model.addAttribute("list", list);
 			
+		}catch(Exception e) {
+			throw new AdminException(e.getMessage());
+		}
 		return "admin/memberList";
 	}
 	
@@ -57,11 +61,15 @@ public class AdminController {
 	
 	@RequestMapping("/admin/selectRestaurant.do")
 	public String adminRestaurantList(Model model) {
-		
-		List<Map<String, String>> list=adminService.selectRestaurantList();
-		
-		model.addAttribute("list", list);
+		try {
+			// 식당 리스트 가져와서
+			List<Map<String, String>> list=adminService.selectRestaurantList();
+			// 화면으로 보냄
+			model.addAttribute("list", list);
 			
+		}catch(Exception e) {
+			throw new AdminException(e.getMessage());
+		}
 		return "admin/restaurantList";
 	}
 	
@@ -75,16 +83,20 @@ public class AdminController {
 	public String insertRestaurant(@RequestParam String rName, @RequestParam String rcontent, @RequestParam String category, @RequestParam String price, @RequestParam String time,
 			@RequestParam String tel, @RequestParam String address, @RequestParam String paking, @RequestParam Date updatedate, @RequestParam String rstatus, Model model) {
 		
-		Restaurant R = new Restaurant(rName,rcontent,category,price,time,tel,address,paking,updatedate,rstatus);
-		
-		
-		adminService.insertRestaurant(R);
-		
-		List<Map<String, String>> list=adminService.selectRestaurantList();
-		
-		
-		model.addAttribute("list", list);
+		try {
+			// 페이지에서 받은 식당 정보를 레스토랑 객체에 담음
+			Restaurant R = new Restaurant(rName,rcontent,category,price,time,tel,address,paking,updatedate,rstatus);
+			adminService.insertRestaurant(R); // 식당 객체를 DB로 보내서 추가
 			
+			List<Map<String, String>> list=adminService.selectRestaurantList();
+			
+			
+			model.addAttribute("list", list);
+		
+		
+		}catch(Exception e) {
+			throw new AdminException(e.getMessage());
+		}	
 		return "admin/restaurantList";
 	}
 
@@ -97,6 +109,9 @@ public class AdminController {
 	
 	@RequestMapping("/admin/selectPost.do")
 	public String adminPostList(Model model) {
+		
+		try {
+			
 		// 1. 게시글 전체 리스트를 가져오는 리스트 객체
 		List<Map<String, String>> list=adminService.selectPostList();
 		System.out.println(list);
@@ -106,7 +121,11 @@ public class AdminController {
 		
 		// 3. 화면으로 보내줄 객체들 추가 
 		model.addAttribute("list", list);
-			
+		
+		
+		}catch(Exception e) {
+			throw new AdminException(e.getMessage());
+		}	
 		return "admin/postList";
 	}
 	
@@ -120,11 +139,16 @@ public class AdminController {
 	@RequestMapping("/admin/selectCommentReport.do")
 	public String adminCommentReportList(Model model) {
 		
+		try {
 		List<Map<String, String>> list=adminService.selectCommentReportList();
-		
-		
 		model.addAttribute("list", list);
-			
+		
+		
+		}catch(Exception e) {
+			throw new AdminException(e.getMessage());
+		}
+		
+		
 		return "admin/commentReportList";
 	}
 	
@@ -137,33 +161,17 @@ public class AdminController {
 	@RequestMapping("/admin/selectPostReport.do")
 	public String adminPostReportList(Model model) {
 		
-		List<Map<String, String>> list=adminService.selectPostReportList();
-		
-		
-		model.addAttribute("list", list);
+		try {
 			
+		List<Map<String, String>> list=adminService.selectPostReportList();
+		model.addAttribute("list", list);
+		
+		
+		}catch(Exception e) {
+			throw new AdminException(e.getMessage());
+		}
 		return "admin/postReportList";
 	}
-	
-	
-	
-	
-	/**
-	 * admin 공지사항 관리 출력 서블릿
-	 * @author Sung A Cho
-	 * @return
-	 */
-	/*
-	@RequestMapping("/admin/selectNotice.do")
-	public String adminNoticeList(Model model) {
-		
-		List<Map<String, String>> list=adminService.selectNoticeList();
-		
-		
-		model.addAttribute("list", list);
-			
-		return "admin/noticeList";
-	}
-	*/
+
 
 }
