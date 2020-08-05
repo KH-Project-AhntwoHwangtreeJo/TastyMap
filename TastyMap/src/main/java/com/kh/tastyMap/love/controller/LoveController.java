@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.tastyMap.love.model.exception.IHaveLoveListException;
+import com.kh.tastyMap.love.model.exception.LoveException;
 import com.kh.tastyMap.love.model.service.LoveService;
 import com.kh.tastyMap.love.model.vo.Love;
 import com.kh.tastyMap.post.model.vo.PostList;
@@ -30,6 +31,7 @@ public class LoveController {
 		return "myPage/myLove";
 	}
 	
+	// 좋아요 버튼 클릭시
 	@RequestMapping("love/postLove.do")
 	@ResponseBody
 	public Map<String, Object> clickLove(@RequestParam int pNo, @RequestParam String memberId, Model model, HttpSession session) {
@@ -37,11 +39,16 @@ public class LoveController {
 		
 		Love love = new Love(memberId, pNo);
 		
-		map = loveService.clickLove(love);
+		try {
+			map = loveService.clickLove(love);			
+		} catch (Exception e) {
+			throw new LoveException(e.getMessage());
+		}
 		
 		return map;
 	}
 	
+	// 좋아요 눌렀는지 확인용
 	@RequestMapping("love/loveselect.do")
 	@ResponseBody
 	public Map<String, Object> selectLove(@RequestParam int pNo, @RequestParam String memberId, Model model, HttpSession session) {
@@ -50,17 +57,22 @@ public class LoveController {
 		String status;
 		Love love = new Love(memberId, pNo);
 		
-		int result = loveService.selectLove(love);
-		 
-		if (result == 0) { // SELECT 해서 COUNT 한 결과가 없을 때 
-			status = "N";			
-		} else if(result == 1) { // SELECT해서 COUNT한 결과가 있을 때
-			status = "Y";
-		} else {
-			status="null";
+		try {
+			int result = loveService.selectLove(love);
+			
+			if (result == 0) { // SELECT 해서 COUNT 한 결과가 없을 때 
+				status = "N";			
+			} else if(result == 1) { // SELECT해서 COUNT한 결과가 있을 때
+				status = "Y";
+			} else {
+				status="null";
+			}
+			
+			map.put("status", status);
+			
+		} catch (Exception e) {
+			throw new LoveException(e.getMessage());
 		}
-		
-		map.put("status", status);
 		
 		return map;
 	} 

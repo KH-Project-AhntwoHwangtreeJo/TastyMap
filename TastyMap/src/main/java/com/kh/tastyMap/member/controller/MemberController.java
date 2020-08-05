@@ -735,7 +735,7 @@ public class MemberController {
           return "myPage/myPage";
       }
       
-      
+   // 팔로워 클릭시 
       @RequestMapping("member/clickFollower.do")
       // ↓ ajax 사용해서 값만 여기로 보낼때 사용한다.
       @ResponseBody  

@@ -116,6 +116,7 @@ public class PostDAOImpl implements PostDAO {
 		return sqlSession.selectList("postMapper.postDetailPicture", pNo);
 	}
 
+	// 포스트 내 댓글 리스트
 	@Override
 	public List<PostComment> commentList(int pNo) {
 		return sqlSession.selectList("postMapper.selectPcommentList", pNo);

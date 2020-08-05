@@ -547,6 +547,9 @@ to {
 			
             
             <!-- 신고 이미지, 삭제 버튼 -->
+            <c:if test="${ empty member.memberId }">    
+	            <img id="preportimage" onclick="location.href=#loginModal" border="0" src="${pageContext.request.contextPath}/resources/images/report/siren1.png" data-toggle="modal" data-target="#loginModal" style="width: 30px; height: 30px; float: right; margin-right: 7px;">
+	        </c:if>  
             <c:if test ="${post.member_Id ne member.memberId and !empty member.memberId}"> <!-- 세션아이디와 포스트 아이디가 같지 않으면 신고보여주기 -->
 	            <c:if test="${ map.pstatus eq 'N' }">
 	            <img id="postreportimage" onclick="changePostReport();" border="0" src="${pageContext.request.contextPath}/resources/images/report/siren1.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;">
@@ -574,6 +577,9 @@ to {
    		    </c:if>
    		     
             <!-- 좋아요 이미지 -->
+            <c:if test="${ empty member.memberId }">    
+	            <img id="image" onclick="location.href=#loginModal" border="0" src="${pageContext.request.contextPath}/resources/images/heart/heart1.png" data-toggle="modal" data-target="#loginModal" style="width: 30px; height: 30px; float: right; margin-right: 7px;">
+	        </c:if>   
             <c:if test="${ !empty member.memberId }">
 	            <c:if test="${ map.status eq 'N' }">
 	            <img id="loveimage" onclick="changeLove();" border="0" src="${pageContext.request.contextPath}/resources/images/heart/heart1.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;">
@@ -615,36 +621,46 @@ to {
 				
 				<ul class="comment-list">
 					<!-- comment start-->
-					<c:forEach items="${PComment}" var="PComment">
-					<li class="comment" style="margin-left : ${(PComment.level -1) * 30}px; width : ${800 - ((PComment.level-1) * 15)}px;">
-						<div class="vcard bio">
-							<img src="${pageContext.request.contextPath}/resources/images/profileImage/${PComment.mphoto}" alt="Image placeholder" style="margin-bottom: 5px;">
-							<h6>${PComment.nickname}</h6>
-						</div>
-						<div class="comment-body" id="commentadd" style="margin-bottom : 5px;">
-							<c:if test="${ !empty member.memberId }">
-								<c:if test="${PComment.cwriter eq member.memberId}">
-									<input type="hidden" id="cno" class="cnopalce" name="cno" value="${PComment.cno}"/>
-									<button type="button" id="deleteComment" class="btn btn-outline-info deleteBtn" onclick="deleteReply(this);" style="float: right; margin-right: 5px;">삭제하기</button>
-									<button type="button" id="updateCommentBtn"class="btn btn-outline-info updateCommentBtn" style="float: right; margin-right: 5px; display:block"onclick="updateReply(this);" > 댓글 수정 </button>
-									<button type="button" id="updateCompleteComment"class="btn btn-outline-info updateConfirm" onclick="updateConfirm(this);"	style="display:none; float: right; margin-right: 5px;" >수정완료</button> 
-								</c:if>
-								<c:if test="${PComment.cwriter ne member.memberId}">
-									<input type="hidden" name="cwriter" class="cwriter" value="${member.memberId}"/>
-									<input type="hidden" id="cno" class="cnopalce" name="cno" value="${PComment.cno}"/>
-									<input type="hidden" name="level" class="level" value="${PComment.level}"/>
-									<button type="button" class="btn btn-outline-danger" style="float: right;">신고</button>
-									<button type="button" class="btn btn-outline-info" onclick="reComment(this);" style="float: right; margin-right: 5px;" >답글 달기</button>
-									<button type="button" class="btn btn-outline-info insertConfirm" onclick="reConfirm(this);" style="display:none; float: right; margin-right: 5px;" >답글 완료</button>
-								</c:if>
-							</c:if>  
-							<div class="meta">${fn:substring(PComment.cdate, 0, 10)}</div>
-							
-						</div>
-						<p>${PComment.ccontent}</p>
-					<input type="text" style=" display:none; width: 75%; margin-bottom: 5px; margin-top:13px" value="${PComment.ccontent}" class="inputupdate">  <!-- commentinsert(${PComment.level},$('#largecomment').val()); -->
-					<input type="text" style=" display:none; width: 75%; margin-bottom: 5px; margin-top:13px" value="" class="largecomment">
-					</li>
+					<c:forEach items="${PComment}" var="PComment" varStatus="status">
+						
+						<li class="comment" style="margin-left : ${(PComment.level -1) * 30}px; width : ${800 - ((PComment.level-1) * 15)}px;">
+							<div class="vcard bio">
+								<img src="${pageContext.request.contextPath}/resources/images/profileImage/${PComment.mphoto}" alt="Image placeholder" style="margin-bottom: 5px;">
+								<h6>${PComment.nickname}</h6>
+							</div>
+							<div class="comment-body" id="commentadd" style="margin-bottom : 5px;">
+								<c:if test="${ !empty member.memberId }">
+									<c:if test="${PComment.cwriter eq member.memberId}">
+										<input type="hidden" id="cno" class="cnoplace" name="cno" value="${PComment.cno}"/>
+										<button type="button" id="deleteComment" class="btn btn-outline-info deleteBtn" onclick="deleteReply(this);" style="float: right; margin-right: 5px;">삭제하기</button>
+										<button type="button" id="updateCommentBtn"class="btn btn-outline-info updateCommentBtn" style="float: right; margin-right: 5px; display:block"onclick="updateReply(this);" > 댓글 수정 </button>
+										<button type="button" id="updateCompleteComment"class="btn btn-outline-info updateConfirm" onclick="updateConfirm(this);"	style="display:none; float: right; margin-right: 5px;" >수정완료</button> 
+									</c:if>
+									<c:if test="${PComment.cwriter ne member.memberId}">
+										<input type="hidden" name="cwriter" class="cwriter" value="${member.memberId}"/>
+										<input type="hidden" id="cno" class="cnoplace" name="cno" value="${PComment.cno}"/>
+										<input type="hidden" name="level" class="level" value="${PComment.level}"/>
+										
+										<img class="commentreportimage" id="commentreportimage" onclick="changeCommentReport(this);" border="0" src="${pageContext.request.contextPath}/resources/images/report/siren1.png"  style="display:block;width: 30px; height: 30px; float: right; margin-right: 7px;">
+											<c:forEach items="${commentNoReportList}" var="commentNoReportList"  >
+									            <c:if test="${ PComment.cno eq commentNoReportList.ReportCommentList and member.memberId eq commentNoReportList.MEMBER_ID}">
+									            	<img class="commentreportimage" onclick="changeCommentReport(this);" border="0" src="${pageContext.request.contextPath}/resources/images/report/siren2.png"  style="display:block;width: 30px; height: 30px; float: right; margin-right: 7px;">
+									      		</c:if>
+									      		<%-- <c:if test="${ PComment.cno ne commentNoReportList.ReportCommentList}"> --%>
+									      		<%-- </c:if> --%>
+								      		</c:forEach>
+										<button type="button" class="btn btn-outline-info" onclick="reComment(this);" style="float: right; margin-right: 5px;" >답글 달기</button>
+										<button type="button" class="btn btn-outline-info insertConfirm" onclick="reConfirm(this);" style="display:none; float: right; margin-right: 5px;" >답글 완료</button>
+									</c:if>
+								</c:if>  
+								<div class="meta">${fn:substring(PComment.cdate, 0, 10)}</div>
+								
+							</div>
+							<p>${PComment.ccontent}</p>
+						<input type="text" style=" display:none; width: 75%; margin-bottom: 5px; margin-top:13px" value="${PComment.ccontent}" class="inputupdate">  <!-- commentinsert(${PComment.level},$('#largecomment').val()); -->
+						<input type="text" style=" display:none; width: 75%; margin-bottom: 5px; margin-top:13px" value="" class="largecomment">
+						</li>
+						
 					</c:forEach>
 				</ul>
             </div>
@@ -886,6 +902,32 @@ to {
 					console.log(req);
 					console.log(qstatus);
 					console.log(error);
+					alert('에러인가?');
+				}
+				
+			});
+		}	  
+  	
+  	// 댓글 신고
+ 		function changeCommentReport(obj) {
+			
+			var memberId = "${member.memberId}";
+			var reportNo = $(obj).parent().find('.cnoplace').val();
+			console.log(reportNo);
+			console.log(memberId);
+			
+			$.ajax({
+				url : '${pageContext.request.contextPath}/report/insertCommentReport.do',
+				data : { reportNo : reportNo, memberId : memberId },
+				dataType : 'json',
+				success : function(data) {
+					// 메세지 출력			
+					alert(data.pcmsg);
+					$(obj).attr('src','${pageContext.request.contextPath}/resources/images/report/siren2.png');
+				}, error : function(req, qstatus, error) {
+					console.log(req);
+					console.log(qstatus);
+					console.log(error);
 					alert('에러입니다.');
 				}
 				
@@ -903,8 +945,6 @@ location.href = "${pageContext.request.contextPath}/post/postchange.do?nickname=
 	 <!-- 지도 시작 -->
 	 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f71cfabf5739c195830217cd92296d03&libraries=services"></script>
 	 
-
-
 	<script>
 	var mapContainer = document.getElementById('mapapi'), // 지도를 표시할 div 
 	    mapOption = {

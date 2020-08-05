@@ -1,5 +1,6 @@
 package com.kh.tastyMap.report.model.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.kh.tastyMap.post.model.vo.Post;
@@ -38,7 +39,7 @@ public interface ReportService {
 	 * @param report
 	 * @return
 	 */
-	int insertCommentReport(Report report);
+	Map<String, Object> insertCommentReport(Report report);
 	
 	
 	/**
@@ -66,6 +67,14 @@ public interface ReportService {
 	 * @return
 	 */
 	int updateCommentStatus(PostComment comment);
+
+	/**
+	 * 해당 포스트에서 신고된 댓글 리스트 조회
+	 * reportType=='C'
+	 * @param report
+	 * @return
+	 */
+	List selectCommentReportList(int pNo);
 	
 
 }

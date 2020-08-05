@@ -1,5 +1,7 @@
 package com.kh.tastyMap.report.model.dao;
 
+import java.util.List;
+
 import com.kh.tastyMap.post.model.vo.Post;
 import com.kh.tastyMap.postComment.model.vo.PostComment;
 import com.kh.tastyMap.report.model.vo.Report;
@@ -64,5 +66,12 @@ public interface ReportDAO {
 	 * @return
 	 */
 	int updateCommentStatus(PostComment comment);
+
+	/**
+	 * 해당 포스트에서 신고된 댓글 리스트 조회
+	 * @param pNo
+	 * @return
+	 */
+	List selectCommentReportList(int pNo);
 
 }
