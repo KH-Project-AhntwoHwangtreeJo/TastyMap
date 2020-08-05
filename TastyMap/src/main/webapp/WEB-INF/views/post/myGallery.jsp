@@ -598,12 +598,10 @@ to {
 						<div class="agent" style="width: 100%; height: 100%;">
 							<a
 								href="${pageContext.request.contextPath}/post/postDetail.do?pNo=${post0img.PNO}&memberId=${member.memberId}">
-								<div class="img" style="width: 100%; height: 100%;">
 									<img
 										src="${pageContext.request.contextPath}/resources/upload/post/${post0img.pRenamedName}"
 										class="img-fluid" alt="Colorlib Template"
 										style="width: 100%; height: 100%;">
-								</div>
 							</a>
 						</div>
 					</div>
@@ -632,9 +630,6 @@ to {
 		</a> <a class="bg_links logo"></a>
 	</div>
 	<!-- end about -->
-
-	<section id="wrapper">
-		<div class="content">
 
 			<!-- Tab content -->
 			<div class="modal fade" id="followListModal" tabindex="-1"
@@ -716,7 +711,7 @@ to {
 			
 	
 			
-		</div>
+
 	
 	
 	<!-- partial -->
