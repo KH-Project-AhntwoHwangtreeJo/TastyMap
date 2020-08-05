@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.tastyMap.love.model.service.LoveService;
 import com.kh.tastyMap.love.model.vo.Love;
+import com.kh.tastyMap.post.model.exception.PostException;
 import com.kh.tastyMap.post.model.service.PostService;
 import com.kh.tastyMap.post.model.vo.Picture;
 import com.kh.tastyMap.post.model.vo.Post;
@@ -30,6 +31,7 @@ import com.kh.tastyMap.post.model.vo.PostRequest;
 import com.kh.tastyMap.postComment.model.vo.PostComment;
 import com.kh.tastyMap.report.model.service.ReportService;
 import com.kh.tastyMap.report.model.vo.Report;
+import com.kh.tastyMap.restaurant.model.exception.RestauranException;
 
 @Controller
 public class PostController {
@@ -64,23 +66,32 @@ public class PostController {
 	
 		//게시글 정보 전달 (postDetail -> insertPost)(조은성)
 	@RequestMapping("/post/postchange.do")
-	public String postchange(int pNo, String pContent, double star,String rname, String memberId, String address, Model model) {	
-	    List postPhoto = postService.postDetailPhoto(pNo); 
+	public String postchange(int pNo, String pContent, double star,String rname, String memberId, String address, Model model) {		    
+		try {
+		List postPhoto = postService.postDetailPhoto(pNo); 	    
 		model.addAttribute("pNo", pNo); 
 		model.addAttribute("postPhoto", postPhoto); 
 		model.addAttribute("pContent", pContent);
 		model.addAttribute("star", star);	
 		model.addAttribute("rname", rname);
 		model.addAttribute("address", address);
+		}catch (Exception e) {
+			 // 오류 시 PostException 동작
+			throw new PostException(e.getMessage());
+		 }
 		return "post/insertPost";
 	}
 	
 		//식당 상세페이지에서 게시글 등록(조은성)
 	@RequestMapping("/post/restaurantInsert.do")
 	public String restaurantInsert(String rname,String address, Model model) {
-	
+	 try {
 		model.addAttribute("rname", rname);
 		model.addAttribute("address", address);
+	 }catch (Exception e) {
+		 // 오류 시 PostException 동작
+		throw new PostException(e.getMessage());
+	 }
 		return "post/insertPost";
 	}
 
@@ -88,12 +99,12 @@ public class PostController {
 	@RequestMapping("/post/updatePostEnd.do")
 	   public String updatePostEnd(PostRequest postRequst, Model model, HttpSession session, HttpServletRequest request,
 	         @RequestParam(value="upFile", required= false) List<MultipartFile> upFile) {
-	    		System.out.println("updatePostEnd의 postRequst입니다" + postRequst);
+	    		
 	      String rName = postRequst.getRName();
 	      String address = postRequst.getAddress();
-			 int pno = postRequst.getPno();
+		  int pno = postRequst.getPno();
 	      int rno = postService.selectRestaurantName(rName);
-	      
+	      try {
 	      if(rno > 0) { // 가져오기 성공
 	         System.out.println("가져오기 성공");
 	      } else { // 없는 경우 레스토랑 테이블에 추가 해줘야 한다.
@@ -120,11 +131,7 @@ public class PostController {
 	      post.setStar(postRequst.getStarValue());
 	      post.setPNo(postRequst.getPno()); 
 	      post.setRNo(rno);
-	      
-	      System.out.println("DB에 입력되는 값:" + post);
-	      
-	   
-   
+	
 	      //1. 파일을 저장할 경로 생성
 	      String saveDir = session.getServletContext().getRealPath("/resources/upload/post");
 	      
@@ -136,14 +143,13 @@ public class PostController {
 	      if(dir.exists() == false) dir.mkdirs();  // getRealPath 경로에 폴더가 없으면 만들어주고 있으면 나두는 코드
 
 	       //3. 파일 업로드 시작 (MultipartFile 사용 시)
-	      System.out.println("사진:"+ upFile);
+
 	      // for (Object obj : files)
 	      // files를 하나씩 객체를 꺼내서 obj에 넣어준다..
 	      int i = 0;
 	      for(MultipartFile f : upFile) {
 	         if(!f.isEmpty()) {
-	            String originName = f.getOriginalFilename();
-	            System.out.println(originName);
+	            String originName = f.getOriginalFilename();	         
 	            String ext = originName.substring(originName.lastIndexOf(".")+1);
 	            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
 	         
@@ -179,7 +185,7 @@ public class PostController {
 
 	      try {
 	         result = postService.updatePost(post, pictureList);
-	         System.out.println("result입니다" + result);
+	    
 	         // PNO
 	      } catch(Exception e) {
 	         System.err.print(e.getMessage());
@@ -200,6 +206,10 @@ public class PostController {
 	       }
 
 	       model.addAttribute("loc", loc).addAttribute("msg", msg);
+	      }catch (Exception e) {
+				 // 오류 시 PostException 동작
+				throw new PostException(e.getMessage());
+			 }
 
 	       return "common/msg";
 
@@ -213,10 +223,8 @@ public class PostController {
 	     	   
 	      String rName = postRequst.getRName();
 	      String address = postRequst.getAddress();
-	   
-
 	      int rno = postService.selectRestaurantName(rName);
-	      
+	      try {
 	      if(rno > 0) { // 가져오기 성공
 	         System.out.println("가져오기 성공");
 	      } else { // 없는 경우 레스토랑 테이블에 추가 해줘야 한다.
@@ -243,8 +251,7 @@ public class PostController {
 	      post.setStar(postRequst.getStarValue());
 	      post.setRNo(rno);
 	      
-	      System.out.println("DB에 입력되는 값:" + post);
-	      
+	  
 	   
       
 	      //1. 파일을 저장할 경로 생성
@@ -265,7 +272,7 @@ public class PostController {
 	      for(MultipartFile f : upFile) {
 	         if(!f.isEmpty()) {
 	            String originName = f.getOriginalFilename();
-	            System.out.println(originName);
+	          
 	            String ext = originName.substring(originName.lastIndexOf(".")+1);
 	            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
 	         
@@ -324,6 +331,10 @@ public class PostController {
 
 	       model.addAttribute("loc", loc).addAttribute("msg", msg);
 
+	      }catch (Exception e) {
+				 // 오류 시 PostException 동작
+				throw new PostException(e.getMessage());
+			 }
 	       return "common/msg";
 
 	   }

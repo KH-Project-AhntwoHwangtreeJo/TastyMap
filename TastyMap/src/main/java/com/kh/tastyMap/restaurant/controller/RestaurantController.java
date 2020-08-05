@@ -17,10 +17,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.tastyMap.bookmark.model.service.BookmarkService;
 import com.kh.tastyMap.bookmark.model.vo.Bookmark;
+import com.kh.tastyMap.member.model.exception.MemberException;
 import com.kh.tastyMap.post.model.vo.Picture;
 import com.kh.tastyMap.post.model.vo.PostList;
-import com.kh.tastyMap.restaurant.model.exception.searchBarPostException;
-import com.kh.tastyMap.restaurant.model.exception.searchBarRestaurantException;
+/*import com.kh.tastyMap.restaurant.model.exception.searchBarPostException;
+import com.kh.tastyMap.restaurant.model.exception.searchBarRestaurantException;*/
+import com.kh.tastyMap.restaurant.model.exception.RestauranException;
 import com.kh.tastyMap.restaurant.model.service.RestaurantService;
 import com.kh.tastyMap.restaurant.model.vo.Restaurant;
 import com.kh.tastyMap.restaurant.model.vo.RestaurantList;
@@ -152,7 +154,7 @@ public class RestaurantController {
 				
 			} catch(Exception e) {
 			
-				throw new searchBarRestaurantException(e.getMessage());
+				/* throw new searchBarRestaurantException(e.getMessage()); */
 			}
 			
 		} else if(searchOption.equals("Post")){
@@ -167,7 +169,7 @@ public class RestaurantController {
 				
 			} catch (Exception e){
 				
-				throw new searchBarPostException(e.getMessage());
+				/* throw new searchBarPostException(e.getMessage()); */
 			}
 		}
 		
@@ -188,22 +190,20 @@ public class RestaurantController {
 	//식당 디테일 페이지 - 주변식당 리스트(조은성) 
 	@RequestMapping("/restaurant/restaurantaround.do")
 	@ResponseBody
-	public Map<String, List<Restaurant>> Raround(String address, Model model) {	 
-		  List<Restaurant> adr = restaurantService.Raround(address);
-		  
-		  for( Restaurant s: adr) {
-			
-			  
-		  }
-		 
-		  
-		  Map<String,List<Restaurant>> map = new HashMap<String, List<Restaurant>>();
-		
-		  
-		  
-		  map.put("adr",adr);
-		  return map;
-		  
+	public Map<String,List<Restaurant>> Raround(String address, Model model) {	 		
+		   Map<String,List<Restaurant>> map = new HashMap<String, List<Restaurant>>();
+		  try {
+			  //주변 식당 정보 받아오는 객체 생성
+			 List<Restaurant> adr = restaurantService.Raround(address);
+			  //HashMap에 전달
+			 map.put("adr",adr);
+			 	
+		 } catch (Exception e) {
+			 // 오류 시 RestaurantException 동작
+			throw new RestauranException(e.getMessage());
+		 }
+		 				  
+		  return map;		  
 	}
 	
 	
@@ -219,7 +219,7 @@ public class RestaurantController {
 		String C ="";
 		String D ="";
 		String E ="";
-	
+		
 //		 식당 디테일 페이지 
 //		 1. 식당 기본정보(리스트) 가져오기
 //		 2. 해당하는 식당 사진 불러오기 
@@ -229,42 +229,32 @@ public class RestaurantController {
 //	     6. 리뷰 
 //		 7. 리뷰갯수
 //		 8. 리뷰 사진						
-//		 9. 주변식당 리스트 출력
-		
+//		 9. 주변식당 리스트 출력		
+		try {		
 //			1. 식당 기본정보(리스트) 가져오기
-		Restaurant R = restaurantService.restaurantDetail(rno);	
-		System.out.println(R.getAddress());
-//			2. 사진 리스트 불러오기
-		List<Picture> list = restaurantService.pictureList(rno);
-		
-//  		3. 북마크 조회 하기 
-		Bookmark bookmark = new Bookmark(memberId,rno);
-		int result =bookmarkService.selectBookmark(bookmark);
-	
-		if (result == 0) { // SELECT해서 COUNT한 결과가 없을 때 
-			status = "N";
-		}else if(result == 1) { // SELECT해서 COUNT한 결과가 있을 때
-			status ="Y";
-		}else {
-			status="null"; 
-		}
-		
-	
+		Restaurant R = restaurantService.restaurantDetail(rno);				
+//			2. 사진 리스트 불러오기					
+			List<Picture> list = restaurantService.pictureList(rno);				
+//  		3. 북마크 조회 하기 		
+			Bookmark bookmark = new Bookmark(memberId,rno);
+			int result =bookmarkService.selectBookmark(bookmark);
+			
+			if (result == 0) { // SELECT해서 COUNT한 결과가 없을 때 
+				status = "N";
+			}else if(result == 1) { // SELECT해서 COUNT한 결과가 있을 때
+				status ="Y";
+			}else {
+				status="null"; 
+			}					
 //		4. 막대 차트 
-		List<Map<String, String>> chart = restaurantService.restaurantChart(rno);
-
-  
-   		for( Map<String, String> r : chart ) {
-   			
-   			 M = String.valueOf((r.get("남자")));
-   			 F = String.valueOf((r.get("여자")));	
-   		}
-   		
-//   	5. 원형 차트	
-   	   List<Map<String, String>> chartTwo = restaurantService.restaurantChartTwo(rno);
-   	 
-	   
-   		
+			List<Map<String, String>> chart = restaurantService.restaurantChart(rno); 
+			for( Map<String, String> r : chart ) {
+				
+				M = String.valueOf((r.get("남자")));
+				F = String.valueOf((r.get("여자")));	
+			}			  		
+//   	5. 원형 차트			
+   	   List<Map<String, String>> chartTwo = restaurantService.restaurantChartTwo(rno);	
    		for( Map<String, String> e : chartTwo ) {
 			
 	   		 A = String.valueOf((e.get("10대")));
@@ -272,41 +262,42 @@ public class RestaurantController {
 			 C = String.valueOf((e.get("30대")));
 			 D = String.valueOf((e.get("40대")));
 			 E = String.valueOf((e.get("50대 이상")));
-		}
-		
+		}			
 //       	6. 리뷰
 		List<PostList> RPost = restaurantService.restaurantPost(rno);		
 //		 	7. 리뷰 사진
 		List<Picture> RPicture = restaurantService.restaurantPicture(rno);		
 //			8. 리뷰갯수
-		  int PostNumber = restaurantService.restaurantPostTwo(rno);
+		int PostNumber = restaurantService.restaurantPostTwo(rno);
 		String Pnum = String.valueOf(PostNumber);
 		
 			
 //	        9. 주변식당 리스트 출력 
 		List<Restaurant> adr = restaurantService.Raround(R.getAddress());
-				  
-		map.put("Pnum",Pnum);	
-		map.put("M",M);
-		map.put("F",F);
-		map.put("A",A);
-		map.put("B",B);
-		map.put("C",C);
-		map.put("D",D);
-		map.put("E",E);
+			
+//		    hashMap 저장
+		 map.put("Pnum",Pnum);	
+		 map.put("M",M);
+		 map.put("F",F);
+		 map.put("A",A);
+		 map.put("B",B);
+		 map.put("C",C);
+		 map.put("D",D);
+		 map.put("E",E);
 		 map.put("status",status);
 		 model.addAttribute("map", map);
 		 model.addAttribute("restaurant", R);				 
 		 model.addAttribute("list", list);
 		 model.addAttribute("RPost", RPost);
 		 model.addAttribute("RPicture", RPicture);
-		 model.addAttribute("adr", adr);
-		
-		 
-		 
+		 model.addAttribute("adr", adr);		 
+		}catch (Exception e) {
+			 // 오류 시 RestaurantException 동작
+			throw new RestauranException(e.getMessage());
+		 }				 
 		return "restaurant/restaurantDetail";    
 		
-		
+			
 	}
 	
 		
