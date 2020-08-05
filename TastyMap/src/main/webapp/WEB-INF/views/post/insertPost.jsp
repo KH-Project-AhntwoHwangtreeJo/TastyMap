@@ -94,6 +94,21 @@
 		}*/
 
 </script>
+<script>
+function check(){
+    var send = true;
+    if(! $("input[type='file']").val()){
+       alert("사진을 등록해주세요!");
+       send=false;
+    }
+    if(! $("input[name='starValue']").val()){
+       alert("별점을 등록해주세요!");
+       send=false;
+    }
+    
+    return send;
+ };
+</script>
 </head>
 <body>
     
@@ -117,11 +132,11 @@
           <div class="col-md-6 align-items-stretch d-flex">
             <form method="post" action="${pageContext.request.contextPath}/post/insertPostEnd.do" class="bg-light p-5 contact-form" enctype="multipart/form-data">
               <!--사진 업로드-->
-              <div class="wrap-input100 validate-input m-b-23"  data-validate = "Username is reauired">
+              <div class="wrap-input100 validate-input m-b-23"  data-validate = "Username is required">
                 <span class="label-input100" ></span>		
-                <label class="upLoad" for="upFile" ><img src="${pageContext.request.contextPath}/resources/images/add-photo.png"  style="width: 50px;"></label>
-                <br><input  multiple="multiple" type="file" id="upFile" name="upFile" onchange="loadImg(this);" style="display:none;">
-                <span class="focus-input100" ></span>
+                <label class="upLoad"  id="upLoad" for="upFile" ><img src="${pageContext.request.contextPath}/resources/images/add-photo.png"  style="width: 50px;"></label>
+                <br><input  multiple="multiple" type="file" id="upFile" name="upFile" onchange="loadImg(this);" style="display:none;" required>
+               <!--  <span class="focus-input100" ></span> -->
               </div><!--// 사진 업로드 끝-->
 
               <!--올린 사진 미리보기로 뽑아주기(최대 10장까지-->
@@ -193,13 +208,13 @@
 </div> --%>
               <div class="callbackDiv">
               
-                <input type="text" class="form-control" value="${address}" id="roadFullAddr" name="address"  placeholder="주소검색을 눌러주세요" readonly required>
+                <input type="text" class="form-control" value="${address}" id="roadFullAddr" name="address"  placeholder="주소검색을 눌러주세요" required>
                 <input type="text" 	value="${rname}" id="rName" name="rName" placeholder="식당이름" readonly></input>
                 <button class="btn btn-primary py-3 px-4" id="address" onclick="goAddress();">주소검색</button>
               </div>
 
               <!-- 별점 (0.5까지 포함해서 5점 만점)-->
-              <div class="star-box">
+              <div class="star-box" id="star">
                 <span class="star star_left" data-rate=0.5></span>
                 <span class="star star_right" data-rate=1.0></span>
               
@@ -215,22 +230,11 @@
                <span class="star star_left" data-rate=4.5></span>
                <span class="star star_right" data-rate=5.0></span>
                <!-- <div id="myStar"> -->
-               	<input type="text" id="starValue" name="starValue" style="display:none;"></input>
+               	<input type="text" id="starValue" name="starValue" style="display:none;" required></input>
             
                <!-- <div type="text" id="passwdMsg"></div> -->
                <!-- <input type="text" class="form-control" name="userName" id="userName" readonly="readonly"> -->
               </div>   
-              
-          
-              
-              
-              
-              
-              
-              
-              
-              
-              
               
 
              
@@ -241,8 +245,9 @@
                 <textarea class="form-control" name="pContent" cols="30" rows="7" placeholder="글 작성" required></textarea>
               </div>
               <div class="btnArea">
-                <input type="submit" value="올리기" class="btn btn-primary py-3 px-5">
-                <input type="reset" value="취소" class="btn btn-info py-3 px-5">
+                <input type="submit" id="submit" value="올리기" class="btn btn-primary py-3 px-5" onclick="check()">
+              
+                <input type="reset" value="작성 취소" class="btn btn-info py-3 px-5">
               </div>
             </form>
           </div>        
