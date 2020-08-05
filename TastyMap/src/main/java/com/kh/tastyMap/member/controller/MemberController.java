@@ -116,10 +116,15 @@ public class MemberController {
 		Map<String, Object> map = new HashMap<String, Object>(); 
 		Follower follower = new Follower(memberId, followerId);
 		
+		try {
 		boolean isUsable = memberService.followerCancel(follower) != 0 ? true : false;
 		
 		map.put("isUsable", isUsable);
 		
+		} catch (Exception e) {
+			
+			throw new MemberException(e.getMessage());
+		}
 		// @ResponseBody는 결과가 viewResolver로 가지 않고, 직접 그 결과 자체를 화면으로 전달한다
 		
 		return map;
@@ -131,11 +136,16 @@ public class MemberController {
 	   Map<String, Object> map = new HashMap<String, Object>(); 
 		Follower follower = new Follower(memberId, followerId);
 		
+		try {
 		boolean isUsable = memberService.followingCancel(follower) != 0 ? true : false;
 		
 		map.put("isUsable", isUsable);
 		
 		// @ResponseBody는 결과가 viewResolver로 가지 않고, 직접 그 결과 자체를 화면으로 전달한다
+		} catch (Exception e) {
+			
+			throw new MemberException(e.getMessage());
+		}
 		
 		return map;
   }
@@ -188,9 +198,11 @@ public class MemberController {
             messageHelper.setText(content, true); // 메일 내용
             
             mailSender.send(message);
+            
         } catch (Exception e) {
-            System.out.println(e);
-        }
+			
+			throw new MemberException(e.getMessage());
+		}
         
         ModelAndView mv = new ModelAndView();    //ModelAndView로 보낼 페이지를 지정하고, 보낼 값을 지정한다.
         mv.setViewName("/member/email_injeung");     //뷰의이름
@@ -217,6 +229,7 @@ public class MemberController {
          
         ModelAndView mv = new ModelAndView();
         
+        try {
         mv.setViewName("/member/join.do");
         
         mv.addObject("e_mail",email_injeung);
@@ -259,8 +272,12 @@ public class MemberController {
     
             return mv2;
             
-        }    
-    
+        }  
+        
+        } catch (Exception e) {
+			
+			throw new MemberException(e.getMessage());
+		}
         return mv;
         
     }
@@ -290,6 +307,7 @@ public class MemberController {
       Date birth = Date.valueOf(birth0 + "-" + birth1 + "-" + birth2);
       String mstatus = "Y";
       
+      try {
       // 프로필사진 저장할 폴더
       String savePath = request.getSession().getServletContext().getRealPath("/resources/images/profileImage");
       
@@ -365,6 +383,10 @@ public class MemberController {
       model.addAttribute("loc", loc); // like request.setAttribute("loc", loc);
       model.addAttribute("msg", msg);
       
+      } catch (Exception e) {
+			
+			throw new MemberException(e.getMessage());
+		}
       
       return "common/msg";
    }
@@ -373,11 +395,17 @@ public class MemberController {
 	@ResponseBody
 	public Map<String, Object> responseBodyProcess(String memberId){
 		Map<String, Object> map = new HashMap<String, Object>(); 
+		
+		try {
 		boolean isUsable = memberService.checkIdDuplicate(memberId) == 0 ? true : false;
 		map.put("isUsable", isUsable);
 		
 		// @ResponseBody는 결과가 viewResolver로 가지 않고, 직접 그 결과 자체를 화면으로 전달한다
 		
+		} catch (Exception e) {
+			
+			throw new MemberException(e.getMessage());
+		}
 		return map;
 	}
 	@RequestMapping("/member/checkPassword.do")
@@ -385,6 +413,8 @@ public class MemberController {
 	public Map<String, Object> respenseBodyProcess(@RequestParam String memberId,@RequestParam  String password){
 		
 		Map<String, Object> map = new HashMap<String, Object>();
+		
+		try {
 		Member m = memberService.selectOne(memberId);
 		
 		boolean isUsable;
@@ -397,6 +427,12 @@ public class MemberController {
          }
 		
 		map.put("isUsable", isUsable);
+		
+		
+		} catch (Exception e) {
+			
+			throw new MemberException(e.getMessage());
+		}
 		
 		return map;
 		
@@ -468,7 +504,14 @@ public class MemberController {
 	   Member member = new Member(userName, birth);
 	   
 	   
+	   try {
+	   
 	   model.addAttribute("findId", memberService.findIdMember(member));
+	   
+	   } catch (Exception e) {
+			
+			throw new MemberException(e.getMessage());
+		}
 	   
 	   return "member/yourId";
    }
@@ -500,8 +543,13 @@ public class MemberController {
    @RequestMapping("/member/goMemberUpdate.do")
    public String goMemberUpdate(@RequestParam String memberId,@RequestParam String password, Model model) {
 
+	   try {
       model.addAttribute("member", memberService.selectOne(memberId));
       
+	   } catch (Exception e) {
+			
+			throw new MemberException(e.getMessage());
+		}
       return "member/updateMember";
    }
          
@@ -524,7 +572,7 @@ public class MemberController {
       
       File dir = new File(savePath);
       
-      
+      try {
       if (dir.exists() == false) dir.mkdirs();
       String renamedFileName = "";
       
@@ -606,6 +654,11 @@ public class MemberController {
       
       model.addAttribute("member", m);
       
+      } catch (Exception e) {
+			
+			throw new MemberException(e.getMessage());
+		}
+      
       return "common/msg";
    }
          
@@ -613,7 +666,9 @@ public class MemberController {
       @RequestMapping("/member/myPage.do")
       public String myPage(@RequestParam String memberId, PostList post, Model model, HttpSession session) {
     	  String member_Id=memberId;
-    	  System.out.println(member_Id);
+    	  
+    	  try {
+
     	  List<PostList> list = memberService.myPage(member_Id);
     	  
     	  model.addAttribute("list",list);
@@ -680,6 +735,10 @@ public class MemberController {
      		//System.out.println("countrys : " + countrys);
      		//System.out.println("ctyCounts : " + ctyCounts);
      		
+    	  } catch (Exception e) {
+  			
+  			throw new MemberException(e.getMessage());
+  		}
           return "myPage/myPage";
       }
       
@@ -689,10 +748,15 @@ public class MemberController {
       public Map<String, Object> clickFollower(@RequestParam String memberId, @RequestParam String followerId, Model model, HttpSession session) {
     	  Map<String, Object> map;
     	  
+    	  try {
     	  Follower follower = new Follower(memberId, followerId);
     	  
     	  map = memberService.clickFollower(follower);
     	  
+    	  } catch (Exception e) {
+  			
+  			throw new MemberException(e.getMessage());
+  		}
     	  return map;
       }
 }
