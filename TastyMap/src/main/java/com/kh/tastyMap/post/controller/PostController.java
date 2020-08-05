@@ -383,19 +383,25 @@ public class PostController {
 		Map<String, Object> map = new HashMap<String, Object>(); // 좋아요 조회용
 		// 5. 댓글 정보
 		List<PostComment> PComment = postService.commentList(pNo);
-		
+		// 6. 해당 포스트에 신고된 댓글번호 리스트
+		List commentNoReportList = reportService.selectCommentReportList(pNo);
+				
 		String status; // 좋아요 조회용 결과를 받아올 변수
 		String pstatus; // 포스트 신고 조회용  결과를 받아올 변수
+		String pcstatus; // 포스트 댓글 신고 조회용 결과 받아올 변수
 		//-------------------------------------//
 	
 		// <변수 실행부>
 		Love love = new Love(memberId, pNo); // 좋아요 조회용
 		Report report = new Report(memberId, pNo); // 포스트 신고 조회용
+		//Report creport = new Report(memberId, cno); // 댓글 신고 조회용
 		postService.updatePCNT(pNo);
-
+		
 		int result= loveService.selectLove(love); // 좋아요 조회용
 
 		int presult = reportService.selectPostReport(report); // 포스트 신고 조회용
+		int pcresult = reportService.selectCommentReport(report);// 댓글 신고 조회용
+		System.out.println("controller : " + pcresult);
 		
 		// 좋아요 조회 결과에 따른 상태 선언 조건문
 		if (result == 0) { // SELECT해서 COUNT 한 결과가 없을 때
@@ -415,15 +421,27 @@ public class PostController {
 		} else { 
 			pstatus = "null"; 
 		}
+		
+		// 댓글 신고 조회 조건문
+		if (pcresult == 0) { // SELECT 해서 COUNT 한 결과가 없을때 (신고 안한거) -댓글 
+			pcstatus = "N"; 
+		} else if(pcresult == 1) { // SELECT 해서 COUNT 한 결과가 있을 때 (신고 한거) - 댓글 
+			pcstatus = "Y"; 
+		} else { 
+			pcstatus = "null"; 
+		}
 		 
-	
 		
 		map.put("status", status); // 좋아요 결과 넣어줌
 		map.put("pstatus", pstatus); // 게시글 신고 결과 넣어줌		
+		map.put("pstatus", pstatus); // 게시글 신고 결과 넣어줌
+		map.put("pcstatus", pcstatus); // 댓글 신고 결과 넣어줌
+		
 		model.addAttribute("post", p) // 포스트 기본 정보
 			 .addAttribute("postDetailPhotoList", postPhoto) // 포스트 내 사진 정보
 			 .addAttribute("map", map) // 좋아요 정보 & 게시글 신고 정보
-			 .addAttribute("PComment", PComment); // 댓글 정보
+			 .addAttribute("PComment", PComment) // 댓글 정보
+			 .addAttribute("commentNoReportList", commentNoReportList); // 해당 포스트에 신고된 댓글번호 리스트
 		
 		String member_Id = memberId;
 		int pno = pNo;
@@ -438,15 +456,6 @@ public class PostController {
 	
 
 	
-	// (게시글 상세페이지) 댓글 리스트
-	@RequestMapping("/post/postCommentList.do")
-	@ResponseBody 
-	public List<PostComment> postCommentList(@RequestParam int pNo, Model model, @RequestParam String memberId) {
-		List<PostComment> PComment = postService.commentList(pNo);
-		
-		model.addAttribute("PComment", PComment);
-		
-		return PComment;
-	}
+
 	
 }

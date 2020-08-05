@@ -234,5 +234,60 @@
 	</div>
 	<!-- 로그인 모달 끝-->
 	
-	
+	<script>
+		var socket = null;
+		
+		$(document).ready(function(){
+			connectWs();
+		});
+		
+		function connectWs(){
+			sock = new SockJS("<c:url value='/echo'/>");
+			
+			socket = sock;
+			
+			sock.onopen = function() {
+				console.log('info: connection opened.');
+			};
+			
+			sock.onmessage = function(evt) {
+				var data = evt.data;
+				console.log("ReceivMessage : " + data + "\n");
+				
+				$.ajax({ // 알람 울릴때 마다 비동기로 알림 숫자 변경해주기
+					url : '',
+					type : 'POST',
+					dataType : 'text',
+					success : function(data) {
+						if(data =='0'){
+						} else {
+							$('#alarmCountSpan').addClass('bell-badge-danger bell-bage')
+							$('#alarmCountSpan').text(data);
+						}
+					},
+					error:function(err){
+						alert('err');
+						
+					}
+				});
+				
+				// 모달 알림
+				var toastTop = app.toast.create({
+					text : "알림 : " + data + "\n",
+					position : "top",
+					closeButton : true,
+				});
+				toastTop.open();
+			};
+			
+			sock.onclose = function() {
+				console.log('connect close');
+			};
+			
+			sock.onerror = function (err) {console.log('Errors : ', err);};
+		}
+		
+		var AlarmData = 
+	</script>
+		
 </html>

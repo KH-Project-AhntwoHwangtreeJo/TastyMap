@@ -17,12 +17,12 @@ public class LoveServiceImpl implements LoveService {
 	@Autowired
 	LoveDAO loveDAO;
 	
+	// 좋아요 클릭시
 	@Override
 	public Map<String, Object> clickLove(Love love) {
 		
 		int result = loveDAO.selectLoveOne(love);
 		
-		System.out.println(result);
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		String msg;
@@ -59,7 +59,8 @@ public class LoveServiceImpl implements LoveService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
+	// 좋아요 확인하는 메소드
 	@Override
 	public int selectLove(Love love) {
 		return loveDAO.selectLoveOne(love);

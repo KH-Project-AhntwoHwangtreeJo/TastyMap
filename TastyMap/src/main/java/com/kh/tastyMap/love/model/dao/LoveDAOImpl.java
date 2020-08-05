@@ -16,16 +16,19 @@ public class LoveDAOImpl implements LoveDAO {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
+	// 좋아요 눌렀는지 확인용
 	@Override
 	public int selectLoveOne(Love love) {
 		return sqlSession.selectOne("loveMapper.selectPostLove", love);
 	}
 
+	// 좋아요 추가
 	@Override
 	public int insertLove(Love love) {
 		return sqlSession.insert("loveMapper.insertPostLove", love);
 	}
 
+	// 좋아요 삭제
 	@Override
 	public int deleteLove(Love love) {
 		return sqlSession.delete("loveMapper.deletePostLove", love);

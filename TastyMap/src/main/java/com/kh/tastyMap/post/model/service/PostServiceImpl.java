@@ -156,6 +156,7 @@ public class PostServiceImpl implements PostService {
 		return postDAO.updatePCNT(pNo);
 	}
 	
+	// 포스트 내 댓글리스트
 	@Override
 	public List<PostComment> commentList(int pNo) {
 		return postDAO.commentList(pNo);

@@ -4,6 +4,11 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reportMapper">
 
+	<!-- 해당 포스트에서 신고된 댓글 번호 -->
+	<resultMap id="ReportCommentList" type="map">
+		<result property="ReportCommentList" column="REPORT_NO"/>
+	</resultMap>
+	
 	<!-- ● 게시글 신고 확인 -->
 	<select id ="postReportCheck" parameterType="Report" resultType="_int">
 		SELECT COUNT(*) 
@@ -15,7 +20,7 @@
 	<!-- ●게시글 신고 -->
 	<insert id="insertPostReport" parameterType="Report">
 		INSERT INTO REPORT
-		VALUES(#{memberId}, #{reportNo}, 'P', 'R')
+		VALUES(SEQ_REPORT.NEXTVAL, #{memberId}, #{reportNo}, 'P', 'R')
 	</insert>
 	
 	<!-- ●댓글 신고 확인 -->
@@ -28,9 +33,19 @@
 	<!-- ●댓글 신고 -->
 	<insert id="insertCommentReport" parameterType="Report">
 		INSERT INTO REPORT
-		VALUES(#{memberId}, #{cno}, 'C', 'R'}
+		VALUES( #{memberId}, #{reportNo}, 'C', 'R', SEQ_RENO.NEXTVAL)
 	</insert>
-	
+
+	<!-- ●해당 포스트에서 신고된 댓글 번호 -->
+	<select id="commentReportSelect" parameterType="_int" resultMap="ReportCommentList">
+		SELECT REPORT_NO, MEMBER_ID
+		FROM REPORT
+		WHERE REPORT_TYPE='C' 
+	    AND REPORT_NO in (SELECT COMMENT_SEQ
+	                      FROM POST_COMMENT
+	                      WHERE PNO= #{pNo}
+	                      AND CSTATUS='Y')
+	</select>
 </mapper>
 
 

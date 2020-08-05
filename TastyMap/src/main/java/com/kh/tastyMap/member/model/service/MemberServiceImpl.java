@@ -41,7 +41,7 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.deleteMember(memberId);
 	}
 
-
+	// 마이갤러리
 	@Override
 	public Member myGallery(String memberId) {
 		return memberDAO.myGallery(memberId);
@@ -66,21 +66,25 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.updateMember2(member);
 	}
 	
+	// 팔로우 팔로워 게시글 개수 조회
 	@Override
 	public Map<String, Object> followAndPostCnt(String memberId) {
 		return memberDAO.followAndPostCnt(memberId);
 	}
 	
+	// 마이갤러리 대표사진 조회
 	@Override
 	public List myGalleryPhoto(String memberId) {
 		return memberDAO.myGalleryPhoto(memberId);
 	}
 
+	// 팔로우 됐는지 조회하는 메소드
 	@Override
 	public int selectFollower(Follower follower) {
 		return memberDAO.selectFollower(follower);
 	}
 	
+	// 팔로우 클릭시
 	@Override
 	public Map<String, Object> clickFollower(Follower follower) {
 		
