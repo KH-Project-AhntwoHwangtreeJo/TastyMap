@@ -2,14 +2,14 @@
 
 ## 1. Subject (주제)
 - 
-
+<br/>
 ## 2. Development environment (개발 환경)
 - 
-
+<br/>
 ## 3. development schedule(개발일정)
 - 2020-06-29(Mon)~ 2020-08-09(Sun) 42 days
 
-
+<br/>
 ## 4. Contributors (구성원)
 - SungA Cho (sunga0720@naver.com)
 - YeJin Ahn 
@@ -17,7 +17,7 @@
 - EunSung Jo
 - HyunMin Jo
 - HaYoung Hwang
-
+<br/>
 ## 5. Introduction to Services
 
 ### 1) Main
@@ -27,6 +27,7 @@
 #### 1-2) Influencer's post
 - img
 - 설명(조현민)
+<br/>
 
 ### 2) Mypage
 ##### 2-1) Mypage Main
@@ -41,6 +42,7 @@
 #### 2-4) Myimfo
 - img
 - 설명(조현민)
+<br/>
 
 ### 3) Post
 #### 3-1) Post List
@@ -49,6 +51,7 @@
 #### 3-2) Post Detail
 - img
 - 설명(황창현)
+<br/>
 
 ### 4) Restaurant
 #### 4-1) Restaurant List
@@ -57,10 +60,12 @@
 #### 4-2) Restaurant Detail
 - img
 - 설명(조은성)
+<br/>
 
 ### 5) Gallery
 - img
 - 설명(황창현)
+<br/>
 
 ### 6) Admin
 #### 6-1) Member
