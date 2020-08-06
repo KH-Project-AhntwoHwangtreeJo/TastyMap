@@ -30,7 +30,7 @@
 ### 1) Main
 #### 1-1) Popular restaurant Top8
 - img
-- 설명()
+- 설명(조현민)
 #### 1-2) Influencer's post
 - img
 - 설명(조현민)
@@ -39,48 +39,72 @@
 - 설명(조현민)
 <br/>
 
+### 2) Member
+#### 2-1) Sign
+- img
+- 설명(황하용)
+#### 2-2) Login
+- img
+- 설명(황하용)
+<br/>
 
-### 2) Mypage
-##### 2-1) Mypage Main
+
+### 3) Mypage
+#### 3-1) Mypage Main
 - img
 - 설명(조현민)
-#### 2-2) LikeList
+#### 3-2) LikeList
 - img
 - 설명(조현민)
-#### 2-3) BookmarkList
+#### 3-3) BookmarkList
 - img 
 - 설명(조현민)
-#### 2-4) Myimfo
+#### 3-4) Information update
 - img
-- 설명(조현민)
+- 설명(황하용)
 <br/>
 
-### 3) Post
-#### 3-1) Post List
+### 4) Post
+#### 4-1) Post List
 - img
 - 설명(안예진)
-#### 3-2) Post Detail
+#### 4-2) Post Detail
 - img
 - 설명(황창현)
-<br/>
-
-### 4) Restaurant
-#### 4-1) Restaurant List
-- img
-- 설명(안예진)
-#### 4-2) Restaurant Detail
+#### 4-3) Post update & delete
 - img
 - 설명(조은성)
 <br/>
 
-### 5) Gallery
+### 5) Restaurant
+#### 5-1) Restaurant List
 - img
-- 설명(황창현)
+- 설명(안예진)
+#### 5-2) Restaurant Detail
+- img
+- 설명(조은성)
 <br/>
 
-### 6) Admin
-#### 6-1) Member
+### 6) Gallery
+- img
+- 설명 (황창현)
+<br/>
+
+### 7) Admin
+#### 7-1) Member
 - img
 - 설명 (조성아)
-
+#### 7-2) Restaurant
+(1) Restaurant List
+- img
+- 설명 (조성아)
+(2) Restaurant Register
+- img
+- 설명 (황하용)
+#### 7-3) Post
+- img
+- 설명 (조성아)
+#### 7-4) Report
+- img
+- 설명 (조성아)
 <hr/>  
