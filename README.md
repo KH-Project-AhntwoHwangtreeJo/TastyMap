@@ -32,38 +32,38 @@
 ##### 2-1) Mypage Main
 - img
 - 설명(조현민)
-#2-2) LikeList
+#### 2-2) LikeList
 - img
 - 설명(조현민)
-#2-3) BookmarkList
+#### 2-3) BookmarkList
 - img 
 - 설명(조현민)
-#2-4) Myimfo
+#### 2-4) Myimfo
 - img
 - 설명(조현민)
 
-##3) Post
-#3-1) Post List
+### 3) Post
+#### 3-1) Post List
 - img
 - 설명(안예진)
-#3-2) Post Detail
+#### 3-2) Post Detail
 - img
 - 설명(황창현)
 
-##4) Restaurant
-#4-1) Restaurant List
+### 4) Restaurant
+#### 4-1) Restaurant List
 - img
 - 설명(안예진)
-#4-2) Restaurant Detail
+#### 4-2) Restaurant Detail
 - img
 - 설명(조은성)
 
-##5) Gallery
+### 5) Gallery
 - img
 - 설명(황창현)
 
-##6) Admin
-#6-1) Member
+### 6) Admin
+#### 6-1) Member
 - img
 - 설명 (조성아)
 
