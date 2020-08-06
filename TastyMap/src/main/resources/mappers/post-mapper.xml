@@ -20,8 +20,8 @@
 	
 	<!-- 식당이름이 등록안되있으면 추가 -->
 	<insert id="insertFirstRestaurant" parameterType="Map"> 
-       INSERT INTO RESTAURANT(RNO, RNAME, ADDRESS) 
-       VALUES(SEQ_RES.NEXTVAL, #{rNameParam}, #{addressParam})
+    INSERT INTO RESTAURANT(RNO, RNAME, ADDRESS, ADMINSTATUS) 
+       VALUES(SEQ_RES.NEXTVAL, #{rNameParam}, #{addressParam},'R')
 	</insert>
 	
 	<!-- 게시글 등록 -->
