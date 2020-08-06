@@ -1,6 +1,4 @@
 # TastyMap
-<hr/>  
-## about TastyMap Project
 
 ##1. Subject (주제)
 - 
