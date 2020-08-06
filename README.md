@@ -10,6 +10,7 @@
 - 2020-06-29(Mon)~ 2020-08-09(Sun) 42 days
 
 <br/>
+
 ## 4. Contributors (구성원)
 - SungA Cho (sunga0720@naver.com)
 - YeJin Ahn 
@@ -17,6 +18,7 @@
 - EunSung Jo
 - HyunMin Jo
 - HaYoung Hwang
+
 <br/>
 ## 5. Introduction to Services
 
