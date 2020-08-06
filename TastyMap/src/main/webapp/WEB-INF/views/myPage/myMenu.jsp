@@ -10,7 +10,7 @@
             <br><br>
             <ul class="list-group" style="width: auto; text-align:center">
               <li class="list-group-item" >
-              	<img class="rounded-circle"src="/tastyMap/resources/images/person_1.jpg" style="width:auto; height:100px"/><br />
+              	<img class="rounded-circle"src="/tastyMap/resources/images/profileImage/${member.mphoto}" style="width:100px; height:100px"/><br />
               	<b>${member.nickname}</b><br />
               	<p style="font-size:10px;">${member.mcontent}</p>
               </li>

@@ -462,6 +462,10 @@ to {
 	margin-left: 0;
 }
 }
+
+.blacklink {
+	color: gray;
+}
 </style>
 
 
@@ -558,11 +562,11 @@ to {
 								<div class="media-body pl-4">
 									<p>게시글 : ${myPostCnt}</p>
 									<p>
-										<a href="#followListModal" data-toggle="modal"
+										<a class="blacklink" href="#followListModal" data-toggle="modal"
 											data-target="#followListModal">팔로워 : ${followerCnt}</a>
 									</p>
 									<p>
-										<a href="#followListModal" data-toggle="modal"
+										<a class="blacklink" href="#followListModal" data-toggle="modal"
 											data-target="#followListModal">팔로우 : ${followingCnt}</a>
 									</p>
 								</div>
@@ -666,7 +670,7 @@ to {
     <div class="center" style="width: 350px; height: 50px; border: 1px solid lightgray; border-radius: 4%; margin-top: 5px;">
                 <img src="${pageContext.request.contextPath}/resources/images/profileImage/${followings.mphoto}"
 			   						class="rounded-circle" style="width:49px; height: 49px; margin-right: 10px"alt="">
-			   	 <span style="font-size: 16px;">${followings.nickname}(${followings.userName})
+			   	 <span style="font-size: 16px;"><a class="blacklink" href="${pageContext.request.contextPath}/member/myGallery.do?memberId=${followings.fmemberId}&followerId=${member.memberId}">${followings.nickname}</a>(${followings.userName})
                </span>
                        
                         <button type="button" id="followingCancel" onclick="followingCancel('${followings.fmemberId}', this);" class="btn btn-danger float-right" style="width:100px; height:30px; margin-top: 8px; margin-right: 7px;">
@@ -693,7 +697,7 @@ to {
                 <img src="${pageContext.request.contextPath}/resources/images/profileImage/${followers.mphoto}"
 			   						class="rounded-circle" style="width:49px; height: 49px; margin-right: 10px"alt="">
 			  
-             <span style="font-size: 16px;">${followers.nickname}(${followers.userName})
+             <span style="font-size: 16px;"><a class="blacklink" href="${pageContext.request.contextPath}/member/myGallery.do?memberId=${followers.fmemberId}&followerId=${member.memberId}">${followers.nickname}</a>(${followers.userName})
                </span>
                         <button type="button" id="followerCancel" onclick="followerCancel('${followers.fmemberId}',this);" class="btn btn-danger float-right" style="width:100px; height:30px; margin-top: 8px; margin-right: 7px;">
                             팔로잉취소

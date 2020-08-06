@@ -96,9 +96,9 @@
 			   	</a>
 			</li>
            <li class="nav-item"><a href="${pageContext.request.contextPath}/member/memberLogout.do" class="nav-link"><img src="${pageContext.request.contextPath}/resources/images/logout.png"  style="width:31px; height:31px" alt=""></a></li>
-           <c:if test="${memberId eq user1 }">
+           <c:if test="${member.memberId eq 'admin'}">
            	<li class="nav-item"><a href="${pageContext.request.contextPath}/admin/adminMain.do" class="nav-link">admin</a></li>
-           </c:if>
+          </c:if>
          </c:if>
            </ul>
          </div>
