@@ -38,9 +38,9 @@ public class RestaurantController {
 	
 	// 식당 전체리스트 출력(안예진)
 	@RequestMapping("/restaurant/restaurantAllList.do")
-	   public List restaurantAllList(Model model) {
+	   public String restaurantAllList(Model model) {
 	     
-
+		try {
 	      
 	      List<RestaurantList> RList = restaurantService.restaurantAllList();
 	         
@@ -55,6 +55,7 @@ public class RestaurantController {
 	   			
 	   			
 	   			// 카테고리 별 출력하기 // 한식/중식/일식/양식/기타(디저트등등..)
+	   			
 	   			for(RestaurantList r : RList) {
 	   				if("한식".equals(r.getCategory())){
 	   					kList.add(r);
@@ -85,11 +86,14 @@ public class RestaurantController {
 	      model.addAttribute("etcList", etcList);
 	      model.addAttribute("totalContent", totalContent);
 	   
-
+		} catch (Exception e) {
+			// 오류 시 RestaurantException 동작
+			throw new RestaurantException(e.getMessage());
+		}
 	      
 	      
 	      
-	   return kList;
+	   return "restaurant/restaurantAllList";
 	}
 	
 	

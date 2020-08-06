@@ -87,7 +87,7 @@
 									<div class="blog-entry justify-content-end">
 										<div class="text">
 											<a
-												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=1&memberId=${member.memberId}"
+												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=${A.rno}&memberId=${member.memberId}"
 												class="block-20 img" id="trd"
 												style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.PRenamedName}');">
 											</a>
@@ -119,7 +119,7 @@
 									<div class="blog-entry justify-content-end">
 										<div class="text">
 											<a
-												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=${rno}&memberId=${member.memberId}"
+												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=${A.rno}&memberId=${member.memberId}"
 												class="block-20 img" id="trd"
 												style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.PRenamedName}');">
 											</a>
@@ -150,7 +150,7 @@
 									<div class="blog-entry justify-content-end">
 										<div class="text">
 											<a
-												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=${rno}&memberId=${member.memberId}"
+												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=${A.rno}&memberId=${member.memberId}"
 												class="block-20 img" id="trd"
 												style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.PRenamedName}');">
 											</a>
@@ -180,12 +180,11 @@
 						aria-labelledby="nav-contact3-tab">
 						<div class="row">
 							<c:forEach var="A" items="${ jList }">
-								<%-- 	<c:if test="${ A.category eq '일식' }"> --%>
 								<div class="col-md-3 d-flex ">
 									<div class="blog-entry justify-content-end">
 										<div class="text">
 											<a
-												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=${rno}&memberId=${member.memberId}"
+												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=${A.rno}&memberId=${member.memberId}"
 												class="block-20 img" id="trd"
 												style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.PRenamedName}');">
 											</a>
@@ -218,7 +217,7 @@
 									<div class="blog-entry justify-content-end">
 										<div class="text">
 											<a
-												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=1&memberId=${member.memberId}"
+												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?${A.rno}&memberId=${member.memberId}"
 												class="block-20 img" id="trd"
 												style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.PRenamedName}');">
 											</a>
@@ -250,7 +249,7 @@
 									<div class="blog-entry justify-content-end">
 										<div class="text">
 											<a
-												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=1&memberId=${member.memberId}"
+												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=${A.rno}&memberId=${member.memberId}"
 												class="block-20 img" id="trd"
 												style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.PRenamedName}');">
 											</a>
@@ -281,7 +280,7 @@
 									<div class="blog-entry justify-content-end">
 										<div class="text">
 											<a
-												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=1&memberId=${member.memberId}"
+												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=${A.rno}&memberId=${member.memberId}"
 												class="block-20 img" id="trd"
 												style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.PRenamedName}');">
 											</a>
@@ -313,7 +312,7 @@
 									<div class="blog-entry justify-content-end">
 										<div class="text">
 											<a
-												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=1&memberId=${member.memberId}"
+												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=${A.rno}&memberId=${member.memberId}"
 												class="block-20 img" id="trd"
 												style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.PRenamedName}');">
 											</a>
