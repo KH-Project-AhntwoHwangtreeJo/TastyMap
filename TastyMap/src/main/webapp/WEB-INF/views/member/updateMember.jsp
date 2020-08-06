@@ -155,18 +155,8 @@
                         </button>
                     </div>
                 </form>
-       <!--          <form name="form" id="form" method="post">
-
-	<input type="button" onClick="goPopup();" value="팝업_domainChk"/>
-	<div id="list"></div>
-	<div id="callBackDiv">
-		<table>
-			<tr><td>도로명주소 전체(포멧)</td><td><input type="text"  style="width:500px;" id="roadFullAddr"  name="roadFullAddr" /></td></tr>
-
-		</table>
-	</div>
-
-</form> -->
+                
+	<!-- 계정 탈퇴시 나올 modal -->
             </div>
 		<div class="modal fade" id="delectMemberModal" tabindex="-1" role="dialog" aria-labelledby="delectMemberLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
@@ -197,6 +187,8 @@
 	    </div>
 	  </div>
 	</div>
+	
+	<!-- 계정 탈퇴시 나올 modal 끝 -->
         </article>
        
       <!-- // container -->
@@ -224,6 +216,7 @@
 	  //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
 	}
 	
+	// 계정 탈퇴를 누르고 계정삭제라고 제대로 쳣는지 확인해주는 function}
 	 function deleteMember(){
 		 if(($('#checkDelete').val()) == '계정삭제'){
 			 
@@ -283,7 +276,7 @@
 
 		}
 	
-	
+	// 프로필 바꿧을 때 이미지 업로드용 function
 	function imgUpload(){
 		$('#test').click();
 	}
@@ -304,7 +297,7 @@
 		}
 	}
 
-	
+	// 유효성 검사 function들 insert와 동일
 		$(function(){			
 			
 			/* 아이디 유효성체크  */
