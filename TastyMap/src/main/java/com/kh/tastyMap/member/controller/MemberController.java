@@ -110,6 +110,27 @@ public class MemberController {
       return "post/myGallery";
    }
    
+   
+// 팔로워 클릭시 
+   @RequestMapping("member/clickFollower.do")
+   // ↓ ajax 사용해서 값만 여기로 보낼때 사용한다.
+   @ResponseBody  
+   public Map<String, Object> clickFollower(@RequestParam String memberId, @RequestParam String followerId, Model model, HttpSession session) {
+ 	  Map<String, Object> map;
+ 	  
+ 	  try {
+ 	  Follower follower = new Follower(memberId, followerId);
+ 	  
+ 	  map = memberService.clickFollower(follower);
+ 	  
+ 	  } catch (Exception e) {
+			
+			throw new MemberException(e.getMessage());
+		}
+ 	  return map;
+   }
+   
+   // 팔로워 삭제 버튼
    @RequestMapping("/member/followerCancel.do")
 	@ResponseBody
 	public Map<String, Object> followerCancel(@RequestParam String memberId, @RequestParam String followerId, Model model, HttpSession session){
@@ -129,52 +150,36 @@ public class MemberController {
 		
 		return map;
 	}
-  
-  @RequestMapping("/member/followingCancel.do")
-  @ResponseBody
-  public Map<String, Object>followingCancel(@RequestParam String memberId, @RequestParam String followerId, Model model, HttpSession session){
-	   Map<String, Object> map = new HashMap<String, Object>(); 
-		Follower follower = new Follower(memberId, followerId);
-		
-		try {
-		boolean isUsable = memberService.followingCancel(follower) != 0 ? true : false;
-		
-		map.put("isUsable", isUsable);
-		
-		// @ResponseBody는 결과가 viewResolver로 가지 않고, 직접 그 결과 자체를 화면으로 전달한다
-		} catch (Exception e) {
-			
-			throw new MemberException(e.getMessage());
-		}
-		
-		return map;
-  }
-  
+   
+
+   // 주소입력 api 연결
    @RequestMapping("/member/jusoPopup.do")
    public String jusoPopup() {
       
       return "member/jusoPopup";
    }
    
-   
+// 이메일인증 api 연결 
 	@RequestMapping("/member/emailAuth.do")
 	public String emailAuth() {
 		
 		return "member/email";
 	}
 	
+	// 아이디 찾기 창 띄움
 	@RequestMapping("/member/goFindId.do")
 	public String goFindId() {
 		return "member/findId";
 	}
    
+	// 이메일 보내기 눌렀을시 실제 가게 되는 이메일 제작
 	@RequestMapping( value = "/member/auth.do" , method=RequestMethod.POST )
     public ModelAndView mailSending(HttpServletRequest request, String e_mail, HttpServletResponse response_email) throws IOException {
 
         Random r = new Random();
         int dice = r.nextInt(4589362) + 49311; //이메일로 받는 인증코드 부분 (난수)
         String tomail = request.getParameter("e_mail"); // 받는 사람 이메일
-        String setfrom = "fpdlqm123@gamil.com";
+        String setfrom = "fpdlqm123@gamil.com"; //보내는사람
         
         String title = "회원가입 인증 이메일 입니다."; // 제목
         String content =
@@ -282,12 +287,15 @@ public class MemberController {
         
     }
 	
+    // 회원가입 페이지로 넘어감
     @RequestMapping("/member/goInsertMember.do")
     public String goInsertMember() {
     	return "member/insertMember";
     }
     
+    // 회원가입
    @RequestMapping("/member/insertMember.do")
+   // jsp 에서 받을 때 name 값을 다 다르게줘서 하나하나 준 모습이다
    public String InsertMember(@RequestParam("inputId0") String memberId,
                         @RequestParam("inputPassword0") String password,
                         @RequestParam("inputName") String userName,
@@ -391,6 +399,7 @@ public class MemberController {
       return "common/msg";
    }
    
+   // 아이디 중복체크
 	@RequestMapping("/member/checkIdDuplicate.do")
 	@ResponseBody
 	public Map<String, Object> responseBodyProcess(String memberId){
@@ -408,6 +417,8 @@ public class MemberController {
 		}
 		return map;
 	}
+	
+	// 회원정보수정페이지로 넘어가기전에 비밀번호 확인
 	@RequestMapping("/member/checkPassword.do")
 	@ResponseBody
 	public Map<String, Object> respenseBodyProcess(@RequestParam String memberId,@RequestParam  String password){
@@ -438,6 +449,7 @@ public class MemberController {
 		
 	}
 	
+	// 로그인
    @RequestMapping(value="/member/memberLogin.do",method=RequestMethod.POST)
    public ModelAndView memberLogin(
          @RequestParam("inputId") String memberId,
@@ -491,9 +503,12 @@ public class MemberController {
       return mav;
    }
    
+   // 아이디 찾기
    @RequestMapping("/member/findId.do")
    public String findId(@RequestParam("findIdName") String userName,
 	         @RequestParam("findIdBirth") String birth1 , Model model) throws ParseException {
+	   
+	   // 데이터 베이스에 yy/mm/dd 라고 저장되어있기때문에 6글자로 받아온 birth1을 데이터베이스 형식에 맞춰줌
 	   SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
 	   java.util.Date d1 = sdf.parse(birth1);
 	   sdf.applyPattern("yyyy-MM-dd");
@@ -516,6 +531,7 @@ public class MemberController {
 	   return "member/yourId";
    }
    
+   // 로그아웃
    @RequestMapping("/member/memberLogout.do")
    public String memberLogout(SessionStatus status) {
       // SessionStatus 는 현재 사용자가 접속한 웹 브라우저와 서버 사이의 세션의 설정을 가지는 객체
@@ -527,6 +543,7 @@ public class MemberController {
       return "redirect:/";
    }
    
+   // 회원탈퇴 (회원탈퇴시 세션비워줌)
    @RequestMapping("/member/deleteMember.do")
    public String deleteMember(@RequestParam("memberId") String memberId,
 		   					Model model, SessionStatus status) {
@@ -661,7 +678,28 @@ public class MemberController {
       
       return "common/msg";
    }
-         
+        
+   // 팔로잉 취소 버튼
+   @RequestMapping("/member/followingCancel.do")
+   @ResponseBody
+   public Map<String, Object>followingCancel(@RequestParam String memberId, @RequestParam String followerId, Model model, HttpSession session){
+ 	   Map<String, Object> map = new HashMap<String, Object>(); 
+ 		Follower follower = new Follower(memberId, followerId);
+ 		
+ 		try {
+ 		boolean isUsable = memberService.followingCancel(follower) != 0 ? true : false;
+ 		
+ 		map.put("isUsable", isUsable);
+ 		
+ 		// @ResponseBody는 결과가 viewResolver로 가지 않고, 직접 그 결과 자체를 화면으로 전달한다
+ 		} catch (Exception e) {
+ 			
+ 			throw new MemberException(e.getMessage());
+ 		}
+ 		
+ 		return map;
+   }
+   
    	 /**
 	  * 마이페이지에 지도 마커와 카테고리별 차트, 지역별 차트 출력 서블릿
 	  * @author Hyunmin Jo, Yejin An
@@ -735,23 +773,5 @@ public class MemberController {
   		}
           return "myPage/myPage";
       }
-      
-   // 팔로워 클릭시 
-      @RequestMapping("member/clickFollower.do")
-      // ↓ ajax 사용해서 값만 여기로 보낼때 사용한다.
-      @ResponseBody  
-      public Map<String, Object> clickFollower(@RequestParam String memberId, @RequestParam String followerId, Model model, HttpSession session) {
-    	  Map<String, Object> map;
-    	  
-    	  try {
-    	  Follower follower = new Follower(memberId, followerId);
-    	  
-    	  map = memberService.clickFollower(follower);
-    	  
-    	  } catch (Exception e) {
-  			
-  			throw new MemberException(e.getMessage());
-  		}
-    	  return map;
-      }
+
 }

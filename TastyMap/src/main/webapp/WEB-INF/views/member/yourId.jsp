@@ -41,18 +41,37 @@
           <!--로그인폼 -->
           <!-- https://getbootstrap.com/docs/4.1/components/forms/#overview -->
           <br><br><br><br>
-          <h5 class="" id="loginModalLabel" style="text-align: center">당신의 아이디는 ${ findId } 입니다</h5>
+          <c:if test="${ !empty findId }">
+          	<h5 class="" id="loginModalLabel" style="text-align: center">당신의 아이디는 ${ findId } 입니다</h5>
           <br><br>
          <div class="form-group text-center">
-          <button type="button" id="findId-submit" class="btn btn-primary" onclick="returnLogin();" style="width: 60%; height: 50px;">
+         	 <button type="button" id="findId-submit" class="btn btn-primary" onclick="returnLogin();" style="width: 60%; height: 50px;">
                           확인
-          </button>
+          	</button>
           </div>
-        </div>      
+          </c:if>
+          
+          <c:if test="${ empty findId }">
+          	<h5 class="" id="loginModalLabel" style="text-align: center">이름이나 생년월일을 잘못입력 하셨습니다</h5>
+          	<br><br>
+          	<div class="form-group text-center">
+         	 <button type="button" id="findId-submit" class="btn btn-primary" onclick="goback();" style="width: 60%; height: 50px;">
+                          다시입력
+          	</button>
+          </div>
+          </c:if>
+          
+      </div>      
                 
 <script>
+// 아이디 출력햇으면 로그인모달로 복귀
 function returnLogin(){
 	window.close();
+	
+}
+// 아이디 출력못했으면 다시 입력
+function goback(){
+	history.back();
 }
 </script>
 

@@ -78,6 +78,8 @@
         </div>      
                 
 <script>
+
+// 빈칸으로 놔둿을 경우 입력해달라고 alert 출력
 function findId() {
 
 	  if(($('#findIdName').val()) == "") {

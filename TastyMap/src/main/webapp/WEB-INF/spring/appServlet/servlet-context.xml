@@ -57,6 +57,7 @@
 		      <interceptor>
 		          <!-- 인터셉터가 동작할 주소 -->
 		          <!-- 특정 URL 경로를 로그인 여부로 차단하기 -->
+		          <!-- member 관련 모든 서블릿 차단 -->
 		          <mapping path="/member/**/**.do" />
 		          <mapping path="/admin/**/*.do"/>
 		          <mapping path="/restaurant/**/*.do" />
@@ -64,15 +65,25 @@
 		          <mapping path="/bookmark/iHaveBookmarkList.do" />
 		          <mapping path="/love/iHaveLoveList.do" />
 		          <mapping path="/member/myPage.do" />
+		          <!-- 로그인 기능 -->
 		          <exclude-mapping path="/member/memberLogin.do" />
+		          <!-- 회원가입시, 주소입력 -->
 		          <exclude-mapping path="/member/jusoPopup.do" />
+		          <!-- 회원가입시, 이메일 인증 -->
 		          <exclude-mapping path="/member/emailAuth.do" />
+		          <!-- 로그인전 아이디 찾기 이동 -->
 		          <exclude-mapping path="/member/goFindId.do" />
+		          <!-- 회원가입시, 이메일 인증 페이지 이동-->
 		          <exclude-mapping path="/member/auth.do" />
+		          <!-- 회원가입시, 이메일 인증번호 -->
 		          <exclude-mapping path="/member/join_injeung.do{dice}" />
+		          <!-- 회원가입페이지 이동 -->
 		          <exclude-mapping path="/member/goInsertMember.do" />
+		          <!-- 회워가입 -->
 		          <exclude-mapping path="/member/insertMember.do" />
+		          <!-- 아이디 중복처리 -->
 		          <exclude-mapping path="/member/checkIdDuplicate.do" />
+		          <!-- 로그인전  아이디 찾기-->
 		          <exclude-mapping path="/member/findId.do" />
 		          <exclude-mapping path="/restaurant/restaurantAllList.do" />
 		          <exclude-mapping path="/restaurant/restaurantDatail.do"/>
