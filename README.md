@@ -1,16 +1,16 @@
 # TastyMap
 
-##1. Subject (주제)
+## 1. Subject (주제)
 - 
 
-##2. Development environment (개발 환경)
+## 2. Development environment (개발 환경)
 - 
 
-##3. development schedule(개발일정)
+## 3. development schedule(개발일정)
 - 2020-06-29(Mon)~ 2020-08-09(Sun) 42 days
 
 
-##4. Contributors (구성원)
+## 4. Contributors (구성원)
 - SungA Cho (sunga0720@naver.com)
 - YeJin Ahn 
 - ChangHyun Hwang
@@ -18,18 +18,18 @@
 - HyunMin Jo
 - HaYoung Hwang
 
-##5. Introduction to Services
+## 5. Introduction to Services
 
-##1) Main
-1-1) Popular restaurant Top8
+### 1) Main
+#### 1-1) Popular restaurant Top8
 - img
 - 설명()
-1-2) Influencer's post
+#### 1-2) Influencer's post
 - img
 - 설명(조현민)
 
-##2) Mypage
-#2-1) Mypage Main
+### 2) Mypage
+##### 2-1) Mypage Main
 - img
 - 설명(조현민)
 #2-2) LikeList
