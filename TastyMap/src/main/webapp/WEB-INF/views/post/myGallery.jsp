@@ -755,29 +755,29 @@ to {
 			var followerId = "${member.memberId}";
 
 			//var state =0;
-			$
-					.ajax({
-						url : '${pageContext.request.contextPath}/member/clickFollower.do',
-						data : {
-							memberId : memberId,
-							followerId : followerId
-						},
-						dataType : 'json',
-						success : function(data) {
-							if (data.status == "Y") {
-								document.getElementById('followerimg').src = "${pageContext.request.contextPath}/resources/images/follower/follower2.png";
-							} else {
-								document.getElementById('followerimg').src = "${pageContext.request.contextPath}/resources/images/follower/follower1.png";
-							}
-							alert(data.msg);
-						},
-						error : function(req, status, error) {
-							console.log(req);
-							console.log(status);
-							console.log(error);
-							alert('에러임');
-						}
-					});
+			$.ajax({
+				url : '${pageContext.request.contextPath}/member/clickFollower.do',
+				data : {
+					memberId : memberId,
+					followerId : followerId
+				},
+				dataType : 'json',
+				success : function(data) {
+					if (data.status == "Y") {
+						document.getElementById('followerimg').src = "${pageContext.request.contextPath}/resources/images/follower/follower2.png";
+					} else {
+						document.getElementById('followerimg').src = "${pageContext.request.contextPath}/resources/images/follower/follower1.png";
+					}
+					alert(data.msg);
+				},
+				error : function(req, status, error) {
+					console.log(req);
+					console.log(status);
+					console.log(error);
+					alert('에러임');
+				}
+			});
+			
 		}
 
 		function followerCancel(obj, button) {

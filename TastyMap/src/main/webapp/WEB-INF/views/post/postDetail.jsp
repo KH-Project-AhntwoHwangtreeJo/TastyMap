@@ -529,8 +529,10 @@ to {
 
           <div class="col-md-8 ftco-animate">
             <br>
+            <a href="${pageContext.request.contextPath}/member/myGallery.do?memberId=${post.member_Id}&followerId=${member.memberId}">
             <h4 class="mb-3" style="float: left;"> ${ post.nickname } </h4> 
-           
+           	</a>
+           	
 			<!-- 경로 복사하기 -->
 			<a href="#urlCopyBtn" class="urlCopyBtn">
 				<span class="urlCopyBtnIcon" style="margin-left:10px; float: right;">URL복사</span>
@@ -559,7 +561,7 @@ to {
 	      		</c:if>
             </c:if>     
             <c:if test ="${post.member_Id eq member.memberId and !empty member.memberId}">
-            	 <img id="deleteimage" onclick="" border="0" src="${pageContext.request.contextPath}/resources/images/delete/delete.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;">
+            	 <img id="deleteimage" onclick="location.href='${pageContext.request.contextPath}/post/postDelete.do?pNo=${post.PNo}'" border="0" src="${pageContext.request.contextPath}/resources/images/delete/delete.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;">
  
             </c:if>
             
@@ -624,10 +626,12 @@ to {
 					<c:forEach items="${PComment}" var="PComment" varStatus="status">
 						
 						<li class="comment" style="margin-left : ${(PComment.level -1) * 30}px; width : ${800 - ((PComment.level-1) * 15)}px;">
-							<div class="vcard bio">
-								<img src="${pageContext.request.contextPath}/resources/images/profileImage/${PComment.mphoto}" alt="Image placeholder" style="margin-bottom: 5px;">
-								<h6>${PComment.nickname}</h6>
-							</div>
+								<div class="vcard bio">
+									<a href="${pageContext.request.contextPath}/member/myGallery.do?memberId=${PComment.cwriter}&followerId=${member.memberId}" style= " disabled :false">
+										<img src="${pageContext.request.contextPath}/resources/images/profileImage/${PComment.mphoto}" alt="Image placeholder" style="margin-bottom: 5px;">
+										<h6>${PComment.nickname}</h6>
+									</a>
+								</div>
 							<div class="comment-body" id="commentadd" style="margin-bottom : 5px;">
 								<c:if test="${ !empty member.memberId }">
 									<c:if test="${PComment.cwriter eq member.memberId}">
@@ -640,15 +644,13 @@ to {
 										<input type="hidden" name="cwriter" class="cwriter" value="${member.memberId}"/>
 										<input type="hidden" id="cno" class="cnoplace" name="cno" value="${PComment.cno}"/>
 										<input type="hidden" name="level" class="level" value="${PComment.level}"/>
-										
-										<img class="commentreportimage" id="commentreportimage" onclick="changeCommentReport(this);" border="0" src="${pageContext.request.contextPath}/resources/images/report/siren1.png"  style="display:block;width: 30px; height: 30px; float: right; margin-right: 7px;">
+											
 											<c:forEach items="${commentNoReportList}" var="commentNoReportList"  >
-									            <c:if test="${ PComment.cno eq commentNoReportList.ReportCommentList and member.memberId eq commentNoReportList.MEMBER_ID}">
-									            	<img class="commentreportimage" onclick="changeCommentReport(this);" border="0" src="${pageContext.request.contextPath}/resources/images/report/siren2.png"  style="display:block;width: 30px; height: 30px; float: right; margin-right: 7px;">
-									      		</c:if>
-									      		<%-- <c:if test="${ PComment.cno ne commentNoReportList.ReportCommentList}"> --%>
-									      		<%-- </c:if> --%>
+									            
+									            	<img class="commentreportimage" onclick="changeCommentReport(this);" border="0" src="${pageContext.request.contextPath}/resources/images/report/${ PComment.cno eq commentNoReportList.ReportCommentList and member.memberId eq commentNoReportList.MEMBER_ID ? 'siren2.png' : 'siren1.png' }"  style="display:block;width: 30px; height: 30px; float: right; margin-right: 7px;">
+									      		
 								      		</c:forEach>
+								      		
 										<button type="button" class="btn btn-outline-info" onclick="reComment(this);" style="float: right; margin-right: 5px;" >답글 달기</button>
 										<button type="button" class="btn btn-outline-info insertConfirm" onclick="reConfirm(this);" style="display:none; float: right; margin-right: 5px;" >답글 완료</button>
 									</c:if>

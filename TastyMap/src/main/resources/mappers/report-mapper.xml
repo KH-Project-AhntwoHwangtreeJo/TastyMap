@@ -20,7 +20,7 @@
 	<!-- ●게시글 신고 -->
 	<insert id="insertPostReport" parameterType="Report">
 		INSERT INTO REPORT
-		VALUES(SEQ_REPORT.NEXTVAL, #{memberId}, #{reportNo}, 'P', 'R')
+		VALUES(SEQ_RENO.NEXTVAL, #{memberId}, #{reportNo}, 'P', 'R')
 	</insert>
 	
 	<!-- ●댓글 신고 확인 -->
@@ -33,7 +33,7 @@
 	<!-- ●댓글 신고 -->
 	<insert id="insertCommentReport" parameterType="Report">
 		INSERT INTO REPORT
-		VALUES( #{memberId}, #{reportNo}, 'C', 'R', SEQ_RENO.NEXTVAL)
+		VALUES(SEQ_RENO.NEXTVAL, #{memberId}, #{reportNo}, 'C', 'R')
 	</insert>
 
 	<!-- ●해당 포스트에서 신고된 댓글 번호 -->
