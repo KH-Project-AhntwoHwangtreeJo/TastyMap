@@ -84,15 +84,6 @@ function fileDelete() {
       }
       readFile(0);//초기화
    }
-				//var bin = e.target.result;
-				//console.log("#upFile" + index);
-				$("#upFile" + index).attr('src', e.target.result);
-				readFile(index + 1);// 0부터 시작하니깐 끝날때마다 +1씩 더해준다.
-			}
-			reader.readAsDataURL(value.files[index]); // 0,1,2
-		}
-		readFile(0);//초기화
-	}
 
    function goAddress(){
       
@@ -119,31 +110,6 @@ function fileDelete() {
             var
          }
       }*/
-	function goAddress(){
-		
-		var add = window.open("${pageContext.request.contextPath}/post/resAddress.do","add","width=570,height=420, scrollbars=yes, resizable=yes");
-		//var vReturn = window.showModalDialog(url, "_blank", sFeatures);
-		 //document.formname.textfield.value = vReturn;
-		//document.formname.rName.value = add;
-	}
-	
-	/* function jusoCallBack(roadFullAddr, title){
-		// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
-		console.log(roadFullAddr);
-		console.log(title);
-		//document.form.roadFullAddr.value = roadFullAddr;
-		
-	}*/
-	 
-	/* $.ajax({
-		url :"${pageContext.request.contextPath}/post/resAddress.do",
-		dataType : "json",
-		type : "POST",
-		success : function(result){
-			for(var i=0; i<result.length; i++){
-				var
-			}
-		}*/
 
 </script>
 <script>
@@ -188,7 +154,7 @@ function check(){
        
         <div class="row block-9 justify-content-center mb-5">
           <div class="col-md-6 align-items-stretch d-flex">
-            <form method="post" action="${pageContext.request.contextPath}/post/insertPostEnd.do" class="bg-light p-5 contact-form" enctype="multipart/form-data">
+            <form method="post"  class="bg-light p-5 contact-form" enctype="multipart/form-data">
               <!--사진 업로드-->
               <div class="wrap-input100 validate-input m-b-23"  data-validate = "Username is required">
                 <span class="label-input100" ></span>      

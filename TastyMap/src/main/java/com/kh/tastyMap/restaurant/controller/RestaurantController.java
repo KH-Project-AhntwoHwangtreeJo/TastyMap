@@ -208,99 +208,104 @@ public class RestaurantController {
 		  return map;		  
 	}
 	
-	
-    //식당 디테일 페이지 - 전체 기능(조은성)
-	@RequestMapping("/restaurant/restaurantDatail.do")
-	public String RestaurantDetail(@RequestParam int rno, @RequestParam String memberId, Model model) {	
-		Map<String, String> map =new HashMap<String, String>();
-		String status;
-		String M="";
-		String F="";
-		String A ="";
-		String B ="";
-		String C ="";
-		String D ="";
-		String E ="";
-		
-//		 식당 디테일 페이지 
-//		 1. 식당 기본정보(리스트) 가져오기
-//		 2. 해당하는 식당 사진 불러오기 
-//		 3. 북마크 조회 하기 
-//		 4. 막대 차트 
-//		 5. 원형 차트
-//	     6. 리뷰 
-//		 7. 리뷰갯수
-//		 8. 리뷰 사진						
-//		 9. 주변식당 리스트 출력		
-		try {		
-//			1. 식당 기본정보(리스트) 가져오기
-		Restaurant R = restaurantService.restaurantDetail(rno);				
-//			2. 사진 리스트 불러오기					
-			List<Picture> list = restaurantService.pictureList(rno);				
-//  		3. 북마크 조회 하기 		
-			Bookmark bookmark = new Bookmark(memberId,rno);
-			int result =bookmarkService.selectBookmark(bookmark);
+	 //식당 디테일 페이지 - 전체 기능(조은성)
+		@RequestMapping("/restaurant/restaurantDatail.do")
+		public String RestaurantDetail(@RequestParam int rno, @RequestParam String memberId, Model model) {	
+			Map<String, String> map =new HashMap<String, String>();
+			String status;
+			String M="";
+			String F="";
+			String A ="";
+			String B ="";
+			String C ="";
+			String D ="";
+			String E ="";
 			
-			if (result == 0) { // SELECT해서 COUNT한 결과가 없을 때 
-				status = "N";
-			}else if(result == 1) { // SELECT해서 COUNT한 결과가 있을 때
-				status ="Y";
-			}else {
-				status="null"; 
-			}					
-//		4. 막대 차트 
-			List<Map<String, String>> chart = restaurantService.restaurantChart(rno); 
-			for( Map<String, String> r : chart ) {
+//			 식당 디테일 페이지 
+//			 1. 식당 기본정보(리스트) 가져오기
+//			 2. 해당하는 식당 사진 불러오기 
+//			 3. 북마크 조회 하기 
+//		     4. 리뷰 
+//			 5. 막대 차트 
+//			 6. 원형 차트
+//			 7. 리뷰갯수
+//			 8. 리뷰 사진						
+//			 9. 주변식당 리스트 출력		
+			try {		
+//				1. 식당 기본정보(리스트) 가져오기
+			Restaurant R = restaurantService.restaurantDetail(rno);		
+			
+//				2. 사진 리스트 불러오기					
+				List<Picture> list = restaurantService.pictureList(rno);				
+//	  		3. 북마크 조회 하기 		
+				Bookmark bookmark = new Bookmark(memberId,rno);
+			
+				int result =bookmarkService.selectBookmark(bookmark);
 				
-				M = String.valueOf((r.get("남자")));
-				F = String.valueOf((r.get("여자")));	
-			}			  		
-//   	5. 원형 차트			
-   	   List<Map<String, String>> chartTwo = restaurantService.restaurantChartTwo(rno);	
-   		for( Map<String, String> e : chartTwo ) {
-			
-	   		 A = String.valueOf((e.get("10대")));
-			 B = String.valueOf((e.get("20대")));
-			 C = String.valueOf((e.get("30대")));
-			 D = String.valueOf((e.get("40대")));
-			 E = String.valueOf((e.get("50대 이상")));
-		}			
-//       	6. 리뷰
-		List<PostList> RPost = restaurantService.restaurantPost(rno);		
-//		 	7. 리뷰 사진
-		List<Picture> RPicture = restaurantService.restaurantPicture(rno);		
-//			8. 리뷰갯수
-		int PostNumber = restaurantService.restaurantPostTwo(rno);
-		String Pnum = String.valueOf(PostNumber);
+				if (result == 0) { // SELECT해서 COUNT한 결과가 없을 때 
+					status = "N";
+				}else if(result == 1) { // SELECT해서 COUNT한 결과가 있을 때
+					status ="Y";
+				}else {
+					status="null"; 
+				}					
 		
+//	       	4. 리뷰
+				List<PostList> RPost = restaurantService.restaurantPost(rno);				
+//				리뷰가 없을 시 차트 X
+				if(RPost != null) {			
+//			5. 막대 차트 
+				
+				  List<Map<String, String>> chart = restaurantService.restaurantChart(rno);
+				  for( Map<String, String> r : chart ) {			  
+				  M = String.valueOf((r.get("남자"))); F = String.valueOf((r.get("여자"))); }
+				 
+//	   	6. 원형 차트			
+				
+				  List<Map<String, String>> chartTwo = restaurantService.restaurantChartTwo(rno); 
+				  for( Map<String, String> e : chartTwo ) {			  
+				  A = String.valueOf((e.get("10대"))); B = String.valueOf((e.get("20대"))); C =
+				  String.valueOf((e.get("30대"))); D = String.valueOf((e.get("40대"))); E =
+				  String.valueOf((e.get("50대 이상"))); }
+				}
+				
+				
+//			 	7. 리뷰 사진
+			List<Picture> RPicture = restaurantService.restaurantPicture(rno);			
+//				8. 리뷰갯수
+			int PostNumber = restaurantService.restaurantPostTwo(rno);		
+			String Pnum = String.valueOf(PostNumber);
 			
-//	        9. 주변식당 리스트 출력 
-		List<Restaurant> adr = restaurantService.Raround(R.getAddress());
+				
+//		        9. 주변식당 리스트 출력 
+			List<Restaurant> adr = restaurantService.Raround(R.getAddress());
 			
-//		    hashMap 저장
-		 map.put("Pnum",Pnum);	
-		 map.put("M",M);
-		 map.put("F",F);
-		 map.put("A",A);
-		 map.put("B",B);
-		 map.put("C",C);
-		 map.put("D",D);
-		 map.put("E",E);
-		 map.put("status",status);
-		 model.addAttribute("map", map);
-		 model.addAttribute("restaurant", R);				 
-		 model.addAttribute("list", list);
-		 model.addAttribute("RPost", RPost);
-		 model.addAttribute("RPicture", RPicture);
-		 model.addAttribute("adr", adr);		 
-		}catch (Exception e) {
-			 // 오류 시 RestaurantException 동작
-			throw new RestaurantException(e.getMessage());
-		 }				 
-		return "restaurant/restaurantDetail";    
+//			    hashMap 저장
+			 map.put("Pnum",Pnum);	
+			 map.put("M",M);
+			 map.put("F",F);
+			 map.put("A",A);
+			 map.put("B",B);
+			 map.put("C",C);
+			 map.put("D",D);
+			 map.put("E",E);
+			 map.put("status",status);  //북마크
+			 model.addAttribute("map", map);
+			 model.addAttribute("restaurant", R); //식당 기본 정보		 
+			 model.addAttribute("list", list);
+			 model.addAttribute("RPost", RPost);
+			 model.addAttribute("RPicture", RPicture);
+			 model.addAttribute("adr", adr);		 
+			}catch (Exception e) {
+				 // 오류 시 RestaurantException 동작
+				throw new RestaurantException(e.getMessage());
+			 }				 
+			return "restaurant/restaurantDetail";    
+			
+				
+		}
 		
-			
-	}
+   
 	
 		
 		
