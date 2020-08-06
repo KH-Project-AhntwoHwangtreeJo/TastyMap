@@ -32,30 +32,43 @@
         
         
 			<!-- 게시글 하나 시작-->
-			<div class="col-md-4">
-        		<div class="property-wrap ftco-animate">
-        			<div class="img d-flex align-items-center justify-content-center" style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${p.PRenamedName}');">
-        			
-        				<div class="list-agent d-flex align-items-center">
-        					<a href="${pageContext.request.contextPath}/post/postDetail.do?pNo=${p.pno}&memberId=${member.memberId}" class="agent-info d-flex align-items-center">
-        						<div class="img-2 rounded-circle" style="background-image: url('${pageContext.request.contextPath}/resources/images/profileImage/${P.MPhoto}');"></div>
-        						<h3 class="mb-0 ml-2">${p.nickName }</h3>
-        					</a>
-        				</div>
+					
+					<div class="col-md-4">
+						<div class="property-wrap ftco-animate">
+							<div class="img d-flex align-items-center justify-content-center"
+								style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${p.PRenamedName}');">
+							
+
+								<div class="list-agent d-flex align-items-center">
+									<a
+										href="${pageContext.request.contextPath}/member/myGallery.do?memberId=${member.memberId}&followerId=${member.memberId}"
+										class="agent-info d-flex align-items-center">
+										<div class="img-2 rounded-circle"
+											style="background-image: url('${pageContext.request.contextPath}/resources/images/profileImage/${P.MPhoto}');"></div>
+										<h3 class="mb-0 ml-2">${p.nickName }</h3>
+									</a>
+								</div>
+							</div>
+
+
+							<!-- 식당이름/주소-->
+							<div class="text">
+
+								<h3 class="mb-0">
+									<a
+										href="${pageContext.request.contextPath}/post/postDetail.do?pNo=${p.pno}&memberId=${member.memberId}">${p.RName }</a>
+								</h3>
+								<!-- <p style="margin-bottom: 0px;">한식</p> -->
+								<div class="star-box">★${p.star}점</div>
+								<!--별점 받아오는 부분-->
+								<span class="location d-inline-block mb-3"><i
+									class="ion-ios-pin mr-2"></i>${p.address }</span>
+							</div>
+							<!--//식당이름/주소 끝-->
+						</div>
 					</div>
-					<!-- 식당이름/주소-->
-        			<div class="text">
-        				
-						<h3 class="mb-0"><a href="${pageContext.request.contextPath}/post/postDetail.do?pNo=${p.pno}&memberId=${member.memberId}">${p.RName }</a></h3>
-						<!-- <p style="margin-bottom: 0px;">한식</p> -->
-						<div class="star-box">★${p.star}점</div><!--별점 받아오는 부분-->
-        				<span class="location d-inline-block mb-3"><i class="ion-ios-pin mr-2"></i>${p.address }</span>
-					</div>
-					<!--//식당이름/주소 끝-->
-        		</div>
-			</div>
-				
-			</c:forEach>
+
+				</c:forEach>
 			</div>
 			<!--// 게시글 하나 끝-->
         </div>

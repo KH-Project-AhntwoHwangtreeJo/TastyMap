@@ -49,10 +49,16 @@ public class PostController {
 		// String은 controller에서 view로 리턴할 때 model을 매개변수로 리턴한다.->postAllList로
 		public String postAllList(Model model) {
 			
+			try {
+			
 			List<PostList> postList = postService.postAllList();
 			//System.out.println(postList);
 		
 			model.addAttribute("postList", postList);
+			}catch (Exception e) {
+				 // 오류 시 PostException 동작
+				throw new PostException(e.getMessage());
+			 }
 			
 			return "post/postAllList";
 		}
@@ -343,14 +349,17 @@ public class PostController {
 	@RequestMapping("/post/postDelete.do")
 	public String postDelete(@RequestParam int pNo, HttpSession session, Model model) {
 		
-		
+		try {
 		
 		
 		int result2 = postService.deletePicture(pNo);
 		int result = postService.deletePost(pNo);
 		int result1= postService.deleteComment(pNo);
 		
-	
+		}catch (Exception e) {
+			 // 오류 시 PostException 동작
+			throw new PostException(e.getMessage());
+		 }
 		
 		return "post/myGallery";
 	}
@@ -446,8 +455,14 @@ public class PostController {
 		int pno = pNo;
 		//내 게시글에 좋아요한 사용자 리스트(안예진)
 		List<PostList> pList = postService.getLoveMemberList(pno);
+		try {
 		
 		model.addAttribute("pList" ,pList);
+		
+		}catch (Exception e) {
+			 // 오류 시 PostException 동작
+			throw new PostException(e.getMessage());
+		 }
 		
 		return "post/postDetail";
 			
