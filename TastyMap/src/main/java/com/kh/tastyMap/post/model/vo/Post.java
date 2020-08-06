@@ -23,15 +23,12 @@ public class Post implements Serializable{
 	private Date date;			// 게시일자
 	private String pContent;	// 게시글 내용
 	private int pCnt;			// 게시글 조회수
-	private double star;			// 게시글 별점
+	private double star;		// 게시글 별점
 	private String pStatus;		// 게시상태
 	private int picture_No;
 	
 	// 첨부파일 갯수 확인용 가상 변수
 	private int fileCount;
-	
-	// 별점 평균 가상변수
-	private int percent;
 	
 	private List<Picture> files = new ArrayList<Picture>();
 

@@ -18,19 +18,19 @@ public class PostList implements Serializable {
 
 	private static final long serialVersionUID = 162221L;
 	
-	private int pno;
-	private int rno;
-	private String member_Id;
-	private Date pDate;
-	private String pContent;
-	private int pCnt;
-	private double star;
-	private String pStatus;
-	private String mPhoto;
-	private String nickName;
-	private String pRenamedName;
-	private String rName;
-	private String address;								
+	private int pno;			// 게시글 고유키
+	private int rno;			// 식당 고유키
+	private String member_Id;	// 회원아이디
+	private Date pDate;			// 게시일자
+	private String pContent;	// 게시글 내용
+	private int pCnt;			// 게시글 조회수
+	private double star;		// 별점
+	private String pStatus;		// 게시상태
+	private String mPhoto;		// 회원 프로필사진
+	private String nickName;	// 회원 닉네임
+	private String pRenamedName;// PICTURE 변경사진 파일명
+	private String rName;		// 식당이름
+	private String address;		// 식당주소						
 	
 	
 	private List<Picture> files = new ArrayList<Picture>();

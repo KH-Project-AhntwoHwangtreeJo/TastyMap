@@ -362,6 +362,5 @@
 
 	</section>
 	<c:import url="/views/common/footer.jsp" />
-	
 </body>
 </html>

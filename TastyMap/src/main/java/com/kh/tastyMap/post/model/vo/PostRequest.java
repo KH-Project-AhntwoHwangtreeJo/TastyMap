@@ -18,18 +18,16 @@ public class PostRequest implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private String member_Id; 	// 회원 아이디
-	private String rName;
-	private String address;
+	private String rName;		// 식당이름
+	private String address;		// 식당주소
 	private String pContent;	// 게시글 내용
-	private double starValue;			// 게시글 별점
+	private double starValue;	// 게시글 별점
 	
 	  private int pno; // 수정용
 
 	// 첨부파일 갯수 확인용 가상 변수
 	private int fileCount;
 	
-	// 별점 평균 가상변수
-	private int percent;
 	
 	private List<Picture> files = new ArrayList<Picture>();
 

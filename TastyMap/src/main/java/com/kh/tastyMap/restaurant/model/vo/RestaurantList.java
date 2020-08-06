@@ -16,23 +16,23 @@ public class RestaurantList implements Serializable {
 	private static final long serialVersionUID = 4646L;
 	
 	
-	private int rno;
-	private int bno;
-	private String member_Id;
-	private String rName;
-	private String rcontent;
-	private String category;
-	private int price;
-	private String time;
-	private String tel;
-	private String address;
-	private String paking;
-	private Date updatedate;
+	private int rno;			// 식당 고유키
+	private int bno;			
+	private String member_Id;	// 회원아이디	
+	private String rName;		// 식당이름
+	private String rcontent;	// 식당 설명
+	private String category;	// 식당카테고리
+	private int price;			// 가격
+	private String time;		// 시간
+	private String tel;			// 전화번호
+	private String address;		// 주소
+	private String paking;		// 주차가능여부
+	private Date updatedate;		
 	private int latitude;
 	private int longitude;
-	private String rstatus;
-	private String pRenamedName;
-	private double avg_star;
-	private String nickName;
+	private String rstatus;		// 활성화상태
+	private String pRenamedName;// PICTURE	
+	private double avg_star;	// 평균 별점
+	private String nickName;	// 회원 닉네임
 
 }

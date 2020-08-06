@@ -60,9 +60,15 @@
            <ul class="navbar-nav ml-auto">
              <li class="nav-item active"><a href="${pageContext.request.contextPath}" class="nav-link">Home</a></li>
              <li class="nav-item"><a href="${pageContext.request.contextPath}/restaurant/restaurantAllList.do" class="nav-link">Restaurant</a></li>
-           <li class="nav-item"><a href="${pageContext.request.contextPath}/post/postAllList.do" class="nav-link">Post</a></li>
-           <li class="nav-item"><a href="${pageContext.request.contextPath}/post/insertPost.do" class="nav-link">Write</a></li>
-
+           	 <li class="nav-item"><a href="${pageContext.request.contextPath}/post/postAllList.do" class="nav-link">Post</a></li>
+         
+            <c:if test="${ empty member.memberId }">
+           		<li class="nav-item"><a href="#loginModal" class="nav-link" data-toggle="modal" data-target="#loginModal" >Write</a></li>
+           </c:if> 
+            <c:if test="${ !empty member.memberId }">
+           		<li class="nav-item"><a href="${pageContext.request.contextPath}/post/insertPost.do" class="nav-link">Write</a></li>
+			</c:if>
+			
            <c:if test="${ empty member.memberId }">
            		<li class="nav-item"><a href="#loginModal" class="nav-link" data-toggle="modal" data-target="#loginModal" >my Gallery</a></li>
            </c:if> 

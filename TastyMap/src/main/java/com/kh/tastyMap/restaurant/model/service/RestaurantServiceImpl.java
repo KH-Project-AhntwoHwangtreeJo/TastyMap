@@ -96,10 +96,11 @@ public class RestaurantServiceImpl implements RestaurantService {
 		return restaurantDAO.restaurantChartTwo(rno);
 	}
 
+	// 식당 전체리스트
 	@Override
-	public List<RestaurantList> restaurantAllList(int cPage, int numPerPage) {
+	public List<RestaurantList> restaurantAllList() {
 	
-		return restaurantDAO.restaurantAllList(cPage, numPerPage);
+		return restaurantDAO.restaurantAllList();
 	}
 
 	@Override

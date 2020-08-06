@@ -79,6 +79,10 @@
 		          <exclude-mapping path="/restaurant/top8.do" />
 		          <exclude-mapping path="/restaurant/influencer.do" />
 		          <exclude-mapping path="/restaurant/searchBar.do" />
+		          <exclude-mapping path="post/postAllList.do"/>
+		          
+		          
+		          
 		          <!-- /member 로 시작하는 모든 URL경로 차단하기 -->
 		          <!-- <mapping path="/member/**/*.do" /> --> 
 		          <!-- 모든 경로 차단 중 특정 경로를 제외할 수도 있다. -->

@@ -39,10 +39,11 @@ public interface RestaurantDAO {
 	 //식당 상세페이지 원형 차트(조은성)
     List<Map<String, String>> restaurantChartTwo(int rno);
 
-	
+    //식당전체리스트
 	int selectRestaurantTotal();
 
-	List<RestaurantList> restaurantAllList(int cPage, int numPerPage);
+	//식당전체리스트
+	List<RestaurantList> restaurantAllList();
 
 	//식당 상세페이지  리뷰 가져오기(조은성)
 	List<PostList> restaurantPost(int rno);

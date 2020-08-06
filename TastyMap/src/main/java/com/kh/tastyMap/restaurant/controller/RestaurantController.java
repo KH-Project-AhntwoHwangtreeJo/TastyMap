@@ -38,17 +38,15 @@ public class RestaurantController {
 	
 	// 식당 전체리스트 출력(안예진)
 	@RequestMapping("/restaurant/restaurantAllList.do")
-	   public List restaurantAllList(
-	         @RequestParam (value="cPage", required=false, defaultValue="1")
-	         int cPage, Model model) {
-	      int numPerPage = 5;
+	   public List restaurantAllList(Model model) {
+	     
 
 	      
-	      List<RestaurantList> RList = restaurantService.restaurantAllList(cPage, numPerPage);
+	      List<RestaurantList> RList = restaurantService.restaurantAllList();
 	         
-	      System.out.println(RList);
+	      //System.out.println(RList);
 	         
-	   // 카테고리 별 출력하기 // 한식/중식/일식/양식/기타(디저트등등..)
+	      		// 카테고리 별 출력하기 // 한식/중식/일식/양식/기타(디저트등등..)
 	   			List<RestaurantList> kList = new ArrayList<>();
 	   			List<RestaurantList> cList = new ArrayList<>();
 	   			List<RestaurantList> jList = new ArrayList<>();
@@ -56,7 +54,7 @@ public class RestaurantController {
 	   			List<RestaurantList> etcList = new ArrayList<>();
 	   			
 	   			
-	   		// 카테고리 별 출력하기 // 한식/중식/일식/양식/기타(디저트등등..)
+	   			// 카테고리 별 출력하기 // 한식/중식/일식/양식/기타(디저트등등..)
 	   			for(RestaurantList r : RList) {
 	   				if("한식".equals(r.getCategory())){
 	   					kList.add(r);
@@ -73,7 +71,7 @@ public class RestaurantController {
 	      
 	      int totalContent = restaurantService.selectRestaurantTotal();
 	      
-//	      String pageBar = Utils.getPageBar(totalContent, cPage, numPerPage, "restaurantAllList.do");
+
 
 	    //  System.out.println("k" + kList);
 	    //  System.out.println("c" + cList);
@@ -86,8 +84,8 @@ public class RestaurantController {
 	      model.addAttribute("yList", yList);
 	      model.addAttribute("etcList", etcList);
 	      model.addAttribute("totalContent", totalContent);
-	      model.addAttribute("numPerPage", numPerPage);
-//	      model.addAttribute("pageBar", pageBar);
+	   
+
 	      
 	      
 	      

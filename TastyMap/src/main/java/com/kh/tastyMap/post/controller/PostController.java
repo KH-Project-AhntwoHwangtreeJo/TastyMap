@@ -43,14 +43,14 @@ public class PostController {
 	ReportService reportService;
 	
 	
-	// 게시글 전체리스트 조회// 사용자에게 응답할 view를 생성
+	    // 게시글 전체리스트 조회 -안예진// 사용자에게 응답할 view를 생성
 		@RequestMapping("/post/postAllList.do")
 		
 		// String은 controller에서 view로 리턴할 때 model을 매개변수로 리턴한다.->postAllList로
 		public String postAllList(Model model) {
 			
 			List<PostList> postList = postService.postAllList();
-			System.out.println(postList);
+			//System.out.println(postList);
 		
 			model.addAttribute("postList", postList);
 			
@@ -161,6 +161,7 @@ public class PostController {
 	               f.transferTo(new File(saveDir + "/" + renamedName));
 	            } catch (IllegalStateException | IOException e) {
 	               e.printStackTrace();
+	               throw new PostException(e.getMessage());
 	            }
 	            
 	            Picture pic = new Picture();
@@ -215,131 +216,130 @@ public class PostController {
 	   }
 	
 	
-	   //새로운 게시글 생성하기
-	@RequestMapping("/post/insertPostEnd.do")
-	   public String insertPost(PostRequest postRequst, Model model, HttpSession session, HttpServletRequest request,
-	         @RequestParam(value="upFile", required= false) List<MultipartFile> upFile) {
-	     	   
-	      String rName = postRequst.getRName();
-	      String address = postRequst.getAddress();
-	      int rno = postService.selectRestaurantName(rName);
-	      try {
-	      if(rno > 0) { // 가져오기 성공
-	         System.out.println("가져오기 성공");
-	      } else { // 없는 경우 레스토랑 테이블에 추가 해줘야 한다.
-	         System.out.println("RNO 없음");
-	         
-	         // insert into restaurant -> rno가 생김
+		//새로운 게시글 생성하기
+	   @RequestMapping("/post/insertPostEnd.do")
+	      public String insertPost(PostRequest postRequst, Model model, HttpSession session, HttpServletRequest request,
+	            @RequestParam(value="upFile", required= false) List<MultipartFile> upFile) {
+	              
+	         String rName = postRequst.getRName();
+	         String address = postRequst.getAddress();
+	         int rno = postService.selectRestaurantName(rName);
 	         try {
-	            int insertResult = postService.insertFirstRestaurant(rName, address);         
+	         if(rno > 0) { // 가져오기 성공
+	            System.out.println("가져오기 성공");
+	         } else { // 없는 경우 레스토랑 테이블에 추가 해줘야 한다.
+	            System.err.print("RNO 없음");
 	            
-	            if (insertResult < 1) {
-	               System.err.print("새로운 레스토랑 등록 실패");
-	            }
-	         } catch (Exception e) {
-	            e.printStackTrace();
-	         }
-	         
-	         
-	         rno = postService.selectRestaurantName(rName);
-	      }
-	      
-	      Post post = new Post();
-	      post.setMember_Id(postRequst.getMember_Id());
-	      post.setPContent(postRequst.getPContent());
-	      post.setStar(postRequst.getStarValue());
-	      post.setRNo(rno);
-	      
-	  
-	   
-      
-	      //1. 파일을 저장할 경로 생성
-	      String saveDir = session.getServletContext().getRealPath("/resources/upload/post");
-	      
-	      List<Picture> pictureList = new ArrayList<Picture>();
-	       //2. 폴더 유무 확인 후 생성
-	      File dir = new File(saveDir);
-	      
-	      // mkdir과 mkdirs 의 차이점 - mkdir은 해당 위치에 폴더가 있어야만 하고, mkdirs는 폴더가 없으면 만들어준다.
-	      if(dir.exists() == false) dir.mkdirs();  // getRealPath 경로에 폴더가 없으면 만들어주고 있으면 나두는 코드
-
-	       //3. 파일 업로드 시작 (MultipartFile 사용 시)
-	      System.out.println("사진:"+ upFile);
-	      // for (Object obj : files)
-	      // files를 하나씩 객체를 꺼내서 obj에 넣어준다..
-	      int i = 0;
-	      for(MultipartFile f : upFile) {
-	         if(!f.isEmpty()) {
-	            String originName = f.getOriginalFilename();
-	          
-	            String ext = originName.substring(originName.lastIndexOf(".")+1);
-	            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
-	         
-	            int rndNum = (int)(Math.random()*1000);
-	            // member_id 를 이미지파일이름 규칙에 추가
-
-	            String renamedName = sdf.format(new Date()) + "_" + rndNum + "." + ext;
-
+	            // insert into restaurant -> rno가 생김
 	            try {
-	               f.transferTo(new File(saveDir + "/" + renamedName));
-	            } catch (IllegalStateException | IOException e) {
+	               int insertResult = postService.insertFirstRestaurant(rName, address);         
+	               
+	               if (insertResult < 1) {
+	                  System.err.print("새로운 레스토랑 등록 실패");
+	               }
+	            } catch (Exception e) {
 	               e.printStackTrace();
 	            }
 	            
-	            Picture pic = new Picture();
-	            pic.setPOriginName(originName);
-	            pic.setPRenamedName(renamedName);
 	            
-	            pictureList.add(pic);
-	            
-	            // 첫번째 사진의 레벨은 0 /즉,대표사진
-	            if(i == 0) {
-	               pic.setPLevel(0);
-	            // 나머지 사진은 1   
-	            } else {
-	               pic.setPLevel(1);
-	            }
-	            
+	            rno = postService.selectRestaurantName(rName);
 	         }
-	         i++; // 사진 하나 담기면 +1 // 그러면 레벨 구분됨
-	      }
-	      int result = 0;
-
-	      try {
-	         result = postService.insertPost(post, pictureList);
 	         
-	         // PNO
-	      } catch(Exception e) {
-	         System.err.print(e.getMessage());
-	         System.err.print(e.getStackTrace());
-//	         throw new PostException("게시글 등록 오류");
+	         Post post = new Post();
+	         post.setMember_Id(postRequst.getMember_Id());
+	         post.setPContent(postRequst.getPContent());
+	         post.setStar(postRequst.getStarValue());
+	         post.setRNo(rno);
+	         
+	     
+	      
+	      
+	         //1. 파일을 저장할 경로 생성
+	         String saveDir = session.getServletContext().getRealPath("/resources/upload/post");
+	         
+	         List<Picture> pictureList = new ArrayList<Picture>();
+	          //2. 폴더 유무 확인 후 생성
+	         File dir = new File(saveDir);
+	         
+	         // mkdir과 mkdirs 의 차이점 - mkdir은 해당 위치에 폴더가 있어야만 하고, mkdirs는 폴더가 없으면 만들어준다.
+	         if(dir.exists() == false) dir.mkdirs();  // getRealPath 경로에 폴더가 없으면 만들어주고 있으면 나두는 코드
+
+	          //3. 파일 업로드 시작 (MultipartFile 사용 시)
+	         System.out.println("사진:"+ upFile);
+	         // for (Object obj : files)
+	         // files를 하나씩 객체를 꺼내서 obj에 넣어준다..
+	         int i = 0;
+	         for(MultipartFile f : upFile) {
+	            if(!f.isEmpty()) {
+	               String originName = f.getOriginalFilename();
+	             
+	               String ext = originName.substring(originName.lastIndexOf(".")+1);
+	               SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+	            
+	               int rndNum = (int)(Math.random()*1000);
+	               // member_id 를 이미지파일이름 규칙에 추가
+
+	               String renamedName = sdf.format(new Date()) + "_" + rndNum + "." + ext;
+
+	               try {
+	                  f.transferTo(new File(saveDir + "/" + renamedName));
+	               } catch (IllegalStateException | IOException e) {
+	                  e.printStackTrace();
+	               }
+	               
+	               Picture pic = new Picture();
+	               pic.setPOriginName(originName);
+	               pic.setPRenamedName(renamedName);
+	               
+	               pictureList.add(pic);
+	               
+	               // 첫번째 사진의 레벨은 0 /즉,대표사진
+	               if(i == 0) {
+	                  pic.setPLevel(0);
+	               // 나머지 사진은 1   
+	               } else {
+	                  pic.setPLevel(1);
+	               }
+	               
+	            }
+	            i++; // 사진 하나 담기면 +1 // 그러면 레벨 구분됨
+	         }
+	         int result = 0;
+
+	         try {
+	            result = postService.insertPost(post, pictureList);
+	            
+	            // PNO
+	         } catch(Exception e) {
+	            //System.err.print(e.getMessage());
+	            //System.err.print(e.getStackTrace());
+	            throw new PostException(e.getMessage());
+	         }
+
+	       
+	          String loc = "/post/postAllList.do";
+	          String msg = "";
+
+	          if(result > 0) {
+	             msg = "게시글 등록 성공!";
+	             loc = "/post/postAllList.do?no="+post.getPNo();
+
+	          } else {
+	             msg = "게시글 등록 실패!";
+	             
+	          }
+
+	          model.addAttribute("loc", loc).addAttribute("msg", msg);
+
+	         }catch (Exception e) {
+	             // 오류 시 PostException 동작
+	            throw new PostException(e.getMessage());
+	          }
+	          return "common/msg";
+
 	      }
-
-	    
-	       String loc = "/post/postAllList.do";
-	       String msg = "";
-
-	       if(result > 0) {
-	          msg = "게시글 등록 성공!";
-	          loc = "/post/postAllList.do?no="+post.getPNo();
-
-	       } else {
-	          msg = "게시글 등록 실패!";
-	          
-	       }
-
-	       model.addAttribute("loc", loc).addAttribute("msg", msg);
-
-	      }catch (Exception e) {
-				 // 오류 시 PostException 동작
-				throw new PostException(e.getMessage());
-			 }
-	       return "common/msg";
-
-	   }
 	
-	
-	
+	// POST 삭제
 	@RequestMapping("/post/postDelete.do")
 	public String postDelete(@RequestParam int pNo, HttpSession session, Model model) {
 		
