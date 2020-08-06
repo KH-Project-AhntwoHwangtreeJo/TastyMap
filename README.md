@@ -3,9 +3,11 @@
 ## 1. Subject (주제)
 - 
 <br/>
+
 ## 2. Development environment (개발 환경)
 - 
 <br/>
+
 ## 3. development schedule(개발일정)
 - 2020-06-29(Mon)~ 2020-08-09(Sun) 42 days
 
@@ -20,6 +22,7 @@
 - HaYoung Hwang
 
 <br/>
+
 ## 5. Introduction to Services
 
 ### 1) Main
