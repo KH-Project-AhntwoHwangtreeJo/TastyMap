@@ -32,7 +32,11 @@
 #### 1-2) Influencer's post
 - img
 - 설명(조현민)
+#### 1-3) SearchBar
+- img
+- 설명(조현민)
 <br/>
+
 
 ### 2) Mypage
 ##### 2-1) Mypage Main
