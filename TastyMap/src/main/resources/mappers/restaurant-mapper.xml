@@ -239,7 +239,7 @@ JOIN MEMBER M ON(P.MEMBER_ID = M.MEMBER_ID)
 WHERE RNO = ${rno} and PSTATUS = 'Y'
 </select>
 
-<!-- 식당 전체 리스트 조회  by 안예진-->
+	<!-- 식당 전체 리스트 조회  by 안예진-->
 	<select id = "restaurantAllList" resultType="RestaurantList">
        SELECT R.* , PO."AVG_STAR", PO."PCNT", (SELECT PNO
 		FROM PICTURE
@@ -275,9 +275,9 @@ WHERE RNO = ${rno} and PSTATUS = 'Y'
 	
 	<select id="selectRestaurantTotal" resultType="_int">
 		SELECT COUNT(*)FROM RESTAURANT
-	</select>
+	</select> 
 	
-	<!-- 식당 차트 -->
+	<!-- 식당 카테고리 통계 -->
 	<select id="restaurantCargoChartList" resultType="HashMap">
 		SELECT (SELECT COUNT(*) FROM RESTAURANT WHERE CATEGORY = '한식') 한식,
            (SELECT COUNT(*) FROM RESTAURANT WHERE CATEGORY ='중식') 중식,
@@ -287,6 +287,7 @@ WHERE RNO = ${rno} and PSTATUS = 'Y'
 		FROM DUAL
 	</select>
 	
+	<!-- 식당 행정구 통계 -->
 	<select id="addressChartList" resultType="HashMap">
 		SELECT A.* 
 		FROM (SELECT  R.ADDRESS "COUNTRY", COUNT(*) "ctyCount"

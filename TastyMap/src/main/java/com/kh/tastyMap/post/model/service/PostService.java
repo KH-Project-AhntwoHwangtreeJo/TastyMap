@@ -12,8 +12,21 @@ public interface PostService  {
 	static int POST_SERVICE_ERROR = 0;
 	static int POST_SERVICE_COMPLETE = 1;
 	
+	
+	
+	/**
+	 * RESTAURANT 검색하는 메소드
+	 * @param post
+	 * @return
+	 */
 	int selectRestaurantName(String rName);
 	
+	
+	/**
+	 * RESTAURANT에 식당이 없을 시 POST에서 추가하는 메소드
+	 * @param post
+	 * @return
+	 */
 	int insertFirstRestaurant(String rName, String address);
 	
 	/**
@@ -43,7 +56,6 @@ public interface PostService  {
 	 * @param pno
 	 * @return
 	 */
-	//int deletePost(int pNo, List<Picture> pictureList);
 	int deletePost(int pNo);
 	int deletePicture(int pNo);
 	int deleteComment(int pNo);
@@ -70,6 +82,11 @@ public interface PostService  {
 	 */
 	int updatePCNT(int pNo);
 	
+	/**
+	 * 내 게시글에 좋아요한 사용자 리스트
+	 * @param pno
+	 * @return
+	 */
 	List<PostList>getLoveMemberList(int pNo);
 
 	List<PostComment> commentList(int pNo);

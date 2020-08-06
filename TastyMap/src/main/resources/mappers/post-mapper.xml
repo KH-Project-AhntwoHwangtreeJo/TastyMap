@@ -87,16 +87,17 @@
 		WHERE PNO= #{pNo}
 	</update>
 	
+	<!-- 게시글 사진 삭제 -->
 	<update id="deletePicture" parameterType="_int">
 		UPDATE PICTURE SET PICTURE_STATUS='N'
 		WHERE PNO= #{pNo}
 	</update>
 	
+	<!-- 게시글 댓글 삭제 -->
 	<update id="deleteComment" parameterType="_int">
 		UPDATE POST_COMMENT SET CSTATUS='N'
 		WHERE PNO=#{pNo}
 	</update>
-	
 	<!-- 여기까지 안예진 -->
 	
 	<!-- ●POST 디테일 조회용  -->

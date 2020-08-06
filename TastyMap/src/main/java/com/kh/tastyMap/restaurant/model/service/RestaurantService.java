@@ -70,8 +70,9 @@ public interface RestaurantService {
 	 //식당 상세페이지 원형 차트(조은성)
 	List<Map<String, String>> restaurantChartTwo(int rno);
 
-	List<RestaurantList> restaurantAllList(int cPage, int numPerPage);
-
+	// 식당 전체리스트
+	List<RestaurantList> restaurantAllList();
+	// 식당 전체리스트
 	int selectRestaurantTotal();
 	
 	//식당 상세페이지  리뷰 가져오기(조은성)

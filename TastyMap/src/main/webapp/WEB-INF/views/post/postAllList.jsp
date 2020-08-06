@@ -58,38 +58,6 @@
 			</c:forEach>
 			</div>
 			<!--// 게시글 하나 끝-->
-			
-			<!-- 게시글 하나 시작-->
-			<%-- 
-			
-        	<div class="col-md-4">
-        		<div class="property-wrap ftco-animate">
-        			<a href="${pageContext.request.contextPath}/post/postDatail.do?pno='${p.pno }'" class="img d-flex align-items-center justify-content-center" style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${p.PRenamedName}');">
-        			 
-        			
-        				<div class="list-agent d-flex align-items-center">
-        					<a href="#" class="agent-info d-flex align-items-center">
-        					 <div class="img-2 rounded-circle" style="background-image: url('tastyMap/resources/images/profileImage/${P.MPhoto}');"></div>
-        						<h3 class="mb-0 ml-2"></h3>
-        					</a>
-        				</div>
-        				</a>
-					</div>
-					<!-- 식당이름/주소-->
-        			<div class="text">
-        				
-						<h3 class="mb-0">${p.RName }</h3>
-						<!-- <p style="margin-bottom: 0px;">한식</p> -->
-						<!-- <div class="star-box">★★★★★</div> --><!--별점 받아오는 부분-->
-        				<span class="location d-inline-block mb-3"><i class="ion-ios-pin mr-2"></i>${p.address }</span>
-					</div>
-					<!--//식당이름/주소 끝-->
-        		
-        		</div>
-        		 --%>
-        	
-			      
-     
         </div>
       
        <!--  <div class="row mt-5">

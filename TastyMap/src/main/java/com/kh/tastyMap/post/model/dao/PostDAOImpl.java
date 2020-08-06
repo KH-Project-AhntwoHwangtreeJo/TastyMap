@@ -20,7 +20,7 @@ public class PostDAOImpl implements PostDAO {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-	
+	// RESTAURANT 검색하는 메소드
 	@Override
 	public Restaurant selectRestaurantName(String rName) {
 		// TODO Auto-generated method stub
@@ -28,7 +28,7 @@ public class PostDAOImpl implements PostDAO {
 	}
 	
 	
-
+	// RESTAURANT에 식당이 없을 시 POST에서 추가하는 메소드
 	@Override
 	public int insertFirstRestaurant(String rName, String address) {
 		// TODO Auto-generated method stub
@@ -40,22 +40,21 @@ public class PostDAOImpl implements PostDAO {
 	}
 
 
-
+	// POST 등록
 	@Override
 	public int insertPost(Post post) {
 		return sqlSession.insert("postMapper.insertPost", post);
 	}
 
 	
-	
+	// 현재 POST 번호 가져오는 메소드
 	@Override
 	public int selectCurrval() {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne("postMapper.selectCurrval");
 	}
 
 
-
+	// PICTURE 등록 메소드
 	@Override
 	public int insertPicture(Picture p) {
 		return sqlSession.insert("postMapper.insertPicture",p);
@@ -63,10 +62,9 @@ public class PostDAOImpl implements PostDAO {
 
 	
 	
-	
+	// POST 전체 리스트
 	@Override
 	public List<PostList> postAllList() {
-		System.out.println(sqlSession.selectList("postMapper.postAllList"));
 		return sqlSession.selectList("postMapper.postAllList");
 	}
 
@@ -83,18 +81,19 @@ public class PostDAOImpl implements PostDAO {
 		return 0;
 	}
 
-	//게시글 삭제
+	//POST 삭제
 	@Override
-	public int deletePost(int pNo) {
-		
+	public int deletePost(int pNo) {	
 		return sqlSession.update("postMapper.deletePost", pNo);
 	}
 	
+	// PICTURE 삭제
 	@Override
 	public int deletePicture(int pNo) {
 		return sqlSession.update("postMapper.deletePicture", pNo);
 	}
 	
+	// COMMENT 삭제
 	@Override
 	public int deleteComment(int pNo) {
 		return sqlSession.update("postMapper.deleteComment",pNo);
@@ -105,7 +104,6 @@ public class PostDAOImpl implements PostDAO {
 	// post 상세 페이지
 	@Override
 	public Post postDetail(int pNo) {
-		
 		return sqlSession.selectOne("postMapper.postDetail", pNo);
 	}
 	
@@ -129,6 +127,7 @@ public class PostDAOImpl implements PostDAO {
 		return sqlSession.update("postMapper.updatePCNT", pNo);
 	}
 
+	// 내 게시글에 좋아요한 사용자 리스트 - 안예진
 	@Override
 	public List<PostList> getLoveMemberList(int pno) {
 		return sqlSession.selectList("postMapper.getLoveMemberList", pno);

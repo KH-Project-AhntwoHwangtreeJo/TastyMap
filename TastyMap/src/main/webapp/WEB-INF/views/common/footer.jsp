@@ -253,14 +253,5 @@
 		}
 	}); 
 	
-	/*  $(".upLoad").on('click', function() {
-		if($(".upLoad").length() > 0) {
-			for(var i = 0; i <= idx; i++) {
-				$("label[for=upFile]").eq(i).val();
-				
-			}
-		}
-	});  */
-	
 	
     </script>

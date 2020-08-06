@@ -11,9 +11,20 @@ import com.kh.tastyMap.restaurant.model.vo.RestaurantList;
 
 public interface PostDAO {
 	
-	// 식당 이름 조회
+	
+	/**
+	 * 식당 이름 조회
+	 * @param post
+	 * @return
+	 */
 	Restaurant selectRestaurantName(String rName);	
 	
+	
+	/**
+	 * RESTAURANT에 식당이 없을 시 POST에서 추가하는 메소드
+	 * @param post
+	 * @return
+	 */
 	int insertFirstRestaurant(String rName, String address);
 	
 	/**
@@ -23,8 +34,19 @@ public interface PostDAO {
 	 */
 	int insertPost(Post post);
 	
+	
+	/**
+	 * 현재 POST 번호 가져오는 메소드
+	 * @param post
+	 * @return
+	 */
 	int selectCurrval();
 	
+	
+	/**
+	 * PICTURE 등록
+	 * @return
+	 */
 	int insertPicture(Picture p);
 	
 	/**
@@ -32,7 +54,7 @@ public interface PostDAO {
 	 * @return
 	 */
 	List<PostList> postAllList();
-	//여기까지 안예진
+	
 	
 	
 	/**

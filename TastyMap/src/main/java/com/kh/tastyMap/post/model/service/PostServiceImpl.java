@@ -22,6 +22,7 @@ public class PostServiceImpl implements PostService {
 	CommentDAO commentDAO;
 	
 	
+	// RESTAURANT 검색하는 메소드
 	@Override
 	public int selectRestaurantName(String rName) {
 		// TODO Auto-generated method stub
@@ -34,13 +35,13 @@ public class PostServiceImpl implements PostService {
 		}
 	}
 
-	
+	// RESTAURANT에 식당이 없을 시 POST에서 추가하는 메소드
 	@Override
 	public int insertFirstRestaurant(String rName, String address) {
 		return postDAO.insertFirstRestaurant(rName, address);
 	}
 
-
+	// POST 등록 메소드
 	@Override
 	public int insertPost(Post post, List<Picture> pictureList) {
 		int result = 0;
@@ -54,7 +55,7 @@ public class PostServiceImpl implements PostService {
 	         
 //	         pNo = post.getPNo(); //pNo를 리턴함.
 	         pNo = postDAO.selectCurrval();
-	         System.out.println("currval: " + pNo);
+	         //System.out.println("currval: " + pNo);
 	         
 	         //현재 Picture객체의 pNo는 값이 없다. 
 	         //1. 가져온 postNo를 대입하던지
@@ -63,7 +64,7 @@ public class PostServiceImpl implements PostService {
 	            for(Picture p : pictureList){
 	              // a.setBoardNo(boardNo); //게시물번호 대입
 	            	p.setPNo(pNo);
-	            	System.out.println(p);
+	            	//System.out.println(p);
 	               result = postDAO.insertPicture(p);
 	               if(result == POST_SERVICE_ERROR) throw new PostException();
 	            }
@@ -76,7 +77,7 @@ public class PostServiceImpl implements PostService {
 	}
 	
 	
-
+	// POST 전체 리스트
 	@Override
 	public List<PostList> postAllList() {
 		return postDAO.postAllList();
@@ -127,12 +128,13 @@ public class PostServiceImpl implements PostService {
 		return postDAO.deletePost(pNo);
 	}
 	
+	// PICTURE 삭제 메소드
 	@Override
 	public int deletePicture(int pNo) {
 		return postDAO.deletePicture(pNo);
 	}
 
-
+	// COMMENT 삭제 메소드
 	@Override
 	public int deleteComment(int pNo) {
 		return postDAO.deleteComment(pNo);
@@ -162,9 +164,10 @@ public class PostServiceImpl implements PostService {
 		return postDAO.commentList(pNo);
 	}
 
+	// 내 게시글에 좋아요한 사용자 리스트 - 안예진
 	@Override
 	public List<PostList> getLoveMemberList(int pno) {
-		//System.out.println(pNo);
+		
 		return postDAO.getLoveMemberList(pno);
 	}
 

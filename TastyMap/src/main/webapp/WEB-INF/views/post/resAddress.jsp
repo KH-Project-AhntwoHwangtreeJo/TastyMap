@@ -186,9 +186,9 @@ function displayPlaces(places) {
 
                           var road_addr = result[0].road_address.address_name
                           var addr = result[0].address.address_name
-                          console.log(title)
-                          console.log(road_addr)
-                          console.log(addr)
+                          //console.log(title)
+                          //console.log(road_addr)
+                          //console.log(addr)
                           
                           // 부모창으로 값 넘겨주기"id값".value = 넘겨줄 값;
                           opener.document.getElementById("roadFullAddr").value = road_addr;
@@ -324,7 +324,7 @@ function displayInfowindow(marker, title) {
 
 
 function displayInfowindow2(marker, title) {
-    console.log("타이틀 :" + title); // 식당 이름
+    //console.log("타이틀 :" + title); // 식당 이름
     
     var lat = marker.getPosition().getLat();
     var lng = marker.getPosition().getLng();

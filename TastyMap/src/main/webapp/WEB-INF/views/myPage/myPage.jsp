@@ -47,7 +47,7 @@
         ]);
 
         var options = {
-          title: '식당 카테고리별 차트'
+          title: '식당 카테고리별 통계'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -77,7 +77,7 @@
         ]);
 
         var options = {
-          title: '지역별 음식점 차트'
+          title: '지역별 음식점 통계'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
@@ -192,8 +192,7 @@
     
    
 		
-    <!-- footer 위치 -->
-    
+    <!-- footer 위치 -->  
     <c:import url="/views/common/footer.jsp"/>
 	
     

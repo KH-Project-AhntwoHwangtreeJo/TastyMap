@@ -710,7 +710,8 @@ public class MemberController {
       		model.addAttribute("map", map);
      		
      	// --------------------------------------------------------------------------------
-     		List<Map<String, Object>> nawhabariChart = memberService.addressChartList();
+     		//식당 행정구 통계
+      		List<Map<String, Object>> nawhabariChart = memberService.addressChartList();
      		
      		int idx = 0;
      		for( Map<String, Object> n : nawhabariChart ) {

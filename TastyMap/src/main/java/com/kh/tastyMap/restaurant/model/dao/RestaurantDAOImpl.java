@@ -123,13 +123,14 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 		return 0;
 	}
 
-
+	//식당전체리스트(안예진)
 	@Override
-	public List<RestaurantList> restaurantAllList(int cPage, int numPerPage) {
-		RowBounds rows = new RowBounds((cPage-1)*numPerPage, numPerPage);
-		return sqlSession.selectList("restaurantMapper.restaurantAllList",  rows);
+	public List<RestaurantList> restaurantAllList() {
+		
+		return sqlSession.selectList("restaurantMapper.restaurantAllList");
 	}
 
+	//식당전체리스트(안예진)
 	@Override
 	public int selectRestaurantTotal() {
 		// TODO Auto-generated method stub
