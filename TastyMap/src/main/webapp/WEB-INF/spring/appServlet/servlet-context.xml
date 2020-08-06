@@ -61,6 +61,9 @@
 		          <mapping path="/admin/**/*.do"/>
 		          <mapping path="/restaurant/**/*.do" />
 		          <mapping path="/post/**/*.do"/> 
+		          <mapping path="/bookmark/iHaveBookmarkList.do" />
+		          <mapping path="/love/iHaveLoveList.do" />
+		          <mapping path="/member/myPage.do" />
 		          <exclude-mapping path="/member/memberLogin.do" />
 		          <exclude-mapping path="/member/jusoPopup.do" />
 		          <exclude-mapping path="/member/emailAuth.do" />
@@ -73,9 +76,9 @@
 		          <exclude-mapping path="/member/findId.do" />
 		          <exclude-mapping path="/restaurant/restaurantAllList.do" />
 		          <exclude-mapping path="/restaurant/restaurantDatail.do"/>
-		          <exclude-mapping path="/bookmark/iHaveBookmarkList.do" />
-		          <exclude-mapping path="/love/iHaveLoveList.do" />
-		          <exclude-mapping path="/member/myPage.do" />
+		          <exclude-mapping path="/restaurant/top8.do" />
+		          <exclude-mapping path="/restaurant/influencer.do" />
+		          <exclude-mapping path="/restaurant/searchBar.do" />
 		          <!-- /member 로 시작하는 모든 URL경로 차단하기 -->
 		          <!-- <mapping path="/member/**/*.do" /> --> 
 		          <!-- 모든 경로 차단 중 특정 경로를 제외할 수도 있다. -->

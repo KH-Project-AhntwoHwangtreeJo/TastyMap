@@ -58,7 +58,7 @@
 
          <div class="collapse navbar-collapse" id="ftco-nav">
            <ul class="navbar-nav ml-auto">
-             <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+             <li class="nav-item active"><a href="${pageContext.request.contextPath}" class="nav-link">Home</a></li>
              <li class="nav-item"><a href="${pageContext.request.contextPath}/restaurant/restaurantAllList.do" class="nav-link">Restaurant</a></li>
            <li class="nav-item"><a href="${pageContext.request.contextPath}/post/postAllList.do" class="nav-link">Post</a></li>
            <li class="nav-item"><a href="${pageContext.request.contextPath}/post/insertPost.do" class="nav-link">Write</a></li>
