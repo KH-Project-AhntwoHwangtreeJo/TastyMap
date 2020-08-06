@@ -20,9 +20,9 @@ import com.kh.tastyMap.bookmark.model.vo.Bookmark;
 import com.kh.tastyMap.member.model.exception.MemberException;
 import com.kh.tastyMap.post.model.vo.Picture;
 import com.kh.tastyMap.post.model.vo.PostList;
-/*import com.kh.tastyMap.restaurant.model.exception.searchBarPostException;
-import com.kh.tastyMap.restaurant.model.exception.searchBarRestaurantException;*/
-import com.kh.tastyMap.restaurant.model.exception.RestauranException;
+import com.kh.tastyMap.restaurant.model.exception.RestaurantException;
+import com.kh.tastyMap.restaurant.model.exception.searchBarPostException;
+import com.kh.tastyMap.restaurant.model.exception.searchBarRestaurantException;
 import com.kh.tastyMap.restaurant.model.service.RestaurantService;
 import com.kh.tastyMap.restaurant.model.vo.Restaurant;
 import com.kh.tastyMap.restaurant.model.vo.RestaurantList;
@@ -154,7 +154,7 @@ public class RestaurantController {
 				
 			} catch(Exception e) {
 			
-				/* throw new searchBarRestaurantException(e.getMessage()); */
+				throw new searchBarRestaurantException(e.getMessage());
 			}
 			
 		} else if(searchOption.equals("Post")){
@@ -169,7 +169,7 @@ public class RestaurantController {
 				
 			} catch (Exception e){
 				
-				/* throw new searchBarPostException(e.getMessage()); */
+				throw new searchBarPostException(e.getMessage());
 			}
 		}
 		
@@ -200,7 +200,7 @@ public class RestaurantController {
 			 	
 		 } catch (Exception e) {
 			 // 오류 시 RestaurantException 동작
-			throw new RestauranException(e.getMessage());
+			throw new RestaurantException(e.getMessage());
 		 }
 		 				  
 		  return map;		  
@@ -293,7 +293,7 @@ public class RestaurantController {
 		 model.addAttribute("adr", adr);		 
 		}catch (Exception e) {
 			 // 오류 시 RestaurantException 동작
-			throw new RestauranException(e.getMessage());
+			throw new RestaurantException(e.getMessage());
 		 }				 
 		return "restaurant/restaurantDetail";    
 		

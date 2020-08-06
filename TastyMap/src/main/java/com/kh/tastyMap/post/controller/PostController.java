@@ -31,7 +31,6 @@ import com.kh.tastyMap.post.model.vo.PostRequest;
 import com.kh.tastyMap.postComment.model.vo.PostComment;
 import com.kh.tastyMap.report.model.service.ReportService;
 import com.kh.tastyMap.report.model.vo.Report;
-import com.kh.tastyMap.restaurant.model.exception.RestauranException;
 
 @Controller
 public class PostController {
