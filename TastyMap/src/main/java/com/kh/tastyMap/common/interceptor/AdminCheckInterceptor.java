@@ -29,8 +29,8 @@ public class AdminCheckInterceptor extends HandlerInterceptorAdapter {
 		HttpSession session = request.getSession();
 		
 		Member m = (Member)session.getAttribute("member");
-		
-		if(m.getMemberId()!="admin") {
+		String memberId=(m.getMemberId());
+		if(!memberId.equals("admin")) {
 			request.setAttribute("loc", "/");
 			request.setAttribute("msg", "권한이 없습니다! ^_^ ");
 			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);

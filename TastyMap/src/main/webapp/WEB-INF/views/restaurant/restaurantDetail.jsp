@@ -44,7 +44,7 @@
 	<c:if test="${ empty list}">
 		<div id="header">
 			<img
-				src="${pageContext.request.contextPath}/resources/upload/post/sajin.jpg"
+				src="${pageContext.request.contextPath}/resources/upload/post/subimg.png"
 				style="width: 100%; height: 70%;">
 		</div>
 	</c:if>
@@ -187,14 +187,17 @@ $('.urlCopyBtn').click(function(){
                     </div>
                     <div class="comment-body">
           <!-- 신고 기능 버튼 (로그인 되어있을 시 신고 가능 )-->
-                     <c:if test="${ empty member.memberId }">
-                    <a href="#loginModal" class="nav-link"> 
-                      <input class="btn btn-outline-danger" data-toggle="modal" data-target="#loginModal" onclick="" type="button" value="신고" style="font-size: 10px;position: relative;left: 590px;" >
-                  		</a>
-                  	 </c:if>
-                 	 <c:if test="${ !empty member.memberId }">
-        			  <input class="btn btn-outline-danger"  onclick="" type="button" value="신고" style="font-size: 10px;position: relative;left: 590px;" >          		
-           			 </c:if>		
+  				 <c:if test="${ empty member.memberId }">
+                <a href="#loginModal" class="nav-link"> 
+              <input class="btn btn-outline-danger" data-toggle="modal" data-target="#loginModal" type="button" value="신고하기" style="font-size: 10px; float: right;" >
+		   		</a>
+		    	</c:if>
+		  <!--  1.2 Session에 멤버아이디가 있을 경우 -->
+		    	<c:if test="${ !empty member.memberId }">
+		  		<input class="btn btn-outline-danger" type="button" onclick="changeLove()" value="신고하기" style="font-size: 10px; float: right;" >
+		    	</c:if>		 
+
+
           <!-- 신고 기능 버튼 끝 -->
           
           
@@ -424,8 +427,31 @@ function share() { var url = encodeURI(encodeURIComponent(myform.url.value)); va
 
 function postMove(){
 	 location.href = "${pageContext.request.contextPath}/post/restaurantInsert.do?rname=${restaurant.rname}&memberId=${member.memberId}&address=${restaurant.address}";
-} 	
+} 
 
+// 게시글 신고
+function changePostReport() {
+	
+	var memberId = "${member.memberId}";
+	var pNo = "${post.PNo}";
+	
+	$.ajax({
+		url : '${pageContext.request.contextPath}/report/insertPostReport.do',
+		data : { pNo : pNo, memberId : memberId },
+		dataType : 'json',
+		success : function(data) {
+			// 메세지 출력			
+			alert(data.pmsg);
+			document.getElementById('postreportimage').src="${pageContext.request.contextPath}/resources/images/report/siren2.png";
+		}, error : function(req, qstatus, error) {
+			console.log(req);
+			console.log(qstatus);
+			console.log(error);
+			alert('에러인가?');
+		}
+		
+	});
+}	
 </script> 
 <c:import url="/views/common/footer.jsp"/>
 </body>
