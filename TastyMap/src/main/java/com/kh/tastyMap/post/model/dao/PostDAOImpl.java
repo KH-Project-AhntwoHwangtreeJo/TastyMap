@@ -121,7 +121,7 @@ public class PostDAOImpl implements PostDAO {
 	}
 
 
-
+	// 포스트 조회수 증가 메소드
 	@Override
 	public int updatePCNT(int pNo) {
 		return sqlSession.update("postMapper.updatePCNT", pNo);
@@ -131,5 +131,11 @@ public class PostDAOImpl implements PostDAO {
 	@Override
 	public List<PostList> getLoveMemberList(int pno) {
 		return sqlSession.selectList("postMapper.getLoveMemberList", pno);
+	}
+	
+	// 포스트 조회수 조회 메소드
+	@Override
+	public int selectPCNT(int pNo) {
+		return sqlSession.selectOne("postMapper.selectPCNT", pNo);
 	}
 }

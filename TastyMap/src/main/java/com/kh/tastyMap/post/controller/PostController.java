@@ -393,6 +393,8 @@ public class PostController {
 		List<PostComment> PComment = postService.commentList(pNo);
 		// 6. 해당 포스트에 신고된 댓글번호 리스트
 		List commentNoReportList = reportService.selectCommentReportList(pNo);
+		// 7. 해당 포스트 조회수 조회
+		int selectPCNT = postService.selectPCNT(pNo);
 				
 		String status; // 좋아요 조회용 결과를 받아올 변수
 		String pstatus; // 포스트 신고 조회용  결과를 받아올 변수
@@ -449,7 +451,8 @@ public class PostController {
 			 .addAttribute("postDetailPhotoList", postPhoto) // 포스트 내 사진 정보
 			 .addAttribute("map", map) // 좋아요 정보 & 게시글 신고 정보
 			 .addAttribute("PComment", PComment) // 댓글 정보
-			 .addAttribute("commentNoReportList", commentNoReportList); // 해당 포스트에 신고된 댓글번호 리스트
+			 .addAttribute("commentNoReportList", commentNoReportList) // 해당 포스트에 신고된 댓글번호 리스트
+			 .addAttribute("selectPCNT", selectPCNT); // 포스트 조회수 조회
 		
 		String member_Id = memberId;
 		int pno = pNo;

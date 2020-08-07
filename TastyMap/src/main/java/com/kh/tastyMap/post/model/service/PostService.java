@@ -90,4 +90,11 @@ public interface PostService  {
 	List<PostList>getLoveMemberList(int pNo);
 
 	List<PostComment> commentList(int pNo);
+	
+	/**
+	 * 게시글 조회수 조회 메소드
+	 * @param pno
+	 * @return
+	 */
+	int selectPCNT(int pNo);
 }
