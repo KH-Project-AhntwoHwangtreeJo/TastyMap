@@ -672,10 +672,11 @@ to {
 			   						class="rounded-circle" style="width:49px; height: 49px; margin-right: 10px"alt="">
 			   	 <span style="font-size: 16px;"><a class="blacklink" href="${pageContext.request.contextPath}/member/myGallery.do?memberId=${followings.fmemberId}&followerId=${member.memberId}">${followings.nickname}</a>(${followings.userName})
                </span>
-                       
+                  <c:if test="${member.memberId eq user.memberId }">     
                         <button type="button" id="followingCancel" onclick="followingCancel('${followings.fmemberId}', this);" class="btn btn-danger float-right" style="width:100px; height:30px; margin-top: 8px; margin-right: 7px;">
                             팔로워삭제
                         </button>     
+                  </c:if>
     </div>
     </c:forEach>
 									<!--반복 끝-->
@@ -699,9 +700,11 @@ to {
 			  
              <span style="font-size: 16px;"><a class="blacklink" href="${pageContext.request.contextPath}/member/myGallery.do?memberId=${followers.fmemberId}&followerId=${member.memberId}">${followers.nickname}</a>(${followers.userName})
                </span>
+               <c:if test="${member.memberId eq user.memberId }"> 
                         <button type="button" id="followerCancel" onclick="followerCancel('${followers.fmemberId}',this);" class="btn btn-danger float-right" style="width:100px; height:30px; margin-top: 8px; margin-right: 7px;">
                             팔로잉취소
-                        </button>     
+                        </button> 
+               </c:if>    
     </div>
     </c:forEach>
     <!--반복 끝-->

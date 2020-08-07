@@ -36,6 +36,20 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     
     <script>
+    function logoutCheck() {
+
+    	 if (confirm("로그아웃하시겠습니까??") == true){    //확인
+			
+    		 location.href='${pageContext.request.contextPath}/member/memberLogout.do';
+
+    	 }else{   //취소
+
+    	     return false;
+
+    	 }
+
+    }
+
     function goFindId(){
     		// 주소검색을 수행할 팝업 페이지를 호출합니다.
     		// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
@@ -95,7 +109,7 @@
 			   						class="rounded-circle" style="width:31px; height: 31px"alt="">
 			   	</a>
 			</li>
-           <li class="nav-item"><a href="${pageContext.request.contextPath}/member/memberLogout.do" class="nav-link"><img src="${pageContext.request.contextPath}/resources/images/logout.png"  style="width:31px; height:31px" alt=""></a></li>
+           <li class="nav-item"><a href="#" onclick="logoutCheck();" class="nav-link"><img src="${pageContext.request.contextPath}/resources/images/logout.png"  style="width:31px; height:31px" alt=""></a></li>
            <c:if test="${member.memberId eq 'admin'}">
            	<li class="nav-item"><a href="${pageContext.request.contextPath}/admin/adminMain.do" class="nav-link">admin</a></li>
           </c:if>
