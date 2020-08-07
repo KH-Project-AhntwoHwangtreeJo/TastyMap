@@ -107,22 +107,22 @@ input:checked+.slider:before {
 						</thead>
 						<tbody>
 					
-							<c:forEach items="${list}" var="rec"> 
+							<c:forEach items="${list}" var="c"> 
 							<tr>
-								<td>${rec.reno}</td>
-								<td>${rec.memberId}</td>
-								<td>${rec.reportNo}</td>
-								<td>${rec.content}</td>
-								<td>${rec.writer}</td>
-								<td>${rec.writeDate}</td>
+								<td>${c.reno}</td>
+								<td>${c.memberId}</td>
+								<td>${c.reportNo}</td>
+								<td>${c.content}</td>
+								<td>${c.writer}</td>
+								<td>${c.writeDate}</td>
 								<td><label class="switch"> <input type="checkbox"
-										onclick="toggle(this)"
-										${rec.status eq 'Y' ? "checked" : ""}>  <span
+										onclick="commentStatusUpdate(this)"
+										${c.status eq 'Y' ? "checked" : ""}>  <span
 										class="slider round"></span>
 								</label></td>
 								<td><label class="switch"> <input type="checkbox"
-										onclick="toggle(this)"
-										${rec.reportStatus eq 'R' ? "checked" : "C"}>  <span
+										onclick="cReportStatusUpdate(this)"
+										${c.reportStatus eq 'C' ? "checked" : ""}>  <span
 										class="slider round"></span>
 								</label></td>
 							</tr>
@@ -134,35 +134,45 @@ input:checked+.slider:before {
 					</table>
 					
 						<script>
-						function toggle(obj) {
-
-							var str = ""
-							var tdArr = new Array();
-
+						function commentStatusUpdate(obj) {
 							var tr = $(obj).parent().parent().parent();
 							var td = tr.children();
 
-							var no = td.eq(0).text();
-							console.log(no + " : " + $(obj).prop('checked'));
-							$.ajax({
-								url : "Status.do",
-								data : {
-									userId : no,
-									status : $(obj).prop('checked')
+							var status=$(obj).prop('checked');
+							var cno= td.eq(2).text();
 
-								},
+							$.ajax({
+								url : '${pageContext.request.contextPath}/admin/adminPostCommentStatus.do',
+								data : { cno : cno, status : status},
+								dataType : 'json',
 								success : function(data) {
-									console.log(data);
-									if (data > 0) {
-										console.log("회원 활성성화 상태 변경 완료");
-									} else {
-										console.log("변경 실패");
-									}
+									alert(data.msg);
 								}
 							});
 						};
-					</script>
+						
+						
+						
+						function cReportStatusUpdate(obj) {
+							var tr = $(obj).parent().parent().parent();
+							var td = tr.children();
+
+							var status=$(obj).prop('checked');
+							var reno= td.eq(0).text();
+			
+							$.ajax({
+								url : '${pageContext.request.contextPath}/admin/cReportStatusUpdate.do',
+								data : { reno : reno, status : status},
+								dataType : 'json',
+								success : function(data) {
+									alert(data.msg);
+								}
+							});
+						};
 					
+						
+					
+					</script>
 					
 				</div>
 			</div>

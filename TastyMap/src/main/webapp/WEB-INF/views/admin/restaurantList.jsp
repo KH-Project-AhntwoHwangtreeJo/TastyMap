@@ -13,6 +13,7 @@
 	rel="stylesheet">
 <!-- styles -->
 <link href="${pageContext.request.contextPath}/resources/resource/css/styles.css" rel="stylesheet">
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 
 		<style>
 @charset "UTF-8";
@@ -92,7 +93,7 @@ input:checked+.slider:before {
 				</div>
 				<div class="panel-body">
 					<table cellpadding="0" cellspacing="0" border="0"
-						class="table table-striped table-bordered" id="example">
+						class="table table-striped table-bordered" id="table">
 						<thead>
 							<tr>
 								<th>식당 번호</th>
@@ -111,7 +112,7 @@ input:checked+.slider:before {
 						</thead>
 						<tbody>
 					
-							<c:forEach items="${list}" var="r"> 
+							<c:forEach items="${list}" var="r" varStatus="status"> 
 							<tr>
 								<td>${r.rno}</td>
 								<td>${r.rname}</td>
@@ -125,14 +126,36 @@ input:checked+.slider:before {
 								<td>${r.updatedate}</td>
 								<td><label class="switch"> <input type="checkbox"
 										onclick="toggle(this)"
-										${m.mstatus eq 'Y' ? "checked" : ""}>  <span
+										${r.rstatus eq 'Y' ? "checked" : ""}>  <span
 										class="slider round"></span>
 								</label></td>
-								<td><label class="switch"> <input type="checkbox"
-										onclick="toggle(this)"
-										${r.adminStatus eq 'Y' ? "checked" : ""}>  <span
-										class="slider round"></span>
-								</label></td>
+								<td>
+									<script>
+										$(function(){
+											var index = ${status.index};
+											var num = 0;
+											var adminStatus = '${r.adminStatus}';
+											
+											 switch (adminStatus) {
+											case 'R': num=1;
+												break;
+											case 'H':num=2;
+												break;
+											case 'C':num=3;
+												break;
+											case 'A':num=4;
+												break;
+											}			
+											
+											 $('.adminStatus').eq(index).val(num);
+											
+										});
+										
+											 
+									</script>
+										
+									<input type="range" id="adminStatus" class="adminStatus" min="1" max="4" step="1"onchange = "adminToggle(this)" value="">
+									<br /> R &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  H  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    C  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    A  
 							</tr>
 								</c:forEach>
 							
@@ -144,33 +167,45 @@ input:checked+.slider:before {
 					<button type="button" id="insertRestaurant" class="btn-btn-info">admin 식당등록</button>
 					</a>
 						<script>
+						
+						// 식당 활성화 상태 변경 토글
 						function toggle(obj) {
-
-							var str = ""
-							var tdArr = new Array();
-
 							var tr = $(obj).parent().parent().parent();
 							var td = tr.children();
 
-							var no = td.eq(0).text();
-							console.log(no + " : " + $(obj).prop('checked'));
-							$.ajax({
-								url : "Status.do",
-								data : {
-									userId : no,
-									status : $(obj).prop('checked')
+							var status=$(obj).prop('checked');
+							var rno= td.eq(0).text();
 
-								},
+							$.ajax({
+								url : '${pageContext.request.contextPath}/admin/updateRestaurantStatus.do',
+								data : { rno : rno, status : status},
+								dataType : 'json',
 								success : function(data) {
-									console.log(data);
-									if (data > 0) {
-										console.log("회원 활성성화 상태 변경 완료");
-									} else {
-										console.log("변경 실패");
-									}
+									alert(data.msg);
 								}
 							});
 						};
+						
+						// 관리자 status 변경 토글
+						function adminToggle(obj) {
+							var tr = $(obj).parent().parent();
+							var td = tr.children();
+
+							var status=$(obj).val();
+							var rno= td.eq(0).text();
+
+							$.ajax({
+								url : '${pageContext.request.contextPath}/admin/updateRestaurantAdminStatus.do',
+								data : { rno : rno, status : status},
+								dataType : 'json',
+								success : function(data) {
+									alert(data.msg);
+								}
+							});
+						};
+						
+						
+						
 					</script>
 					
 					

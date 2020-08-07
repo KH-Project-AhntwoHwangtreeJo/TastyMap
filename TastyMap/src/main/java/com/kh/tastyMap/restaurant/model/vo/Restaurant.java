@@ -46,4 +46,15 @@ public class Restaurant implements Serializable {
 		this.updatedate = updatedate;
 		this.rstatus = rstatus;
 	}
+	
+	// admin 식당 활성화 상태 변경용 생성자 (by sung a)
+	public Restaurant(int rno, String rstatus) {
+		super();
+		this.rno = rno;
+		this.rstatus = rstatus;
+	}
+
+	
+	
+	
 }

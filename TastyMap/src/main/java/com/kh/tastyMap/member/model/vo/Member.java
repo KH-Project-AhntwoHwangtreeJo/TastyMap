@@ -61,4 +61,13 @@ public class Member implements Serializable {
 		this.address = address;
 		this.mstatus = mstatus;
 	}
+	
+	// 관리자 - 회원상태 변경용
+	public Member(String memberId, String mstatus) {
+		super();
+		this.memberId = memberId;
+		this.mstatus = mstatus;
+	}
+	
+	
 }

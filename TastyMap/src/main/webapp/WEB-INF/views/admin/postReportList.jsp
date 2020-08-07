@@ -97,7 +97,7 @@ input:checked+.slider:before {
 							<tr>
 								<th>신고번호</th>
 								<th>신고자</th>
-								<th>댓글 번호</th>
+								<th>게시글 번호</th>
 								<th>내용</th>
 								<th>작성자</th>
 								<th>작성일</th>
@@ -107,22 +107,22 @@ input:checked+.slider:before {
 						</thead>
 						<tbody>
 					
-							<c:forEach items="${list}" var="rec"> 
+							<c:forEach items="${list}" var="p"> 
 							<tr>
-								<td>${rec.reno}</td>
-								<td>${rec.memberId}</td>
-								<td>${rec.reportNo}</td>
-								<td>${rec.content}</td>
-								<td>${rec.writer}</td>
-								<td>${rec.writeDate}</td>
+								<td>${p.reno}</td>
+								<td>${p.memberId}</td>
+								<td>${p.reportNo}</td>
+								<td>${p.content}</td>
+								<td>${p.writer}</td>
+								<td>${p.writeDate}</td>
 								<td><label class="switch"> <input type="checkbox"
-										onclick="toggle(this)"
-										${rec.status eq 'Y' ? "checked" : ""}>  <span
+										onclick="updatePostStatus(this)"
+										${p.status eq 'Y' ? "checked" : ""}>  <span
 										class="slider round"></span>
 								</label></td>
 								<td><label class="switch"> <input type="checkbox"
-										onclick="toggle(this)"
-										${rec.reportStatus eq 'R' ? "checked" : "C"}>  <span
+										onclick="pReportStatusUpdate(this)"
+										${p.reportStatus eq 'C' ? "checked" : ""}>  <span
 										class="slider round"></span>
 								</label></td>
 							</tr>
@@ -134,33 +134,45 @@ input:checked+.slider:before {
 					</table>
 					
 						<script>
-						function toggle(obj) {
-
-							var str = ""
-							var tdArr = new Array();
-
+						function updatePostStatus(obj) {
 							var tr = $(obj).parent().parent().parent();
 							var td = tr.children();
 
-							var no = td.eq(0).text();
-							console.log(no + " : " + $(obj).prop('checked'));
-							$.ajax({
-								url : "Status.do",
-								data : {
-									userId : no,
-									status : $(obj).prop('checked')
+							var status=$(obj).prop('checked');
+							var pNo= td.eq(2).text();
 
-								},
+			
+							$.ajax({
+								url : '${pageContext.request.contextPath}/admin/updatePostStatus.do',
+								data : { pNo : pNo, status : status},
+								dataType : 'json',
 								success : function(data) {
-									console.log(data);
-									if (data > 0) {
-										console.log("회원 활성성화 상태 변경 완료");
-									} else {
-										console.log("변경 실패");
-									}
+									alert(data.msg);
 								}
 							});
 						};
+						
+						
+						
+						function pReportStatusUpdate(obj) {
+							var tr = $(obj).parent().parent().parent();
+							var td = tr.children();
+
+							var status=$(obj).prop('checked');
+							var reno= td.eq(0).text();
+	
+							$.ajax({
+								url : '${pageContext.request.contextPath}/admin/pReportStatusUpdate.do',
+								data : { reno : reno, status : status},
+								dataType : 'json',
+								success : function(data) {
+									alert(data.msg);
+								}
+							});
+						};
+					
+						
+					
 					</script>
 					
 					

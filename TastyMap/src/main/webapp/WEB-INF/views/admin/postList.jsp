@@ -163,7 +163,7 @@ input:checked+.slider:before {
 								<td>
 									<label class="switch"> <input type="checkbox"
 										onclick="toggle(this)"
-										${m.mstatus eq 'Y' ? "checked" : ""}>  <span
+										${p.PStatus eq 'Y' ? "checked" : ""}>  <span
 										class="slider round"></span>
 									</label>
 								</td>
@@ -174,6 +174,28 @@ input:checked+.slider:before {
 
 
 					</table>
+					
+					<script>
+						function toggle(obj) {
+							var tr = $(obj).parent().parent().parent();
+							var td = tr.children();
+
+							var status=$(obj).prop('checked');
+							var pno= td.eq(0).text();
+			
+							$.ajax({
+								url : '${pageContext.request.contextPath}/admin/updatePostStatus.do',
+								data : { pNo : pno, status : status},
+								dataType : 'json',
+								success : function(data) {
+									alert(data.msg);
+								}
+							});
+						};
+						
+						
+						
+					</script>
 
 
 				</div>
