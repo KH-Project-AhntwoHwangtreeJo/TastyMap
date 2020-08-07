@@ -80,8 +80,8 @@ public class EchoHandler extends TextWebSocketHandler {
     	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
     		sessions.add(session);
     		
-    		String senderEmail = getEmail(session);
-    		userSessionsMap.put(senderEmail , session);
+    		//String senderEmail = getEmail(session);
+    		//userSessionsMap.put(senderEmail , session);
     	}
     	
     	//소켓에 메세지를 보냈을때
@@ -153,15 +153,14 @@ public class EchoHandler extends TextWebSocketHandler {
     	}
     	
     	//웹소켓 email 가져오기
-    	private String getEmail(WebSocketSession session) {
-    		Map<String, Object> httpSession = session.getAttributes();
-    		MemberDTO loginUser = (MemberDTO)httpSession.get("memDTO");
-    		
-    		if(loginUser == null) {
-    			return session.getId();
-    		} else {
-    			return loginUser.getMember_email();
-    		}
+		/*
+		 * private String getEmail(WebSocketSession session) { Map<String, Object>
+		 * httpSession = session.getAttributes(); MemberDTO loginUser =
+		 * (MemberDTO)httpSession.get("memDTO");
+		 * 
+		 * if(loginUser == null) { return session.getId(); } else { return
+		 * loginUser.getMember_email(); }
+		 */
     	
     
 }

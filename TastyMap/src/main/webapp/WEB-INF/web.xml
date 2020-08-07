@@ -37,6 +37,7 @@
 		
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
+		<async-supported>true</async-supported>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	

@@ -8,6 +8,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.google.gson.JsonElement;
+import com.kh.tastyMap.member.model.vo.Alarm;
 import com.kh.tastyMap.member.model.vo.Follower;
 import com.kh.tastyMap.member.model.vo.Member;
 import com.kh.tastyMap.post.model.vo.PostList;
@@ -139,6 +141,12 @@ public class MemberDAOImpl implements MemberDAO {
 	public List<Map<String, Object>> restaurantChartList(String member_Id) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("restaurantMapper.restaurantChartList", member_Id);
+	}
+	
+	@Override
+	public List<Alarm> selectApprovalReceive(String memberId) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("memberMapper.selectApprovalReceive", memberId);
 	}
 
 }

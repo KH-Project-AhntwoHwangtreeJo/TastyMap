@@ -113,6 +113,44 @@
 		JOIN RESTAURANT R ON(R.RNO= P.RNO)
 		WHERE PSTATUS = 'Y' AND RSTATUS = 'Y' AND M.MEMBER_ID = #{member_Id} 	
 	</select>
+	
+	
+	<!-- 알림 리스트 출력 (조현민) -->
+	<select id="selectApprovalReceive" resultType="Alarm">
+		SELECT A.* FROM (SELECT * FROM (SELECT *
+		FROM   (SELECT M.MPHOTO ,
+		             M.NICKNAME "WHOS",
+		             1 "TYPE",
+		             L.PNO,             
+		             (SELECT NICKNAME FROM MEMBER WHERE L.MEMBER_ID = MEMBER_ID) "WHO",
+		             PI.PRENAMEDNAME,
+		             L.LDATE
+		            FROM LOVE L
+		JOIN POST P ON(L.PNO = P.PNO)
+		JOIN PICTURE PI ON(P.PNO = PI.PNO)
+		JOIN MEMBER M ON(M.MEMBER_ID = P.MEMBER_ID)
+		WHERE PLEVEL = '0' AND L.MEMBER_ID = #{member_Id}
+		ORDER BY L.LDATE DESC)
+		UNION
+		SELECT * 
+		FROM (SELECT M.MPHOTO, M.NICKNAME "WHOS", 2 "TYPE", PC.PNO, PC.NICKNAME "WHO", PI.PRENAMEDNAME, PC.CDATE
+		FROM POST PO
+		JOIN (SELECT (SELECT NICKNAME
+		                        FROM MEMBER
+		                        WHERE MEMBER_ID = #{member_Id})NICKNAME, PC.PNO, COMMENT_SEQ, CDATE
+		         FROM POST_COMMENT PC
+		         JOIN POST P ON(P.PNO = PC.PNO)
+		         JOIN MEMBER M ON(P.MEMBER_ID = M.MEMBER_ID)
+		         WHERE CWRITER = #{member_Id} AND CSTATUS = 'Y'
+		         ORDER BY CDATE DESC) PC ON(PC.PNO = PO.PNO)
+		JOIN MEMBER M ON(M.MEMBER_ID = PO.MEMBER_ID)
+		JOIN PICTURE PI ON(PO.PNO = PI.PNO)
+		WHERE PLEVEL = '0'
+		ORDER BY PC.CDATE DESC))
+		ORDER BY LDATE DESC) A
+		WHERE <![CDATA[ROWNUM<5]]>
+	</select>
+
 </mapper>
 
 
