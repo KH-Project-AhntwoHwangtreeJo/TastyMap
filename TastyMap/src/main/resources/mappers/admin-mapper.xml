@@ -17,23 +17,64 @@
 			<id property="date" column="PDATE"/>
 		</resultMap>
 		
+		<!-- [3. 식당 관리 resultMap]  -->
+		<resultMap id="restaurantMap" type="Restaurant">
+			<id property="adminStatus" column="ADMINSTATUS"/>
+		</resultMap>
+		
+		<resultMap id="reportMap" type="Report">
+			<id property="memberId" column="MEMBER_ID"/>
+			<id property="reportNo" column="REPORT_NO"/>
+			<id property="reportType" column="REPORT_TYPE"/>
+			<id property="reportStatus" column="REPORT_STATUS"/>
+		</resultMap>
+		
 	<!-- //======= ResultMap Zone End ============// -->
 	
 	
 	<!-- //======= Query Zone start ============// -->
 	
-		<!-- [1. 회원 관리 페이지 출력 쿼리]  -->
+		<!-- [1. 회원 관리]  -->
+		<!-- [1-1. 회원 정보 출력 쿼리]  -->
 		<select id="selectMemberList" resultMap="memberMap" >
 			SELECT *
 			FROM MEMBER
 		</select>
+		<!-- [1-2. 회원 활성화 상태 변경 쿼리]  -->
+		<update id="updateMemberStatus" parameterType="Member">
+			UPDATE MEMBER
+			SET
+			MSTATUS=#{mstatus}
+			WHERE MEMBER_ID=#{memberId}
+		</update>
 		
-		<!-- [2. 식당 관리 페이지 출력 쿼리]  -->
-		<select id="selectRestaurantList" resultType="Restaurant">
+		
+		<!-- [2. 식당 관리]  -->
+		<!-- [2-1. 식당 관리 페이지 출력 쿼리]  -->
+		<select id="selectRestaurantList" resultMap="restaurantMap">
 			SELECT *
 			FROM RESTAURANT
 			ORDER BY RNO DESC
 		</select>
+		<!-- [2-2. 식당 등록 쿼리]  -->
+		<insert id="insertRestaurnat" parameterType="Restaurant">
+			INSERT INTO RESTAURANT(RNO, RNAME, RCONTENT, CATEGORY, PRICE, TIME,TEL, ADDRESS, PAKING, UPDATEDATE, RSTATUS, ADMINSTATUS) 
+       		VALUES(SEQ_RES.NEXTVAL, #{rname}, #{rcontent}, #{category}, #{price}, #{time}, #{tel}, #{address}, #{paking},#{updatedate},#{rstatus},'A')
+		</insert>
+		<!-- [2-3. 식당 활성화 상태 변경 쿼리]  -->
+		<update id="updateRestaurantStatus" parameterType="Restaurant">
+			UPDATE RESTAURANT
+			SET
+			RSTATUS=#{rstatus}
+			WHERE RNO=#{rno}
+		</update>
+		<!-- [2-2. 식당 Admin 상태 변경 쿼리]  -->
+		<update id="updateRestaurantAdminStatus" parameterType="Restaurant">
+			UPDATE RESTAURANT
+			SET
+			ADMINSTATUS=#{rstatus}
+			WHERE RNO=#{rno}
+		</update>
 		
 		<!-- [3. 게시글 관리 페이지 출력 쿼리]  -->
 		<!-- [3-1. 게시글 정보 출력 쿼리]  -->
@@ -43,55 +84,75 @@
 			JOIN RESTAURANT R ON(P.RNO=R.RNO)
 			ORDER BY PNO DESC
 		</select>
-		<!-- [3-1. 사진 정보 출력 쿼리]  -->
+		<!-- [3-2. 사진 정보 출력 쿼리]  -->
 		<select id="selectPictureList" resultMap="postMap" >
 			SELECT P.* ,R.RNAME 
 	        FROM POST P
 			JOIN RESTAURANT R ON(P.RNO=R.RNO)
 			ORDER BY PNO DESC
 		</select>
+		<!-- [3-3. 게시글 활성화 상태 변경 쿼리]  -->
+		<update id="PostUpdateStatus" parameterType="Post">
+			UPDATE POST
+			SET
+			PSTATUS=#{pStatus}
+			WHERE PNO=#{pNo}
+		</update>
+		<!-- [3-4. 게시글에 해당하는 사진 활성화 상태 변경 쿼리]  -->
+		<update id="pictureUpdateStatus" parameterType="Picture">
+			UPDATE PICTURE
+			SET
+			PICTURE_STATUS=#{pStatus}
+			WHERE PNO=#{pNo}
+		</update>
 		
 		
-		
-		<!-- [4. 공지사항 관리 페이지 출력 쿼리]  -->
-		<!-- [4-1. 공지사항 리스트 출력 쿼리]  -->
-		<select id="selectNoticeList" >
-			SELECT * FROM NOTICE
-			ORDER BY NNO DESC
-		</select>
-		<!-- [4-2. 공지사항 등록 쿼리]  -->
-		<select id="insertNotice">
-			
-		</select>
-		<!-- [4-3. 공지사항 수정  쿼리]  -->
-		<select id="updateNotice" >
-			
-		</select>
-		
-		<!-- [4-3. 공지사항 상태수정(비게시) 쿼리]  -->
-		<select id="updateNoticeStatus" >
-			
-		</select>
-		
-		
-		<!-- [5. 신고 관리 페이지 출력 쿼리]  -->
-		<!-- [5-1. 댓글 신고내역 출력 쿼리]  -->
-		<select id="selectCommentReportList" resultType="Post" >
-			SELECT * FROM  REPORT
-			WHERE REPORT_TYPE='C'
-			ORDER BY RENO DESC
-		</select>
-		<!-- [5-2. 게시글 신고내역 출력 쿼리]  -->
-		<select id="selectPostReportList" resultType="Post" >
-			SELECT * FROM  REPORT
-			WHERE REPORT_TYPE='P'
-			ORDER BY RENO DESC
+		<!-- [4. 신고 관리 페이지 출력 쿼리]  -->
+		<!-- [4-1. 댓글 신고내역 출력 쿼리]  -->
+		<select id="selectCommentReportList" resultMap="reportMap" >
+			SELECT C.COMMENT_SEQ "REPORT_NO", C.CWRITER "WRITER" ,C.CCONTENT "CONTENT", C.CDATE "WRITEDATE" , C.CSTATUS "STATUS"	, R.*
+			FROM (SELECT *
+				  FROM REPORT 
+				  WHERE REPORT_TYPE='C') R
+			JOIN POST_COMMENT C ON(C.COMMENT_SEQ=R.REPORT_NO)
 		</select>
 		
-		<insert id="insertRestaurnat" parameterType="Restaurant">
-			INSERT INTO RESTAURANT(RNO, RNAME, RCONTENT, CATEGORY, PRICE, TIME,TEL, ADDRESS, PAKING, UPDATEDATE, RSTATUS, ADMINSTATUS) 
-       		VALUES(SEQ_RES.NEXTVAL, #{rname}, #{rcontent}, #{category}, #{price}, #{time}, #{tel}, #{address}, #{paking},#{updatedate},#{rstatus},'A')
-		</insert>
+		<!-- [4-2. 신고된 댓글의 활성화 상태 변경 쿼리]  -->
+		<update id="commentStatusUpdate" parameterType="PostComment">
+			UPDATE POST_COMMENT
+			SET
+			CSTATUS=#{ccontent}
+			WHERE COMMENT_SEQ=#{cno}
+		</update>
+		
+		<!-- [4-3. 댓글의 신고 상태 변경 쿼리]  -->
+		<update id="cReportStatusUpdate" parameterType="Report">
+			UPDATE REPORT
+			SET
+			REPORT_STATUS=#{reportStatus}
+			WHERE RENO=#{reno}
+			AND REPORT_TYPE='C'
+		</update>
+		
+		
+		<!-- [4-4. 게시글 신고내역 출력 쿼리]  -->
+		<select id="selectPostReportList" resultMap="reportMap">
+			SELECT P.PNO "REPORT_NO", P.MEMBER_ID "WRITER", P.PCONTENT "CONTENT" , P.PDATE "WRITEDATE", P.PSTATUS "STATUS",R.*
+			FROM (SELECT *
+				  FROM REPORT 
+				  WHERE REPORT_TYPE='P') R
+			JOIN POST P ON(P.PNO=R.REPORT_NO)
+		</select>
+		
+		<!-- [4-5. 게시글의 신고 상태 변경 쿼리]  -->
+		<update id="pReportStatusUpdate" parameterType="Report">
+			UPDATE REPORT
+			SET
+			REPORT_STATUS=#{reportStatus}
+			WHERE RENO=#{reno}
+			AND REPORT_TYPE='P'
+		</update>
+		
 		
 		<!-- ======= Query Zone End ============ -->
 		

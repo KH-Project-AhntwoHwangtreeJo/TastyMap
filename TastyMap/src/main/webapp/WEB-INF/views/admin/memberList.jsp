@@ -130,62 +130,30 @@ input:checked+.slider:before {
 						
 						</tbody>
 					</table>
-					<button type="button" id="btn1" onclick="click1();">버튼1</button>
-					<button type="button" id="btn2" onclick="click2();">버튼2</button>
+
 						<script>
 						function toggle(obj) {
-
-							var str = ""
-							var tdArr = new Array();
-
 							var tr = $(obj).parent().parent().parent();
 							var td = tr.children();
 
-							var no = td.eq(0).text();
-							console.log(no + " : " + $(obj).prop('checked'));
+							var status=$(obj).prop('checked');
+							var memberId= td.eq(0).text();
+			
 							$.ajax({
-								url : "Status.do",
-								data : {
-									userId : no,
-									status : $(obj).prop('checked')
-
-								},
+								url : '${pageContext.request.contextPath}/admin/updateMemberStatus.do',
+								data : { memberId : memberId, status : status},
+								dataType : 'json',
 								success : function(data) {
-									console.log(data);
-									if (data > 0) {
-										console.log("회원 활성성화 상태 변경 완료");
-									} else {
-										console.log("변경 실패");
-									}
+									alert(data.msg);
 								}
 							});
 						};
 						
-						function click1(){
-							alert("버튼1 클릭됨");
-							$('#btn2').click();
-							//$('#btn2').addClass('on')
-							document.getElementById('btn2').classList.add( 'someclass' );
-						}
 						
-						function click2(){
-							alert("버튼2 클릭됨");
-						}
 						
 					</script>
 					
-					<script>
-					function click1(){
-						alert("버튼1 클릭됨");
-						$('#btn2').click();
-						$('#btn2').addClass('on')
-						document.getElementById('btn2').classList.add( 'someclass' );
-					}
 					
-					function click2(){
-						alert("버튼2 클릭됨");
-					}
-					</script>
 					
 					
 				</div>

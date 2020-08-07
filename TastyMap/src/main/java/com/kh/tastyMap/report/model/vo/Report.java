@@ -14,6 +14,7 @@ public class Report implements Serializable{
 
 	private static final long serialVersionUID = 959L;
 	
+	private int reno;
 	private String memberId;
 	private int reportNo;
 	private String reportType;// 댓글인지 게시글인지 구분값을 넣을 변수
@@ -33,6 +34,28 @@ public class Report implements Serializable{
 		this.memberId = memberId;
 		this.reportNo = reportNo;
 	}
+	
+	// 신고하기 등록용 메소드
+	public Report(String memberId, int reportNo, String reportType, String reportStatus) {
+		super();
+		this.memberId = memberId;
+		this.reportNo = reportNo;
+		this.reportType = reportType;
+		this.reportStatus = reportStatus;
+	}
+
+
+	
+	// 관리자 신고 리스트 출력용 (변수 전부 -9개!)
+	
+	// 관리자 신고 상태 변경용 메소드
+	public Report(int reno, String reportStatus) {
+		super();
+		this.reno = reno;
+		this.reportStatus = reportStatus;
+	}
+	
+	
 	
 	
 }

@@ -27,9 +27,6 @@
 								
 						<li><a href="${pageContext.request.contextPath}/admin/selectPostReport.do"><i
 								class="glyphicon glyphicon-list"></i> 게시글 신고 목록<br></a></li>		
-								
-						<li><a href="${pageContext.request.contextPath}/admin/selectNotice.do"><i
-								class="glyphicon glyphicon-list"></i> 공지사항<br></a></li>
 					</ul>
 				</div>
 			</div>

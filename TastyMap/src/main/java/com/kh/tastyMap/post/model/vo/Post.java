@@ -37,4 +37,13 @@ public class Post implements Serializable{
 	private String nickname;
 	private String rname;
 	
+	// admin 게시글 상태 변경용
+	public Post(int pNo, String pStatus) {
+		super();
+		this.pNo = pNo;
+		this.pStatus = pStatus;
+	}
+	
+	
+	
 }
