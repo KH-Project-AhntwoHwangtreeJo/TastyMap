@@ -130,11 +130,23 @@
 								<div class="col-md-3 d-flex ">
 									<div class="blog-entry justify-content-end">
 										<div class="text">
+										<!-- 식당 등록 시 이미지 없을 시 -->
+											<c:if test="${ empty A.PRenamedName }">
+											<a
+												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=${A.rno}&memberId=${member.memberId}"
+												class="block-20 img" id="trd"
+												style="background-image:url(/tastyMap/resources/images/res/resDefault.png)">
+											</a>
+											</c:if>
+											
+											<!-- 이미지 있으면 있는거 출력 -->
+											<c:if test="${!empty A.PRenamedName }">
 											<a
 												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=${A.rno}&memberId=${member.memberId}"
 												class="block-20 img" id="trd"
 												style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.PRenamedName}');">
 											</a>
+											</c:if>
 											<h3 class="heading">
 												<a href="#">${A.RName}</a>
 											</h3>
@@ -161,11 +173,23 @@
 								<div class="col-md-3 d-flex">
 									<div class="blog-entry justify-content-end">
 										<div class="text">
+										<!-- 식당 등록 시 이미지 없을 시 -->
+											<c:if test="${ empty A.PRenamedName }">
+											<a
+												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=${A.rno}&memberId=${member.memberId}"
+												class="block-20 img" id="trd"
+												style="background-image:url(/tastyMap/resources/images/res/resDefault.png)">
+											</a>
+											</c:if>
+											
+											<!-- 이미지 있으면 있는거 출력 -->
+											<c:if test="${!empty A.PRenamedName }">
 											<a
 												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=${A.rno}&memberId=${member.memberId}"
 												class="block-20 img" id="trd"
 												style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.PRenamedName}');">
 											</a>
+											</c:if>
 											<h3 class="heading">
 												<a href="#">${A.RName}</a>
 											</h3>
@@ -195,11 +219,23 @@
 								<div class="col-md-3 d-flex ">
 									<div class="blog-entry justify-content-end">
 										<div class="text">
+										<!-- 식당 등록 시 이미지 없을 시 -->
+											<c:if test="${ empty A.PRenamedName }">
+											<a
+												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=${A.rno}&memberId=${member.memberId}"
+												class="block-20 img" id="trd"
+												style="background-image:url(/tastyMap/resources/images/res/resDefault.png)">
+											</a>
+											</c:if>
+											
+											<!-- 이미지 있으면 있는거 출력 -->
+											<c:if test="${!empty A.PRenamedName }">
 											<a
 												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=${A.rno}&memberId=${member.memberId}"
 												class="block-20 img" id="trd"
 												style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.PRenamedName}');">
 											</a>
+											</c:if>
 											<h3 class="heading">
 												<a href="#">${A.RName}</a>
 											</h3>
@@ -228,11 +264,23 @@
 								<div class="col-md-3 d-flex ">
 									<div class="blog-entry justify-content-end">
 										<div class="text">
+										<!-- 식당 등록 시 이미지 없을 시 -->
+											<c:if test="${ empty A.PRenamedName }">
 											<a
-												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?${A.rno}&memberId=${member.memberId}"
+												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=${A.rno}&memberId=${member.memberId}"
+												class="block-20 img" id="trd"
+												style="background-image:url(/tastyMap/resources/images/res/resDefault.png)">
+											</a>
+											</c:if>
+											
+											<!-- 이미지 있으면 있는거 출력 -->
+											<c:if test="${!empty A.PRenamedName }">
+											<a
+												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=${A.rno}&memberId=${member.memberId}"
 												class="block-20 img" id="trd"
 												style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.PRenamedName}');">
 											</a>
+											</c:if>
 											<h3 class="heading">
 												<a href="#">${A.RName}</a>
 											</h3>
@@ -260,11 +308,23 @@
 								<div class="col-md-3 d-flex ">
 									<div class="blog-entry justify-content-end">
 										<div class="text">
+										<!-- 식당 등록 시 이미지 없을 시 -->
+											<c:if test="${ empty A.PRenamedName }">
+											<a
+												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=${A.rno}&memberId=${member.memberId}"
+												class="block-20 img" id="trd"
+												style="background-image:url(/tastyMap/resources/images/res/resDefault.png)">
+											</a>
+											</c:if>
+											
+											<!-- 이미지 있으면 있는거 출력 -->
+											<c:if test="${!empty A.PRenamedName }">
 											<a
 												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=${A.rno}&memberId=${member.memberId}"
 												class="block-20 img" id="trd"
 												style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.PRenamedName}');">
 											</a>
+											</c:if>
 											<h3 class="heading">
 												<a href="#">${A.RName}</a>
 											</h3>
@@ -291,11 +351,23 @@
 								<div class="col-md-3 d-flex ">
 									<div class="blog-entry justify-content-end">
 										<div class="text">
+										<!-- 식당 등록 시 이미지 없을 시 -->
+											<c:if test="${ empty A.PRenamedName }">
+											<a
+												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=${A.rno}&memberId=${member.memberId}"
+												class="block-20 img" id="trd"
+												style="background-image:url(/tastyMap/resources/images/res/resDefault.png)">
+											</a>
+											</c:if>
+											
+											<!-- 이미지 있으면 있는거 출력 -->
+											<c:if test="${!empty A.PRenamedName }">
 											<a
 												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=${A.rno}&memberId=${member.memberId}"
 												class="block-20 img" id="trd"
 												style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.PRenamedName}');">
 											</a>
+											</c:if>
 											<h3 class="heading">
 												<a href="#">${A.RName}</a>
 											</h3>
@@ -323,11 +395,23 @@
 								<div class="col-md-3 d-flex ">
 									<div class="blog-entry justify-content-end">
 										<div class="text">
+										<!-- 식당 등록 시 이미지 없을 시 -->
+											<c:if test="${ empty A.PRenamedName }">
+											<a
+												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=${A.rno}&memberId=${member.memberId}"
+												class="block-20 img" id="trd"
+												style="background-image:url(/tastyMap/resources/images/res/resDefault.png)">
+											</a>
+											</c:if>
+											
+											<!-- 이미지 있으면 있는거 출력 -->
+											<c:if test="${!empty A.PRenamedName }">
 											<a
 												href="${pageContext.request.contextPath}/restaurant/restaurantDatail.do?rno=${A.rno}&memberId=${member.memberId}"
 												class="block-20 img" id="trd"
 												style="background-image: url('${pageContext.request.contextPath}/resources/upload/post/${A.PRenamedName}');">
 											</a>
+											</c:if>
 											<h3 class="heading">
 												<a href="#">${A.RName}</a>
 											</h3>
