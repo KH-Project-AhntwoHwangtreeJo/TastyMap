@@ -171,6 +171,10 @@ public class PostServiceImpl implements PostService {
 		return postDAO.getLoveMemberList(pno);
 	}
 
-
+	// post 상세페이지 조회수 조회메소드
+	@Override
+	public int selectPCNT(int pNo) {
+		return postDAO.selectPCNT(pNo);
+	}
 	
 }

@@ -136,7 +136,12 @@
 		CONNECT BY PRIOR COMMENT_SEQ= PARENTKEY  <!-- 부모 노드가 먼저 와야 한다 comment_seq = parentkey --> 
 	</select>
 
-	
+	<!-- ●POST 조회수 조회  -->
+	<select id="selectPCNT" parameterType="_int" resultType="_int">
+		SELECT PCNT
+		FROM POST
+		WHERE PNO = #{pNo}
+	</select>
 	
 </mapper>
 

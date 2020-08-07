@@ -108,5 +108,12 @@ public interface PostDAO {
 	 * 내 게시글에 좋아요한 사용자 리스트 by 안예진
 	 */
 	List<PostList> getLoveMemberList(int pNo);
+	
+	/**
+	 * 게시글 조회수 조회 메소드
+	 * @param pno
+	 * @return
+	 */
+	int selectPCNT(int pNo);
 
 }

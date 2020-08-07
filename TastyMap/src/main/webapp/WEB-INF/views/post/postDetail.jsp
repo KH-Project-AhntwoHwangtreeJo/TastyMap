@@ -533,6 +533,9 @@ to {
             <h4 class="mb-3" style="float: left;"> ${ post.nickname } </h4> 
            	</a>
            	
+           	<!-- 포스트 조회수 -->
+           	<p style="margin-left:10px; float: right;">조회수 : ${selectPCNT}</p>
+			
 			<!-- 경로 복사하기 -->
 			<a href="#urlCopyBtn" class="urlCopyBtn">
 				<span class="urlCopyBtnIcon" style="margin-left:10px; float: right;">URL복사</span>
@@ -645,10 +648,17 @@ to {
 										<input type="hidden" id="cno" class="cnoplace" name="cno" value="${PComment.cno}"/>
 										<input type="hidden" name="level" class="level" value="${PComment.level}"/>
 											
+											<img class="commentreportimagewhite" onclick="changeCommentReport(this);" border="0" src="${pageContext.request.contextPath}/resources/images/report/siren1.png"  style="display:block;width: 30px; height: 30px; float: right; margin-right: 7px;">
 											<c:forEach items="${commentNoReportList}" var="commentNoReportList"  >
-									            
-									            	<img class="commentreportimage" onclick="changeCommentReport(this);" border="0" src="${pageContext.request.contextPath}/resources/images/report/${ PComment.cno eq commentNoReportList.ReportCommentList and member.memberId eq commentNoReportList.MEMBER_ID ? 'siren2.png' : 'siren1.png' }"  style="display:block;width: 30px; height: 30px; float: right; margin-right: 7px;">
-									      		
+									            <c:if test="${ PComment.cno eq commentNoReportList.ReportCommentList and member.memberId eq commentNoReportList.MEMBER_ID}">
+									            	<img class="commentreportimage" onclick="changeCommentReport(this);" border="0" src="${pageContext.request.contextPath}/resources/images/report/siren2.png"  style="display:block;width: 30px; height: 30px; float: right; margin-right: 7px;">
+									            	<script>
+									            		$(function(){
+									            			var index= ${status.index};
+									            			$('.commentreportimagewhite').eq(index).css('display','none');
+									            		}); 
+									            	</script>
+									      		</c:if>
 								      		</c:forEach>
 								      		
 										<button type="button" class="btn btn-outline-info" onclick="reComment(this);" style="float: right; margin-right: 5px;" >답글 달기</button>
@@ -743,6 +753,7 @@ to {
     	
 	<!-- 댓글 관련 스크립트 -->
 	<script>
+
 
 	
 	function updateReply(obj){
