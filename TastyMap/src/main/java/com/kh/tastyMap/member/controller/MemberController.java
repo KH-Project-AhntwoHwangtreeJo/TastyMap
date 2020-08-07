@@ -760,7 +760,7 @@ public class MemberController {
       		model.addAttribute("map", map);
       		model.addAttribute("category",category);
       		model.addAttribute("cntCategory",cntCategory);
-      		System.out.println(map);
+      		//System.out.println(map);
       	
      		
      	// --------------------------------------------------------------------------------
