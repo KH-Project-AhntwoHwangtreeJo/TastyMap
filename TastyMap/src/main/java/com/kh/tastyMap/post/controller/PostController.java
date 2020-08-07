@@ -349,6 +349,7 @@ public class PostController {
 	@RequestMapping("/post/postDelete.do")
 	public String postDelete(@RequestParam int pNo, HttpSession session, Model model) {
 		
+		Post post = new Post();
 		try {
 		
 		
@@ -356,12 +357,25 @@ public class PostController {
 		int result = postService.deletePost(pNo);
 		int result1= postService.deleteComment(pNo);
 		
-		}catch (Exception e) {
-			 // 오류 시 PostException 동작
-			throw new PostException(e.getMessage());
-		 }
-		
-		return "post/myGallery";
+		 String loc = "/post/postAllList.do";
+	       String msg = "";
+
+	       if(result > 0) {
+	          msg = "게시글 삭제 완료!";
+	          loc = "/post/postAllList.do?no="+post.getPNo();
+
+	       } else {
+	          msg = "게시글 삭제 실패!";
+	          
+	       }
+
+	       model.addAttribute("loc", loc).addAttribute("msg", msg);
+	      }catch (Exception e) {
+				 // 오류 시 PostException 동작
+				throw new PostException(e.getMessage());
+			 }
+
+	       return "common/msg";
 	}
 	
 

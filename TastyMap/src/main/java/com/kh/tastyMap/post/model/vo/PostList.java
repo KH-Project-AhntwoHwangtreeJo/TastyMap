@@ -31,7 +31,7 @@ public class PostList implements Serializable {
 	private String pRenamedName;// PICTURE 변경사진 파일명
 	private String rName;		// 식당이름
 	private String address;		// 식당주소						
-	
+	private String category;
 	
 	private List<Picture> files = new ArrayList<Picture>();
 }
