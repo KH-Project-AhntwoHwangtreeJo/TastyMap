@@ -65,15 +65,22 @@
 <br/>
 
 ### 4) Post
-#### 4-1) Post List
+#### 4-1) Insert Post 
 - img
 - 설명(안예진)
-#### 4-2) Post Detail
+#### 4-2) Post List
+- img
+- 설명(안예진)
+#### 4-3) Post Detail
 - img
 - 설명(황창현)
-#### 4-3) Post update & delete
+#### 4-4) Post update
 - img
 - 설명(조은성)
+#### 4-5) Post delete
+- img
+- 설명(안예진)
+
 <br/>
 
 ### 5) Restaurant
