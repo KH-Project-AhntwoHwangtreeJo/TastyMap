@@ -251,16 +251,16 @@ public class RestaurantController {
 				}					
 		
 //	       	4. 리뷰
-				List<PostList> RPost = restaurantService.restaurantPost(rno);				
+				List<PostList> RPost = restaurantService.restaurantPost(rno);
 //				리뷰가 없을 시 차트 X
-				if(RPost != null) {			
+				if(!RPost. isEmpty()) {			
 //			5. 막대 차트 
 				
 				  List<Map<String, String>> chart = restaurantService.restaurantChart(rno);
 				  for( Map<String, String> r : chart ) {			  
 				  M = String.valueOf((r.get("남자"))); F = String.valueOf((r.get("여자"))); }
 				 
-//	   	6. 원형 차트			
+//	   		6. 원형 차트			
 				
 				  List<Map<String, String>> chartTwo = restaurantService.restaurantChartTwo(rno); 
 				  for( Map<String, String> e : chartTwo ) {			  
@@ -271,7 +271,7 @@ public class RestaurantController {
 				
 				
 //			 	7. 리뷰 사진
-			List<Picture> RPicture = restaurantService.restaurantPicture(rno);			
+			List<Picture> RPicture = restaurantService.restaurantPicture(rno);		
 //				8. 리뷰갯수
 			int PostNumber = restaurantService.restaurantPostTwo(rno);		
 			String Pnum = String.valueOf(PostNumber);

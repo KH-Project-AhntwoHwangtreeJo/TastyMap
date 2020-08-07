@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -44,7 +45,7 @@
 	<c:if test="${ empty list}">
 		<div id="header">
 			<img
-				src="${pageContext.request.contextPath}/resources/upload/post/subimg.png"
+				src="${pageContext.request.contextPath}/resources/upload/post/subimage.png"
 				style="width: 100%; height: 70%;">
 		</div>
 	</c:if>
@@ -86,7 +87,7 @@
         <!-- 경로 복사하기 시작 -->
 <div>	
 	<a href="#urlCopyBtn" class="urlCopyBtn">	
-	  <span class="urlCopyBtnIcon" style="margin-left:1px;">경로 복사하기</span>
+	  <span class="urlCopyBtnIcon" style="margin-left:10px; font-size: 10px;">경로 복사하기</span>
 	</a>
 </div>
       
@@ -174,43 +175,80 @@ $('.urlCopyBtn').click(function(){
 		  		<input class="btn btn-outline-info" type="button" onclick="postMove()" value="리뷰등록하기" style="font-size: 10px; float: right;" >
 		    	</c:if>		 
 		     </h3>
-		        
-          <!-- 2. 리뷰 리스트  -->
+		     	<br>
+		        <hr>
+              <!-- 2. 리뷰 리스트  -->
               <div class="pt-5 mt-5">     
                 <ul class="comment-list">
-                <c:forEach items="${RPost}" var="RPost"> 
-                  <li class="comment">                     
-                  <div id="postdate" style="position: relative;right: 10px;">${fn:substring(RPost.date,0,10)}</div>                                    
-                    <div class="vcard bio">   
-                      <img src="${pageContext.request.contextPath}/resources/images/person_1.jpg" alt="Image placeholder" style="margin-bottom: 5px;margin-bottom: 1px;position: relative;top: 0px;">
-                      <h6 style="top: 8px;position: relative;">${RPost.NICKNAME}</h6>
+                <c:forEach items="${RPost}" var="RPost" varStatus="status"> 
+    			 <li class="comment" style="margin-right: 20px">                     
+                                     <br><br>          
+                    <div class="vcard bio" style="height:5px;">                    	  
+                      <a href="${pageContext.request.contextPath}/member/myGallery.do?memberId=${RPost.MEMBER_ID}&followerId=${member.memberId}" class="agent-info d-flex align-items-center">    
+                      <img src="${pageContext.request.contextPath}/resources/images/${RPost.MPHOTO}" alt="Image placeholder" style="margin-bottom: 5px;margin-bottom: 1px;position: relative;top: -70px;">
+                      </a>                 
+                      <h6 style="top: -50px;position: relative;">${RPost.NICKNAME}</h6> 
                     </div>
-                    <div class="comment-body">
-          <!-- 신고 기능 버튼 (로그인 되어있을 시 신고 가능 )-->
+                    
+                    
+                    
+                    
+                    <!-- <div class="comment-body"> -->
+    
+                 
+                 <div class="rows" style="position: relative; font-size: 30px; top: -43px; left:-35px;display:inline">
+                  <!-- 신고 기능 버튼 (로그인 되어있을 시 신고 가능 )-->
   				 <c:if test="${ empty member.memberId }">
-                <a href="#loginModal" class="nav-link"> 
-              <input class="btn btn-outline-danger" data-toggle="modal" data-target="#loginModal" type="button" value="신고하기" style="font-size: 10px; float: right;" >
-		   		</a>
+  				    <a href="#loginModal" class="nav-link"> 
+             		 <input class="btn btn-outline-danger" data-toggle="modal" data-target="#loginModal" type="button" value="신고하기" style="float: right;" >
+		   			</a>
 		    	</c:if>
-		  <!--  1.2 Session에 멤버아이디가 있을 경우 -->
-		    	<c:if test="${ !empty member.memberId }">
-		  		<input class="btn btn-outline-danger" type="button" onclick="changeLove()" value="신고하기" style="font-size: 10px; float: right;" >
-		    	</c:if>		 
-
-
-          <!-- 신고 기능 버튼 끝 -->
-          
-          
-                    <div class="meta" style="position: relative;margin-left: 490px; font-size: 30px; top: -43px;"><img src="${pageContext.request.contextPath}/resources/upload/post/star1.png" style="width: 30px; height: 30px; margin-bottom: 0px;">  &nbsp;${RPost.STAR}</div> 
+		  <!--  1.2 Session에 멤버아이디가 있을 경우 -->	
+		    	<c:if test="${ RPost.MEMBER_ID ne member.memberId and !empty member.memberId}">
+		    	<input id="eunsung" class="eunsung" type="hidden" value="${RPost.PNO}" /> 
+		    	<button class="btn btn-outline-danger" type="button" onclick="changePostReport(this);"  style="float: right; position: relative; left: -60px;" >신고하기</button>		    		    	
+		    	<script>
+	                  function changePostReport(obj){               
+	                   var pno = $(obj).parent().find('.eunsung').val();                   
+	                  		 console.log(pno);	                    
+	                      var memberId = "${member.memberId}";                   	
+		                  	$.ajax({
+		                  		url : '${pageContext.request.contextPath}/report/insertPostReport.do',
+		                  		data : { pNo : pno, memberId : memberId },
+		                  		dataType : 'json',
+		                  		success : function(data) {
+		                  			// 메세지 출력			
+		                  			alert(data.pmsg);
+		                  		}, error : function(req, qstatus, error) {
+		                  			
+		                  			alert('에러인가?');
+		                  		}
+		                  		
+		                  	});
+	                   }
+	                </script>	    	
+		    	</c:if>		    			
+          <!-- 신고 기능 버튼 끝 -->  
+          		</div>     
+              
+                  
+                  
+                  <div  class="meta" style="position: relative; margin-left: 100px">
+        		    <div id="postdate" style="position: relative;right: -3px; top : -80px;">${fn:substring(RPost.date,0,10)}
+        		    <h2 style="float:right; margin-top: -7px ;display:inline;margin-right:50px;">${RPost.STAR}</h2> 
+                 <img src="${pageContext.request.contextPath}/resources/upload/post/star1.png" style=";width: 30px; height: 30px; float: right;">  
+        		    </div>                 
                    	<div style="position: relative;top: -80px;">${RPost.PCONTENT}</div>                                          
                     <br>
-                    </div>                    
-                    <c:forEach items="${RPicture}" var="RPicture">                 
-                    <c:if test="${RPost.PNO eq RPicture.PNO}">       			  
-           			 <img class="pt"src="${pageContext.request.contextPath}/resources/upload/post/${RPicture.prenamedname}"  style="width: 200px; height: 200px;">                    
+                    <!-- </div> -->                    
+				
+                    <c:forEach items="${RPicture}" var="RPicture">  
+                    <c:if test="${RPost.PNO eq RPicture.PNO}">
+           			 <img class="pt"src="${pageContext.request.contextPath}/resources/upload/post/${RPicture.prenamedname}"  style="width: 200px; height: 200px; margin-left: 1px; margin-top: -100px">                                               			  
                     </c:if>
-                     </c:forEach>
-                   	<hr>
+                     </c:forEach>  
+                    </div>
+                     <hr>                	
                   </li>                 
                  </c:forEach>       
                 </ul>          
@@ -243,33 +281,25 @@ var mapContainer = document.getElementById('mapim'), // 지도를 표시할 div
         center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
     };  
-
 // 지도를 생성합니다    
 var map = new kakao.maps.Map(mapContainer, mapOption); 
-
 // 주소-좌표 변환 객체를 생성합니다
 var geocoder = new kakao.maps.services.Geocoder();
-
 // 주소로 좌표를 검색합니다
 geocoder.addressSearch('${restaurant.address}', function(result, status) {
-
     // 정상적으로 검색이 완료됐으면 
      if (status === kakao.maps.services.Status.OK) {
-
         var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
         // 결과값으로 받은 위치를 마커로 표시합니다
         var marker = new kakao.maps.Marker({
             map: map,
             position: coords
         });
-
         // 인포윈도우로 장소에 대한 설명을 표시합니다
         var infowindow = new kakao.maps.InfoWindow({
             content: '<div style="width:150px;text-align:center;padding:6px 0;">${restaurant.rname}</div>'
         });
         infowindow.open(map, marker);
-
         // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
         map.setCenter(coords);
     } 
@@ -328,7 +358,6 @@ geocoder.addressSearch('${restaurant.address}', function(result, status) {
               },
               legend : {
                 position : 'relative' // 항목 표시 여부 (현재 설정은 안함)              
-
               }
             };
           
@@ -358,7 +387,6 @@ function drawChart() {
 	var options = {
       title: '리뷰 등록 연령대 비율 차트'
     };
-
     var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 	
     chart.draw(data, options);
@@ -386,8 +414,6 @@ $('.play').on('click',function(){
 $('.stop').on('click',function(){
     owl.trigger('stop.owl.autoplay')
 })
-
-
 function login() {
 	alert("로그인 해주세요");
 }
@@ -424,35 +450,12 @@ function login() {
  
 function share() { var url = encodeURI(encodeURIComponent(myform.url.value)); var title = encodeURI(myform.title.value); var shareURL = "https://share.naver.com/web/shareView.nhn?url=" + url + "&title=" + title; document.location = shareURL; 
 } 
-
 function postMove(){
 	 location.href = "${pageContext.request.contextPath}/post/restaurantInsert.do?rname=${restaurant.rname}&memberId=${member.memberId}&address=${restaurant.address}";
 } 
-
-// 게시글 신고
-function changePostReport() {
 	
-	var memberId = "${member.memberId}";
-	var pNo = "${post.PNo}";
-	
-	$.ajax({
-		url : '${pageContext.request.contextPath}/report/insertPostReport.do',
-		data : { pNo : pNo, memberId : memberId },
-		dataType : 'json',
-		success : function(data) {
-			// 메세지 출력			
-			alert(data.pmsg);
-			document.getElementById('postreportimage').src="${pageContext.request.contextPath}/resources/images/report/siren2.png";
-		}, error : function(req, qstatus, error) {
-			console.log(req);
-			console.log(qstatus);
-			console.log(error);
-			alert('에러인가?');
-		}
-		
-	});
-}	
 </script> 
 <c:import url="/views/common/footer.jsp"/>
 </body>
 </html>
+
