@@ -41,7 +41,7 @@
 
 								<div class="list-agent d-flex align-items-center">
 									<a
-										href="${pageContext.request.contextPath}/member/myGallery.do?memberId=${member.memberId}&followerId=${member.memberId}"
+										href="${pageContext.request.contextPath}/member/myGallery.do?memberId=${p.member_Id}&followerId=${member.memberId}"
 										class="agent-info d-flex align-items-center">
 										<div class="img-2 rounded-circle"
 											style="background-image: url('${pageContext.request.contextPath}/resources/images/profileImage/${P.MPhoto}');"></div>
