@@ -12,7 +12,7 @@
             <div class="ftco-footer-widget mb-4">
            <!-- <h2 class="ftco-heading-2">Findstate</h2> -->
            <a href="#">
-            <img src="${pageContext.request.contextPath}/resources/images/logo.png" alt="">
+            <img src="${pageContext.request.contextPath}/resources/images/logo.png" alt="" style="width: 270px;">
            </a>
            <br>
            <br>
