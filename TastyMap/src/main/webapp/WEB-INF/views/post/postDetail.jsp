@@ -786,6 +786,7 @@ to {
 				// ajax에서 msg에 값을 가져오고 싶으면 컨트롤러에서 map 형식으로 보내줘야한다.	
 			}
 		}); 
+		location.reload();
 	}
 	
 	function deleteReply(obj) {
@@ -802,6 +803,7 @@ to {
 				// ajax에서 msg에 값을 가져오고 싶으면 컨트롤러에서 map 형식으로 보내줘야한다.	
 			}
 		}); 
+		location.reload();
 	}
 	
 	// 답글 달기 버튼 누르면
@@ -847,7 +849,7 @@ to {
 				// ajax에서 msg에 값을 가져오고 싶으면 컨트롤러에서 map 형식으로 보내줘야한다.	
 			}
 		}); 
-		
+		location.reload();
 	}
 	
 	</script>
