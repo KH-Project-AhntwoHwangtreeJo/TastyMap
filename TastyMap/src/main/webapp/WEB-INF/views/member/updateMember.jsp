@@ -174,7 +174,7 @@
                   <br>
 					계정 삭제 하시겠습니까?
                     <div class="form-group text-center">
-                    <input type="text" class="form-control" id="checkDelete" name="checkDelete" placeholder="계정삭제를 입력해 주세요"/>
+                    <input type="text" class="form-control" id="checkDelete" name="checkDelete" placeholder="'계정삭제'라고 입력해 주세요"/>
                     <br><br>
                     
                     
@@ -223,7 +223,7 @@
 			 document.location.href = "${pageContext.request.contextPath}/member/deleteMember.do?memberId=${member.memberId}";
 			 
 		 } else {
-			 alert("계정탈퇴를 원하시면 계정삭제를 입력해주세요");
+			 alert("계정탈퇴를 원하시면 '계정삭제'를 입력해주세요");
 		 }
 	}
 	
