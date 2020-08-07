@@ -95,10 +95,10 @@
 - img
 - 설명 (조성아)
 #### 7-2) Restaurant
-(1) Restaurant List
+##### (1) Restaurant List
 - img
 - 설명 (조성아)
-(2) Restaurant Register
+##### (2) Restaurant Register
 - img
 - 설명 (황하용)
 #### 7-3) Post
