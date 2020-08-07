@@ -605,21 +605,21 @@ to {
             	  
 				<h3 class="mb-5" style="margin-bottom: 1rem !important;">댓글</h3> 
 					<div class="col-12" style="padding: 0px;">
-<%-- 						<input type="text" style="width: 80%; margin-bottom: 5px;" id="normalcomment">
+
 						<c:if test="${ empty member.memberId }">
+							<input type="text" class="ccontent"name="ccontent" value="" style="width: 80%; margin-bottom: 5px;">
 							<button type="button" class="btn btn-outline-primary col-2"style="float: right;" data-toggle="modal" data-target="#loginModal" onclick="loginModal">작성</button>
 						</c:if>	
 						<c:if test="${ !empty member.memberId }">
-							<button type="button" class="btn btn-outline-primary col-2"style="float: right;" onclick="commentinsert(0,$('#normalcomment').val());">작성</button>
-						</c:if>	 --%>
-						<form action="${pageContext.request.contextPath}/postComment/insertComment.do">
-							<input type="hidden" class="cwriter" name="cwriter" value="${member.memberId}"/>
-							<input type="hidden" class="pNo" name="pNo" value="${post.PNo}"/>
-							<input type="hidden" class="parentkey" name="parentkey" value="0"/>
-							<input type="hidden" class="level" name="level" value="1"/>
-							<input type="text" class="ccontent"name="ccontent" value="" style="width: 80%; margin-bottom: 5px;">
-							<button type="submit" id="addReply(this)" class="btn btn-outline-primary col-2"style="float: right;" >작성</button>
-						</form>
+							<form action="${pageContext.request.contextPath}/postComment/insertComment.do">
+								<input type="hidden" class="cwriter" name="cwriter" value="${member.memberId}"/>
+								<input type="hidden" class="pNo" name="pNo" value="${post.PNo}"/>
+								<input type="hidden" class="parentkey" name="parentkey" value="0"/>
+								<input type="hidden" class="level" name="level" value="1"/>
+								<input type="text" class="ccontent"name="ccontent" value="" style="width: 80%; margin-bottom: 5px;">
+								<button type="submit" id="addReply(this)" class="btn btn-outline-primary col-2"style="float: right;" >작성</button>
+							</form>
+						</c:if>	
 										
 					</div>
 				<br><br>
@@ -750,12 +750,8 @@ to {
 	</script>
 	<!-- 사용자 좋아요 끝! -->
     
-    	
 	<!-- 댓글 관련 스크립트 -->
 	<script>
-
-
-	
 	function updateReply(obj){
 		// input 보이게 하기
 		$(obj).parent().parent().find('.inputupdate').css('display', 'block');
@@ -790,7 +786,6 @@ to {
 				// ajax에서 msg에 값을 가져오고 싶으면 컨트롤러에서 map 형식으로 보내줘야한다.	
 			}
 		}); 
-		
 	}
 	
 	function deleteReply(obj) {
@@ -862,11 +857,9 @@ to {
 	function commentUpdate(obj){
 		document.getElementById('updateComment').attr('display','block');
 
-
 	}
 	</script>
 	
-
 	<script type="text/javascript">
 	// 좋아요 버튼
 	  function changeLove() {
@@ -953,10 +946,10 @@ function change(){
 location.href = "${pageContext.request.contextPath}/post/postchange.do?nickname=${post.nickname}&rname=${post.rname}&memberId=${member.memberId}&address=${post.address}&pContent=${post.PContent}&star=${post.star}&pNo=${post.PNo}";
 
   	} 
-	
+  	
 	 </script>  
 	 
-	 <!-- 지도 시작 -->
+		<!-- 지도 시작 -->
 	 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f71cfabf5739c195830217cd92296d03&libraries=services"></script>
 	 
 	<script>
@@ -1012,8 +1005,6 @@ location.href = "${pageContext.request.contextPath}/post/postchange.do?nickname=
 	</script>   
 	<!-- 지도 끝-->
 	
-
-    
     <!-- footer 시작 -->
 <c:import url="/views/common/footer.jsp"/>
 </body>
