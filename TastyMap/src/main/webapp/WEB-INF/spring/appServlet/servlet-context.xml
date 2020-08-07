@@ -90,8 +90,8 @@
 		          <exclude-mapping path="/restaurant/top8.do" />
 		          <exclude-mapping path="/restaurant/influencer.do" />
 		          <exclude-mapping path="/restaurant/searchBar.do" />
-		          <exclude-mapping path="post/postAllList.do"/>
-		          
+		          <exclude-mapping path="/post/postAllList.do"/>
+		          <exclude-mapping path="/post/postDetail.do"/>
 		          
 		          
 		          <!-- /member 로 시작하는 모든 URL경로 차단하기 -->

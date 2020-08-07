@@ -605,13 +605,7 @@ to {
             	  
 				<h3 class="mb-5" style="margin-bottom: 1rem !important;">댓글</h3> 
 					<div class="col-12" style="padding: 0px;">
-<%-- 						<input type="text" style="width: 80%; margin-bottom: 5px;" id="normalcomment">
-						<c:if test="${ empty member.memberId }">
-							<button type="button" class="btn btn-outline-primary col-2"style="float: right;" data-toggle="modal" data-target="#loginModal" onclick="loginModal">작성</button>
-						</c:if>	
-						<c:if test="${ !empty member.memberId }">
-							<button type="button" class="btn btn-outline-primary col-2"style="float: right;" onclick="commentinsert(0,$('#normalcomment').val());">작성</button>
-						</c:if>	 --%>
+
 						<form action="${pageContext.request.contextPath}/postComment/insertComment.do">
 							<input type="hidden" class="cwriter" name="cwriter" value="${member.memberId}"/>
 							<input type="hidden" class="pNo" name="pNo" value="${post.PNo}"/>
