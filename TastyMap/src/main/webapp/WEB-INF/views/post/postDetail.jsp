@@ -750,10 +750,8 @@ to {
 	</script>
 	<!-- 사용자 좋아요 끝! -->
     
-    	
 	<!-- 댓글 관련 스크립트 -->
 	<script>
-
 	function updateReply(obj){
 		// input 보이게 하기
 		$(obj).parent().parent().find('.inputupdate').css('display', 'block');
