@@ -126,7 +126,7 @@ function check(){
     if(! $("input[name='address']").val()){
         alert("식당을 등록해주세요!");
         send=false;
-     }
+     } 
     return send;
  };
 </script>
@@ -157,11 +157,11 @@ function check(){
        
         <div class="row block-9 justify-content-center mb-5">
           <div class="col-md-6 align-items-stretch d-flex">
-            <form method="post"  class="bg-light p-5 contact-form" enctype="multipart/form-data">
+            <form role="form" name="form" id="form" method="post" class="bg-light p-5 contact-form" enctype="multipart/form-data"  onsubmit="return check()" action="${pageContext.request.contextPath }/post/insertPostEnd.do">
               <!--사진 업로드-->
               <div class="wrap-input100 validate-input m-b-23"  data-validate = "Username is required">
                 <span class="label-input100" ></span>      
-                <label class="upLoad"  id="upLoad" for="upFile" ><img src="${pageContext.request.contextPath}/resources/images/add-photo.png"  style="width: 50px;"></label>
+                <label class="form-group"  id="upLoad" for="upFile" ><img src="${pageContext.request.contextPath}/resources/images/add-photo.png"  style="width: 50px;"></label>
                 <br><input  multiple="multiple" type="file" id="upFile" name="upFile" onchange="loadImg(this);" style="display:none;" required>
                <!--  <span class="focus-input100" ></span> -->
               </div><!--// 사진 업로드 끝-->
@@ -254,13 +254,13 @@ function check(){
               <div class="callbackDiv">
               	<button type="button" class="btn btn-outline-danger col-3" onclick="fileDelete();">파일 삭제</button>
                 
-                <input type="text" class="form-control" value="${address}" id="roadFullAddr" name="address"  placeholder="주소검색을 눌러주세요" readonly required/>
+                <input type="text" class="form-control" value="${address}" id="roadFullAddr" name="address"  placeholder="주소검색을 눌러주세요" readonly/>
                 <input type="text"    value="${rname}" id="rName" name="rName" placeholder="식당이름" readonly required/>
                 <button type="button" class="btn btn-primary py-3 px-4" id="address" onclick="goAddress();">주소검색</button>
               </div>
 
               <!-- 별점 (0.5까지 포함해서 5점 만점)-->
-              <div class="star-box" id="star">
+              <div class="form-group star-box" id="star">
                 <span class="star star_left" data-rate=0.5></span>
                 <span class="star star_right" data-rate=1.0></span>
               
@@ -292,9 +292,9 @@ function check(){
               <div class="form-group">
                 <textarea class="form-control" name="pContent" cols="30" rows="7" placeholder="글 작성" required></textarea>
               </div>
-              <div class="btnArea">
+              <div class="btnArea form-group">
               <c:if test="${ empty star}">
-              	<input type="submit" value="올리기" class="btn btn-primary py-3 px-5" onclick=" javascript: return check(this); form.action='${pageContext.request.contextPath}/post/insertPostEnd.do';" >
+              	<input type="submit" value="올리기" class="btn btn-primary py-3 px-5" >
               	</c:if>
               <c:if test="${ !empty star }">
                 <input type="submit" value="수정하기" class="btn btn-primary py-3 px-5" onclick="javascript:  check(); form.action='${pageContext.request.contextPath}/post/updatePostEnd.do';">
