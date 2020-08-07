@@ -210,17 +210,37 @@
                     
                    <input id="agree" type="checkbox" style="width: 23px; height: 23px; " required oninvalid="this.setCustomValidity('회원약관에 동의해주세요!')" onchange="this.setCustomValidity('')"> 
                     <a href="#open">이용약관</a>에 동의해주세요
+    
+                    </div>
+
+                    <div class="form-group text-center">
+                        <button type="submit" id="join-submit" class="btn btn-primary">
+                            회원가입<i class="fa fa-check spaceLeft"></i>
+                        </button>
+                        <button type="reset" class="btn btn-warning">
+                            가입취소<i class="fa fa-times spaceLeft"></i>
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+
+        </article>
+       
+  
+    </section>
+    <c:import url="/views/common/footer.jsp"/>
     <div class="white_content" id="open">
         <div>
             <p align="right"><a href="#close">닫기</a></p>
-            <p>('localhost://8088'이하 'tastymap')은(는) 개인정보보호법에 따라 이용자의 개인정보 보호 및 권익을 보호하고 개인정보와 관련한 이용자의 고충을 원활하게 처리할 수 있도록 다음과 같은 처리방침을 두고 있습니다.<br>
+            <p>('http://tastyMap.com/'이하 'tastymap')은(는) 개인정보보호법에 따라 이용자의 개인정보 보호 및 권익을 보호하고 개인정보와 관련한 이용자의 고충을 원활하게 처리할 수 있도록 다음과 같은 처리방침을 두고 있습니다.<br>
 
 ('tastymap') 은(는) 회사는 개인정보처리방침을 개정하는 경우 웹사이트 공지사항(또는 개별공지)을 통하여 공지할 것입니다.<br>
 
 ○ 본 방침은부터 2020년 8월 6일부터 시행됩니다.<br>
 
 
-1. 개인정보의 처리 목적 ('localhost://8088'이하 'tastymap')은(는) 개인정보를 다음의 목적을 위해 처리합니다. 처리한 개인정보는 다음의 목적이외의 용도로는 사용되지 않으며 이용 목적이 변경될 시에는 사전동의를 구할 예정입니다.<br>
+1. 개인정보의 처리 목적 ('http://tastyMap.com/'이하 'tastymap')은(는) 개인정보를 다음의 목적을 위해 처리합니다. 처리한 개인정보는 다음의 목적이외의 용도로는 사용되지 않으며 이용 목적이 변경될 시에는 사전동의를 구할 예정입니다.<br>
 
 가. 홈페이지 회원가입 및 관리<br>
 
@@ -256,9 +276,9 @@
 
 4. 개인정보의 제3자 제공에 관한 사항<br>
 
-① ('localhost://8088'이하 'tastymap')은(는) 정보주체의 동의, 법률의 특별한 규정 등 개인정보 보호법 제17조 및 제18조에 해당하는 경우에만 개인정보를 제3자에게 제공합니다.<br>
+① ('http://tastyMap.com/'이하 'tastymap')은(는) 정보주체의 동의, 법률의 특별한 규정 등 개인정보 보호법 제17조 및 제18조에 해당하는 경우에만 개인정보를 제3자에게 제공합니다.<br>
 
-② ('localhost://8088')은(는) 다음과 같이 개인정보를 제3자에게 제공하고 있습니다.<br>
+② ('http://tastyMap.com/')은(는) 다음과 같이 개인정보를 제3자에게 제공하고 있습니다.<br>
 
 1.
 개인정보를 제공받는 자 : tastymap<br>
@@ -274,7 +294,7 @@
 위탁받는 자 (수탁자) :<br>
 위탁하는 업무의 내용 :<br>
 위탁기간 :<br>
-② ('localhost://8088'이하 'tastymap')은(는) 위탁계약 체결시 개인정보 보호법 제25조에 따라 위탁업무 수행목적 외 개인정보 처리금지, 기술적․관리적 보호조치, 재위탁 제한, 수탁자에 대한 관리․감독, 손해배상 등 책임에 관한 사항을 계약서 등 문서에 명시하고, 수탁자가 개인정보를 안전하게 처리하는지를 감독하고 있습니다.<br>
+② ('http://tastyMap.com/'이하 'tastymap')은(는) 위탁계약 체결시 개인정보 보호법 제25조에 따라 위탁업무 수행목적 외 개인정보 처리금지, 기술적․관리적 보호조치, 재위탁 제한, 수탁자에 대한 관리․감독, 손해배상 등 책임에 관한 사항을 계약서 등 문서에 명시하고, 수탁자가 개인정보를 안전하게 처리하는지를 감독하고 있습니다.<br>
 
 ③ 위탁업무의 내용이나 수탁자가 변경될 경우에는 지체없이 본 개인정보 처리방침을 통하여 공개하도록 하겠습니다.<br>
 
@@ -296,7 +316,7 @@
 
 7. 처리하는 개인정보의 항목 작성<br>
 
-① ('localhost://8088'이하 'tastymap')은(는) 다음의 개인정보 항목을 처리하고 있습니다.<br>
+① ('http://tastyMap.com/'이하 'tastymap')은(는) 다음의 개인정보 항목을 처리하고 있습니다.<br>
 
 1<홈페이지 회원가입 및 관리><br>
 필수항목 : 이메일, 휴대전화번호, 자택주소, 자택전화번호, 비밀번호, 로그인ID, 성별, 생년월일, 이름<br>
@@ -323,7 +343,7 @@ tastymap 은 정보주체의 이용정보를 저장하고 수시로 불러오는
 
 10. 개인정보 보호책임자 작성<br>
 
-① tastymap(‘localhost://8088’이하 ‘tastymap) 은(는) 개인정보 처리에 관한 업무를 총괄해서 책임지고, 개인정보 처리와 관련한 정보주체의 불만처리 및 피해구제 등을 위하여 아래와 같이 개인정보 보호책임자를 지정하고 있습니다.<br>
+① tastymap(‘http://tastyMap.com/’이하 ‘tastymap) 은(는) 개인정보 처리에 관한 업무를 총괄해서 책임지고, 개인정보 처리와 관련한 정보주체의 불만처리 및 피해구제 등을 위하여 아래와 같이 개인정보 보호책임자를 지정하고 있습니다.<br>
 
 ▶ 개인정보 보호책임자<br>
 성명 :황하용<br>
@@ -336,7 +356,7 @@ tastymap 은 정보주체의 이용정보를 저장하고 수시로 불러오는
 부서명 :보안담당<br>
 담당자 :황하용<br>
 연락처 :01011111222, fpdlqm123@naver.com,<br>
-② 정보주체께서는 tastymap(‘localhost://8088’이하 ‘tastymap) 의 서비스(또는 사업)을 이용하시면서 발생한 모든 개인정보 보호 관련 문의, 불만처리, 피해구제 등에 관한 사항을 개인정보 보호책임자 및 담당부서로 문의하실 수 있습니다. tastymap(‘localhost://8088’이하 ‘tastymap) 은(는) 정보주체의 문의에 대해 지체 없이 답변 및 처리해드릴 것입니다.<br>
+② 정보주체께서는 tastymap(‘http://tastyMap.com/’이하 ‘tastymap) 의 서비스(또는 사업)을 이용하시면서 발생한 모든 개인정보 보호 관련 문의, 불만처리, 피해구제 등에 관한 사항을 개인정보 보호책임자 및 담당부서로 문의하실 수 있습니다. tastymap(‘http://tastyMap.com/’이하 ‘tastymap) 은(는) 정보주체의 문의에 대해 지체 없이 답변 및 처리해드릴 것입니다.<br>
 
 11. 개인정보 처리방침 변경<br>
 
@@ -371,29 +391,17 @@ tastymap 은 정보주체의 이용정보를 저장하고 수시로 불러오는
 개인정보가 포함된 서류, 보조저장매체 등을 잠금장치가 있는 안전한 장소에 보관하고 있습니다.<br>
 
 9. 비인가자에 대한 출입 통제<br>
-개인정보를 보관하고 있는 물리적 보관 장소를 별도로 두고 이에 대해 출입통제 절차를 수립, 운영하고 있습니다.<br></p>
+개인정보를 보관하고 있는 물리적 보관 장소를 별도로 두고 이에 대해 출입통제 절차를 수립, 운영하고 있습니다.<br></p><br><br>
+		<a href="#close">
+         <button type="button" id="join-submit" class="btn btn-primary" style="; width:100%; height:50px; display: flex;
+  align-items: center;
+  justify-content: center;">
+                            확인<i class="fa fa-check spaceLeft"></i>
+                        </button>
+        </a>   
+              <br><br>       
         </div>
     </div>
-                    
-                    </div>
-
-                    <div class="form-group text-center">
-                        <button type="submit" id="join-submit" class="btn btn-primary">
-                            회원가입<i class="fa fa-check spaceLeft"></i>
-                        </button>
-                        <button type="reset" class="btn btn-warning">
-                            가입취소<i class="fa fa-times spaceLeft"></i>
-                        </button>
-                    </div>
-                </form>
-
-            </div>
-
-        </article>
-       
-  
-    </section>
-    <c:import url="/views/common/footer.jsp"/>
     <script>
     
 	function goPopup(){
