@@ -39,11 +39,17 @@
 
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
-          ['한식', ${map.k}],
+          /* ['한식', ${map.k}],
           ['중식', ${map.c}],
           ['일식', ${map.j}],
           ['양식', ${map.y}],
-          ['기타', ${map.e}]
+          ['기타', ${map.e}]  */
+          ['${category[0]}', ${map.get(category[0])}],
+          ['${category[1]}', ${map.get(category[1])}],
+          ['${category[2]}', ${map.get(category[2])}],
+          ['${category[3]}', ${map.get(category[3])}],
+          ['${category[4]}', ${map.get(category[4])}] 
+          
         ]);
 
         var options = {

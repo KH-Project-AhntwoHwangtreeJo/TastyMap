@@ -127,6 +127,8 @@ public interface MemberDAO {
 
 	List<Map<String, String>> restaurantCargoChartList();
 
+	List<Map<String, Object>> restaurantChartList(String member_Id);
+	
 	List<Map<String, Object>> addressChartList();
 
 }

@@ -51,14 +51,14 @@ function fileDelete() {
 
 
    /* textarea에도 required속성을 적용가능하지만, 공백이 입력된 경우 대비 유효성검사를 실시함. */
-   function validate() {
+  /*  function validate() {
       var content = $("[name=pContent]").val();
       if (content.trim().length == 0) {
          alert("내용을 입력하세요");
          return false;
       }
       return true;
-   }
+   } */
 
    // 사진 게시판 미리보기 기능 지원 스크립트
    function loadImg(value) {
@@ -123,7 +123,10 @@ function check(){
        alert("별점을 등록해주세요!");
        send=false;
     }
-    
+    if(! $("input[name='address']").val()){
+        alert("식당을 등록해주세요!");
+        send=false;
+     }
     return send;
  };
 </script>
@@ -251,9 +254,9 @@ function check(){
               <div class="callbackDiv">
               	<button type="button" class="btn btn-outline-danger col-3" onclick="fileDelete();">파일 삭제</button>
                 
-                <input type="text" class="form-control" value="${address}" id="roadFullAddr" name="address"  placeholder="주소검색을 눌러주세요" required>
-                <input type="text"    value="${rname}" id="rName" name="rName" placeholder="식당이름" readonly></input>
-                <button class="btn btn-primary py-3 px-4" id="address" onclick="goAddress();">주소검색</button>
+                <input type="text" class="form-control" value="${address}" id="roadFullAddr" name="address"  placeholder="주소검색을 눌러주세요" readonly required/>
+                <input type="text"    value="${rname}" id="rName" name="rName" placeholder="식당이름" readonly required/>
+                <button type="button" class="btn btn-primary py-3 px-4" id="address" onclick="goAddress();">주소검색</button>
               </div>
 
               <!-- 별점 (0.5까지 포함해서 5점 만점)-->
@@ -290,8 +293,8 @@ function check(){
                 <textarea class="form-control" name="pContent" cols="30" rows="7" placeholder="글 작성" required></textarea>
               </div>
               <div class="btnArea">
-              <c:if test="${ empty star }">
-              	<input type="submit" value="올리기" class="btn btn-primary py-3 px-5" onclick=" javascript: check(); form.action='${pageContext.request.contextPath}/post/insertPostEnd.do';" >
+              <c:if test="${ empty star}">
+              	<input type="submit" value="올리기" class="btn btn-primary py-3 px-5" onclick=" javascript: return check(this); form.action='${pageContext.request.contextPath}/post/insertPostEnd.do';" >
               	</c:if>
               <c:if test="${ !empty star }">
                 <input type="submit" value="수정하기" class="btn btn-primary py-3 px-5" onclick="javascript:  check(); form.action='${pageContext.request.contextPath}/post/updatePostEnd.do';">

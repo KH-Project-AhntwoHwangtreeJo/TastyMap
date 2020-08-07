@@ -278,13 +278,19 @@ WHERE RNO = ${rno} and PSTATUS = 'Y'
 	</select> 
 	
 	<!-- 식당 카테고리 통계 -->
-	<select id="restaurantCargoChartList" resultType="HashMap">
+	<!-- <select id="restaurantCargoChartList" resultType="HashMap">
 		SELECT (SELECT COUNT(*) FROM RESTAURANT WHERE CATEGORY = '한식') 한식,
            (SELECT COUNT(*) FROM RESTAURANT WHERE CATEGORY ='중식') 중식,
            (SELECT COUNT(*) FROM RESTAURANT WHERE CATEGORY ='일식') 일식,
            (SELECT COUNT(*) FROM RESTAURANT WHERE CATEGORY ='양식') 양식,
            (SELECT COUNT(*) FROM RESTAURANT WHERE CATEGORY ='기타') 기타
 		FROM DUAL
+	</select> -->
+	<select id="restaurantChartList" parameterType="PostList" resultType="HashMap">
+		SELECT CATEGORY "category", COUNT(CATEGORY) "cntCategory"
+		FROM ( SELECT MEMBER_ID, CATEGORY 
+            	FROM RESTAURANT R JOIN POST P ON P.RNO=R.RNO WHERE P.MEMBER_ID = #{member_Id} )
+		GROUP BY MEMBER_ID, CATEGORY
 	</select>
 	
 	<!-- 식당 행정구 통계 -->

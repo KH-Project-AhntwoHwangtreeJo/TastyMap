@@ -702,7 +702,7 @@ public class MemberController {
    
    	 /**
 	  * 마이페이지에 지도 마커와 카테고리별 차트, 지역별 차트 출력 서블릿
-	  * @author Hyunmin Jo, Yejin An
+	  * @author Hyunmin Jo, Yejin Ahn
 	  * @return
 	  */   
       @RequestMapping("/member/myPage.do")
@@ -719,33 +719,49 @@ public class MemberController {
     	  
     	  Map<String, Object> map =new HashMap<String, Object>();
 
-    	  	String k="";
-    		String c="";
-    		String j ="";
-    		String y ="";
-    		String e ="";
+    	  	//String k="";
+    		//String c="";
+    		//String j ="";
+    		//String y ="";
+    		//String e ="";
+    		
+    		String[] category = new String[5];
+    		BigDecimal[] cntCategory = new BigDecimal[5];
     		
     		String[] countrys = new String[5];
     		BigDecimal[] ctyCounts = new BigDecimal[5];
     		
-    		List<Map<String, String>> rChart = memberService.restaurantCargoChartList();	
+    		List<Map<String, Object>> rChart = memberService.restaurantChartList(member_Id);	
     		// 한식/중식/일식/양식/기타
-      		for( Map<String, String> r : rChart ) {
+    		int idxx=0;
+      		for( Map<String, Object> r : rChart ) {
       			
-      			 k = String.valueOf((r.get("한식")));
-      			 c = String.valueOf((r.get("중식")));
-      			 j = String.valueOf((r.get("일식")));
-      			 y = String.valueOf((r.get("양식")));
-      			 e = String.valueOf((r.get("기타")));
-
+      			category[idxx] = (String) (r.get("category"));
+      			cntCategory[idxx] = (BigDecimal)(r.get("cntCategory"));
+      	
+      			// k = String.valueOf((r.get("한식")));
+      			// c = String.valueOf((r.get("중식")));
+      			// j = String.valueOf((r.get("일식")));
+      			// y = String.valueOf((r.get("양식")));
+      			// e = String.valueOf((r.get("기타")));
+      			 //System.out.println(member);
+      			 //System.out.println(category);
+      			idxx++;
       		}
       		
-      		map.put("k", k);
-      		map.put("c", c);
-      		map.put("j", j);
-      		map.put("y", y);
-      		map.put("e", e);
+      		for(int i=0; i<idxx; i++) {
+      		map.put(category[i],cntCategory[i]);
+      		}
+      		//map.put("k", k);
+      		//map.put("c", c);
+      		//map.put("j", j);
+      		//map.put("y", y);
+      		//map.put("e", e);
       		model.addAttribute("map", map);
+      		model.addAttribute("category",category);
+      		model.addAttribute("cntCategory",cntCategory);
+      		System.out.println(map);
+      	
      		
      	// --------------------------------------------------------------------------------
      		//식당 행정구 통계
