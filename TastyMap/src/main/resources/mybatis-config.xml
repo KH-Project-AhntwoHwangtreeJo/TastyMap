@@ -29,6 +29,7 @@
 		 <typeAlias type="com.kh.tastyMap.member.model.vo.Follower" alias="Follower"/>
 		 <typeAlias type="com.kh.tastyMap.post.model.vo.PostList" alias="PostList"/>
 		 <typeAlias type="com.kh.tastyMap.common.Str2ArrayHandler" alias="Str2ArrayHandler"/>
+		 <typeAlias type="com.kh.tastyMap.member.model.vo.Alarm" alias="Alarm"/>
 		 
 	</typeAliases>
 	

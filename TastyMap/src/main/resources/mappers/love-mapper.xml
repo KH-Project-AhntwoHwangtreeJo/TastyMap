@@ -34,7 +34,7 @@
 	<!--0일때 좋아요 실행
 	좋아요 버튼 <마이페이지 내에 정렬 때문에 시퀀스로 고유키 주는 걸로 수정>  -->
 	<insert id="insertPostLove" parameterType="Love"> 
-		INSERT INTO LOVE VALUES(SEQ_LOVE.NEXTVAL,#{memberId}, #{pNo})
+		INSERT INTO LOVE VALUES(SEQ_LOVE.NEXTVAL,#{memberId}, #{pNo}, DEFAULT)
 	</insert>
 	
 	<!-- 1일때 좋아요 취소 실행

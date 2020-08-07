@@ -7,7 +7,10 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.gson.JsonElement;
 import com.kh.tastyMap.member.model.dao.MemberDAO;
+import com.kh.tastyMap.member.model.vo.Alarm;
+import com.kh.tastyMap.member.model.vo.Alarm;
 import com.kh.tastyMap.member.model.vo.Follower;
 import com.kh.tastyMap.member.model.vo.Member;
 import com.kh.tastyMap.post.model.vo.PostList;
@@ -169,6 +172,13 @@ public class MemberServiceImpl implements MemberService {
 	public List<Map<String, Object>> restaurantChartList(String member_Id) {
 		// TODO Auto-generated method stub
 		return memberDAO.restaurantChartList(member_Id);
+	}
+
+
+	@Override
+	public List<Alarm> selectApprovalReceive(String memberId) {
+		// TODO Auto-generated method stub
+		return memberDAO.selectApprovalReceive(memberId);
 	}
 	
 	

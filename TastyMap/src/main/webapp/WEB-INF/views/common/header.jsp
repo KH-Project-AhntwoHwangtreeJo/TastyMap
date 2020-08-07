@@ -59,6 +59,15 @@
     	  //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
     	}
     </script>
+    <style>
+    	.profile-box {
+    	 	width: 45px;
+    	 	height: 45px;
+		    border-radius: 100%;
+		    overflow: hidden;
+    	}
+    	
+    </style>
   </head>
   <body>
 
@@ -122,50 +131,15 @@
 
    <!-- modal start -->
    <!-- <span data-placement="bottom" >Popover Me !!!</span> -->
-   <div id="popover-content" style="display:none">
-      <div class="panel panel-default" id="myLargeModal">
+   <div id="popover-content" style="display:none; width:500px;">
+      <div class="panel panel-default" id="myLargeModal style="margin:20px;">
          <div class="panel-heading">
             <fieldset style="text-align: center; margin-top: 10px;"><strong>알림</strong></fieldset>
          </div>
          <hr>
-         <div class="panel-body" >
-            <!-- <div class="col-lg-4">
-               <label for="phase" class="required-field">Phase:</label>
-               <select class="select2 form-control" id="phaseRef">
-               </select>
-            </div>
-            <div class="col-lg-4">
-               <label for="expertise" class="required-field">Expertise  :</label>
-               <select class="select2 form-control" id="expertiseRef">
-               </select>
-            </div>
-            <div class="col-lg-4">
-               <label for="log-hours" class="required-field">Logg Hours :</label>
-               <input type="text" placeholder="Name" class="form-control" name="log-hours">
-            </div>
-            <div class="col-lg-12">
-               <label for="comments" class="required-field">Comment  </label>
-               <textarea rows="2" cols="10" class="form-control" name="comments"></textarea>
-            </div>
-            <div class="row"></div>
-            <div class="col-lg-3">
-               <label class="radio-inline"><input type="radio" class="estimateHoursClass" value="I-A" name="estimateHours" /> <b>No</b></label>
-            </div>
-            <div class="col-lg-4">
-               <label class="radio-inline"><input type="radio" class="estimateHoursClass" value="Requirement" name="estimateHours" /> <b>Request Additional</b></label>
-            </div>
-            <div class="col-lg-5">
-               <label class="radio-inline"><input type="radio" class="estimateHoursClass" value="Application" name="estimateHours" /> <b>More</b></label>
-            </div>
-            <div class="row"></div>
-            <div class="request_additional hide-element">
-               <select class="select2 additional_options form-control" id="requestAdditional">
-               </select>
-            </div>
-            <div class="request_additional hide-element">
-               <label for="additional_comments" class="required-field">Comments :</label>
-               <input type="text" placeholder="Comments" class="form-control" id="additional_comments">
-            </div> -->
+         <div class="panel-body" id="approvalHeartbit">
+            
+            
             <div class="row" style="width: 500px;">
                <div class="col-lg-2">
                   <img src="${pageContext.request.contextPath}/resources/images/bee.png" alt="">
@@ -176,7 +150,11 @@
                </div>
                <button style="margin-top:12px; border-radius : 5px; height: 30px; background-color:dodgerblue; color: white; border: none;">맞팔하기</button>
             </div>
+            
+            
             <hr>
+            
+            
             <div class="row" style="width: 500px;">
                <div class="col-lg-2">
                   <img src="${pageContext.request.contextPath}/resources/images/bee.png" alt="">
@@ -253,61 +231,73 @@
 	  </div>
 	</div>
 	<!-- 로그인 모달 끝-->
-	
+	<c:if test="${!empty member}">
+         	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.3.0/sockjs.min.js"></script>
 	<script>
-		var socket = null;
-		
-		$(document).ready(function(){
-			connectWs();
-		});
-		
-		function connectWs(){
-			sock = new SockJS("<c:url value='/echo'/>");
-			
-			socket = sock;
-			
-			sock.onopen = function() {
-				console.log('info: connection opened.');
-			};
-			
-			sock.onmessage = function(evt) {
-				var data = evt.data;
-				console.log("ReceivMessage : " + data + "\n");
-				
-				$.ajax({ // 알람 울릴때 마다 비동기로 알림 숫자 변경해주기
-					url : '',
-					type : 'POST',
-					dataType : 'text',
-					success : function(data) {
-						if(data =='0'){
-						} else {
-							$('#alarmCountSpan').addClass('bell-badge-danger bell-bage')
-							$('#alarmCountSpan').text(data);
-						}
-					},
-					error:function(err){
-						alert('err');
-						
+		var sock = new SockJS("<c:url value='/echo'/>");
+	
+		sock.onmessage = onMessage;
+	
+		function onMessage(evt) {
+			var text = "";
+			var data = JSON.parse(evt.data);
+			var btnArr = [ 'ml-2', 'mb-3', 'btn-outline-primary', 'loveimage' ];
+			var approvalMSG = $('#approvalHeartbit');
+			//console.log(evt.data);
+			if (data.length != 0) {
+				$('#approvalHeartbit').css('display', 'block');
+				$('#approvalNoMSG').css('display', 'none');
+				approvalMSG.empty();
+				for (var i = 0; i < data.length; i++) {
+					//console.log(data[i]);
+					
+					switch(data[i].type) {
+				    case 1:
+				      text = '<div class="row">' + 
+					              '<div class="profile-box" style="margin-left:5px;">' + 
+					              '<img style="width: 100%; height: 100%; object-fit: cover;" src="${pageContext.request.contextPath}/resources/images/' + data[i].mphoto + '" alt="">' + 
+					           '</div>' + 			           
+					           '<div class="col-8" style="display: contents; line-height: 3;">' + 
+					           data[i].whos + '님이 회원님의 사진을 좋아합니다.' + 
+					           '</div>' + 
+					           '<img src="${pageContext.request.contextPath}/resources/upload/post/' + data[i].prenamedName + '" style="width: 65px; height : 50px;">' + 
+					        '</div>' + 
+		          	  		'<hr>';
+				      
+				      approvalMSG.append(text);
+				      //console.log(text);
+				      break;
+				      
+				    case 2:
+				      text = '<div class="row">' + 
+					              '<div class="profile-box" style="margin-left:5px;">' +
+					              '<img style="width: 100%; height: 100%; object-fit: cover;" src="${pageContext.request.contextPath}/resources/images/' + data[i].mphoto + '" alt="">' +
+					           '</div>' +			          
+					           '<div class="col-12" style="display: contents; line-height: 3;"><a>' + 
+					           data[i].whos + '님이 게시글에 댓글을 남겼습니다.' + 
+					           '</a></div>' + 
+					           '<div><img src="${pageContext.request.contextPath}/resources/upload/post/' + data[i].prenamedName + '" style="width: 65px; height : 50px;"></div>' + 
+					        '</div>' + 
+		          	  		'<hr>';
+				   	  
+				   	  approvalMSG.append(text);
+				      
+				      //console.log(text);
+				      break;
+				      
 					}
-				});
-				
-				// 모달 알림
-				var toastTop = app.toast.create({
-					text : "알림 : " + data + "\n",
-					position : "top",
-					closeButton : true,
-				});
-				toastTop.open();
-			};
+				}
 			
-			sock.onclose = function() {
-				console.log('connect close');
-			};
+			}else {
+	
+				approvalMSG = $("<div class='m-3' align='center' ><h5 class='text-info'>새로운 알람이 없습니다</h5></div>");
+	
+			}
+			$('.panel-body').append(approvalMSG);
 			
-			sock.onerror = function (err) {console.log('Errors : ', err);};
 		}
 		
-		var AlarmData = 
 	</script>
-		
+	</c:if>
 </html>

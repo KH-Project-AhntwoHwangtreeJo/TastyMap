@@ -3,7 +3,9 @@ package com.kh.tastyMap.member.model.service;
 import java.util.List;
 import java.util.Map;
 
+import com.google.gson.JsonElement;
 import com.kh.tastyMap.love.model.vo.Love;
+import com.kh.tastyMap.member.model.vo.Alarm;
 import com.kh.tastyMap.member.model.vo.Follower;
 import com.kh.tastyMap.member.model.vo.Member;
 import com.kh.tastyMap.post.model.vo.PostList;
@@ -127,4 +129,6 @@ public interface MemberService {
 	List<Map<String, Object>> addressChartList();
 	
 	List<Map<String, Object>> restaurantChartList(String member_Id);
+	
+	List<Alarm> selectApprovalReceive(String memberId);
 }

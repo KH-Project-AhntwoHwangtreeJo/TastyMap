@@ -529,7 +529,6 @@ to {
 
           <div class="col-md-8 ftco-animate">
             <br>
-            <a href="${pageContext.request.contextPath}/member/myGallery.do?memberId=${post.member_Id}&followerId=${member.memberId}">
             <h4 class="mb-3" style="float: left;"> ${ post.nickname } </h4> 
            	</a>
            	
@@ -587,10 +586,10 @@ to {
 	        </c:if>   
             <c:if test="${ !empty member.memberId }">
 	            <c:if test="${ map.status eq 'N' }">
-	            <img id="loveimage" onclick="changeLove();" border="0" src="${pageContext.request.contextPath}/resources/images/heart/heart1.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;">
+	            <img class="loveimage" id="loveimage" onclick="changeLove();" border="0" src="${pageContext.request.contextPath}/resources/images/heart/heart1.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;">
 	      		</c:if>
 	            <c:if test="${ map.status eq 'Y' }">
-	            <img id="loveimage" onclick="changeLove();" border="0" src="${pageContext.request.contextPath}/resources/images/heart/heart2.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;">
+	            <img class="loveimage" id="loveimage" onclick="changeLove();" border="0" src="${pageContext.request.contextPath}/resources/images/heart/heart2.png" style="width: 30px; height: 30px; float: right; margin-right: 7px;">
 	      		</c:if>
       		</c:if>
       		
@@ -617,7 +616,7 @@ to {
 								<input type="hidden" class="parentkey" name="parentkey" value="0"/>
 								<input type="hidden" class="level" name="level" value="1"/>
 								<input type="text" class="ccontent"name="ccontent" value="" style="width: 80%; margin-bottom: 5px;">
-								<button type="submit" id="addReply(this)" class="btn btn-outline-primary col-2"style="float: right;" >작성</button>
+								<button type="submit" id="addReply" class="btn btn-outline-primary col-2"style="float: right;" >작성</button>
 							</form>
 						</c:if>	
 										
@@ -752,6 +751,10 @@ to {
     
 	<!-- 댓글 관련 스크립트 -->
 	<script>
+
+
+	var sendSock = new SockJS("<c:url value='/echo'/>");
+	
 	function updateReply(obj){
 		// input 보이게 하기
 		$(obj).parent().parent().find('.inputupdate').css('display', 'block');
@@ -883,6 +886,7 @@ to {
 	    				}else{
 	    					   document.getElementById('loveimage').src="${pageContext.request.contextPath}/resources/images/heart/heart1.png";
 	    				}
+	    				sendSock.send(memberId);
 	    				alert(data.msg);		
 	    			},error : function(req, status, error) {
 	    				console.log(req);
@@ -890,8 +894,17 @@ to {
 	    				console.log(error);
 	   				alert('에러임');		
 	    			}
+	    			
 	   		});
 	   	}   
+	
+		
+		$('#addReply').on('click', function() {
+			var memberId = "${member.memberId}"
+			sendSock.send(memberId);
+			console.log(memberId);
+		});
+		
 	  
   	// 게시글 신고
 		function changePostReport() {
