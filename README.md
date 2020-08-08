@@ -16,6 +16,18 @@
    <td>UI design</td>
    <td>star UML, kakao Oven</td> 
  </tr>
+ <tr>
+   <td>DBMS</td>
+   <td> Oracle -SQL Developer</td> 
+ </tr>
+ <tr>
+   <td>Server</td>
+   <td>Apache Tomcat 8.5</td> 
+ </tr>
+ <tr>
+   <td>language</td>
+   <td>Java, HTML5, CSS3, javascript, JQuery, Servlet</td> 
+ </tr>
 </table>
 
 
