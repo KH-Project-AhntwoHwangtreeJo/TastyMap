@@ -7,7 +7,25 @@
 <br/>
 
 ## 2. Development environment (개발 환경)
-- 
+<table>
+ <tr>
+   <td>Development tools</td>
+   <td>STS</td>
+ </tr>
+  <tr>
+   <td>UI design</td>
+   <td>star UML, kakao Oven</td> 
+ </tr>
+</table>
+
+
+
+
+- Development tools : STS
+- UI design : 
+- DBMS : 
+- Server : 
+- language : Java, HTML5, CSS3, javascript, JQuery, Servlet, 
 <br/>
 
 ## 3. development schedule(개발일정)
@@ -100,18 +118,34 @@
 ### 7) Admin
 #### 7-1) Member
 - img
-- 설명 (조성아)
+- 관리자 페이지의 회원관리 탭을 클릭시 보여지는 페이지
+- 모든 회원의 정보가 보여지며 회원의 활성화 상태를 관리자가 관리할 수 있다.
+  (회원의 활성화상태를 비활성화로 변경시 해당 회원은 로그인이 불가하다.)
 #### 7-2) Restaurant
 ##### (1) Restaurant List
 - img
-- 설명 (조성아)
-##### (2) Restaurant Register
-- img
+- 관리중인 식당의 데이터를 전부 불러온다.
+- 식당의 활성화 상태를 통해 관리자는 폐업한 음식점을 사용자들에게 보이지 않게 할 수 있다.
+- 관리자가 아닌 사용자들이 먼저 식당을 등록한 경우 관리자가 확인하였는지 관리자 상태로 구분하여 관리할 수 있다. 
+  ( 등록상태 : R:Register / H:Hold / C:Confirm / A:Admin  ) ※사용자는 C와 A만 볼 수 있음
+##### (2) Registration of the restaurant
+- img 
 - 설명 (황하용)
 #### 7-3) Post
 - img
-- 설명 (조성아)
+- 사용자들이 게시글로 작성한 모든 정보를 출력하여 확인할 수 있다.
+- 최신 게시글이 먼저 보이게 되며, 관리자가 부적합하다고 판단 시 해당 게시글의 활성화 상태를 변경하여 사용자들에게 안보이게 할 수 있다.
 #### 7-4) Report
+- 사용자들은 댓글과 게시글에 신고가 가능하다. 
+- 이를 신고당한 댓글이나 게시글의 활성화상태 / 관리자의 확인 상태로 나누어 관리할 수 있도록 하였다.
+##### (1) Reported comments List
 - img
-- 설명 (조성아)
+- 댓글이 신고된 경우, 해당 신고를 관리하기 위한 Report 테이블의 정보와 신고된 댓글의 정보를 함께 확인할 수 있도록 출력한다.
+- 관리자가 판단하기에도 부적합하다고 판단될 경우, 댓글의 활성화 상태를 변경하여 사용자들에게는 보이지않게 비게시 처리한다.
+- 확인한 신고에 대해서는 신고상태를 R에서 (Registration) C로 (Completion)바꾸어 확인여부를 구분한다.
+##### (2) Reported posts List 
+- img
+- 게시글이 신고된 경우, 해당 신고를 관리하기 위한 Report 테이블의 정보와 신고된 게시글의 정보를 함께 확인할 수 있도록 출력한다.
+- 관리자가 판단하기에도 부적합하다고 판단될 경우, 게시글의 활성화 상태를 변경하여 사용자들에게는 보이지않게 비게시 처리한다.
+- 확인한 신고에 대해서는 신고상태를 R에서 (Registration) C로 (Completion)바꾸어 확인여부를 구분한다.
 <hr/>  
