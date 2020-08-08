@@ -28,7 +28,7 @@
  </tr>
  <tr>
    <td>language</td>
-   <td>Java, HTML5, CSS3, javascript, JQuery, Servlet</td> 
+   <td>Java, HTML5, CSS3, javascript, JQuery, Servlet, MyBatis, Spring</td> 
  </tr>
 </table>
 
