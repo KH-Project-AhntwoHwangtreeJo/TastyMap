@@ -3,7 +3,8 @@
 
 
 ## 1. Subject (주제)
-- 
+- Kakao Map API를 통해 지도를 기반으로 보여주는 사용자 중심 맛집추천서비스
+
 <br/>
 
 ## 2. Development environment (개발 환경)
@@ -30,14 +31,6 @@
  </tr>
 </table>
 
-
-
-
-- Development tools : STS
-- UI design : 
-- DBMS : 
-- Server : 
-- language : Java, HTML5, CSS3, javascript, JQuery, Servlet, 
 <br/>
 
 ## 3. development schedule(개발일정)
