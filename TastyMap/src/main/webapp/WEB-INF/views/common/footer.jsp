@@ -17,7 +17,7 @@
            <br>
            <br>
               <p>본 프로젝트는 KH정보교육원 [NCS]웹 개발 응용 SW엔지니어 <br>양성과정 352반 2조 안에 <br>
-				안이황삼조가 만든 Semi <br>프로젝트 입니다.</p>
+				안이황삼조가 만든 Final <br>프로젝트 입니다.</p>
               <ul class="ftco-footer-social list-unstyled mt-5">
                 <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
                 <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
