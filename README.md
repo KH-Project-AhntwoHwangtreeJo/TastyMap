@@ -3,6 +3,7 @@
 
 
 ## 1. Subject (주제)
+- A user-centered restaurant recommendation service that shows a map based on the Kakao Map API.
 - Kakao Map API를 통해 지도를 기반으로 보여주는 사용자 중심 맛집추천서비스
 
 <br/>
