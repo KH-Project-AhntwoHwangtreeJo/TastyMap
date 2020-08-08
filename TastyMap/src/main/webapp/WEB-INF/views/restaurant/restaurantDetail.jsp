@@ -197,16 +197,48 @@ $('.urlCopyBtn').click(function(){
     
                  
                  <div class="rows" style="position: relative; font-size: 30px; top: -43px; left:-35px;display:inline">
-                  <!-- 신고 기능 버튼 (로그인 되어있을 시 신고 가능 )-->
+                  <!-- 1.1.신고 기능 버튼 (로그인 되어있을 시 신고 가능 )-->
   				 <c:if test="${ empty member.memberId }">
+  				    <input id="eunsung" class="eunsung" type="hidden" value="${RPost.PNO}" />
   				    <a href="#loginModal" class="nav-link"> 
-             		 <input class="btn btn-outline-danger" data-toggle="modal" data-target="#loginModal" type="button" value="신고하기" style="float: right;" >
+             		 <button class="btn btn-outline-danger" data-toggle="modal" data-target="#loginModal" type="button" onclick="changePostReport(this);"  style="float: right; position: relative;left: -80px;margin-top:10px"  >신고하기</button>
+             		 
 		   			</a>
 		    	</c:if>
-		  <!--  1.2 Session에 멤버아이디가 있을 경우 -->	
+		    	 <!-- 1.2.자기 게시물일 때 (수정하기 버튼)-->
+  				 <c:if test="${ RPost.MEMBER_ID  eq member.memberId and !empty member.memberId}">
+  				 	 <input id="eunsung" class="eunsung" type="hidden" value="${RPost.PNO}" /> 
+             		 <button class="btn <btn-out></btn-out>line-info" type="button" onclick="editPost(this);"  style="float: right; position: relative; left: -80px;margin-top:10px" >수정하기</button>
+             		 <script>
+	                  function editPost(obj){               
+	                   var pno = $(obj).parent().find('.eunsung').val();                   
+	                   var memberId = "${member.memberId}";
+	                   var nicname= "${RPost.NICKNAME}";
+	                   var pcontent = $(obj).parent().parent().find('.pcontent').text();
+	                   var rname= "${restaurant.rname}";
+	                   var address= "${restaurant.address}";
+	                   var star =$(obj).parent().parent().find('.star').text();
+/* 	                	   
+	                   console.log(pNo);
+	                   console.log(memberId);
+	                   console.log(nicname);
+	                   console.log(pcontent);
+	                   console.log(rname);
+	                   console.log(address);
+	                   console.log(star); */
+
+	                  
+	                    location.href = "${pageContext.request.contextPath}/post/postchange.do?rname=rname&memberId=${member.memberId}&address=address&pContent=pcontent&star=star&pNo=pno"; 
+
+	                
+	                   
+	                   }
+	                </script>	  
+		    	</c:if>
+		  		 <!--  1.2. Session에 멤버아이디가 있고 작성자가 아닐 경우 -->	
 		    	<c:if test="${ RPost.MEMBER_ID ne member.memberId and !empty member.memberId}">
 		    	<input id="eunsung" class="eunsung" type="hidden" value="${RPost.PNO}" /> 
-		    	<button class="btn btn-outline-danger" type="button" onclick="changePostReport(this);"  style="float: right; position: relative; left: -60px;" >신고하기</button>		    		    	
+		    	<button class="btn btn-outline-danger" type="button" onclick="changePostReport(this);"  style="float: right; position: relative; left: -80px;margin-top:10px" >신고하기</button>		    		    	
 		    	<script>
 	                  function changePostReport(obj){               
 	                   var pno = $(obj).parent().find('.eunsung').val();                   
@@ -235,10 +267,10 @@ $('.urlCopyBtn').click(function(){
                   
                   <div  class="meta" style="position: relative; margin-left: 100px">
         		    <div id="postdate" style="position: relative;right: -3px; top : -80px;">${fn:substring(RPost.date,0,10)}
-        		    <h2 style="float:right; margin-top: -7px ;display:inline;margin-right:50px;">${RPost.STAR}</h2> 
+        		    <h2 class="star" style="float:right; margin-top: -7px ;display:inline;margin-right:50px;">${RPost.STAR}</h2> 
                  <img src="${pageContext.request.contextPath}/resources/upload/post/star1.png" style=";width: 30px; height: 30px; float: right;">  
         		    </div>                 
-                   	<div style="position: relative;top: -80px;">${RPost.PCONTENT}</div>                                          
+                   	<div class="pcontent" style="position: relative;top: -80px;">${RPost.PCONTENT}</div>                                          
                     <br>
                     <!-- </div> -->                    
 				
@@ -327,13 +359,13 @@ geocoder.addressSearch('${restaurant.address}', function(result, status) {
        </div>
        </c:if> 
        </c:forEach>   
-       <div id="chart_div"style="position: relative;margin-left: -60px;" ></div>
-       <div id="piechart" style="position: relative;margin-left: -133px; width: 900px; height: 500px; "></div>     
+       <div  id="chart_div"style="position: relative;margin-left: -60px;" ></div>
+       <div id="piechart" style="position: relative;width:400px; height: 500px;" class="sidebar ftco-animate fadeInUp ftco-animated"></div>     
      </div>
 	      <!-- 주변 인기 식당 끝 --> 
             
           <!--막대 차트 시작-->
-           <div style="text-align:center; margin:10 10px 10px 10; background:#555; line-height:80px;">
+           <div class="sidebar-box ftco-animate" style="text-align:center; margin:10 10px 10px 10; background:#555; line-height:80px;">
             <a style="color:#fff; font-weight:bold; font-family:tahoma; font-size:20pt; " target="_blank"></a>
           </div>                          
           <script>          
