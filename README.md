@@ -44,7 +44,7 @@
 - YeJin Ahn 
 - ChangHyun Hwang
 - EunSung Jo
-- HyunMin Jo
+- HyunMin Jo (johm616@naver.com)
 - HaYoung Hwang
 
 <br/>
@@ -52,13 +52,13 @@
 ## 5. Introduction to Services
 
 ### 1) Main
-#### 1-1) Popular restaurant Top8
+#### 1-1) SearchBar
 - img
 - 설명(조현민)
-#### 1-2) Influencer's post
+#### 1-2) Popular restaurant Top8 
 - img
 - 설명(조현민)
-#### 1-3) SearchBar
+#### 1-3) Influencer's post
 - img
 - 설명(조현민)
 <br/>
@@ -154,4 +154,8 @@
 - 게시글이 신고된 경우, 해당 신고를 관리하기 위한 Report 테이블의 정보와 신고된 게시글의 정보를 함께 확인할 수 있도록 출력한다.
 - 관리자가 판단하기에도 부적합하다고 판단될 경우, 게시글의 활성화 상태를 변경하여 사용자들에게는 보이지않게 비게시 처리한다.
 - 확인한 신고에 대해서는 신고상태를 R에서 (Registration) C로 (Completion)바꾸어 확인여부를 구분한다.
+
+### 8) WebSocket
+- img
+- 설명 (조현민)
 <hr/>  
