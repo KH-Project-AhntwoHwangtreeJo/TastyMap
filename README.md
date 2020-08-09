@@ -40,6 +40,8 @@
 <br/>
 
 ## 4. Contributors (구성원)
+![image](https://user-images.githubusercontent.com/66008716/89735135-5fc8c280-da9b-11ea-826c-609405dc2288.png)
+
 - SungA Cho (sunga0720@naver.com)
 - YeJin Ahn 
 - ChangHyun Hwang
