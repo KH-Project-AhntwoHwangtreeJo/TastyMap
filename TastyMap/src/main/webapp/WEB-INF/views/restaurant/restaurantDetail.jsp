@@ -185,7 +185,7 @@ $('.urlCopyBtn').click(function(){
                                      <br><br>          
                     <div class="vcard bio" style="height:5px;">                    	  
                       <a href="${pageContext.request.contextPath}/member/myGallery.do?memberId=${RPost.MEMBER_ID}&followerId=${member.memberId}" class="agent-info d-flex align-items-center">    
-                      <img src="${pageContext.request.contextPath}/resources/images/${RPost.MPHOTO}" alt="Image placeholder" style="margin-bottom: 5px;margin-bottom: 1px;position: relative;top: -70px;">
+                      <img src="${pageContext.request.contextPath}/resources/images/profileImage/${RPost.MPHOTO}" alt="Image placeholder" style="margin-bottom: 5px;margin-bottom: 1px;position: relative;top: -70px;">
                       </a>                 
                       <h6 style="top: -50px;position: relative;">${RPost.NICKNAME}</h6> 
                     </div>
