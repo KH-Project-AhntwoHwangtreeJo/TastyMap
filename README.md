@@ -108,7 +108,7 @@
 - img
 - 설명(황창현)
 #### 4-4) Post update
-![bandicam 2020-08-11 16-58-12-598](https://user-images.githubusercontent.com/66407382/89873612-b0543300-dbf5-11ea-90ee-957a41fb58a4.JPG)
+![게시글수정](https://user-images.githubusercontent.com/66407382/89920485-6a1fc380-dc37-11ea-8a1c-4772f762d0b5.gif)
 - 사용자가 작성한 게시글을 수정할 수 있도록 한다.
 - 게시글을 수정 시 식당의 주소와 식당명, 이미지 파일을 불러와 편의성을 제공한다. 
 - 올린 이미지 파일을 '파일 삭제'버튼을 통해 삭제가 가능하도록 한다.
@@ -123,7 +123,7 @@
 - img
 - 설명(안예진)
 #### 5-2) Restaurant Detail
-![bandicam 2020-08-11 16-27-06-341](https://user-images.githubusercontent.com/66407382/89873650-bba75e80-dbf5-11ea-98f9-a8fcd3b8ee12.JPG)
+![식당디테일](https://user-images.githubusercontent.com/66407382/89920495-6c821d80-dc37-11ea-96a0-aae216ab26aa.gif)
 - 선택한 식당에 대한 상세한 데이터를 불러온다.
 - 경로복사하기 버튼 클릭 시 해당 페이지의 URL을 복사한다.
 - 리뷰 등록하기 버튼 클릭 시 해당 식당에 대한 리뷰를 등록 할 수 있다.
