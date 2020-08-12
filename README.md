@@ -55,16 +55,13 @@
 
 ### 1) Main
 #### 1-1) SearchBar
-- ![검색바](https://user-images.githubusercontent.com/66407414/89986074-f91ff080-dcb6-11ea-814e-dd3cd3900893.png)
-- 설명(조현민)
+![검색바](https://user-images.githubusercontent.com/66407414/89986074-f91ff080-dcb6-11ea-814e-dd3cd3900893.png)
 - 음식점 혹은 게시글을 선택해서 검색하고 싶은 단어를 입력하면 관련된 음식점(혹은 게시글)이 출력된다.
 #### 1-2) Popular restaurant Top9 
-- ![음식점9](https://user-images.githubusercontent.com/66407414/89986093-0046fe80-dcb7-11ea-97d7-f19b6cd44029.PNG)
-- 설명(조현민)
+![음식점9](https://user-images.githubusercontent.com/66407414/89986093-0046fe80-dcb7-11ea-97d7-f19b6cd44029.PNG)
 - 평균 별점이 제일 높은 순으로 9개의 음식점이 출력된다.
 #### 1-3) Influencer's post
-- ![인플루언서8](https://user-images.githubusercontent.com/66407414/89986100-0210c200-dcb7-11ea-86ef-a74dd68af0a6.PNG)
-- 설명(조현민)
+![인플루언서8](https://user-images.githubusercontent.com/66407414/89986100-0210c200-dcb7-11ea-86ef-a74dd68af0a6.PNG)
 - 사용자 중 팔로워가 가장 많으며 사용자가 작성한 게시글의 좋아요 수가 많은 8개의 게시글이 출력된다.
 <br/>
 
@@ -80,17 +77,14 @@
 
 ### 3) Mypage
 #### 3-1) Mypage Main
-- ![마이페이지](https://user-images.githubusercontent.com/66407414/89986114-09d06680-dcb7-11ea-9293-1ffaecd4c6c3.PNG)
-- 설명(조현민)
+![마이페이지](https://user-images.githubusercontent.com/66407414/89986114-09d06680-dcb7-11ea-9293-1ffaecd4c6c3.PNG)
 - 사용자가 작성한 게시글의 음식점들을 지도에 한번에 보일 수 있게 마커들을 출력하였다.
 - 사용자가 작성한 게시글의 음식점들을 기준으로 음식점 카테고리별, 지역별 음식점 통계를 볼 수 있다.
 #### 3-2) LikeList
-- ![좋아요리스트](https://user-images.githubusercontent.com/66407414/89986116-0c32c080-dcb7-11ea-970a-d95b6d2534fd.PNG)
-- 설명(조현민)
+![좋아요리스트](https://user-images.githubusercontent.com/66407414/89986116-0c32c080-dcb7-11ea-970a-d95b6d2534fd.PNG)
 - 사용자가 다른 사용자의 게시글들을 좋아요 누른 목록을 확인 할 수 있다.
 #### 3-3) BookmarkList
-- ![북마크리스트](https://user-images.githubusercontent.com/66407414/89986120-0ccb5700-dcb7-11ea-8b9a-7be022e03b29.PNG)
-- 설명(조현민)
+![북마크리스트](https://user-images.githubusercontent.com/66407414/89986120-0ccb5700-dcb7-11ea-8b9a-7be022e03b29.PNG)
 - 사용자가 북마크 표시를 한 음식점들 목록을 확인할 수 있다.
 #### 3-4) Information update
 - img
@@ -175,7 +169,6 @@
 <br/>
 
 ### 8) WebSocket
-- ![알람](https://user-images.githubusercontent.com/66407414/89986127-0dfc8400-dcb7-11ea-995f-cb6a19c6530b.PNG)
-- 설명 (조현민)
-- 모르겠다.
+![알람](https://user-images.githubusercontent.com/66407414/89986127-0dfc8400-dcb7-11ea-995f-cb6a19c6530b.PNG)
+- 다른 사용자가 본인의 게시글에 좋아요나 댓글을 달았을 시에 알람을 받을 수 있도록 구현하였다.
 <hr/>  
