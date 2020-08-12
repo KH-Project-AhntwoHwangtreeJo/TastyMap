@@ -77,7 +77,7 @@
 
 ### 3) Mypage
 #### 3-1) Mypage Main
-![마이페이지](https://user-images.githubusercontent.com/66407414/89986114-09d06680-dcb7-11ea-9293-1ffaecd4c6c3.PNG)
+![마이페이지](https://user-images.githubusercontent.com/66407414/89988139-0db1b800-dcba-11ea-80e0-71937ef396e8.PNG)
 - 사용자가 작성한 게시글의 음식점들을 지도에 한번에 보일 수 있게 마커들을 출력하였다.
 - 사용자가 작성한 게시글의 음식점들을 기준으로 음식점 카테고리별, 지역별 음식점 통계를 볼 수 있다.
 #### 3-2) LikeList
