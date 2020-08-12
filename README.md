@@ -176,6 +176,6 @@
 <br/>
 
 ### 8) WebSocket
-![알람](https://user-images.githubusercontent.com/66407414/89986127-0dfc8400-dcb7-11ea-995f-cb6a19c6530b.PNG)
+![알람](https://user-images.githubusercontent.com/66407414/89990046-bfea7f00-dcbc-11ea-97b2-c9df2c441fb9.PNG)
 - 다른 사용자가 본인의 게시글에 좋아요나 댓글을 달았을 시에 알람을 받을 수 있도록 구현하였다.
 <hr/>  
