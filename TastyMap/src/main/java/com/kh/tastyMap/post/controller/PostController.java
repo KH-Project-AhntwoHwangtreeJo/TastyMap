@@ -85,7 +85,7 @@ public class PostController {
 			 // 오류 시 PostException 동작
 			throw new PostException(e.getMessage());
 		 }
-		return "post/insertPost";
+		return "/post/updatePost";
 	}
 	
 		//식당 상세페이지에서 게시글 등록(조은성)
@@ -200,12 +200,12 @@ public class PostController {
 //	         throw new PostException("게시글 등록 오류");
 	      }
 
-	       String loc = "/post/postAllList.do";
+	       String loc = "";
 	       String msg = "";
 
 	       if(result > 0) {
 	          msg = "게시글 수정 완료!";
-	          loc = "/post/postAllList.do?no="+post.getPNo();
+	          loc = "/post/postAllList.do";
 
 	       } else {
 	          msg = "게시글 수정 실패!";

@@ -176,40 +176,38 @@
  
   <script>
   $(function(){
-	  
-	  if(${star}.val() ){
-		  
-	 
-	  	var star =${star};
-	  	var idx=0;
-	  	switch (star) {
-		case 0.5:idx=0;
-			break;
-		case 1.0:idx=1;
-			break;
-		case 1.5:idx=2;
-			break;
-		case 2.0:idx=3;
-			break;
-		case 2.5:idx=4;
-			break;
-		case 3.0:idx=5;
-			break;
-		case 3.5:idx=6;
-			break;
-		case 4.0:idx=7;
-			break;
-		case 4.5:idx=8;
-			break;
-		case 5.0:idx=9;
-			break;
-		}	  
+	  //console.log(${star});
+
+		  	var star =${star};
+		  	var idx=0;
+		  	switch (star) {
+			case 0.5:idx=0;
+				break;
+			case 1.0:idx=1;
+				break;
+			case 1.5:idx=2;
+				break;
+			case 2.0:idx=3;
+				break;
+			case 2.5:idx=4;
+				break;
+			case 3.0:idx=5;
+				break;
+			case 3.5:idx=6;
+				break;
+			case 4.0:idx=7;
+				break;
+			case 4.5:idx=8;
+				break;
+			case 5.0:idx=9;
+				break;
+			}	  
 		$(".star").removeClass("on");
-		for (var i = 0; i <= idx; i++) {
-			$(".star").eq(i).addClass("on");
-		}
+			for (var i = 0; i <= idx; i++) {
+				$(".star").eq(i).addClass("on");
+			}
 		
-	  }
+
   });  	  
   </script>
    
