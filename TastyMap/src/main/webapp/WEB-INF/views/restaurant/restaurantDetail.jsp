@@ -198,68 +198,65 @@ $('.urlCopyBtn').click(function(){
                  
                  <div class="rows" style="position: relative; font-size: 30px; top: -43px; left:-35px;display:inline">
                   <!-- 1.1.신고 기능 버튼 (로그인 되어있을 시 신고 가능 )-->
-  				 <c:if test="${ empty member.memberId }">
-  				    <input id="eunsung" class="eunsung" type="hidden" value="${RPost.PNO}" />
-  				    <a href="#loginModal" class="nav-link"> 
-             		 <button class="btn btn-outline-danger" data-toggle="modal" data-target="#loginModal" type="button" onclick="changePostReport(this);"  style="float: right; position: relative;left: -80px;margin-top:10px"  >신고하기</button>
-             		 
-		   			</a>
-		    	</c:if>
-		    	 <!-- 1.2.자기 게시물일 때 (수정하기 버튼)-->
-  				 <c:if test="${ RPost.MEMBER_ID  eq member.memberId and !empty member.memberId}">
-  				 	 <input id="eunsung" class="eunsung" type="hidden" value="${RPost.PNO}" /> 
-             		 <button class="btn <btn-out></btn-out>line-info" type="button" onclick="editPost(this);"  style="float: right; position: relative; left: -80px;margin-top:10px" >수정하기</button>
-             		 <script>
-	                  function editPost(obj){               
-	                   var pno = $(obj).parent().find('.eunsung').val();                   
-	                   var memberId = "${member.memberId}";
-	                   var nicname= "${RPost.NICKNAME}";
-	                   var pcontent = $(obj).parent().parent().find('.pcontent').text();
-	                   var rname= "${restaurant.rname}";
-	                   var address= "${restaurant.address}";
-	                   var star =$(obj).parent().parent().find('.star').text();
-/* 	                	   
-	                   console.log(pNo);
-	                   console.log(memberId);
-	                   console.log(nicname);
-	                   console.log(pcontent);
-	                   console.log(rname);
-	                   console.log(address);
-	                   console.log(star); */
-
-	                  
-	                    location.href = "${pageContext.request.contextPath}/post/postchange.do?rname=rname&memberId=${member.memberId}&address=address&pContent=pcontent&star=star&pNo=pno"; 
-
-	                
-	                   
-	                   }
-	                </script>	  
-		    	</c:if>
-		  		 <!--  1.2. Session에 멤버아이디가 있고 작성자가 아닐 경우 -->	
-		    	<c:if test="${ RPost.MEMBER_ID ne member.memberId and !empty member.memberId}">
-		    	<input id="eunsung" class="eunsung" type="hidden" value="${RPost.PNO}" /> 
-		    	<button class="btn btn-outline-danger" type="button" onclick="changePostReport(this);"  style="float: right; position: relative; left: -80px;margin-top:10px" >신고하기</button>		    		    	
-		    	<script>
-	                  function changePostReport(obj){               
-	                   var pno = $(obj).parent().find('.eunsung').val();                   
-	                  		 console.log(pno);	                    
-	                      var memberId = "${member.memberId}";                   	
-		                  	$.ajax({
-		                  		url : '${pageContext.request.contextPath}/report/insertPostReport.do',
-		                  		data : { pNo : pno, memberId : memberId },
-		                  		dataType : 'json',
-		                  		success : function(data) {
-		                  			// 메세지 출력			
-		                  			alert(data.pmsg);
-		                  		}, error : function(req, qstatus, error) {
-		                  			
-		                  			alert('에러인가?');
-		                  		}
-		                  		
-		                  	});
-	                   }
-	                </script>	    	
-		    	</c:if>		    			
+	  				 <c:if test="${ empty member.memberId }">
+	  				    <input id="eunsung" class="eunsung" type="hidden" value="${RPost.PNO}" />
+	  				    <a href="#loginModal" class="nav-link"> 
+	             		 <button class="btn btn-outline-danger" data-toggle="modal" data-target="#loginModal" type="button" onclick="changePostReport(this);"  style="float: right; position: relative;left: -80px;margin-top:10px"  >신고하기</button>
+	             		 
+			   			</a>
+			    	</c:if>
+			    	 <!-- 1.2.자기 게시물일 때 (수정하기 버튼)-->
+	  				 <c:if test="${ RPost.MEMBER_ID  eq member.memberId and !empty member.memberId}">
+	  				 	 <input id="eunsung" class="eunsung" type="hidden" value="${RPost.PNO}" /> 
+	             		 <button class="btn btn-outline-info" type="button" onclick="editPost(this);"  style="float: right; position: relative; left: -80px;margin-top:10px" >수정하기</button>
+	             		 <script>
+		                  function editPost(obj){
+		                   var pno = $(obj).parent().find('.eunsung').val();                   
+		                   var memberId = "${member.memberId}";
+		                   var nicname= "${RPost.NICKNAME}";
+		                   var pcontent =$(obj).parent().parent().find('div.pcontent').text();
+		                   var rname= "${restaurant.rname}";
+		                   var address= "${restaurant.address}";
+		                   var star =$(obj).parent().parent().find('.star').text();             
+	
+		                    location.href = "${pageContext.request.contextPath}/post/postchange.do?"
+		                    		+"rname=${restaurant.rname}"
+		                    		+"&memberId=${member.memberId}"
+		                    		+"&address=${restaurant.address}"
+		                    		+"&pContent="+pcontent
+		                    		+"&star="+star
+		                    		+"&pNo="+pno; 
+	
+		                
+		                   
+		                   }
+		                </script>	  
+			    	</c:if>
+			  		 <!--  1.2. Session에 멤버아이디가 있고 작성자가 아닐 경우 -->	
+			    	<c:if test="${ RPost.MEMBER_ID ne member.memberId and !empty member.memberId}">
+			    	<input id="eunsung" class="eunsung" type="hidden" value="${RPost.PNO}" /> 
+			    	<button class="btn btn-outline-danger" type="button" onclick="changePostReport(this);"  style="float: right; position: relative; left: -80px;margin-top:10px" >신고하기</button>		    		    	
+			    	<script>
+		                  function changePostReport(obj){               
+		                   var pno = $(obj).parent().childrent().find('.eunsung').val();                   
+		                  		 console.log(pno);	                    
+		                      var memberId = "${member.memberId}";                   	
+			                  	$.ajax({
+			                  		url : '${pageContext.request.contextPath}/report/insertPostReport.do',
+			                  		data : { pNo : pno, memberId : memberId },
+			                  		dataType : 'json',
+			                  		success : function(data) {
+			                  			// 메세지 출력			
+			                  			alert(data.pmsg);
+			                  		}, error : function(req, qstatus, error) {
+			                  			
+			                  			alert('에러인가?');
+			                  		}
+			                  		
+			                  	});
+		                   }
+		                </script>	    	
+			    	</c:if>		    			
           <!-- 신고 기능 버튼 끝 -->  
           		</div>     
               
@@ -267,19 +264,23 @@ $('.urlCopyBtn').click(function(){
                   
                   <div  class="meta" style="position: relative; margin-left: 100px">
         		    <div id="postdate" style="position: relative;right: -3px; top : -80px;">${fn:substring(RPost.date,0,10)}
-        		    <h2 class="star" style="float:right; margin-top: -7px ;display:inline;margin-right:50px;">${RPost.STAR}</h2> 
-                 <img src="${pageContext.request.contextPath}/resources/upload/post/star1.png" style=";width: 30px; height: 30px; float: right;">  
+        		    	<h2 class="star" style="float:right; margin-top: -7px ;display:inline;margin-right:50px;">${RPost.STAR}</h2> 
+                 		<img src="${pageContext.request.contextPath}/resources/upload/post/star1.png" style=";width: 30px; height: 30px; float: right;">  
         		    </div>                 
                    	<div class="pcontent" style="position: relative;top: -80px;">${RPost.PCONTENT}</div>                                          
                     <br>
                     <!-- </div> -->                    
 				
-                    <c:forEach items="${RPicture}" var="RPicture">  
-                    <c:if test="${RPost.PNO eq RPicture.PNO}">
-           			 <img class="pt"src="${pageContext.request.contextPath}/resources/upload/post/${RPicture.prenamedname}"  style="width: 200px; height: 200px; margin-left: 1px; margin-top: -100px">                                               			  
-                    </c:if>
-                     </c:forEach>  
-                    </div>
+                    <div class="row">	
+	                    <div class="col-md-8">
+		                    <c:forEach items="${RPicture}" var="RPicture">  
+			                    <c:if test="${RPost.PNO eq RPicture.PNO}">
+			           			 		<img class="pt col-md-12"src="${pageContext.request.contextPath}/resources/upload/post/${RPicture.prenamedname}"  style="width: 240px; height: 200px;  margin-top: -100px; margin-bottom: 110px; margin-left: -24px">
+			                    </c:if>
+		                     </c:forEach>  
+	                    </div>  
+                    </div>                                             			  
+                  </div>
                      <hr>                	
                   </li>                 
                  </c:forEach>       
