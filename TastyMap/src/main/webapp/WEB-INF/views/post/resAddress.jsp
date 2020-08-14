@@ -192,6 +192,7 @@ function displayPlaces(places) {
                           
                           // 부모창으로 값 넘겨주기"id값".value = 넘겨줄 값;
                           opener.document.getElementById("roadFullAddr").value = road_addr;
+                          opener.document.getElementById("hiddenspace").value = road_addr;
                           opener.document.getElementById("rName").value = title;   
                             
                          

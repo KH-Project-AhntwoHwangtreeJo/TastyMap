@@ -34,5 +34,6 @@ public class RestaurantList implements Serializable {
 	private String pRenamedName;// PICTURE	
 	private double avg_star;	// 평균 별점
 	private String nickName;	// 회원 닉네임
-
+	
+	
 }

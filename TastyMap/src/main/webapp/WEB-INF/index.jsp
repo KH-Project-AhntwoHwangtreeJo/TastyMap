@@ -92,8 +92,8 @@
         <div class="row justify-content-center mb-5">
           <div class="col-md-7 heading-section text-center ftco-animate">
           	<span class="subheading">Influencer</span>
-			<h2>Top10 Influencer's Post</h2>
-			<p>인기10 인플루언서의 게시글</p>
+			<h2>Top8 Influencer's Post</h2>
+			<p>인기있는 Top 인플루언서 8명의 최신게시글</p>
           </div>
         </div>
         <div class="row d-flex">

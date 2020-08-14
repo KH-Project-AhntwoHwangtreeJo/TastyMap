@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.kh.tastyMap.member.model.vo.Member;
-import com.kh.tastyMap.notice.model.vo.Notice;
 import com.kh.tastyMap.post.model.vo.Post;
 import com.kh.tastyMap.postComment.model.vo.PostComment;
 import com.kh.tastyMap.report.model.vo.Report;

@@ -243,13 +243,14 @@ public class AdminController {
 			
 		// 1. 게시글 전체 리스트를 가져오는 리스트 객체
 		List<Map<String, String>> list=adminService.selectPostList();
-		//System.out.println(list);
+		System.out.println(list);
 		
 		// 2. 게시글에 대한 사진 리스트를 가져오는 객체
-		//List<Map<String, String>> pictureList = adminService.selectPictureList();
-		
+		List<Map<String, String>> pictureList = adminService.selectPictureList();
+		//System.out.println(pictureList);
 		// 3. 화면으로 보내줄 객체들 추가 
 		model.addAttribute("list", list);
+		model.addAttribute("pictureList", pictureList);
 		
 		
 		}catch(Exception e) {

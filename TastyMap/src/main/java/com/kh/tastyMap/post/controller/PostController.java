@@ -71,7 +71,8 @@ public class PostController {
 	
 		//게시글 정보 전달 (postDetail -> insertPost)(조은성)
 	@RequestMapping("/post/postchange.do")
-	public String postchange(int pNo, String pContent, double star,String rname, String memberId, String address, Model model) {		    
+	public String postchange(@RequestParam int pNo,@RequestParam String pContent,@RequestParam double star,
+							@RequestParam String rname,@RequestParam String memberId,@RequestParam String address, Model model) {		    
 		try {
 		List postPhoto = postService.postDetailPhoto(pNo); 	    
 		model.addAttribute("pNo", pNo); 
@@ -226,7 +227,7 @@ public class PostController {
 	   @RequestMapping("/post/insertPostEnd.do")
 	      public String insertPost(PostRequest postRequst, Model model, HttpSession session, HttpServletRequest request,
 	            @RequestParam(value="upFile", required= false) List<MultipartFile> upFile) {
-	              
+	             //System.out.println(postRequst); 
 	         String rName = postRequst.getRName();
 	         String address = postRequst.getAddress();
 	         int rno = postService.selectRestaurantName(rName);
@@ -323,12 +324,12 @@ public class PostController {
 	         }
 
 	       
-	          String loc = "/post/postAllList.do";
+	          String loc = "";
 	          String msg = "";
 
 	          if(result > 0) {
 	             msg = "게시글 등록 성공!";
-	             loc = "/post/postAllList.do?no="+post.getPNo();
+	             loc = "/post/postAllList.do";
 
 	          } else {
 	             msg = "게시글 등록 실패!";
@@ -460,7 +461,7 @@ public class PostController {
 		map.put("pstatus", pstatus); // 게시글 신고 결과 넣어줌		
 		map.put("pstatus", pstatus); // 게시글 신고 결과 넣어줌
 		map.put("pcstatus", pcstatus); // 댓글 신고 결과 넣어줌
-		
+		//System.out.println(p);
 		model.addAttribute("post", p) // 포스트 기본 정보
 			 .addAttribute("postDetailPhotoList", postPhoto) // 포스트 내 사진 정보
 			 .addAttribute("map", map) // 좋아요 정보 & 게시글 신고 정보

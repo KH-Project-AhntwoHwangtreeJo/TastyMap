@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.kh.tastyMap.admin.model.dao.AdminDAO;
 import com.kh.tastyMap.member.model.vo.Member;
-import com.kh.tastyMap.notice.model.vo.Notice;
 import com.kh.tastyMap.post.model.vo.Picture;
 import com.kh.tastyMap.post.model.vo.Post;
 import com.kh.tastyMap.postComment.model.vo.PostComment;
