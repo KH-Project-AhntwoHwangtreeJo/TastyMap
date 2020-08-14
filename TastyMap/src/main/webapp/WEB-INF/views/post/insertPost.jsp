@@ -242,9 +242,9 @@ function fileDelete() {
 
               <div class="callbackDiv">
               	<button type="button" class="btn btn-outline-danger col-3" onclick="fileDelete();">파일 삭제</button>
-                 <input type="hidden" class="form-control" value="" id="hiddenspace" name="hiddenspace" required/>
-                <input type="text" class="form-control" value="" id="roadFullAddr" name="address"  placeholder="주소검색을 눌러주세요" readonly/>
-                <input type="text"    value="" id="rName" name="rName" placeholder="식당이름" readonly />
+                 <input type="hidden" class="form-control" value="${ address }" id="hiddenspace" name="hiddenspace" required/>
+                <input type="text" class="form-control" value="${ address }" id="roadFullAddr" name="address"  placeholder="주소검색을 눌러주세요" readonly/>
+                <input type="text"    value="${ rname }" id="rName" name="rName" placeholder="식당이름" readonly />
                 <button type="button" class="btn btn-primary py-3 px-4" id="address" onclick="goAddress();">주소검색</button>
               </div>
 
@@ -276,7 +276,7 @@ function fileDelete() {
                
   
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="작성자 닉네임" name="member_Id" value="${member.memberId}" readonly required>
+                <input type="hidden" class="form-control" placeholder="작성자 닉네임" name="member_Id" value="${member.memberId}" readonly required>
               </div>
               <div class="form-group">
                 <textarea class="form-control" name="pContent" cols="30" rows="7" placeholder="글 작성" required></textarea>
