@@ -93,10 +93,10 @@ input:checked+.slider:before {
 				</div>
 				<div class="panel-body">
 					<table cellpadding="0" cellspacing="0" border="0"
-						class="table table-striped table-bordered" id="table">
+						class="table table-striped table-bordered" id="example">
 						<thead>
 							<tr>
-								<th>식당 번호</th>
+								<th>번호</th>
 								<th>식당이름</th>
 								<th>주소</th>
 								<th>소개글</th>

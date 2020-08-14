@@ -11,7 +11,8 @@
 <title>게시글 전체리스트</title>
 </head>
 <body>
-    <section class="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+   <br /><br />
+   <!--  <section class="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="overlay-2"></div>
       <div class="container">
@@ -22,7 +23,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
 	<!--게시글 리스트 부분-->
     <section class="ftco-section goto-here">

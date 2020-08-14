@@ -85,11 +85,10 @@
 			ORDER BY PNO DESC
 		</select>
 		<!-- [3-2. 사진 정보 출력 쿼리]  -->
-		<select id="selectPictureList" resultMap="postMap" >
-			SELECT P.* ,R.RNAME 
-	        FROM POST P
-			JOIN RESTAURANT R ON(P.RNO=R.RNO)
-			ORDER BY PNO DESC
+		<select id="selectPictureList" resultType="Picture" >
+			SELECT PRENAMEDNAME, PNO
+			FROM PICTURE
+			ORDER BY PNO
 		</select>
 		<!-- [3-3. 게시글 활성화 상태 변경 쿼리]  -->
 		<update id="PostUpdateStatus" parameterType="Post">

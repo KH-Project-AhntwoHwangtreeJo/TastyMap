@@ -107,9 +107,11 @@ input:checked+.slider:before {
 .gallery:hover .zoom {
 	width: 300px; /* 너비*/
 	height: 300px; /* 높이*/
-	opacity: 1; /* 불투명하게*/
+	margin-right: 200px; /* 커지는 이미지가 다음줄로 이어지게 설정*/
+	opacity: 1; /* 불투명하게*/	
+	position:relative; /* 서로 가리지 않게 설정*/
 	visibility: visible; /* 화면에보임*/
-	float: right; /* 오른쪽으로플로팅*/
+	float: left; /* 오른쪽으로플로팅*/
 }
 </style>
 <c:import url="/views/admin/adminHeader.jsp"/>
@@ -129,14 +131,14 @@ input:checked+.slider:before {
 				<div class="panel-body">
 					<table cellpadding="0" cellspacing="0" border="0"
 						class="table table-striped table-bordered" id="example">
-						<thead>
-							<tr>
+						<thead >
+							<tr style="text-align:center">
 								<th>게시글 번호</th>
 								<th>사용자ID</th>
 								<th>식당이름</th>
 								<th>게시글 내용</th>
-								<th>별점</th>
 								<th>사진</th>
+								<th>별점</th>
 								<th>등록일자</th>
 								<th>조회수</th>
 								<th>게시상태</th>
@@ -151,13 +153,22 @@ input:checked+.slider:before {
 								<td>${p.member_Id}</td>
 								<td>${p.rname}</td>
 								<td>${p.PContent}</td>
-								<td>${p.star}</td>
 								<%-- <td class="gallery"><img class="img-fluid small"
 									src="${pageContext.request.contextPath}/resources/authUploadFiles/<%=a.getSigncf()%>"
 									alt=""> <img class="img-fluid zoom"
 									src="${pageContext.request.contextPath}/resources/authUploadFiles/<%=a.getSigncf()%>"
 									alt=""></td> --%>
-								<td>${p.date}</td>
+								<td class="gallery">
+									<c:forEach var="pictureList" items="${ pictureList}">
+										<c:if test="${ p.PNo eq pictureList.PNo }">
+											<img class="img-fluid small" src="${pageContext.request.contextPath}/resources/upload/post/${pictureList.PRenamedName}"
+												style="width:100px; height:100px"/>
+											<img class="img-fluid zoom" src="${pageContext.request.contextPath}/resources/upload/post/${pictureList.PRenamedName}"
+												/>
+										</c:if>
+									</c:forEach>
+								</td>
+								<td>${p.star}</td>
 								<td>${p.date}</td>
 								<td>${p.PCnt}</td>
 								<td>

@@ -101,6 +101,24 @@ function fileDelete() {
       /** 2017년 3월 추가제공 **/
    }
    
+   
+   function check(){
+	    var send = true;
+	    if(! $('#upFile').val()){
+	       alert("사진을 등록해주세요!");
+	       send=false;
+	    }
+	    if(! $("input[name='starValue']").val()){
+	       alert("별점을 등록해주세요!");
+	       send=false;
+	    }
+	    if(! $('#hiddenspace').val()){
+	        alert("식당을 등록해주세요!");
+	        send=false;
+	     } 
+	    return send;
+	 };
+   
    /* $.ajax({
       url :"${pageContext.request.contextPath}/post/resAddress.do",
       dataType : "json",
@@ -113,27 +131,14 @@ function fileDelete() {
 
 </script>
 <script>
-function check(){
-    var send = true;
-    if(! $("input[type='file']").val()){
-       alert("사진을 등록해주세요!");
-       send=false;
-    }
-    if(! $("input[name='starValue']").val()){
-       alert("별점을 등록해주세요!");
-       send=false;
-    }
-    if(! $("input[name='address']").val()){
-        alert("식당을 등록해주세요!");
-        send=false;
-     } 
-    return send;
- };
+
 </script>
 </head>
 <body>
+    <br />
+    <br />
     
-    <section class="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight" style="background-image: url('${pageContext.request.contextPath}/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <%-- <section class="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight" style="background-image: url('${pageContext.request.contextPath}/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="overlay-2"></div>
       <div class="container">
@@ -150,14 +155,14 @@ function check(){
           </div>
         </div>
       </div>
-    </section>
+    </section> --%>
 
     <section class="ftco-section contact-section">
       <div class="post-container">
        
         <div class="row block-9 justify-content-center mb-5">
           <div class="col-md-6 align-items-stretch d-flex">
-            <form role="form" name="form" id="form" method="post" class="bg-light p-5 contact-form" enctype="multipart/form-data"  onsubmit="return check()" action="${pageContext.request.contextPath }/post/insertPostEnd.do">
+            <form role="form" name="form" id="form" method="post" class="bg-light p-5 contact-form" enctype="multipart/form-data"  onsubmit="return check();" action="${pageContext.request.contextPath }/post/insertPostEnd.do">
               <!--사진 업로드-->
               <div class="wrap-input100 validate-input m-b-23"  data-validate = "Username is required">
                 <span class="label-input100" ></span>      
@@ -182,25 +187,9 @@ function check(){
 
                 </ol>
                 <div class="carousel-inner">
-                  <c:if test="${ !empty star }">
-                  <input type="hidden" name="pno" value="${pNo}" > 
-                 <c:forEach var="postDetailimg" items="${ postPhoto }" varStatus="status"> <!-- 이미지 반복문 -->
-       	 		<c:if test="${status.index eq 0}">
-	          <div class="carousel-item active " style="width:100%; height:100%">
-	            <img src="${pageContext.request.contextPath}/resources/upload/post/${postDetailimg.pRenamedName}" class="block-20 img" style="width:100%; height:600px">
-	          </div>
-	          </c:if>
-	          <c:if test="${status.index ne 0}">
- 	          <div class="carousel-item" style="width:100%; height:100%">
-	            <img src="${pageContext.request.contextPath}/resources/upload/post/${postDetailimg.pRenamedName}" class="block-20 img" style="width:100%; height:600px">
-	          </div>
-	          </c:if>	        
-         		</c:forEach>                          
-               	 </c:if>
-                
-                
-                
-                  <c:if test="${ empty star }">
+
+
+
                   <div class="carousel-item active">
                     <img src="${pageContext.request.contextPath}/resources/images/picture.png" id="upFile0" class="d-block w-100" alt="...">
                   </div>
@@ -231,7 +220,7 @@ function check(){
                   <div class="carousel-item">
                     <img src="${pageContext.request.contextPath}/resources/images/picture.png" id="upFile9" class="d-block w-100" alt="...">
                   </div>
-                  </c:if>
+
                 </div>
                 
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" >
@@ -253,9 +242,9 @@ function check(){
 
               <div class="callbackDiv">
               	<button type="button" class="btn btn-outline-danger col-3" onclick="fileDelete();">파일 삭제</button>
-                
-                <input type="text" class="form-control" value="${address}" id="roadFullAddr" name="address"  placeholder="주소검색을 눌러주세요" readonly/>
-                <input type="text"    value="${rname}" id="rName" name="rName" placeholder="식당이름" readonly required/>
+                 <input type="hidden" class="form-control" value="" id="hiddenspace" name="hiddenspace" required/>
+                <input type="text" class="form-control" value="" id="roadFullAddr" name="address"  placeholder="주소검색을 눌러주세요" readonly/>
+                <input type="text"    value="" id="rName" name="rName" placeholder="식당이름" readonly />
                 <button type="button" class="btn btn-primary py-3 px-4" id="address" onclick="goAddress();">주소검색</button>
               </div>
 
@@ -276,7 +265,7 @@ function check(){
                <span class="star star_left" data-rate=4.5></span>
                <span class="star star_right" data-rate=5.0></span>
                <!-- <div id="myStar"> -->
-                  <input type="text" id="starValue" name="starValue" value="${star}" style="display:none;"  required></input>
+                  <input type="text" id="starValue" name="starValue" value="" style="display:none;"  required></input>
             
                <!-- <div type="text" id="passwdMsg"></div> -->
                <!-- <input type="text" class="form-control" name="userName" id="userName" readonly="readonly"> -->
@@ -293,12 +282,8 @@ function check(){
                 <textarea class="form-control" name="pContent" cols="30" rows="7" placeholder="글 작성" required></textarea>
               </div>
               <div class="btnArea form-group">
-              <c:if test="${ empty star}">
-              	<input type="submit" value="올리기" class="btn btn-primary py-3 px-5" >
-              	</c:if>
-              <c:if test="${ !empty star }">
-                <input type="submit" value="수정하기" class="btn btn-primary py-3 px-5" onclick="javascript:  check(); form.action='${pageContext.request.contextPath}/post/updatePostEnd.do';">
-                </c:if>
+
+              	<input type="submit" value="올리기" class="btn btn-primary py-3 px-5"  onclick=" javascript: return check(this); form.action='${pageContext.request.contextPath}/post/insertPostEnd.do';">
                 <input type="reset" value="취소" class="btn btn-info py-3 px-5">
               </div>
             </form>

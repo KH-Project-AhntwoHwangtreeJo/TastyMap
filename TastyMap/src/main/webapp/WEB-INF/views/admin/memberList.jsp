@@ -92,7 +92,7 @@ input:checked+.slider:before {
 				</div>
 				<div class="panel-body">
 					<table cellpadding="0" cellspacing="0" border="0"
-						class="table table-striped table-bordered" id="example">
+						class="table table-striped table-bordered" id="example" style="text-align:center">
 						<thead>
 							<tr>
 								<th>아이디</th>
@@ -111,13 +111,13 @@ input:checked+.slider:before {
 							<c:forEach items="${list}" var="m"> 
 							<tr>
 								<td>${m.memberId}</td>
-								<td><img src="${pageContext.request.contextPath}/resources/images/profileImage/${member.mphoto}" /></td>
+								<td><img src="${pageContext.request.contextPath}/resources/images/profileImage/${member.mphoto}" style="width: 50px"/></td>
 								<td>${m.userName}</td>
 								<td>${m.nickname}</td>
 								<td>${m.gender}</td>
 								<td>${m.phone}</td>
 								<td>${m.email}</td>
-								<td>${m.address}</td>
+								<td style="text-align:left" >${m.address}</td>
 								<td><label class="switch"> <input type="checkbox"
 										onclick="toggle(this)"
 										${m.mstatus eq 'Y' ? "checked" : ""}>  <span
