@@ -45,7 +45,7 @@
 										href="${pageContext.request.contextPath}/member/myGallery.do?memberId=${p.member_Id}&followerId=${member.memberId}"
 										class="agent-info d-flex align-items-center">
 										<div class="img-2 rounded-circle"
-											style="background-image: url('${pageContext.request.contextPath}/resources/images/profileImage/${P.MPhoto}');"></div>
+											style="background-image: url('${pageContext.request.contextPath}/resources/images/profileImage/${p.MPhoto}');"></div>
 										<h3 class="mb-0 ml-2">${p.nickName }</h3>
 									</a>
 								</div>
