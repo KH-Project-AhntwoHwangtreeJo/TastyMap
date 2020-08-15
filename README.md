@@ -116,9 +116,15 @@
 
 ### 4-3) Post Detail
 ![postDetail](https://user-images.githubusercontent.com/66407391/90312914-2e407300-df43-11ea-8272-15e75e3563ca.gif)
+- 포스트 상세 페이지 : 해당 게시글을 좋아요 누르거나 취소할 수 있습니다. 
+- 링크 복사 버튼으로 해당 페이지 링크를 복사할 수 있습니다. 
+- 프린트 버튼으로 해당페이지 프린트할 수 있습니다. 
 ![comment](https://user-images.githubusercontent.com/66407391/90312918-2f71a000-df43-11ea-87d8-2ca636b78925.gif)
+- 댓글을 작성 수정 삭제가 가능합니다.
+- 다른사람의 댓글을 신고할 수 있고 중복신고는 불가 합니다.
 ![recomment](https://user-images.githubusercontent.com/66407391/90312921-30a2cd00-df43-11ea-82cd-d721fdd79936.gif)
-- 설명(황창현)
+- 댓글에 대댓글을 작성할 수 있고 대댓글 역시 수정, 삭제가 가능합니다. 
+- 다른사람의 대댓글을 신고할 수 있고 중복신고는 불가 합니다. 
 ### 4-4) Post update
 ![게시글수정](https://user-images.githubusercontent.com/66407382/89920485-6a1fc380-dc37-11ea-8a1c-4772f762d0b5.gif)
 - 사용자가 작성한 게시글을 수정할 수 있도록 한다.
