@@ -115,7 +115,9 @@
 
 
 ### 4-3) Post Detail
-- img
+![postDetail](https://user-images.githubusercontent.com/66407391/90312914-2e407300-df43-11ea-8272-15e75e3563ca.gif)
+![comment](https://user-images.githubusercontent.com/66407391/90312918-2f71a000-df43-11ea-87d8-2ca636b78925.gif)
+![recomment](https://user-images.githubusercontent.com/66407391/90312921-30a2cd00-df43-11ea-82cd-d721fdd79936.gif)
 - 설명(황창현)
 ### 4-4) Post update
 ![게시글수정](https://user-images.githubusercontent.com/66407382/89920485-6a1fc380-dc37-11ea-8a1c-4772f762d0b5.gif)
@@ -150,7 +152,7 @@
 <br/>
 
 ## 6) Gallery
-- img
+![myGallery](https://user-images.githubusercontent.com/66407391/90312911-2c76af80-df43-11ea-9f2d-f5c2194e880b.gif)
 - 설명 (황창현)
 <br/>
 
