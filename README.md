@@ -182,7 +182,10 @@
 
 ## 6) Gallery
 ![myGallery](https://user-images.githubusercontent.com/66407391/90312911-2c76af80-df43-11ea-9f2d-f5c2194e880b.gif)
-- 설명 (황창현)
+- 비회원 상태에서 상단 mygallery 클릭시 로그인 창 띄움
+- myGallery에 해당 member의 정보 가져오기 (포스트, 팔로워, 팔로잉 개수 가져오기 등등)
+- 해당 유저의 포스트 대표사진 리스트로 가져와서 아래 출력하기
+- 팔로우 버튼은 로그인한 아이디와 gallery의 아이디가 다를때 클릭 확인 가능하다.
 <br/>
 
 ## 7) Admin
