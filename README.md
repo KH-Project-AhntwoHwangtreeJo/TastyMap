@@ -35,7 +35,8 @@
 <br/>
 
 # 3. development schedule(개발일정)
-- 2020-06-29(Mon)~ 2020-08-09(Sun) 42 days
+- 1st : 2020-06-29(Mon) ~ 2020-08-09(Sun) 42 days
+- 2nd : 2020-08-10(Mon) ~ Until we like it.
 
 <br/>
 
