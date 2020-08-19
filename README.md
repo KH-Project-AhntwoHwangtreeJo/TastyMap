@@ -45,7 +45,7 @@
 
 - SungA Cho (sunga0720@naver.com)
 - YeJin Ahn 
-- ChangHyun Hwang
+- ChangHyun Hwang (eternalkid@naver.com)
 - EunSung Jo
 - HyunMin Jo (johm616@naver.com)
 - HaYoung Hwang
