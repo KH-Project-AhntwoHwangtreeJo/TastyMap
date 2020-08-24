@@ -94,7 +94,7 @@
 &nbsp;&nbsp;&nbsp;(7) 이용약관 : 이용약관을 클릭시 모달창을 띄워서 사용자가 약관의 내용을 확인할 수 있도록 하였다.<br/>
 
 ### 2-2) Login
-![logingUpload (2)](https://user-images.githubusercontent.com/66008716/91014378-3fb10b80-e624-11ea-87b7-33c015fe4188.gi)
+![logingUpload (2)](https://user-images.githubusercontent.com/66008716/91014378-3fb10b80-e624-11ea-87b7-33c015fe4188.gif)
 - 회원가입된 아이디에 해당하는 비밀번호를 입력시 회원의 활성화상태가 'Y'인 경우 로그인이 가능하다.
 &nbsp;&nbsp;&nbsp;(회원 활성화상태 : 관리자가 회원의 활동을 막은 경우, 회원이 탈퇴한 경우는 'N'으로 활성화 상태가 변경된다.)
 - 관리자 아이디('admin')로 로그인시 상단 메뉴에 관리자 페이지로 접속 가능한 "admin" 버튼이 나타난다.
