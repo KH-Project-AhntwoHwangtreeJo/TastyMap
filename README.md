@@ -30,6 +30,11 @@
    <td>language</td>
    <td>Java, HTML5, CSS3, javascript, JQuery, Servlet, MyBatis, Spring</td> 
  </tr>
+ <tr>
+  <td><b>language</b></td>
+  <td style="color:blue;">Responsive Web</td> 
+ </tr>
+
 </table>
 
 <br/>
