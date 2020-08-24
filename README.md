@@ -60,6 +60,7 @@
 # 5. Introduction to Services
 
 ## 1) Main
+![mainUpload](https://user-images.githubusercontent.com/66008716/91013462-b51bdc80-e622-11ea-883a-3c90a47cb9a6.gif)
 ### 1-1) SearchBar
 ![검색바](https://user-images.githubusercontent.com/66407414/89986074-f91ff080-dcb6-11ea-814e-dd3cd3900893.png)
 - 음식점 혹은 게시글을 선택해서 검색하고 싶은 단어를 입력하면 관련된 음식점(혹은 게시글)이 출력된다.
