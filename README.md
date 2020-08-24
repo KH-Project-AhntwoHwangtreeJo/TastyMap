@@ -11,28 +11,28 @@
 # 2. Development environment (개발 환경)
 <table>
  <tr>
-   <td>Development tools</td>
+   <td><b>Development tools</b></td>
    <td>STS</td>
  </tr>
   <tr>
-   <td>UI design</td>
+   <td><b>UI design</b></td>
    <td>star UML, kakao Oven</td> 
  </tr>
  <tr>
-   <td>DBMS</td>
+   <td><b>DBMS</b></td>
    <td> Oracle -SQL Developer</td> 
  </tr>
  <tr>
-   <td>Server</td>
+   <td><b>Server</b></td>
    <td>Apache Tomcat 8.5</td> 
  </tr>
  <tr>
-   <td>language</td>
+   <td><b>language</b></td>
    <td>Java, HTML5, CSS3, javascript, JQuery, Servlet, MyBatis, Spring</td> 
  </tr>
  <tr>
-  <td><b>language</b></td>
-  <td style="color:blue;">Responsive Web</td> 
+  <td><b>Design</b></td>
+  <td style="color:blue">Responsive Web</td> 
  </tr>
 
 </table>
